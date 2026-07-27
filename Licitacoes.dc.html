@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Licitações públicas","description":"Mesa de licitações orientada por dados: radar PNCP 24/7 e cotações com trilha auditável — decisões go/no-go em horas, não dias.","url":"https://setfree.com.br/solucoes/licitacoes","provider":{"@type":"MedicalOrganization","@id":"https://setfree.com.br/#org","name":"Setfree"},"areaServed":{"@type":"Country","name":"Brasil"}}</script>
+<meta name="description" content="Mesa de licitações orientada por dados: radar PNCP 24/7 e cotações com trilha auditável — decisões go/no-go em horas, não dias.">
+<meta property="og:title" content="Licitações Públicas — Setfree">
+<meta property="og:description" content="Mesa de licitações orientada por dados: radar PNCP 24/7 e cotações com trilha auditável — decisões go/no-go em horas, não dias.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://setfree.com.br/solucoes/licitacoes">
+<link rel="canonical" href="https://setfree.com.br/solucoes/licitacoes">
+</helmet>
+<dc-import name="SolucaoPage" d="{{ d }}" hint-size="100%,900px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { d: {
+      img: 'uploads/solucoes/licitacoes.png', num: '06', nome: 'Licitações públicas',
+      tagline: 'Mesa de licitações orientada por dados: radar PNCP 24/7 e cotações com trilha auditável — decisões go/no-go em horas, não dias.',
+      incluiT: 'Da publicação do edital ao pós-venda',
+      itens: ['Monitoramento PNCP — federal, estadual e municipal', 'Análise de edital e go/no-go em horas', 'Cotação com fonte auditável', 'Participação, entrega e pós-venda'],
+      publicoT: 'Para quem compra e para quem fornece',
+      publico: [
+        { t: 'Instituições públicas de saúde', d: 'Publicam o edital e precisam de fornecedor habilitado que entregue.' },
+        { t: 'Fabricantes e distribuidores', d: 'Querem acesso ao mercado público sem montar mesa de licitações própria.' },
+        { t: 'Nosso próprio portfólio', d: 'As sete linhas Setfree disputam pregões com preço e prazo verificáveis.' }
+      ],
+      ctaT: 'Envia o edital — respondemos com go ou no-go.',
+      outras: [
+        { num: '05', nome: 'Qualidade', href: 'Qualidade.dc.html' },
+        { num: '02', nome: 'Consultoria comercial', href: 'ConsultoriaComercial.dc.html' },
+        { num: '04', nome: 'Registro ANVISA e regulatório', href: 'RegistroAnvisa.dc.html' }
+      ]
+    } };
+  }
+}
+</script>
+</body>
+</html>

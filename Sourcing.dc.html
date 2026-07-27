@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Sourcing global de produtos","description":"Para hospitais, médicos e distribuidores: localizamos, qualificamos e trazemos tecnologias médicas ainda sem representação no Brasil — sob demanda.","url":"https://setfree.com.br/solucoes/sourcing","provider":{"@type":"MedicalOrganization","@id":"https://setfree.com.br/#org","name":"Setfree"},"areaServed":{"@type":"Country","name":"Brasil"}}</script>
+<meta name="description" content="Para hospitais, médicos e distribuidores: localizamos, qualificamos e trazemos tecnologias médicas ainda sem representação no Brasil — sob demanda.">
+<meta property="og:title" content="Sourcing Internacional — Setfree">
+<meta property="og:description" content="Para hospitais, médicos e distribuidores: localizamos, qualificamos e trazemos tecnologias médicas ainda sem representação no Brasil — sob demanda.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://setfree.com.br/solucoes/sourcing">
+<link rel="canonical" href="https://setfree.com.br/solucoes/sourcing">
+</helmet>
+<dc-import name="SolucaoPage" d="{{ d }}" hint-size="100%,900px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { d: {
+      img: 'uploads/solucoes/sourcing.png', num: '01', nome: 'Sourcing global de produtos',
+      tagline: 'Para hospitais, médicos e distribuidores: localizamos, qualificamos e trazemos tecnologias médicas ainda sem representação no Brasil — sob demanda.',
+      incluiT: 'Da busca ativa à entrega regularizada',
+      itens: ['Busca ativa e qualificação de fabricantes', 'Análise de viabilidade regulatória e comercial', 'Amostras, demonstrações e validação clínica', 'Importação e entrega regularizadas'],
+      publicoT: 'Quando o produto existe lá fora e não chega aqui',
+      publico: [
+        { t: 'Hospitais e clínicas', d: 'Precisam de uma tecnologia específica que nenhum fornecedor nacional oferece.' },
+        { t: 'Médicos e corpo clínico', d: 'Viram o dispositivo em congresso ou publicação e querem usá-lo no Brasil.' },
+        { t: 'Distribuidores', d: 'Buscam ampliar portfólio com linhas ainda sem representação no país.' }
+      ],
+      ctaT: 'Diz qual tecnologia você procura.',
+      outras: [
+        { num: '03', nome: 'Estratégia de entrada no mercado brasileiro', href: 'EntradaMercado.dc.html' },
+        { num: '04', nome: 'Registro ANVISA e regulatório', href: 'RegistroAnvisa.dc.html' },
+        { num: '02', nome: 'Consultoria comercial', href: 'ConsultoriaComercial.dc.html' }
+      ]
+    } };
+  }
+}
+</script>
+</body>
+</html>
