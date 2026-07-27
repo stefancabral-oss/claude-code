@@ -167,10 +167,16 @@ class Component extends DCLogic {
     this.setState({ aiBusy: true, aiText: '', aiWa: '' });
     const wa = 'https://wa.me/5511913685038?text=' + encodeURIComponent('Olá! Preciso de orientação: ' + q);
     try {
-      if (!window.claude || !window.claude.complete) throw new Error('sem-ia');
-      const prompt = 'Você é o assistente comercial da Setfree, importadora e distribuidora de tecnologia médica no Brasil. Linhas do portfólio: Micro Knifes GEISTER (microcirurgia — micro lâminas de precisão, oftálmica, neuro, plástica, odontologia); Radimed (dor crônica — cânulas e agulhas de radiofrequência, infiltração facetária); Marrow Cellution (aspiração de medula óssea, coleta de células-tronco, terapias regenerativas); CoreBone (enxerto ósseo bioativo de origem coral, regeneração óssea); Lipsus (bolsa de umedecimento labial, cuidado pós-cirúrgico ao paciente); Dentsply Sirona (implantes e soluções odontológicas); Parceiros Estratégicos (linha de parceiros estratégicos — produtos do dia a dia, venda direta e licitações). Necessidade do cliente: "' + q + '". Responda em português do Brasil, no máximo 70 palavras, tom profissional e caloroso: indique a(s) linha(s) mais adequada(s) e por quê. Se nada se aplicar, diga honestamente e sugira falar com o time. Não invente produtos nem especificações.';
-      const r = await window.claude.complete(prompt);
-      this.setState({ aiBusy: false, aiText: (r || '').trim(), aiWa: wa });
+      const resp = await fetch('/api/assistente', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ pergunta: q })
+      });
+      if (!resp.ok) throw new Error('http ' + resp.status);
+      const data = await resp.json();
+      const texto = (data.texto || '').trim();
+      if (!texto) throw new Error('vazio');
+      this.setState({ aiBusy: false, aiText: texto, aiWa: wa });
     } catch (e) {
       this.setState({ aiBusy: false, aiText: 'Assistente indisponível agora — fale direto com o nosso time no WhatsApp, respondemos rápido.', aiWa: wa });
     }
