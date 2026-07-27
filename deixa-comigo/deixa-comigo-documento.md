@@ -284,4 +284,57 @@ O **familiar gestor**: adulto de 38–58 anos, carreira ativa, renda média-alta
 
 ---
 
-_v3 · 27/07/2026 · **ETAPAS 1 E 2 FECHADAS** (2/31 · 10/155 portas) · Frase-problema pública é PÉTREO; a causa vive no Anexo Reservado I · **Etapa 3 — Públicos: DESTRAVADA**_
+## B1 · Etapa 3 — Públicos possíveis (em execução: 27/07/2026)
+
+### ☑ 3.1 Públicos candidatos — as 5 portas de entrada (PÉTREO no GTM Book)
+
+1. **Pessoa idosa** + familiar gestor
+2. **Pessoa com deficiência** + responsável
+3. **Pessoa neurodivergente** + família
+4. **Dor ou condição crônica** + quem coordena o cuidado
+5. **Gestação e puerpério** de alta carga de coordenação
+
+Lembrete da régua pétrea (Etapa 1): a elegibilidade é pela **carga de coordenação**, não pelo diagnóstico — estes cinco são portas e playbooks, não fronteiras.
+
+### ☑ 3.2 Perfil de cada público (síntese dos docs pétreos)
+
+| Porta | Quem sente a dor (comprador) | Cena típica |
+|---|---|---|
+| Idoso | Filha/filho gestor, 38–58, carreira ativa | Consultas, operadora, cuidadores, pós-alta, irmãos |
+| Deficiência | Pai/mãe responsável | Direitos, terapias, transporte, documentos, BPC |
+| Neurodivergência | Mãe/pai atípico | Terapias multidisciplinares, escola, laudos, agenda |
+| Crônicos | O próprio paciente ou cônjuge/filho | Recorrência, especialistas, autorizações, medicação contínua |
+| Gestação | Gestante/casal | Pré-natal, exames, rede, plano, documentos do bebê |
+
+### ☑ 3.3 Tamanho com fonte (números oficiais; não somar — públicos se sobrepõem)
+
+| Público | Tamanho | Fonte |
+|---|---|---|
+| Pessoas 60+ no Brasil | **32,1 milhões** (15,8% da população) | IBGE, Censo 2022 |
+| Pessoas 60+ na cidade de São Paulo | **2,02 milhões** (17,7%; +51% desde 2010) | Censo 2022 / Prefeitura SP |
+| Pessoas com deficiência | **14,4 mi** (Censo 2022) a **18,6 mi** (PNAD Contínua 2022) | IBGE |
+| Diagnóstico de autismo | ~2,4 milhões (1,2%) | Censo 2022 (divulg. 2025) — *confirmar na Etapa 4* |
+| Adultos com ≥1 doença crônica | **57,4 milhões** (~40% dos adultos) | PNS/IBGE |
+| Nascimentos por ano | **2,52 milhões** (2023) | IBGE/SINASC |
+
+**Dimensionamento do beachhead (HIPÓTESE a calibrar):** dos 2,02 mi de idosos da capital, a fração com alta carga de coordenação (régua de elegibilidade) é estimada em 15–25% → **300–500 mil núcleos potenciais**; recortando por famílias com renda para D2C, ordem de **100–150 mil núcleos endereçáveis** só na capital — sem contar região metropolitana e B2B. Fração de carga é chute declarado; calibra na Etapa 5.
+
+### ☑ 3.4 Canal de acesso por público
+
+| Porta | Canais práticos |
+|---|---|
+| Idoso | Geriatras e hospitais (pós-alta — o momento da dor máxima), grupos de cuidadores (WhatsApp/Facebook), Google nos gatilhos ("cuidador faltou", "negativa do plano"), LinkedIn do fundador, indicação |
+| Deficiência | Associações (APAE, AACD), advogados previdenciários (BPC), escolas especiais |
+| Neurodivergência | Clínicas multidisciplinares/ABA, escolas, comunidades de mães atípicas (Instagram forte) |
+| Crônicos | Clínicas de dor/onco/nefro, farmácias de alto custo, associações de pacientes |
+| Gestação | Obstetras, doulas, cursos de gestante, planos-maternidade |
+
+### ☑ 3.5 PÚBLICO CANÔNICO priorizado (formaliza o beachhead PÉTREO)
+
+> **A filha ou filho gestor (38–58 anos, carreira ativa, renda média-alta) de pessoa idosa com alta carga de coordenação, em São Paulo — capital e região metropolitana.**
+
+Todas as validações do motor (5.2, 8.5, 10.3, 20.1) recrutam **deste** público. **Por quê:** é a porta com maior frequência de tarefas, dor mais reconhecível, maior poder de compra, o playbook mais denso para aprender — e é a cena da própria história fundadora.
+
+---
+
+_v3 · 27/07/2026 · **ETAPAS 1 E 2 FECHADAS** (2/31 · 10/155 portas) · **ETAPA 3 EM EXECUÇÃO** — 5 portas redigidas, aguardando homologação · Frase-problema pública é PÉTREO; a causa vive no Anexo Reservado I_
