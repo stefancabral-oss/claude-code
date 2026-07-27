@@ -241,9 +241,9 @@ Prós: carga tributária menor e burocracia mínima na fase de aprendizado; a ma
 
 ---
 
-## B1 · Etapa 2 — Problema central (em execução: 27/07/2026)
+## B1 · Etapa 2 — Problema central ✅ (FECHADA em 27/07/2026)
 
-### ☐ 2.1 Problema escrito em UMA frase — PROPOSTA v3
+### ☑ 2.1 Problema escrito em UMA frase — PÉTREO (aprovada pelo fundador em 27/07/2026)
 
 **A frase pública (famílias, materiais, campanhas):**
 > **"No Brasil, o cuidado de quem amamos depende de uma burocracia que ninguém ensina a família a operar — e essa falha cobra primeiro o tempo e a presença; depois, a saúde; no limite, a vida."**
@@ -284,4 +284,4 @@ O **familiar gestor**: adulto de 38–58 anos, carreira ativa, renda média-alta
 
 ---
 
-_v3 · 27/07/2026 · **ETAPA 1 FECHADA** (propostas aprovadas, ritual sextas 15h) · **ETAPA 2 EM EXECUÇÃO**: portas 2.2–2.5 consolidadas; falta aprovar a frase única (2.1)_
+_v3 · 27/07/2026 · **ETAPAS 1 E 2 FECHADAS** (2/31 · 10/155 portas) · Frase-problema pública é PÉTREO; a causa vive no Anexo Reservado I · **Etapa 3 — Públicos: DESTRAVADA**_
