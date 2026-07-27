@@ -286,6 +286,8 @@ O **familiar gestor**: adulto de 38–58 anos, carreira ativa, renda média-alta
 
 ## B1 · Etapa 3 — Públicos possíveis (em execução: 27/07/2026)
 
+> **⚠️ Nota de honestidade metodológica (registro do fundador, 27/07):** esta etapa NÃO é um estudo profundo de públicos — e não finge ser. É a triagem que lista os candidatos e concentra tudo em UM (o canônico). A profundidade vem em cascata e só para o escolhido: Etapa 4 (mercado real), Etapa 5 (8 entrevistas — o primeiro contato do projeto com a realidade). Os outros 4 públicos ficam deliberadamente rasos até seus playbooks serem ativados (decisão agendada na Etapa 31). Até a Etapa 5, tudo sobre público é hipótese bem organizada — inclusive a fração de "alta carga" do dimensionamento abaixo.
+
 ### ☑ 3.1 Públicos candidatos — as 5 portas de entrada (PÉTREO no GTM Book)
 
 1. **Pessoa idosa** + familiar gestor
