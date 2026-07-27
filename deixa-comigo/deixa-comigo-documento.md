@@ -339,7 +339,7 @@ Todas as validações do motor (5.2, 8.5, 10.3, 20.1) recrutam **deste** públic
 
 ---
 
-## B1 · Etapa 4 — Mercado e alternativas (em execução: 27/07/2026)
+## B1 · Etapa 4 — Mercado e alternativas ✅ (FECHADA em 27/07/2026)
 
 ### ☑ 4.1 Concorrentes diretos — a constatação central: **a categoria está vazia no Brasil**
 
@@ -377,4 +377,39 @@ Escada de mercado: apps (R$ 0–50, você faz tudo) → clubes (R$ 30–55, voc�
 
 ---
 
-_v3 · 27/07/2026 · **ETAPAS 1, 2 E 3 FECHADAS** (3/31 · 15/155 portas) · **ETAPA 4 EM EXECUÇÃO** — 5 portas redigidas, aguardando homologação_
+## B1 · Etapa 5 — Validação do problema (em preparação: 27/07/2026)
+
+⚠️ **Tem loop-back**: se <6 de 8 confirmarem, volta à Etapa 2 (invalida 3–4 em cascata). É o primeiro contato do projeto com a realidade.
+
+### ☑ 5.1 Roteiro de entrevista (estilo Mom Test — comportamento passado, zero pitch)
+
+**Abertura:** *"Queria entender como é o dia a dia de cuidar da sua mãe/pai. Não vou vender nada — estou estudando esse tema."*
+
+1. Me conta como é a rotina de cuidado hoje? Quem faz o quê?
+2. **No último mês, quais tarefas do cuidado você teve que resolver?** (puxar a lista concreta, uma a uma)
+3. **Qual foi a última vez que algo burocrático do cuidado te consumiu? Me conta a história.** (episódio real — a pergunta de ouro)
+4. Quanto tempo por semana você estima gastar nisso? O que deixou de fazer por causa disso?
+5. Já teve negativa do convênio ou problema de autorização? O que você fez?
+6. Quem mais ajuda? Como é a divisão com irmãos/família?
+7. O que você já tentou para aliviar — app, secretária, ajuda paga? Por que continuou/parou?
+8. Se pudesse entregar UMA tarefa do cuidado para alguém de confiança, qual seria?
+9. *(fecho)* Conhece outras pessoas vivendo isso? (recrutamento em cascata)
+
+**Regras:** não citar produto nem preço · gravar com consentimento (Granola transcreve) · anotar **pendências/semana** e **horas/semana** (alimentam o critério da 5.5: ≥6 de 8 com 3+ pendências/semana E burocracia entre as maiores fontes de estresse).
+
+### ☐ 5.2 Recrutamento das 8 (plano — dono: Stefan)
+
+| Fonte | Meta | Nota |
+|---|---|---|
+| Indicações de 2º grau da rede pessoal | 3 | Pedir "conhece alguém que cuida dos pais?" — não entrevistar amigos diretos (viés) |
+| Geriatras/médicos da rede Setfree | 2–3 | Já testa o canal B2D de brinde |
+| Grupos de cuidadores (WhatsApp/Facebook) | 2 | Abordagem: pesquisa, sem venda |
+| Colegas/contatos corporativos com pais idosos | 1–2 | Já sonda receptividade B2B |
+
+*A própria família (sua mãe, tios) serve como **piloto do roteiro** — não conta nas 8 (viés).* 
+
+### ☐ 5.3–5.5 — Aguardam as entrevistas (agenda na reunião de sexta 15h)
+
+---
+
+_v3 · 27/07/2026 · **ETAPAS 1–4 FECHADAS** (4/31 · 20/155 portas) · Bloco 1 depende só da Etapa 5 (entrevistas) · Roteiro pronto; recrutar as 8 famílias — pauta de sexta_
