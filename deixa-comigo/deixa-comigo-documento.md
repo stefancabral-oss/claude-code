@@ -284,7 +284,7 @@ O **familiar gestor**: adulto de 38–58 anos, carreira ativa, renda média-alta
 
 ---
 
-## B1 · Etapa 3 — Públicos possíveis (em execução: 27/07/2026)
+## B1 · Etapa 3 — Públicos possíveis ✅ (FECHADA em 27/07/2026)
 
 > **⚠️ Nota de honestidade metodológica (registro do fundador, 27/07):** esta etapa NÃO é um estudo profundo de públicos — e não finge ser. É a triagem que lista os candidatos e concentra tudo em UM (o canônico). A profundidade vem em cascata e só para o escolhido: Etapa 4 (mercado real), Etapa 5 (8 entrevistas — o primeiro contato do projeto com a realidade). Os outros 4 públicos ficam deliberadamente rasos até seus playbooks serem ativados (decisão agendada na Etapa 31). Até a Etapa 5, tudo sobre público é hipótese bem organizada — inclusive a fração de "alta carga" do dimensionamento abaixo.
 
@@ -339,4 +339,42 @@ Todas as validações do motor (5.2, 8.5, 10.3, 20.1) recrutam **deste** públic
 
 ---
 
-_v3 · 27/07/2026 · **ETAPAS 1 E 2 FECHADAS** (2/31 · 10/155 portas) · **ETAPA 3 EM EXECUÇÃO** — 5 portas redigidas, aguardando homologação · Frase-problema pública é PÉTREO; a causa vive no Anexo Reservado I_
+## B1 · Etapa 4 — Mercado e alternativas (em execução: 27/07/2026)
+
+### ☑ 4.1 Concorrentes diretos — a constatação central: **a categoria está vazia no Brasil**
+
+Ninguém vende "assumir e concluir a burocracia do cuidado pela família". Os mais próximos:
+
+| Player | O que é | Por que NÃO é o que fazemos |
+|---|---|---|
+| **Concierge de operadoras** (MedSênior linhas Black/Infinite; seguradoras premium) | Assistente embutido no plano | **Pertence ao porteiro** — o concierge do convênio jamais cobra prazo do próprio convênio ou contesta a própria negativa |
+| **WTW** (concierge de benefícios) | Navegação corporativa B2B | Atende o RH e o contrato — não a família direta; valida a categoria e o preço B2B |
+| **Wellthy / Cariloop** (EUA) | Care navigation com coordenadores humanos | Modelo de referência; **não operam no Brasil** |
+
+### ☑ 4.2 Substitutos (resolvem pedaços)
+
+| Substituto | O que resolve | O que devolve à família |
+|---|---|---|
+| Home care (Home Health Concierge, Pronep…) | Execução clínica domiciliar (R$ 4–15 mil/mês) | Toda a burocracia continua com a família |
+| Marketplaces de cuidadores (CuidaBem, MaisVita) | Achar UM profissional | Gestão, escala, reposição, todo o resto |
+| Apps de organização (Meu Idoso, Gero360, Zelo) | Anotar e lembrar (grátis–R$ 50) | **Todo o trabalho** — é self-service |
+| Clubes de desconto (R$ 30–55/família) | Acesso barato a consultas | Zero execução; o memo já os descartou como comparável de custo |
+| Advogado de saúde (liminares) | Ataca UMA negativa (R$ 3–10 mil/ação) | Episódico, caro, só depois da guerra declarada |
+
+### ☑ 4.3 A gambiarra atual (o verdadeiro concorrente)
+
+**A filha + WhatsApp + planilha + telefone + Google + o grupo da família.** Complementos eventuais: a secretária do consultório que "quebra o galho", o parente que "entende de saúde", o despachante informal. Custo aparente: zero. Custo real: 5–15h/semana, erros, e a presença — é a gambiarra que o produto substitui.
+
+### ☑ 4.4 Comparação (preço × o que entrega)
+
+Escada de mercado: apps (R$ 0–50, você faz tudo) → clubes (R$ 30–55, você acessa) → **Deixa Comigo (hipótese R$ 490, NÓS FAZEMOS)** → home care (R$ 4–15 mil, clínico) → advogado (R$ 3–10 mil, guerra). O degrau entre R$ 55 e R$ 4.000 está **vazio** — é exatamente onde a missão concluída mora.
+
+### ☑ 4.5 A lacuna, em uma frase
+
+> **Não existe no Brasil um navegador profissional do cuidado que trabalhe PARA a família — todos os "concierges" existentes pertencem aos porteiros.** A Deixa Comigo é o primeiro sem conflito de interesse com operadora, hospital ou indústria: advocacia administrativa independente + execução + memória.
+
+*(Aprofundamento com Semrush — volume de busca por gatilho, tráfego dos players — agendado para a Etapa 28/landing. Preços exatos dos concierges premium: coletar na Etapa 10 junto ao teste de disposição a pagar.)*
+
+---
+
+_v3 · 27/07/2026 · **ETAPAS 1, 2 E 3 FECHADAS** (3/31 · 15/155 portas) · **ETAPA 4 EM EXECUÇÃO** — 5 portas redigidas, aguardando homologação_
