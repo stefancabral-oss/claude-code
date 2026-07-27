@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Consultoria comercial","description":"Posicionamento, preço e canais para tecnologia médica no mercado brasileiro — estratégia que transforma produto em presença.","url":"https://setfree.com.br/solucoes/consultoria-comercial","provider":{"@type":"MedicalOrganization","@id":"https://setfree.com.br/#org","name":"Setfree"},"areaServed":{"@type":"Country","name":"Brasil"}}</script>
+<meta name="description" content="Posicionamento, preço e canais para tecnologia médica no mercado brasileiro — estratégia que transforma produto em presença.">
+<meta property="og:title" content="Consultoria Comercial — Setfree">
+<meta property="og:description" content="Posicionamento, preço e canais para tecnologia médica no mercado brasileiro — estratégia que transforma produto em presença.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://setfree.com.br/solucoes/consultoria-comercial">
+<link rel="canonical" href="https://setfree.com.br/solucoes/consultoria-comercial">
+</helmet>
+<dc-import name="SolucaoPage" d="{{ d }}" hint-size="100%,900px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { d: {
+      img: 'uploads/solucoes/consultoria.png', num: '02', nome: 'Consultoria comercial',
+      tagline: 'Posicionamento, preço e canais para tecnologia médica no mercado brasileiro — estratégia que transforma produto em presença.',
+      incluiT: 'Do posicionamento à sala de cirurgia',
+      itens: ['Posicionamento e precificação', 'Desenho de canais — direto, distribuidores, licitações', 'Treinamento de força de vendas e corpo clínico', 'Apresentação a hospitais e cirurgiões'],
+      publicoT: 'Quando o produto é bom e a presença não acompanha',
+      publico: [
+        { t: 'Fabricantes já no Brasil', d: 'Têm registro e produto, mas o volume não corresponde ao potencial.' },
+        { t: 'Distribuidores', d: 'Querem estruturar preço, canal e discurso clínico da linha que representam.' },
+        { t: 'Novas linhas', d: 'Produto entrando no país e precisando de posicionamento antes do primeiro pedido.' }
+      ],
+      ctaT: 'Conta onde o comercial está travando.',
+      outras: [
+        { num: '03', nome: 'Estratégia de entrada no mercado brasileiro', href: 'EntradaMercado.dc.html' },
+        { num: '06', nome: 'Licitações públicas', href: 'Licitacoes.dc.html' },
+        { num: '01', nome: 'Sourcing global de produtos', href: 'Sourcing.dc.html' }
+      ]
+    } };
+  }
+}
+</script>
+</body>
+</html>

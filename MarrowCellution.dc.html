@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Marrow Cellution","description":"Sistema de aspiração de medula óssea para coleta avançada de células-tronco — tratamentos regenerativos e minimamente invasivos.","url":"https://setfree.com.br/tecnologias/marrow-cellution","category":"Dispositivo médico","brand":{"@type":"Brand","name":"Ranfac Corp."},"manufacturer":{"@type":"Organization","name":"Ranfac Corp."},"offers":{"@type":"Offer","availability":"https://schema.org/InStock","seller":{"@type":"MedicalOrganization","@id":"https://setfree.com.br/#org","name":"Setfree"}},"identifier":[{"@type":"PropertyValue","propertyID":"Registro ANVISA","value":"81888839002"}],"image":"https://setfree.com.br/uploads/produtos/marrow.png"}</script>
+<meta name="description" content="Sistema de aspiração de medula óssea para coleta avançada de células-tronco — tratamentos regenerativos e minimamente invasivos.">
+<meta property="og:title" content="Marrow Cellution — Setfree">
+<meta property="og:description" content="Sistema de aspiração de medula óssea para coleta avançada de células-tronco — tratamentos regenerativos e minimamente invasivos.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://setfree.com.br/tecnologias/marrow-cellution">
+<link rel="canonical" href="https://setfree.com.br/tecnologias/marrow-cellution">
+</helmet>
+<dc-import name="LinhaPage" d="{{ d }}" hint-size="100%,900px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { d: {
+      nome: 'Marrow Cellution', cat: 'TERAPIAS REGENERATIVAS · MEDULA ÓSSEA',
+      tagline: 'Sistema de aspiração de medula óssea para coleta avançada de células-tronco — tratamentos regenerativos e minimamente invasivos.',
+      pena: 'uploads/pena-sf06-marinho.jpg', cor: '#2B3350', corClara: '#7B87CE', codigo: 'SF-06', corNome: 'MARINHO',
+      prod: 'uploads/produtos/marrow.png',
+      overviewT: 'Mais células-tronco por aspirado',
+      overview: 'O Marrow Cellution é um sistema de aspiração de medula óssea projetado para maximizar a qualidade da coleta no ponto de cuidado — recuperando células da medula em múltiplas profundidades e minimizando a diluição por sangue periférico.',
+      featsKicker: 'DIFERENCIAIS', featsT: 'Por que Marrow Cellution',
+      feats: [
+        { t: 'Maior concentração de células-tronco por aspirado', d: 'Técnica de coleta em múltiplos níveis que minimiza a diluição por sangue periférico.' },
+        { t: 'Respaldado por referências científicas publicadas', d: 'Compilado de referências disponível para avaliação técnica e instrução de edital.' }
+      ],
+      aplicT: 'Onde faz diferença',
+      aplicacoes: ['Terapias regenerativas', 'Ortopedia e coluna', 'Procedimentos minimamente invasivos'],
+      catalogo: 'https://setfree.com.br/assets/catalogos/Marrow-Cellution-Referencias-Cientificas.pdf', catalogoLabel: 'Referências científicas (PDF)', catalogoKicker: 'PDF · REFERÊNCIAS CIENTÍFICAS', catalogoNome: 'Referências científicas',
+      outras: [
+        { nome: 'CoreBone', href: 'CoreBone.dc.html', pena: 'uploads/pena-sf01-ceu.jpg' },
+        { nome: 'Micro Knifes GEISTER', href: 'Geister.dc.html', pena: 'uploads/pena-sf02-aco.jpg' },
+        { nome: 'Radimed', href: 'Radimed.dc.html', pena: 'uploads/pena-sf03-coral.jpg' }
+      ]
+    } };
+  }
+}
+</script>
+</body>
+</html>

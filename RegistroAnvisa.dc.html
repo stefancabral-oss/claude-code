@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Registro ANVISA e regulatório","description":"Conduzimos o processo completo junto à ANVISA — na velocidade que o processo de registro e certificação permite, com transparência total.","url":"https://setfree.com.br/solucoes/registro-anvisa","provider":{"@type":"MedicalOrganization","@id":"https://setfree.com.br/#org","name":"Setfree"},"areaServed":{"@type":"Country","name":"Brasil"}}</script>
+<meta name="description" content="Conduzimos o processo completo junto à ANVISA — na velocidade que o processo de registro e certificação permite, com transparência total.">
+<meta property="og:title" content="Registro ANVISA — Setfree">
+<meta property="og:description" content="Conduzimos o processo completo junto à ANVISA — na velocidade que o processo de registro e certificação permite, com transparência total.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://setfree.com.br/solucoes/registro-anvisa">
+<link rel="canonical" href="https://setfree.com.br/solucoes/registro-anvisa">
+</helmet>
+<dc-import name="SolucaoPage" d="{{ d }}" hint-size="100%,900px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { d: {
+      img: 'uploads/solucoes/anvisa.png', num: '04', nome: 'Registro ANVISA e regulatório',
+      tagline: 'Conduzimos o processo completo junto à ANVISA — na velocidade que o processo de registro e certificação permite, com transparência total.',
+      incluiT: 'O ciclo regulatório completo',
+      itens: ['Dossiê técnico e submissão', 'Registro, revalidação e manutenção', 'AFE, autorizações e importação regularizada', 'Vigilância pós-mercado'],
+      publicoT: 'Para quem precisa do registro em ordem',
+      publico: [
+        { t: 'Fabricantes estrangeiros', d: 'Precisam de um detentor de registro brasileiro para colocar o produto no mercado.' },
+        { t: 'Detentores de registro', d: 'Têm registro vencendo, mudança de escopo ou pendência a resolver.' },
+        { t: 'Importadores', d: 'Precisam de AFE, autorizações e importação dentro da regra.' }
+      ],
+      ctaT: 'Manda o que você já tem de dossiê.',
+      outras: [
+        { num: '03', nome: 'Estratégia de entrada no mercado brasileiro', href: 'EntradaMercado.dc.html' },
+        { num: '05', nome: 'Qualidade', href: 'Qualidade.dc.html' },
+        { num: '01', nome: 'Sourcing global de produtos', href: 'Sourcing.dc.html' }
+      ]
+    } };
+  }
+}
+</script>
+</body>
+</html>

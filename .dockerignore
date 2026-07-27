@@ -1,0 +1,8 @@
+node_modules
+dist
+build/.staging
+.git
+.env
+*.log
+uploads/Brandbook*.pdf
+uploads/Captura*

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"CoreBone","description":"Enxerto ósseo bioativo de origem coral. A CNN Business mostrou sua fabricação, aplicabilidade e benefícios.","url":"https://setfree.com.br/tecnologias/corebone","category":"Dispositivo médico","brand":{"@type":"Brand","name":"CoreBone Ltd."},"manufacturer":{"@type":"Organization","name":"CoreBone Ltd."},"offers":{"@type":"Offer","availability":"https://schema.org/InStock","seller":{"@type":"MedicalOrganization","@id":"https://setfree.com.br/#org","name":"Setfree"}},"image":"https://setfree.com.br/uploads/produtos/corebone.png","additionalProperty":[{"@type":"PropertyValue","name":"Registro ANVISA","value":"Em processo de registro na ANVISA"}]}</script>
+<meta name="description" content="Enxerto ósseo bioativo de origem coral. A CNN Business mostrou sua fabricação, aplicabilidade e benefícios.">
+<meta property="og:title" content="CoreBone — Setfree">
+<meta property="og:description" content="Enxerto ósseo bioativo de origem coral. A CNN Business mostrou sua fabricação, aplicabilidade e benefícios.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://setfree.com.br/tecnologias/corebone">
+<link rel="canonical" href="https://setfree.com.br/tecnologias/corebone">
+</helmet>
+<dc-import name="LinhaPage" d="{{ d }}" hint-size="100%,900px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { d: {
+      nome: 'CoreBone', cat: 'REGENERAÇÃO ÓSSEA · ENXERTO BIOATIVO',
+      tagline: 'Enxerto ósseo bioativo de origem coral. A CNN Business mostrou sua fabricação, aplicabilidade e benefícios.',
+      pena: 'uploads/pena-sf01-ceu.jpg', cor: '#35ADFD', corClara: '#35ADFD', codigo: 'SF-01', corNome: 'CÉU',
+      prod: 'uploads/produtos/corebone.png',
+      overviewT: 'Da fazenda de corais à regeneração óssea',
+      overview: 'O CoreBone é um enxerto ósseo bioativo cultivado a partir de corais, em ambiente controlado e livre de risco de transmissão de doenças. Combina resistência mecânica e bioatividade para a regeneração óssea em odontologia e ortopedia.',
+      featsKicker: 'DIFERENCIAIS', featsT: 'Por que CoreBone',
+      feats: [
+        { t: 'Enxerto bioativo, de origem coral', d: 'Estrutura mineral próxima ao osso humano, com resistência mecânica e bioatividade.' },
+        { t: 'Fabricação destacada pela CNN Business', d: 'A reportagem mostrou a fazenda de corais, o processo de fabricação e os benefícios do enxerto.' }
+      ],
+      aplicT: 'Onde faz diferença',
+      aplicacoes: ['Regeneração óssea', 'Odontologia — enxertia', 'Ortopedia'],
+      cnn: true,
+      outras: [
+        { nome: 'Marrow Cellution', href: 'MarrowCellution.dc.html', pena: 'uploads/pena-sf06-marinho.jpg' },
+        { nome: 'Dentsply Sirona · OSSIX', href: 'Dentsply.dc.html', pena: 'uploads/pena-sf05-ambar.jpg' },
+        { nome: 'Micro Knifes GEISTER', href: 'Geister.dc.html', pena: 'uploads/pena-sf02-aco.jpg' }
+      ]
+    } };
+  }
+}
+</script>
+</body>
+</html>

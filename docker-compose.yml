@@ -1,0 +1,45 @@
+# Setfree — deploy no Dokploy (Docker + Traefik).
+#
+# Dois serviços:
+#   web  → site estático pré-renderizado (nginx)         → domínio raiz
+#   api  → assistente de IA (Node + API da Claude)        → mesmo domínio, prefixo /api
+#
+# Antes de subir, defina no Dokploy (aba Environment) a variável:
+#   ANTHROPIC_API_KEY = sk-ant-...        (obrigatória)
+#   DOMAIN            = setfree.com.br     (seu domínio)
+#   ANTHROPIC_MODEL   = claude-sonnet-5    (opcional)
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.web
+    restart: unless-stopped
+    networks: [dokploy-network]
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.setfree-web.rule=Host(`${DOMAIN}`)
+      - traefik.http.routers.setfree-web.entrypoints=websecure
+      - traefik.http.routers.setfree-web.tls.certresolver=letsencrypt
+      - traefik.http.services.setfree-web.loadbalancer.server.port=80
+
+  api:
+    build:
+      context: ./api
+    restart: unless-stopped
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - ANTHROPIC_MODEL=${ANTHROPIC_MODEL:-claude-sonnet-5}
+    networks: [dokploy-network]
+    labels:
+      - traefik.enable=true
+      # /api tem prioridade maior que o site, para capturar as chamadas do assistente
+      - traefik.http.routers.setfree-api.rule=Host(`${DOMAIN}`) && PathPrefix(`/api`)
+      - traefik.http.routers.setfree-api.priority=100
+      - traefik.http.routers.setfree-api.entrypoints=websecure
+      - traefik.http.routers.setfree-api.tls.certresolver=letsencrypt
+      - traefik.http.services.setfree-api.loadbalancer.server.port=8787
+
+networks:
+  dokploy-network:
+    external: true

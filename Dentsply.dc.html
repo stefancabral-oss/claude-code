@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Dentsply Sirona · OSSIX","description":"A linha OSSIX de regeneração guiada, da divisão Regenerative Solutions da Dentsply Sirona — referência mundial em odontologia.","url":"https://setfree.com.br/tecnologias/dentsply","category":"Dispositivo médico","brand":{"@type":"Brand","name":"Dentsply Sirona"},"manufacturer":{"@type":"Organization","name":"Dentsply Sirona"},"offers":{"@type":"Offer","availability":"https://schema.org/InStock","seller":{"@type":"MedicalOrganization","@id":"https://setfree.com.br/#org","name":"Setfree"}},"identifier":[{"@type":"PropertyValue","propertyID":"Registro ANVISA","value":"80745400045"},{"@type":"PropertyValue","propertyID":"Registro ANVISA","value":"80745400046"},{"@type":"PropertyValue","propertyID":"Registro ANVISA","value":"80745400047"}],"image":"https://setfree.com.br/uploads/produtos/ossix.png"}</script>
+<meta name="description" content="A linha OSSIX de regeneração guiada, da divisão Regenerative Solutions da Dentsply Sirona — referência mundial em odontologia.">
+<meta property="og:title" content="Dentsply Sirona — Setfree">
+<meta property="og:description" content="A linha OSSIX de regeneração guiada, da divisão Regenerative Solutions da Dentsply Sirona — referência mundial em odontologia.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://setfree.com.br/tecnologias/dentsply">
+<link rel="canonical" href="https://setfree.com.br/tecnologias/dentsply">
+</helmet>
+<dc-import name="LinhaPage" d="{{ d }}" hint-size="100%,900px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { d: {
+      nome: 'Dentsply Sirona · OSSIX', cat: 'ODONTOLOGIA · REGENERAÇÃO ÓSSEA E TECIDUAL',
+      tagline: 'A linha OSSIX de regeneração guiada, da divisão Regenerative Solutions da Dentsply Sirona — referência mundial em odontologia.',
+      pena: 'uploads/pena-sf05-ambar.jpg', cor: '#DEA905', corClara: '#DEA905', codigo: 'SF-05', corNome: 'ÂMBAR',
+      prod: 'uploads/produtos/ossix.png',
+      overviewT: 'Regeneração guiada com tecnologia GLYMATRIX',
+      overview: 'OSSIX é a família de biomateriais regenerativos da Dentsply Sirona, construída sobre a tecnologia GLYMATRIX: colágeno tipo I de origem porcina reticulado com açúcar, um processo próximo da glicação natural do corpo. A linha é usada por clínicos há mais de 20 anos em centenas de milhares de procedimentos de regeneração óssea e tecidual.',
+      featsKicker: 'A FAMÍLIA OSSIX', featsT: 'Três soluções, um mesmo princípio',
+      feats: [
+        { t: 'OSSIX Plus', d: 'Membrana barreira de colágeno reticulado para ROG e RTG, com efeito barreira real de 4 a 6 meses — mantido mesmo em caso de exposição — e que ossifica ao longo do processo.' },
+        { t: 'OSSIX Volumax', d: 'Scaffold volumizador: posicionado sob o retalho, aumenta a espessura do tecido mole em diferentes indicações que pedem volume adicional.' },
+        { t: 'OSSIX Bone', d: 'Esponja de colágeno ossificante que aumenta a quantidade de osso vital sem deixar partículas residuais após quatro meses.' }
+      ],
+      especsT: 'Tecnologia e composição',
+      especs: [
+        { k: 'TECNOLOGIA', v: 'GLYMATRIX — colágeno reticulado com açúcar' },
+        { k: 'ORIGEM DO COLÁGENO', v: 'Tipo I, porcino (tendão)' },
+        { k: 'MEMBRANA BARREIRA', v: 'OSSIX Plus — 4 a 6 meses' },
+        { k: 'VOLUME DE TECIDO MOLE', v: 'OSSIX Volumax' },
+        { k: 'ENXERTO OSSIFICANTE', v: 'OSSIX Bone' }
+      ],
+      aplicT: 'Onde faz diferença',
+      aplicacoes: ['Regeneração óssea guiada (ROG)', 'Regeneração tecidual guiada (RTG)', 'Preservação alveolar', 'Implantodontia e reabilitação oral'],
+      outras: [
+        { nome: 'CoreBone', href: 'CoreBone.dc.html', pena: 'uploads/pena-sf01-ceu.jpg' },
+        { nome: 'Micro Knifes GEISTER', href: 'Geister.dc.html', pena: 'uploads/pena-sf02-aco.jpg' },
+        { nome: 'Parceiros Estratégicos', href: 'ParceirosEstrategicos.dc.html', pena: 'uploads/pena-sf07-grafite.jpg' }
+      ]
+    } };
+  }
+}
+</script>
+</body>
+</html>

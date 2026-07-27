@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Parceiros Estratégicos","description":"Produtos hospitalares para o dia a dia das instituições de saúde — fornecimento por venda direta e licitações.","url":"https://setfree.com.br/tecnologias/parceiros-estrategicos","category":"Dispositivo médico","offers":{"@type":"Offer","availability":"https://schema.org/InStock","seller":{"@type":"MedicalOrganization","@id":"https://setfree.com.br/#org","name":"Setfree"}}}</script>
+<meta name="description" content="Produtos hospitalares para o dia a dia das instituições de saúde — fornecimento por venda direta e licitações.">
+<meta property="og:title" content="Parceiros Estratégicos — Setfree">
+<meta property="og:description" content="Produtos hospitalares para o dia a dia das instituições de saúde — fornecimento por venda direta e licitações.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://setfree.com.br/tecnologias/parceiros-estrategicos">
+<link rel="canonical" href="https://setfree.com.br/tecnologias/parceiros-estrategicos">
+</helmet>
+<dc-import name="LinhaPage" d="{{ d }}" hint-size="100%,900px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { d: {
+      nome: 'Parceiros Estratégicos', cat: 'LINHA HOSPITALAR · PARCEIROS',
+      tagline: 'Produtos hospitalares para o dia a dia das instituições de saúde — fornecimento por venda direta e licitações.',
+      pena: 'uploads/pena-sf07-grafite.jpg', cor: '#474E58', corClara: '#8B929C', codigo: 'SF-07', corNome: 'GRAFITE',
+      overviewT: 'A linha de parceiros estratégicos',
+      overview: 'Parceiros Estratégicos é a nossa linha hospitalar: produtos do dia a dia das instituições de saúde, com fornecimento ágil por venda direta e participação em licitações públicas — sempre com importação e distribuição regularizadas.',
+      featsKicker: 'FORNECIMENTO', featsT: 'Como fornecemos',
+      feats: [
+        { t: 'Venda direta', d: 'Atendimento a hospitais, clínicas e distribuidores em todo o Brasil.' },
+        { t: 'Licitações públicas', d: 'Mesa própria orientada por dados — especificações verificadas e preços auditáveis.' }
+      ],
+      aplicT: 'Onde faz diferença',
+      aplicacoes: ['Hospitais e clínicas', 'Compras públicas', 'Distribuidores parceiros'],
+      outras: [
+        { nome: 'Lipsus', href: 'Lipsus.dc.html', pena: 'uploads/pena-sf04-violeta.jpg' },
+        { nome: 'Radimed', href: 'Radimed.dc.html', pena: 'uploads/pena-sf03-coral.jpg' },
+        { nome: 'CoreBone', href: 'CoreBone.dc.html', pena: 'uploads/pena-sf01-ceu.jpg' }
+      ]
+    } };
+  }
+}
+</script>
+</body>
+</html>
