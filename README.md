@@ -19,14 +19,27 @@ Exportado do **Claude Design** (formato `.dc.html` + runtime `support.js`, React
 | `uploads/` | Imagens, vídeo do hero e o Brandbook v3 |
 | `seo/` | `robots.txt`, `sitemap.xml`, `llms.txt` e guia de SEO/GEO |
 
-## Estado atual
+## Documentos
 
-Site **renderizado no cliente** (JavaScript). SEO on-page e JSON-LD já embutidos por página.
-Ver `ANALISE.md` na raiz para a auditoria completa e o plano de mudanças (SEO, IA e conteúdo dinâmico).
+- **`ANALISE.md`** — auditoria completa (SEO, IA, performance) e plano de mudanças.
+- **`DEPLOY-DOKPLOY.md`** — como publicar no Dokploy (build + deploy).
 
-## Rodar localmente
+## Build e deploy
+
+O site é pré-renderizado para HTML indexável (robôs de IA/Google passam a ler as páginas de produto) e sobe no Dokploy com um serviço de IA real.
 
 ```bash
-python3 -m http.server 8000
-# abra http://localhost:8000/Home.dc.html
+npm install
+npm run build        # pré-render → dist/ (19 páginas com <title>, JSON-LD no <head>, URLs limpas)
+python3 -m http.server -d dist 8000
+```
+
+- `build/prerender.mjs` — pipeline de pré-render · `build/pages.mjs` — títulos e slugs.
+- `api/` — endpoint `/api/assistente` (assistente de IA).
+- `deploy/` + `docker-compose.yml` — nginx (URLs limpas + 301) e Traefik para o Dokploy.
+
+### Editar direto (Claude Design)
+
+```bash
+python3 -m http.server 8000   # abra http://localhost:8000/Home.dc.html
 ```
