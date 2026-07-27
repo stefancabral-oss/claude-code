@@ -6,7 +6,7 @@
     "MarrowCellution.dc.html":       { "image": "/uploads/produtos/marrow.png",       "anvisa": ["81888839002"] },
     "Lipsus.dc.html":                { "image": "/uploads/produtos/lipsus.png",       "anvisa": ["81888830005"] },
     "Dentsply.dc.html":              { "image": "/uploads/produtos/ossix.png",        "anvisa": ["80745400045", "80745400046", "80745400047"] },
-    "CoreBone.dc.html":              { "image": "/uploads/produtos/corebone.png",     "anvisa": [] },
+    "CoreBone.dc.html":              { "image": "/uploads/produtos/corebone.png",     "anvisa": [], "status": "Em processo de registro na ANVISA" },
     "ParceirosEstrategicos.dc.html": { "image": "",                                    "anvisa": [] }
   }
 }

@@ -27,6 +27,9 @@ for (const [file, info] of Object.entries(data)) {
 
   if (info.anvisa && info.anvisa.length) {
     ld.identifier = info.anvisa.map((n) => ({ "@type": "PropertyValue", propertyID: "Registro ANVISA", value: n }));
+  } else if (info.status) {
+    // produto sem número ainda: registra o status de forma honesta e legível por máquina
+    ld.additionalProperty = [{ "@type": "PropertyValue", name: "Registro ANVISA", value: info.status }];
   }
   if (info.image) ld.image = SITE + info.image;
   if (!ld.category) ld.category = "Dispositivo médico";
