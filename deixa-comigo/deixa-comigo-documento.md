@@ -69,6 +69,24 @@ A burocracia do cuidado no Brasil é densa, fragmentada e cheia de assimetrias: 
 
 **A leitura estratégica:** o produto da Deixa Comigo é **arbitragem de assimetria de informação a favor da família** — e é por isso que a memória (grafo) importa tanto: cada navegação bem-sucedida vira conhecimento reutilizável. *(A análise completa do ambiente competitivo e institucional está no Anexo Reservado I.)*
 
+### A Doutrina de Navegação — para quem constrói (leitura entre linhas)
+
+Este documento não é platônico. "Cuidar das pessoas" é a metade visível da missão; a outra metade é **efetiva**: quando preciso, opera-se COM o sistema — nunca contra a lei, sempre contra a inércia.
+
+**Não somos ingênuos.** Burocracia persistente costuma servir a quem a mantém: cada porta do sistema tem um porteiro, e cada porteiro tem um incentivo. **Navegar é conhecer os incentivos** — não para denunciá-los, mas para atravessá-los com a família do outro lado. Somos pombas na fala e serpentes no método (Mt 10,16). Quem constrói este produto — gente ou IA — deve ler cada porta, prazo e negativa perguntando: *a quem serve esta demora?* A resposta desenha o caminho da travessia.
+
+**Vocabulário de navegação** (uso interno em playbooks, missões e análises — preciso para nós, neutro para fora):
+
+| Termo | Significado operacional |
+|---|---|
+| **O Ambiente** | O conjunto de instituições, agentes e incentivos em que o cuidado acontece |
+| **Muralha** | Burocracia densa cuja função prática é desestimular a travessia |
+| **Porteiro** | Agente com poder de negar, atrasar ou autorizar (e um incentivo para cada um) |
+| **Travessia** | Missão concluída apesar da muralha — com registro do caminho no grafo |
+| **Mapa** | O conhecimento acumulado (grafo + jurisprudência + playbooks) que barateia a próxima travessia |
+
+*O decodificador completo desta doutrina — origens, nomes e batalhas — é o Anexo Reservado I, sob guarda do fundador.*
+
 **Consequências registradas desta origem:**
 - A promessa da marca é literal, não metafórica: a burocracia mal navegada **custa vidas**, não só tempo.
 - **Advocacia administrativa está DENTRO do escopo** (a definir precisamente na Etapa 13): documentar o quadro, registrar formalmente, acionar ouvidoria/ANS/canais competentes, instrumentar a família para exigir o cuidado devido — sem decisão clínica, que permanece com os profissionais.
