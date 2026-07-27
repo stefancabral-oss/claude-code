@@ -1,2 +1,2 @@
-# claude-code
-Claude Code
+# deixa-comigo
+Deixa Comigo
