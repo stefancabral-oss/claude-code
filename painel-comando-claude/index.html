@@ -3,254 +3,298 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Painel de Comando Claude</title>
+<title>Criador de Prompt — por blocos</title>
 <style>
-  :root {
-    --bg: #0f1220;
-    --bg2: #171a2e;
-    --card: #1e2138;
-    --card-hover: #262a45;
-    --line: #2f3455;
-    --txt: #e8eaf3;
-    --muted: #a0a4c0;
-    --accent: #7c6cff;
-    --accent-2: #b39dff;
-    --ok: #34d399;
-    --warn: #fbbf24;
-    --radius: 14px;
+  :root{
+    --bg:#0f1220; --bg2:#171a2e; --card:#1e2138; --card2:#262a45; --line:#2f3455;
+    --txt:#e8eaf3; --muted:#a0a4c0; --accent:#7c6cff; --accent2:#b39dff;
+    --ok:#34d399; --logic:#f59e0b; --struct:#38bdf8; --data:#f472b6; --radius:13px;
   }
-  @media (prefers-color-scheme: light) {
-    :root {
-      --bg: #f5f6fb; --bg2: #ffffff; --card: #ffffff; --card-hover: #eef0fa;
-      --line: #e3e6f2; --txt: #1a1c2e; --muted: #5b6079; --accent: #6b5bff; --accent-2: #4a3fd6;
-    }
+  @media (prefers-color-scheme:light){
+    :root{ --bg:#f5f6fb; --bg2:#fff; --card:#fff; --card2:#eef0fa; --line:#e3e6f2;
+      --txt:#1a1c2e; --muted:#5b6079; --accent:#6b5bff; --accent2:#4a3fd6; }
   }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: linear-gradient(160deg, var(--bg), var(--bg2)); color: var(--txt);
-    min-height: 100vh; line-height: 1.5;
-  }
-  header { padding: 28px 20px 8px; text-align: center; }
-  header h1 { margin: 0; font-size: 1.7rem; letter-spacing: -0.02em; }
-  header p { margin: 6px auto 0; color: var(--muted); max-width: 640px; font-size: .98rem; }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 16px 18px 120px; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(160deg,var(--bg),var(--bg2));color:var(--txt);min-height:100vh;line-height:1.5}
+  header{padding:22px 18px 6px;text-align:center}
+  header h1{margin:0;font-size:1.5rem;letter-spacing:-.02em}
+  header p{margin:6px auto 0;color:var(--muted);max-width:640px;font-size:.92rem}
+  .app{max-width:1080px;margin:0 auto;padding:14px 16px 190px;display:grid;grid-template-columns:1fr;gap:18px}
+  @media(min-width:900px){.app{grid-template-columns:340px 1fr}}
 
-  .step { margin-top: 26px; }
-  .step-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-  .num { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff;
-    display: grid; place-items: center; font-weight: 700; font-size: .9rem; flex: none; }
-  .step-head h2 { font-size: 1.05rem; margin: 0; }
-  .step-head small { color: var(--muted); font-weight: 400; }
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .panel h2{margin:0 0 10px;font-size:.95rem;display:flex;align-items:center;gap:8px}
+  .cat{margin-bottom:14px}
+  .cat-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0 0 7px}
+  .cat.estrutura .cat-title{color:var(--struct)}
+  .cat.logica .cat-title{color:var(--logic)}
+  .cat.dados .cat-title{color:var(--data)}
+  .blocks{display:flex;flex-wrap:wrap;gap:7px}
+  .blk{border:1.5px solid var(--line);background:var(--card2);color:var(--txt);border-radius:10px;
+    padding:8px 11px;cursor:pointer;font-size:.85rem;font-weight:600;transition:.13s;display:inline-flex;align-items:center;gap:6px}
+  .blk:hover{transform:translateY(-1px);border-color:var(--accent)}
+  .cat.estrutura .blk:hover{border-color:var(--struct)}
+  .cat.logica .blk:hover{border-color:var(--logic)}
+  .cat.dados .blk:hover{border-color:var(--data)}
 
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
-  .btn-card {
-    background: var(--card); border: 1.5px solid var(--line); border-radius: var(--radius);
-    padding: 14px; cursor: pointer; text-align: left; transition: .15s; color: var(--txt);
-    display: flex; flex-direction: column; gap: 4px; min-height: 92px;
-  }
-  .btn-card:hover { background: var(--card-hover); transform: translateY(-1px); }
-  .btn-card .ico { font-size: 1.4rem; }
-  .btn-card .lbl { font-weight: 650; font-size: .96rem; }
-  .btn-card .desc { color: var(--muted); font-size: .8rem; }
-  .btn-card.on { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent); }
-  .tag { align-self: flex-start; font-size: .66rem; text-transform: uppercase; letter-spacing: .04em;
-    color: var(--accent-2); background: color-mix(in srgb, var(--accent) 16%, transparent);
-    padding: 2px 7px; border-radius: 20px; }
+  .canvas{min-height:180px}
+  .empty-hint{color:var(--muted);font-style:italic;text-align:center;padding:38px 10px;font-size:.9rem}
+  .row{border:1.5px solid var(--line);border-left:4px solid var(--accent);background:var(--card2);
+    border-radius:10px;padding:10px 12px;margin-bottom:9px}
+  .row.estrutura{border-left-color:var(--struct)}
+  .row.logica{border-left-color:var(--logic)}
+  .row.dados{border-left-color:var(--data)}
+  .row-head{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+  .row-head .lbl{font-weight:700;font-size:.86rem}
+  .row-head .ctrls{margin-left:auto;display:flex;gap:4px}
+  .icbtn{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:7px;
+    width:26px;height:26px;cursor:pointer;font-size:.85rem;line-height:1;display:grid;place-items:center}
+  .icbtn:hover{color:var(--txt);border-color:var(--accent)}
+  .slot{display:flex;flex-direction:column;gap:3px;margin-top:6px}
+  .slot label{font-size:.72rem;color:var(--muted)}
+  .slot input,.slot textarea{width:100%;background:var(--card);border:1.5px solid var(--line);border-radius:8px;
+    color:var(--txt);padding:7px 9px;font-size:.9rem;font-family:inherit}
+  .slot input:focus,.slot textarea:focus{outline:none;border-color:var(--accent)}
+  .slot textarea{resize:vertical;min-height:44px}
 
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip {
-    background: var(--card); border: 1.5px solid var(--line); border-radius: 22px; padding: 8px 13px;
-    cursor: pointer; font-size: .88rem; transition: .15s; color: var(--txt); user-select: none;
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .chip:hover { background: var(--card-hover); }
-  .chip.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, transparent); }
-  .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
-  .chip.on .dot { background: var(--ok); }
-  .chip.suggested:not(.on) { border-style: dashed; border-color: var(--accent-2); }
+  .toolbar{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+  .btn{border:none;border-radius:9px;padding:9px 15px;font-size:.86rem;font-weight:650;cursor:pointer;transition:.13s}
+  .btn-ghost{background:transparent;color:var(--muted);border:1.5px solid var(--line)}
+  .btn-ghost:hover{color:var(--txt);border-color:var(--accent)}
 
-  textarea {
-    width: 100%; background: var(--card); border: 1.5px solid var(--line); border-radius: var(--radius);
-    color: var(--txt); padding: 12px 14px; font-size: .95rem; font-family: inherit; resize: vertical; min-height: 70px;
-  }
-  textarea:focus { outline: none; border-color: var(--accent); }
-
-  .preview {
-    position: fixed; left: 0; right: 0; bottom: 0; background: var(--bg2);
-    border-top: 1.5px solid var(--line); padding: 12px 18px; z-index: 10;
-    box-shadow: 0 -8px 24px rgba(0,0,0,.18);
-  }
-  .preview-inner { max-width: 980px; margin: 0 auto; display: flex; gap: 12px; align-items: stretch; }
-  .prompt-box {
-    flex: 1; background: var(--card); border: 1.5px solid var(--line); border-radius: 10px;
-    padding: 10px 12px; font-size: .86rem; color: var(--txt); max-height: 96px; overflow: auto;
-    white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  }
-  .prompt-box.empty { color: var(--muted); font-style: italic; font-family: inherit; }
-  .actions { display: flex; flex-direction: column; gap: 8px; justify-content: center; }
-  .btn {
-    border: none; border-radius: 10px; padding: 11px 18px; font-size: .92rem; font-weight: 650;
-    cursor: pointer; transition: .15s; white-space: nowrap;
-  }
-  .btn-primary { background: var(--accent); color: #fff; }
-  .btn-primary:hover { filter: brightness(1.08); }
-  .btn-ghost { background: transparent; color: var(--muted); border: 1.5px solid var(--line); }
-  .btn-ghost:disabled { opacity: .55; cursor: not-allowed; }
-  .btn:disabled { opacity: .5; cursor: not-allowed; }
-
-  .toast {
-    position: fixed; top: 18px; left: 50%; transform: translateX(-50%) translateY(-80px);
-    background: var(--ok); color: #062; padding: 10px 18px; border-radius: 30px; font-weight: 650;
-    transition: transform .25s; z-index: 20; box-shadow: 0 6px 20px rgba(0,0,0,.2);
-  }
-  .toast.show { transform: translateX(-50%) translateY(0); }
-
-  .footnote { text-align: center; color: var(--muted); font-size: .8rem; margin-top: 30px; }
-  details { margin-top: 22px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
-  summary { cursor: pointer; font-weight: 600; color: var(--muted); }
-  details ul { columns: 2; font-size: .82rem; color: var(--muted); }
-  @media (max-width: 560px) {
-    .preview-inner { flex-direction: column; }
-    .actions { flex-direction: row; }
-    .actions .btn { flex: 1; }
-    details ul { columns: 1; }
-  }
+  .preview{position:fixed;left:0;right:0;bottom:0;background:var(--bg2);border-top:1.5px solid var(--line);
+    padding:11px 16px;z-index:10;box-shadow:0 -8px 24px rgba(0,0,0,.18)}
+  .preview-inner{max-width:1080px;margin:0 auto;display:flex;gap:12px;align-items:stretch}
+  .prompt-box{flex:1;background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;
+    font-size:.84rem;max-height:150px;overflow:auto;white-space:pre-wrap;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .prompt-box.empty{color:var(--muted);font-style:italic;font-family:inherit}
+  .missing{color:var(--logic);font-style:italic}
+  .pv-actions{display:flex;flex-direction:column;gap:7px;justify-content:center}
+  .btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{filter:brightness(1.08)}
+  .pill{font-size:.72rem;color:var(--muted);text-align:center}
+  .toast{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--ok);
+    color:#062;padding:9px 18px;border-radius:30px;font-weight:650;transition:transform .25s;z-index:20}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+  @media(max-width:560px){.preview-inner{flex-direction:column}.pv-actions{flex-direction:row}.pv-actions .btn{flex:1}}
 </style>
 </head>
 <body>
 <header>
-  <h1>🎛️ Painel de Comando Claude</h1>
-  <p>Monte um comando para o Claude <b>clicando em botões</b>. Escolha a ação, ligue as fontes de dados, adicione um detalhe — e copie o prompt pronto.</p>
+  <h1>🧱 Criador de Prompt</h1>
+  <p>Monte o prompt <b>bloco por bloco</b>. Clique nos blocos de estrutura e de lógica (SE, SENÃO, OU…). O sistema escreve um prompt <b>robusto e organizado</b> por você.</p>
 </header>
 
-<div class="wrap">
-  <div class="step">
-    <div class="step-head"><div class="num">1</div><h2>O que você quer fazer? <small>— escolha uma ação</small></h2></div>
-    <div class="grid" id="acoes"></div>
+<div class="app">
+  <!-- PALETA -->
+  <div class="panel" id="paleta">
+    <h2>➕ Blocos <small style="color:var(--muted);font-weight:400">— clique para adicionar</small></h2>
   </div>
 
-  <div class="step">
-    <div class="step-head"><div class="num">2</div><h2>De onde vêm os dados? <small>— ligue os conectores (opcional)</small></h2></div>
-    <div class="chips" id="conectores"></div>
-  </div>
-
-  <div class="step">
-    <div class="step-head"><div class="num">3</div><h2>Algum detalhe? <small>— ex.: "cliente Fulano", "mês de julho" (opcional)</small></h2></div>
-    <textarea id="contexto" placeholder="Digite um detalhe para deixar o pedido mais específico..."></textarea>
-  </div>
-
-  <details>
-    <summary>📦 O que você tem instalado (referência)</summary>
-    <ul id="instalados"></ul>
-  </details>
-
-  <p class="footnote">Fase 1 — o painel monta o prompt para você copiar e colar no Claude.<br>O botão <b>Executar</b> (rodar sozinho) chega na Fase 2.</p>
-</div>
-
-<div class="preview">
-  <div class="preview-inner">
-    <div class="prompt-box empty" id="prompt">Escolha uma ação acima para montar o prompt…</div>
-    <div class="actions">
-      <button class="btn btn-primary" id="copiar" disabled>📋 Copiar prompt</button>
-      <button class="btn btn-ghost" id="executar" disabled title="Disponível na Fase 2">▶ Executar (Fase 2)</button>
+  <!-- CONSTRUÇÃO -->
+  <div>
+    <div class="toolbar">
+      <button class="btn btn-ghost" id="exemplo">✨ Carregar exemplo</button>
+      <button class="btn btn-ghost" id="limpar">🗑️ Limpar tudo</button>
+    </div>
+    <div class="panel canvas" id="canvas">
+      <div class="empty-hint">Sua construção aparece aqui.<br>Comece clicando num bloco à esquerda — ex.: <b>🎭 Papel</b> ou <b>⚖️ SE… ENTÃO</b>.</div>
     </div>
   </div>
 </div>
 
+<!-- PREVIEW -->
+<div class="preview">
+  <div class="preview-inner">
+    <div class="prompt-box empty" id="prompt">O prompt gerado aparece aqui conforme você adiciona blocos…</div>
+    <div class="pv-actions">
+      <button class="btn btn-primary" id="copiar" disabled>📋 Copiar prompt</button>
+      <div class="pill" id="contador">0 blocos</div>
+    </div>
+  </div>
+</div>
 <div class="toast" id="toast">Copiado! ✅</div>
 
 <script>
-/* ---- Catálogo (espelha catalogo/catalogo-inicial.json) ---- */
-const ACOES = [
-  { id:"analisar-edital", rotulo:"Analisar edital", desc:"Go/no-go objetivo e registro no acervo.", ico:"📜", tag:"licitação",
-    prompt:"Analise o edital de licitação {contexto} para a Setfree: pontue go/no-go de forma objetiva e registre a decisão no acervo.", sugeridos:["google-drive"] },
-  { id:"triagem-emails", rotulo:"Triagem de e-mails", desc:"Prioriza e resume a caixa do dia.", ico:"📧", tag:"produtividade",
-    prompt:"Faça a triagem dos meus e-mails de hoje {contexto}: priorize riscos, separe o que exige minha decisão e entregue um resumo executivo curto.", sugeridos:["microsoft-365","gmail"] },
-  { id:"cobrar-fatura", rotulo:"Cobrar fatura", desc:"Cobrança cordial com base no histórico.", ico:"💰", tag:"financeiro",
-    prompt:"Escreva uma cobrança cordial e firme para o cliente {contexto}, considerando o histórico de pagamentos.", sugeridos:["gmail","google-drive"] },
-  { id:"fluxo-caixa", rotulo:"Previsão de caixa", desc:"Fluxo de 30/60/90 dias.", ico:"📊", tag:"financeiro",
-    prompt:"Gere uma previsão de fluxo de caixa de 30/60/90 dias {contexto}, com nível de confiança e alertas de risco.", sugeridos:["google-drive","microsoft-365"] },
-  { id:"resumo-reuniao", rotulo:"Resumir reunião", desc:"Decisões e próximos passos.", ico:"🎤", tag:"produtividade",
-    prompt:"Resuma a reunião {contexto} em tópicos: decisões tomadas, responsáveis e próximos passos.", sugeridos:["granola","google-calendar"] },
-  { id:"brief-segunda", rotulo:"Resumo de segunda", desc:"Caixa, vendas, pipeline e prioridades.", ico:"☀️", tag:"gestão",
-    prompt:"Monte meu resumo de segunda-feira {contexto}: caixa, vendas, pipeline e as 3 prioridades da semana.", sugeridos:["microsoft-365","google-drive"] },
-  { id:"criar-post", rotulo:"Criar post / arte", desc:"Legenda e arte no Canva.", ico:"🎨", tag:"marketing",
-    prompt:"Crie um post {contexto}: sugira legenda, formato e gere a arte no Canva.", sugeridos:["canva"] },
-  { id:"revisar-contrato", rotulo:"Revisar contrato", desc:"Análise simples com riscos.", ico:"📄", tag:"jurídico",
-    prompt:"Revise o contrato {contexto} em linguagem simples e aponte cláusulas de risco.", sugeridos:["google-drive","microsoft-365"] },
-];
-const CONECTORES = [
-  { id:"gmail", rotulo:"Gmail", ico:"✉️" },
-  { id:"microsoft-365", rotulo:"Microsoft 365", ico:"📨" },
-  { id:"google-drive", rotulo:"Google Drive", ico:"🗂️" },
-  { id:"google-calendar", rotulo:"Google Agenda", ico:"📅" },
-  { id:"notion", rotulo:"Notion", ico:"🗒️" },
-  { id:"canva", rotulo:"Canva", ico:"🎨" },
-  { id:"figma", rotulo:"Figma", ico:"🖌️" },
-  { id:"granola", rotulo:"Granola", ico:"🎤" },
-  { id:"github", rotulo:"GitHub", ico:"🐙" },
-  { id:"semrush", rotulo:"Semrush", ico:"🔎" },
-  { id:"adobe", rotulo:"Adobe", ico:"🌟" },
-];
-const INSTALADOS = ["small-business","licitacao-setfree","finance","marketing","sales","legal","operations","human-resources","product-management","productivity","design","engineering","data","customer-support","enterprise-search","brand-voice","canva","figma","adobe","dropbox","wix","miro","zoom","slack","postiz","apollo","zoominfo","common-room","langfuse","prisma","cockroachdb","atlan","daloopa","searchfit-seo","pdf-viewer"];
-
-/* ---- Estado ---- */
-let acaoSel = null;
-const conSel = new Set();
-const el = (id) => document.getElementById(id);
-
-/* ---- Render ---- */
-function renderAcoes() {
-  el("acoes").innerHTML = ACOES.map(a => `
-    <button class="btn-card ${acaoSel===a.id?'on':''}" data-id="${a.id}">
-      <span class="ico">${a.ico}</span>
-      <span class="lbl">${a.rotulo}</span>
-      <span class="desc">${a.desc}</span>
-      <span class="tag">${a.tag}</span>
-    </button>`).join("");
-  document.querySelectorAll('#acoes .btn-card').forEach(b =>
-    b.onclick = () => { acaoSel = (acaoSel===b.dataset.id)?null:b.dataset.id; onAcao(); });
-}
-function renderConectores() {
-  const sug = acaoSel ? (ACOES.find(a=>a.id===acaoSel).sugeridos||[]) : [];
-  el("conectores").innerHTML = CONECTORES.map(c => `
-    <div class="chip ${conSel.has(c.id)?'on':''} ${sug.includes(c.id)?'suggested':''}" data-id="${c.id}">
-      <span class="dot"></span>${c.ico} ${c.rotulo}
-    </div>`).join("");
-  document.querySelectorAll('#conectores .chip').forEach(ch =>
-    ch.onclick = () => { const id=ch.dataset.id; conSel.has(id)?conSel.delete(id):conSel.add(id); renderConectores(); build(); });
-}
-function onAcao() {
-  // ao escolher uma ação, liga automaticamente os conectores sugeridos
-  const a = ACOES.find(x=>x.id===acaoSel);
-  if (a) (a.sugeridos||[]).forEach(id => conSel.add(id));
-  renderAcoes(); renderConectores(); build();
-}
-function nomeCon(id){ const c = CONECTORES.find(x=>x.id===id); return c?c.rotulo:id; }
-
-function build() {
-  const box = el("prompt"), btn = el("copiar");
-  if (!acaoSel) {
-    box.textContent = "Escolha uma ação acima para montar o prompt…";
-    box.classList.add("empty"); btn.disabled = true; return;
-  }
-  const a = ACOES.find(x=>x.id===acaoSel);
-  const ctx = el("contexto").value.trim();
-  let texto = a.prompt.replace("{contexto}", ctx ? ctx : "(descreva aqui)");
-  if (conSel.size) texto += "\n\nUse os seguintes conectores/fontes: " + [...conSel].map(nomeCon).join(", ") + ".";
-  box.textContent = texto; box.classList.remove("empty"); btn.disabled = false;
-}
-
-el("contexto").addEventListener("input", build);
-el("copiar").onclick = async () => {
-  try { await navigator.clipboard.writeText(el("prompt").textContent); }
-  catch { const t=document.createElement("textarea"); t.value=el("prompt").textContent; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); }
-  const toast = el("toast"); toast.classList.add("show"); setTimeout(()=>toast.classList.remove("show"), 1600);
+/* ---------- Definição dos blocos ---------- */
+const DEFS = {
+  // ESTRUTURA
+  papel:    {cat:"estrutura", ico:"🎭", label:"Papel",           sec:1, slots:[{k:"papel",ph:"especialista em licitações públicas"}]},
+  contexto: {cat:"estrutura", ico:"📋", label:"Contexto",        sec:2, slots:[{k:"contexto",ph:"o cliente é uma distribuidora de dispositivos médicos",area:true}]},
+  objetivo: {cat:"estrutura", ico:"🎯", label:"Objetivo",        sec:3, slots:[{k:"objetivo",ph:"analisar o edital e decidir se vale participar",area:true}]},
+  formato:  {cat:"estrutura", ico:"📐", label:"Formato de saída", sec:7, slots:[{k:"formato",ph:"uma tabela com colunas Item, Risco e Recomendação"}]},
+  exemplo:  {cat:"estrutura", ico:"🧪", label:"Exemplo",          sec:6, slots:[{k:"entrada",ph:"prazo de entrega de 5 dias"},{k:"saida",ph:"RISCO ALTO — inviável"}]},
+  restricao:{cat:"estrutura", ico:"🚫", label:"Restrição",        sec:8, slots:[{k:"restricao",ph:"invente dados que não estão no documento"}]},
+  tom:      {cat:"estrutura", ico:"🗣️", label:"Tom",              sec:9, slots:[{k:"tom",ph:"objetivo e direto"}]},
+  // LÓGICA
+  se:       {cat:"logica", ico:"⚖️", label:"SE… ENTÃO", sec:5, slots:[{k:"cond",ph:"o prazo for menor que 10 dias"},{k:"acao",ph:"marque como RISCO ALTO"}]},
+  senao:    {cat:"logica", ico:"↔️", label:"SENÃO",     sec:5, slots:[{k:"acao",ph:"marque como viável"}]},
+  e:        {cat:"logica", ico:"➕", label:"E (além disso)", sec:5, slots:[{k:"item",ph:"confira também a exigência de habilitação"}]},
+  ou:       {cat:"logica", ico:"🔀", label:"OU",        sec:5, slots:[{k:"a",ph:"ME/EPP"},{k:"b",ph:"empresa de grande porte"}]},
+  nao:      {cat:"logica", ico:"⛔", label:"NÃO (ignore)", sec:5, slots:[{k:"item",ph:"anexos que não sejam o edital ou o TR"}]},
+  paracada: {cat:"logica", ico:"🔁", label:"PARA CADA", sec:5, slots:[{k:"item",ph:"item da planilha"},{k:"acao",ph:"calcule a margem"}]},
+  quando:   {cat:"logica", ico:"🎚️", label:"QUANDO (caso)", sec:5, slots:[{k:"caso",ph:"o valor for acima de R$ 500 mil"},{k:"acao",ph:"exija revisão humana"}]},
+  passo:    {cat:"logica", ico:"🪜", label:"Passo a passo", sec:5, slots:[{k:"passos",ph:"1) leia o objeto  2) confira prazos  3) calcule margem  4) conclua",area:true}]},
+  verifique:{cat:"logica", ico:"✅", label:"Verifique", sec:10, slots:[{k:"criterio",ph:"todos os valores citados existem no documento"}]},
+  // DADOS
+  fonte:    {cat:"dados", ico:"🔌", label:"Fonte de dados", sec:4, slots:[{k:"fonte",ph:"os editais no Google Drive / a caixa de e-mails"}]},
 };
-el("instalados").innerHTML = INSTALADOS.map(p=>`<li>${p}</li>`).join("");
+const GRUPOS = [
+  {cat:"estrutura", titulo:"Estrutura do prompt", ids:["papel","contexto","objetivo","formato","exemplo","restricao","tom"]},
+  {cat:"logica",    titulo:"Lógica e raciocínio", ids:["se","senao","e","ou","nao","paracada","quando","passo","verifique"]},
+  {cat:"dados",     titulo:"Dados",               ids:["fonte"]},
+];
 
-renderAcoes(); renderConectores();
+/* ---------- Estado ---------- */
+let blocos = [];   // {uid, def, values:{}}
+let seq = 1;
+const el = id => document.getElementById(id);
+
+/* ---------- Paleta ---------- */
+function renderPaleta(){
+  const p = el("paleta");
+  p.querySelectorAll(".cat").forEach(n=>n.remove());
+  GRUPOS.forEach(g=>{
+    const div = document.createElement("div");
+    div.className = "cat "+g.cat;
+    div.innerHTML = `<p class="cat-title">${g.titulo}</p><div class="blocks">`+
+      g.ids.map(id=>`<button class="blk" data-id="${id}">${DEFS[id].ico} ${DEFS[id].label}</button>`).join("")+`</div>`;
+    p.appendChild(div);
+  });
+  p.querySelectorAll(".blk").forEach(b=> b.onclick=()=>addBloco(b.dataset.id));
+}
+function addBloco(id){
+  const def = DEFS[id];
+  const values = {}; def.slots.forEach(s=>values[s.k]="");
+  blocos.push({uid:seq++, id, def, values});
+  renderCanvas(); compile();
+  // foca o primeiro campo do bloco recém-criado
+  const last = el("canvas").querySelector('.row:last-of-type input, .row:last-of-type textarea');
+  if(last) last.focus();
+}
+
+/* ---------- Canvas ---------- */
+function renderCanvas(){
+  const c = el("canvas");
+  if(!blocos.length){ c.innerHTML = `<div class="empty-hint">Sua construção aparece aqui.<br>Comece clicando num bloco — ex.: <b>🎭 Papel</b> ou <b>⚖️ SE… ENTÃO</b>.</div>`; return; }
+  c.innerHTML = blocos.map((b,i)=>{
+    const slots = b.def.slots.map(s=>{
+      const val = b.values[s.k].replace(/"/g,"&quot;");
+      const inp = s.area
+        ? `<textarea data-uid="${b.uid}" data-k="${s.k}" placeholder="${s.ph}">${b.values[s.k]}</textarea>`
+        : `<input data-uid="${b.uid}" data-k="${s.k}" value="${val}" placeholder="${s.ph}" />`;
+      return `<div class="slot"><label>${s.k}</label>${inp}</div>`;
+    }).join("");
+    return `<div class="row ${b.def.cat}">
+      <div class="row-head">
+        <span class="lbl">${b.def.ico} ${b.def.label}</span>
+        <span class="ctrls">
+          <button class="icbtn icbtn" data-act="up" data-uid="${b.uid}" ${i===0?'disabled style=opacity:.3':''}>↑</button>
+          <button class="icbtn icbtn" data-act="down" data-uid="${b.uid}" ${i===blocos.length-1?'disabled style=opacity:.3':''}>↓</button>
+          <button class="icbtn icbtn" data-act="del" data-uid="${b.uid}">✕</button>
+        </span>
+      </div>${slots}</div>`;
+  }).join("");
+  c.querySelectorAll("input,textarea").forEach(f=>{
+    f.oninput = ()=>{ const b=blocos.find(x=>x.uid==f.dataset.uid); if(b){b.values[f.dataset.k]=f.value; compile();} };
+  });
+  c.querySelectorAll("[data-act]").forEach(btn=>{
+    btn.onclick=()=>{ const uid=+btn.dataset.uid, i=blocos.findIndex(x=>x.uid===uid);
+      if(btn.dataset.act==="del") blocos.splice(i,1);
+      if(btn.dataset.act==="up"&&i>0) [blocos[i-1],blocos[i]]=[blocos[i],blocos[i-1]];
+      if(btn.dataset.act==="down"&&i<blocos.length-1) [blocos[i+1],blocos[i]]=[blocos[i],blocos[i+1]];
+      renderCanvas(); compile();
+    };
+  });
+}
+
+/* ---------- Compilador: blocos -> prompt robusto ---------- */
+function miss(t){ return `[${t}]`; }
+function v(b,k,t){ const x=(b.values[k]||"").trim(); return x || miss(t); }
+
+function frase(b){
+  const V=(k,t)=>v(b,k,t);
+  switch(b.id){
+    case "papel": return `Você é ${V("papel","defina o papel")}.`;
+    case "contexto": return `Contexto: ${V("contexto","descreva o contexto")}.`;
+    case "objetivo": return `Sua tarefa é ${V("objetivo","descreva o objetivo")}.`;
+    case "fonte": return `Baseie-se exclusivamente nos dados de: ${V("fonte","indique a fonte")}.`;
+    case "se": return `Se ${V("cond","condição")}, então ${V("acao","ação")}.`;
+    case "senao": return `Caso contrário, ${V("acao","ação")}.`;
+    case "e": return `Além disso, ${V("item","o que acrescentar")}.`;
+    case "ou": return `Considere ${V("a","opção A")} ou ${V("b","opção B")}.`;
+    case "nao": return `Não considere ${V("item","o que ignorar")}.`;
+    case "paracada": return `Para cada ${V("item","item")}, ${V("acao","ação")}.`;
+    case "quando": return `Quando ${V("caso","caso")}: ${V("acao","ação")}.`;
+    case "passo": return `Raciocine passo a passo: ${V("passos","liste os passos")}.`;
+    case "exemplo": return `Exemplo — dado "${V("entrada","entrada")}", a resposta esperada é "${V("saida","saída")}".`;
+    case "formato": return V("formato","descreva o formato");
+    case "restricao": return V("restricao","descreva a restrição");
+    case "tom": return V("tom","descreva o tom");
+    case "verifique": return V("criterio","critério de verificação");
+  }
+  return "";
+}
+
+function compile(){
+  const box=el("prompt"), btn=el("copiar");
+  el("contador").textContent = blocos.length + (blocos.length===1?" bloco":" blocos");
+  if(!blocos.length){ box.textContent="O prompt gerado aparece aqui conforme você adiciona blocos…"; box.classList.add("empty"); btn.disabled=true; return; }
+  box.classList.remove("empty"); btn.disabled=false;
+
+  const bySec = s => blocos.filter(b=>b.def.sec===s);
+  const partes=[];
+  // 1 papel / 2 contexto / 3 objetivo / 4 fonte
+  bySec(1).forEach(b=>partes.push(frase(b)));
+  bySec(2).forEach(b=>partes.push(frase(b)));
+  bySec(3).forEach(b=>partes.push(frase(b)));
+  bySec(4).forEach(b=>partes.push(frase(b)));
+  // 5 regras de raciocínio (numeradas, na ordem do canvas)
+  const regras = bySec(5);
+  if(regras.length){ partes.push("\nRegras de raciocínio:"); regras.forEach((b,i)=>partes.push(`${i+1}. ${frase(b)}`)); }
+  // 6 exemplos
+  const ex = bySec(6); if(ex.length){ partes.push("\nExemplos:"); ex.forEach(b=>partes.push(`- ${frase(b)}`)); }
+  // 7 formato
+  const fmt = bySec(7); if(fmt.length){ partes.push("\nFormato da resposta: "+fmt.map(frase).join("; ")+"."); }
+  // 8 restrições
+  const res = bySec(8); if(res.length){ partes.push("\nRestrições:"); res.forEach(b=>partes.push(`- Não ${frase(b)}.`)); }
+  // 9 tom
+  const tom = bySec(9); if(tom.length){ partes.push("\nTom: "+tom.map(frase).join(", ")+"."); }
+  // 10 verificação
+  const ver = bySec(10); if(ver.length){ partes.push("\nAntes de finalizar, verifique que:"); ver.forEach(b=>partes.push(`- ${frase(b)}.`)); }
+
+  const texto = partes.join("\n").replace(/\n{3,}/g,"\n\n").trim();
+  // destaca campos não preenchidos
+  box.innerHTML = texto.replace(/\[([^\]]+)\]/g,'<span class="missing">[$1]</span>');
+}
+
+/* ---------- Ações ---------- */
+el("copiar").onclick=async()=>{
+  const t=el("prompt").innerText;
+  try{ await navigator.clipboard.writeText(t); }
+  catch{ const ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove(); }
+  const to=el("toast"); to.classList.add("show"); setTimeout(()=>to.classList.remove("show"),1500);
+};
+el("limpar").onclick=()=>{ if(blocos.length && confirm("Limpar todos os blocos?")){ blocos=[]; renderCanvas(); compile(); } };
+el("exemplo").onclick=()=>{
+  blocos=[]; seq=1;
+  const add=(id,vals)=>{ const def=DEFS[id],values={}; def.slots.forEach(s=>values[s.k]=vals[s.k]||""); blocos.push({uid:seq++,id,def,values}); };
+  add("papel",{papel:"especialista em licitações públicas de dispositivos médicos"});
+  add("contexto",{contexto:"o cliente é uma ME/EPP no regime de Lucro Real"});
+  add("objetivo",{objetivo:"analisar o edital e decidir se vale a pena participar"});
+  add("fonte",{fonte:"o edital e o Termo de Referência anexados"});
+  add("se",{cond:"o prazo de entrega for menor que 10 dias",acao:"classifique como RISCO ALTO"});
+  add("senao",{acao:"classifique como viável"});
+  add("e",{item:"confira a exigência de habilitação técnica"});
+  add("quando",{caso:"o valor do certame for acima de R$ 500 mil",acao:"exija revisão humana antes de concluir"});
+  add("formato",{formato:"uma tabela com Item, Risco e Recomendação, e um veredito final GO / NO-GO"});
+  add("restricao",{restricao:"invente exigências que não estão no documento"});
+  add("verifique",{criterio:"todos os prazos e valores citados existem no edital"});
+  renderCanvas(); compile();
+};
+
+renderPaleta(); renderCanvas(); compile();
 </script>
 </body>
 </html>

@@ -1,58 +1,69 @@
-# Painel de Comando Claude 🎛️
+# Criador de Prompt — por blocos 🧱
 
-Um painel visual para **montar prompts do Claude clicando em botões** — em vez de
-escrever tudo na mão. Você escolhe uma **Skill** (o que fazer), liga um ou mais
-**Conectores** (de onde vêm os dados: e-mail, Drive, Notion...) e adiciona um
-**contexto** — e o painel monta o prompt pronto para você.
+Uma ferramenta **interna** para montar prompts do Claude **bloco por bloco**, em vez
+de escrever. Você clica em blocos — de **estrutura** (papel, contexto, objetivo,
+formato…) e de **lógica/raciocínio** (SE, SENÃO, E, OU, NÃO, PARA CADA, QUANDO, passo
+a passo, verifique) — que aparecem de forma **simples de ler**, e o sistema compila um
+**prompt robusto e organizado**, mais rigoroso do que texto escrito à mão.
 
-> **Para quem é:** pessoas que não sabem de cor quais plugins, skills e conectores
-> têm instalados, e querem usar o poder do Claude sem precisar decorar comandos.
-
----
-
-## O que este projeto entrega
-
-| Fase | O que faz | Status |
-|------|-----------|--------|
-| **Fase 1 — Montador de prompt** | Você clica nos botões e o painel gera o texto do prompt para **copiar e colar** no Claude. Sem chave de API, sem custo. | 🟢 Pronto ([`index.html`](./index.html)) |
-| **Fase 2 — Execução real** | O painel chama a **API do Claude** sozinho e mostra a resposta ali dentro. | ⚪ Planejado |
-
-**Decisões já tomadas** (definidas com o dono do projeto):
-
-- 🔘 Botões: montam o prompt agora **e** vão executar de verdade depois (fase 2).
-- 🌐 Onde roda: **publicado na web** (deploy, ex.: Dokploy).
-- 🔒 Repositório: **privado**.
+> **A ideia (definida pelo dono):** não é um lançador de tarefas prontas nem pré-seta
+> nada. É um **criador de prompt** — a capacidade de **construir linha por linha**,
+> usando os blocos de raciocínio lógico como peças, com uma entrega final mais robusta
+> que a escrita livre.
 
 ---
 
-## Comece por aqui
+## Como usar
 
-👉 **Leia a estratégia completa, passo a passo:** [`ESTRATEGIA.md`](./ESTRATEGIA.md)
+1. Abra [`index.html`](./index.html) com **duplo clique** (abre no navegador — não
+   instala nada).
+2. **Clique nos blocos** à esquerda para adicioná-los à sua construção.
+3. **Preencha** os campos de cada bloco (ex.: `SE [o prazo for menor que 10 dias]
+   ENTÃO [marque como RISCO ALTO]`).
+4. **Reordene** (↑ ↓) ou **remova** (✕) blocos à vontade.
+5. O **prompt gerado** aparece embaixo em tempo real → **📋 Copiar** e cole no Claude.
 
-Esse documento explica, em linguagem simples, o que vamos construir, em que ordem,
-e o que precisamos de você em cada etapa. **Nada de código foi construído ainda** —
-primeiro o plano, depois a execução (como combinado).
+Dica: clique em **✨ Carregar exemplo** para ver um prompt completo montado com blocos.
+
+---
+
+## Os blocos
+
+| Estrutura | Lógica e raciocínio | Dados |
+|---|---|---|
+| 🎭 Papel · 📋 Contexto · 🎯 Objetivo · 📐 Formato de saída · 🧪 Exemplo · 🚫 Restrição · 🗣️ Tom | ⚖️ SE… ENTÃO · ↔️ SENÃO · ➕ E · 🔀 OU · ⛔ NÃO · 🔁 PARA CADA · 🎚️ QUANDO · 🪜 Passo a passo · ✅ Verifique | 🔌 Fonte de dados |
+
+**O compilador organiza sozinho:** não importa a ordem em que você clica — o sistema
+monta o prompt na estrutura certa (papel → contexto → objetivo → **regras de raciocínio
+numeradas** → exemplos → formato → restrições → verificação). É isso que torna a
+entrega "mais robusta que a escrita".
+
+---
+
+## Decisões do projeto (definidas com o dono)
+
+1. **Ferramenta interna** (não é produto para vender — n=1, uso próprio).
+2. **Validar o "Trilho A"** da plataforma (agendamento/execução nativos) antes de
+   qualquer fase de execução automática — OK, no radar.
+3. **É um criador de prompt por blocos** — pré-setar tarefas foi descartado; o valor é
+   a capacidade de **construir o prompt linha por linha** com blocos de lógica legíveis.
+
+---
 
 ## Estrutura das pastas
 
 ```
 painel-comando-claude/
-├── index.html             ← O PAINEL (abra com duplo clique no navegador)
+├── index.html             ← O CRIADOR DE PROMPT (abra com duplo clique)
 ├── README.md              ← você está aqui
-├── ESTRATEGIA.md          ← o plano completo, passo a passo
+├── IDEIA-SATURADA.md      ← o raciocínio estratégico (loop de saturação, 10 ciclos)
+├── ESTRATEGIA.md          ← o plano inicial por fases
 ├── catalogo/
-│   └── catalogo-inicial.json   ← lista dos seus plugins/skills/conectores (alimenta os botões)
-└── docs/
-    └── glossario.md       ← "o que é skill? o que é conector?" em português claro
+│   └── catalogo-inicial.json   ← inventário de plugins/skills/conectores instalados
+├── docs/
+│   └── glossario.md       ← termos em português claro
+└── extras/
+    └── montador-por-acao.html  ← versão anterior (lançador por ação), preservada
 ```
 
-## Como usar (Fase 1)
-
-1. Abra o arquivo [`index.html`](./index.html) com **duplo clique** (abre no navegador). Não precisa instalar nada.
-2. **Passo 1:** clique na ação que você quer (ex.: "Cobrar fatura").
-3. **Passo 2:** os conectores sugeridos já acendem; ligue/desligue os que quiser.
-4. **Passo 3:** escreva um detalhe curto (opcional).
-5. Clique em **📋 Copiar prompt** e cole no Claude.
-
-> Funciona 100% no seu navegador, sem servidor e sem custo. Também pode ser publicado
-> como site estático (deploy) — é o mesmo arquivo.
+> A versão anterior (montador por ação) está preservada em `extras/` — nada se perdeu.
