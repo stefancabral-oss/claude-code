@@ -2,14 +2,23 @@
 
 O que já está pronto neste projeto e o que fazer no deploy e depois dele.
 
-## O que já está embutido (19 páginas)
-- **JSON-LD (schema.org)** em cada página: MedicalOrganization + WebSite na Home, Product/Brand/manufacturer nas 7 linhas, Service nas 6 soluções, AboutPage/ContactPage/CollectionPage nas demais.
-- **Meta description, Open Graph e canonical** por página.
-- **PT/EN** com data-en (para hreflang no futuro).
-- Arquivos de raiz prontos em /seo: robots.txt (libera GPTBot, ClaudeBot, PerplexityBot, Google-Extended etc.), sitemap.xml (19 URLs), llms.txt (resumo da empresa para LLMs).
+> **Nota (migração para Astro).** Este guia foi escrito para o site anterior, que
+> renderizava no cliente. O **Passo 1 inteiro está resolvido**: o Astro emite
+> HTML estático, as URLs limpas são a própria estrutura de arquivos, o 301 das
+> `*.dc.html` está no `deploy/nginx.conf`, e o `robots.txt`, `sitemap.xml` e
+> `llms.txt` são gerados no build a partir das rotas reais. O **PT/EN deixou de
+> ser `data-en`** e virou rota (`/en/…`) com `hreflang` recíproco — as 19 páginas
+> viraram 38. O que continua valendo é o **Passo 2 em diante**: são dados que só
+> a empresa tem. Roteiro de deploy: `PLANO-IMPLANTACAO.md`.
 
-## Passo 1 — Deploy correto (o mais importante)
-1. **Exportar HTML estático.** As páginas hoje renderizam via JavaScript; vários crawlers de IA (GPTBot, ClaudeBot) NÃO executam JS. No empacotamento final, gere HTML puro com o conteúdo já renderizado (pre-render/SSG). Sem isso, nada do resto adianta.
+## O que já está embutido (38 páginas — 19 PT + 19 EN)
+- **JSON-LD (schema.org)** em cada página: MedicalOrganization + WebSite em todas, Product/Brand/manufacturer nas 7 linhas, Service nas 6 soluções, BreadcrumbList nas internas.
+- **Meta description, Open Graph, Twitter Card e canonical** por página.
+- **PT/EN como rotas reais**, com `hreflang` recíproco e `x-default`.
+- Arquivos de raiz gerados no build: `robots.txt` (libera GPTBot, ClaudeBot, PerplexityBot, Google-Extended etc.), `sitemap.xml` (38 URLs com alternates) e `llms.txt` (resumo da empresa para LLMs, montado dos mesmos dados das páginas).
+
+## Passo 1 — Deploy correto (o mais importante) · ✅ resolvido na migração
+1. ~~**Exportar HTML estático.**~~ Feito: o build do Astro emite HTML puro, com o conteúdo no corpo da página (não mais dentro de `<noscript>`).
 2. Publicar robots.txt, sitemap.xml e llms.txt **na raiz do domínio** (setfree.com.br/robots.txt etc.).
 3. URLs limpas conforme o sitemap (/tecnologias/geister, não /Geister.dc.html). Redirect 301 das URLs antigas do site atual.
 4. HTTPS, uma única versão canônica (sem www ou com — escolher uma).
