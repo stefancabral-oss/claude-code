@@ -38,10 +38,10 @@ Sobem **dois serviços** no mesmo domínio, via um único `docker-compose.yml`:
       quebrar o desafio HTTP-01.
 - [ ] Confirme a propagação antes de seguir: `dig +short setfree.com.br`
 
-> **Atenção — `www` não está coberto.** O `docker-compose.yml` só tem
-> `Host(\`${DOMAIN}\`)`. Com o A de `www` apontando para o servidor mas sem
-> regra no Traefik, `www.setfree.com.br` cai em 404. Ver "Ajustes recomendados"
-> no fim.
+> O `www` já está coberto: o Traefik emite certificado para ele e faz **301
+> para o domínio raiz** (os `canonical` do site são sem `www`, então servir os
+> dois hosts seria conteúdo duplicado). O registro A do `www` é necessário
+> justamente para o Let's Encrypt validar esse host.
 
 ---
 
@@ -61,6 +61,14 @@ ANTHROPIC_MODEL=claude-sonnet-5
 - [ ] Marque a `ANTHROPIC_API_KEY` como **secret**. Ela só existe no container
       da `api` — nunca chega ao HTML. O front chama `/api/assistente` e
       `/api/editais` na mesma origem, sem chave nenhuma no cliente.
+
+> **`DOMAIN` manda no build.** O compose passa `SITE_URL=https://${DOMAIN}` para
+> o build do `web`, e é dele que saem `canonical`, `og:url`, `sitemap.xml` e o
+> JSON-LD. Se `DOMAIN` for qualquer coisa diferente de `setfree.com.br`, o build
+> se marca como não-produção e **gera um `robots.txt` que bloqueia todos os
+> robôs** — de propósito, para um ambiente de teste não competir com o site
+> real. Um `DOMAIN` errado aqui é a forma mais fácil de subir produção
+> desindexada; confira antes do deploy.
 
 ---
 
@@ -109,10 +117,15 @@ curl -s -X POST https://setfree.com.br/api/assistente \
 # 5. editais do PNCP
 curl -s https://setfree.com.br/api/editais | head -c 300
 
-# 6. arquivos de SEO na raiz
-curl -sI https://setfree.com.br/robots.txt  | head -1
+# 6. arquivos de SEO na raiz — e o robots tem que estar LIBERANDO (Allow: /).
+#    "Disallow: /" aqui significa que o build saiu como não-produção: confira o DOMAIN.
+curl -s  https://setfree.com.br/robots.txt  | head -3
 curl -sI https://setfree.com.br/sitemap.xml | head -1
 curl -sI https://setfree.com.br/llms.txt    | head -1
+
+# 6b. HTTP redireciona para HTTPS, e www redireciona para o domínio raiz
+curl -sI http://setfree.com.br      | grep -i "^HTTP\|^location"
+curl -sI https://www.setfree.com.br | grep -i "^HTTP\|^location"
 
 # 7. o React e o Babel carregam do próprio domínio (sem unpkg)
 curl -sI https://setfree.com.br/vendor/react.production.min.js | head -1
@@ -121,6 +134,9 @@ curl -sI https://setfree.com.br/vendor/babel.min.js            | head -1
 
 - [ ] No navegador: abrir a home, o console **sem erros de `integrity`**
       (bloqueio de SRI = bundle do `build/vendor/` com bytes errados).
+- [ ] **Clicar em cada item do menu do topo** e no rodapé: têm que ir direto
+      para a URL limpa, sem passar por 301. Um `.dc.html` na barra de endereço
+      significa que o rewrite dos componentes não rodou.
 - [ ] Testar em celular: menu, vídeo do hero, botão do WhatsApp.
 - [ ] Trocar o idioma PT/EN no topo e conferir que persiste ao navegar.
 
@@ -147,26 +163,18 @@ desfazer. Em último caso, `git revert` do commit problemático e novo deploy.
 
 ## Ajustes recomendados (não bloqueiam o deploy)
 
-Nenhum destes impede o site de subir, mas os dois primeiros afetam usuário real
-no primeiro dia:
-
-1. **`www` não responde.** Adicionar ao router do `web` no compose:
-   `Host(\`${DOMAIN}\`) || Host(\`www.${DOMAIN}\`)` — e o mesmo no da `api`.
-2. **HTTP não redireciona para HTTPS.** Os routers só declaram o entrypoint
-   `websecure`. Se o Dokploy não tiver o redirect global ligado, quem digitar
-   `setfree.com.br` sem `https://` não chega ao site. Confirme na instalação ou
-   adicione um router no entrypoint `web` com o middleware `redirect-to-https`.
-3. **`/api/assistente` é aberto e gasta tokens.** Sem rate limit, qualquer um
+1. **`/api/assistente` é aberto e gasta tokens.** Sem rate limit, qualquer um
    pode consumir a chave. Um middleware `rateLimit` do Traefik no router da
    `api` (ex.: 10 req/min por IP) resolve com uma linha de label.
-4. **Domínio fixo no build.** `build/pages.mjs` tem
-   `SITE = "https://setfree.com.br"` e o `seo/` também. Se você subir um
-   ambiente de staging em outro domínio, os `canonical`, o `sitemap.xml` e o
-   JSON-LD vão apontar para produção — e o Google pode indexar errado. Para
-   staging, mude o `SITE` **e** bloqueie tudo no `robots.txt`.
-5. **Sem healthcheck no compose.** O Traefik só sabe que o container está de pé,
+2. **Sem healthcheck no compose.** O Traefik só sabe que o container está de pé,
    não que responde. Um `healthcheck` batendo em `/api/health` evita servir
    tráfego para um container ainda subindo.
+3. **O assistente de IA não tem entrada em lugar nenhum.** Ele fica em
+   `/contato#assistente`, mas nenhum link do site aponta para lá — nem o menu,
+   nem o rodapé, nem as páginas de produto. É decisão de conteúdo, não de infra.
+
+> Já resolvidos no repositório (estavam nesta lista): `www` sem regra no
+> Traefik, HTTP sem redirect para HTTPS e o domínio fixo no build.
 
 ## Pendências de conteúdo (P1 — de `ANALISE.md`, não são de infra)
 
@@ -183,3 +191,10 @@ Ao reexportar do Claude Design: substitua os `.dc.html` e o `uploads/`, rode
 `npm run build` local para conferir o **`19 com conteúdo · 0 avisos`**, commite
 e faça o redeploy. Página nova exige entrada em `build/pages.mjs` (título e
 slug) — sem isso ela não entra no `dist/` nem no sitemap.
+
+Para levantar um ambiente de teste em outro domínio, basta o `DOMAIN` do
+Dokploy — ou, localmente:
+
+```bash
+SITE_URL=https://staging.exemplo.com npm run build
+```
