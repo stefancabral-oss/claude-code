@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Criador de Prompt — com IA</title>
+<title>Criador de Prompt</title>
 <style>
   :root{
     --bg:#f4f2ee; --surface:#fff; --surface-2:#eceae4; --text:#1f1e1b; --muted:#6b6861;
     --border:#d8d4cc; --accent:#b4552d; --accent-text:#fff; --ok:#2e7d4f; --prompt-bg:#fbfaf7;
+    --analog:#3f7d8c; --digital:#6b5bd6; --inteligente:#b4552d;
     --shadow:0 1px 3px rgba(30,25,20,.08),0 4px 14px rgba(30,25,20,.06);
   }
   @media (prefers-color-scheme: dark){:root{
     --bg:#191817; --surface:#232120; --surface-2:#2c2a28; --text:#f0edea; --muted:#a5a09a;
     --border:#3b3835; --accent:#e07a4f; --accent-text:#1c130e; --ok:#6fbf8f; --prompt-bg:#1e1d1c;
-    --shadow:0 1px 3px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);}}
-  :root[data-theme="dark"]{--bg:#191817;--surface:#232120;--surface-2:#2c2a28;--text:#f0edea;--muted:#a5a09a;--border:#3b3835;--accent:#e07a4f;--accent-text:#1c130e;--ok:#6fbf8f;--prompt-bg:#1e1d1c;}
-  :root[data-theme="light"]{--bg:#f4f2ee;--surface:#fff;--surface-2:#eceae4;--text:#1f1e1b;--muted:#6b6861;--border:#d8d4cc;--accent:#b4552d;--accent-text:#fff;--ok:#2e7d4f;--prompt-bg:#fbfaf7;}
+    --analog:#5aa9bb; --digital:#9a8cf0; --inteligente:#e07a4f;}}
+  :root[data-theme="dark"]{--bg:#191817;--surface:#232120;--surface-2:#2c2a28;--text:#f0edea;--muted:#a5a09a;--border:#3b3835;--accent:#e07a4f;--accent-text:#1c130e;--ok:#6fbf8f;--prompt-bg:#1e1d1c;--analog:#5aa9bb;--digital:#9a8cf0;--inteligente:#e07a4f;}
+  :root[data-theme="light"]{--bg:#f4f2ee;--surface:#fff;--surface-2:#eceae4;--text:#1f1e1b;--muted:#6b6861;--border:#d8d4cc;--accent:#b4552d;--accent-text:#fff;--ok:#2e7d4f;--prompt-bg:#fbfaf7;--analog:#3f7d8c;--digital:#6b5bd6;--inteligente:#b4552d;}
   *,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   html,body{margin:0;padding:0;}
   body{background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;}
   .wrap{max-width:560px;margin:0 auto;padding:18px 16px 40px;display:flex;flex-direction:column;min-height:100dvh;}
   .topo{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px;}
-  .topo h1{font-size:18px;margin:0;letter-spacing:-.01em;}
+  .topo h1{font-size:18px;margin:0;letter-spacing:-.01em;cursor:pointer;}
   .selo{font-size:11px;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:99px;padding:1px 8px;}
   .link{background:none;border:none;color:var(--accent);font:inherit;font-weight:600;cursor:pointer;text-decoration:underline;padding:6px;}
   .barra{height:6px;border-radius:99px;background:var(--surface-2);border:1px solid var(--border);overflow:hidden;margin-bottom:16px;}
@@ -30,10 +31,21 @@
   .cartao{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px 18px;box-shadow:var(--shadow);}
   .cartao h2{font-size:19px;margin:0 0 8px;letter-spacing:-.01em;}
   .ajuda{font-size:14px;color:var(--muted);margin:0 0 16px;}
+  .intro{font-size:14px;color:var(--muted);text-align:center;margin:2px 0 16px;}
   textarea,input[type=text]{width:100%;font-size:16px;font-family:inherit;color:var(--text);background:var(--prompt-bg);
     border:1.5px solid var(--border);border-radius:12px;padding:13px;outline:none;}
   textarea{min-height:96px;resize:vertical;}
+  textarea.grande{min-height:200px;}
   textarea:focus,input:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent);}
+  .modos{display:flex;flex-direction:column;gap:12px;}
+  .modo{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;padding:16px;font-family:inherit;
+    background:var(--surface);border:1.5px solid var(--border);border-radius:16px;cursor:pointer;color:var(--text);box-shadow:var(--shadow);}
+  .modo:active{transform:scale(.99);}
+  .modo .ic{flex:0 0 auto;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:24px;color:#fff;}
+  .modo.analog .ic{background:var(--analog);} .modo.digital .ic{background:var(--digital);} .modo.inteligente .ic{background:var(--inteligente);}
+  .modo h3{margin:0 0 3px;font-size:17px;}
+  .modo p{margin:0;font-size:13.5px;color:var(--muted);}
+  .modo .tag{display:inline-block;margin-top:7px;font-size:11px;font-weight:700;border-radius:99px;padding:2px 8px;border:1px solid var(--border);color:var(--muted);}
   .opcoes{display:flex;flex-direction:column;gap:10px;}
   .opcao{display:flex;align-items:center;gap:12px;width:100%;min-height:54px;padding:13px;font-size:16px;font-family:inherit;
     text-align:left;color:var(--text);background:var(--prompt-bg);border:1.5px solid var(--border);border-radius:12px;cursor:pointer;}
@@ -47,6 +59,11 @@
   .ferramenta[aria-checked=true] .check{background:var(--accent);border-color:var(--accent);}
   .ferramenta .nome{font-weight:700;font-size:15px;}
   .ferramenta .motivo{font-size:13px;color:var(--muted);}
+  .taglinha{display:flex;gap:8px;} .taglinha input{flex:1;}
+  .btn-add{flex:0 0 auto;min-height:44px;padding:0 16px;font:inherit;font-weight:600;border-radius:12px;border:1.5px solid var(--accent);background:var(--accent);color:var(--accent-text);cursor:pointer;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:var(--surface-2);border-radius:99px;padding:6px 6px 6px 12px;font-size:14px;font-weight:600;}
+  .chip button{border:none;background:transparent;color:inherit;font-size:17px;width:26px;height:26px;border-radius:50%;cursor:pointer;}
   .nav{display:flex;gap:10px;margin-top:20px;}
   .btn{flex:1;min-height:50px;font-size:16px;font-weight:700;font-family:inherit;border-radius:12px;cursor:pointer;
     border:1.5px solid var(--border);background:var(--surface);color:var(--text);padding:12px 16px;}
@@ -55,30 +72,27 @@
   .btn-primario:disabled{opacity:.45;cursor:not-allowed;}
   .btn-voltar{flex:0 0 auto;color:var(--muted);background:transparent;border-color:transparent;text-decoration:underline;}
   .prompt-bloco{background:var(--prompt-bg);border:1.5px solid var(--border);border-radius:12px;padding:15px;font-size:15px;line-height:1.6;white-space:pre-wrap;word-break:break-word;}
-  .melhorias{margin:16px 0 0;padding-left:18px;font-size:13px;color:var(--muted);}
-  .melhorias li{margin-bottom:4px;}
+  .prompt-bloco .falta{color:var(--accent);font-style:italic;}
+  .melhorias{margin:16px 0 0;padding-left:18px;font-size:13px;color:var(--muted);} .melhorias li{margin-bottom:4px;}
   .entendi{background:color-mix(in srgb,var(--ok) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--ok) 40%,var(--border));border-radius:12px;padding:12px 14px;font-size:14px;margin-bottom:16px;}
   .spinner{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite;margin:22px auto 12px;}
   @keyframes spin{to{transform:rotate(360deg);}}
-  @media(prefers-reduced-motion:reduce){.spinner{animation:none;} .barra-fill{transition:none;}}
+  @media(prefers-reduced-motion:reduce){.spinner{animation:none;}.barra-fill{transition:none;}}
   .carregando{text-align:center;color:var(--muted);}
   .erro{color:var(--accent);font-weight:600;background:color-mix(in srgb,var(--accent) 10%,var(--surface));border:1px solid var(--accent);border-radius:10px;padding:10px 12px;margin-top:12px;font-size:14px;}
   .toast{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--ok);color:#fff;padding:9px 18px;border-radius:30px;font-weight:650;transition:transform .25s;z-index:30;}
   .toast.show{transform:translateX(-50%) translateY(0);}
   dialog{border:none;border-radius:16px;max-width:520px;width:92%;padding:0;background:var(--surface);color:var(--text);box-shadow:var(--shadow);}
   dialog::backdrop{background:rgba(0,0,0,.45);}
-  .modal-in{padding:18px;}
-  .modal-in h3{margin:0 0 4px;font-size:17px;}
+  .modal-in{padding:18px;} .modal-in h3{margin:0 0 4px;font-size:17px;}
   .grupo{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin:14px 0 6px;}
-  .item{font-size:14px;padding:6px 0;border-top:1px solid var(--border);}
-  .item b{font-weight:700;}
-  .item small{color:var(--muted);}
+  .item{font-size:14px;padding:6px 0;border-top:1px solid var(--border);} .item b{font-weight:700;} .item small{color:var(--muted);}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="topo">
-    <h1>🤖 Criador de Prompt <span class="selo">v1.1</span></h1>
+    <h1 id="titulo">🛠️ Criador de Prompt <span class="selo">v1.2</span></h1>
     <button class="link" id="btnInventario">O que posso usar?</button>
   </div>
   <div class="barra"><div class="barra-fill" id="barra"></div></div>
@@ -89,174 +103,242 @@
 
 <dialog id="dlgInventario"><div class="modal-in">
   <h3>O que voce pode usar</h3>
-  <p class="ajuda">A IA so sugere itens desta lista.</p>
+  <p class="ajuda">A IA (modo Inteligente) so sugere itens desta lista.</p>
   <div id="invConteudo" class="carregando">Carregando…</div>
   <div class="nav"><button class="btn btn-primario" id="fecharInv">Fechar</button></div>
 </div></dialog>
 
 <script>
-const $ = (id) => document.getElementById(id);
+const $ = (id)=>document.getElementById(id);
 const palco = $("palco");
-const state = { fase: "objetivo", objetivo: "", plano: null, ferramentas: [], respostas: {}, idx: 0, resultado: null };
+const setBarra = (p)=>{ $("barra").style.width = Math.max(0,Math.min(100,p))+"%"; };
+const esc = (s)=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function toast(){ const t=$("toast"); t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1500); }
+async function copiar(texto){ try{ await navigator.clipboard.writeText(texto); }catch{ const ta=document.createElement("textarea"); ta.value=texto; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); } toast(); }
+async function apiPost(rota,corpo){ const r=await fetch(rota,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(corpo)}); const j=await r.json().catch(()=>({erro:"Resposta invalida do servidor."})); if(!r.ok) throw new Error(j.erro||"Erro no servidor."); return j; }
+$("titulo").onclick = home;
 
-function setBarra(p){ $("barra").style.width = Math.max(0, Math.min(100, p)) + "%"; }
-function esc(s){ return String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
-
-async function api(rota, corpo){
-  const r = await fetch(rota, { method:"POST", headers:{ "content-type":"application/json" }, body: JSON.stringify(corpo) });
-  const j = await r.json().catch(()=>({erro:"Resposta invalida do servidor."}));
-  if(!r.ok) throw new Error(j.erro || "Erro no servidor.");
-  return j;
+/* ================= HOME — escolha do modo ================= */
+function home(){
+  setBarra(0);
+  palco.innerHTML = `
+    <p class="intro">Como voce quer montar seu comando para o Claude?</p>
+    <div class="modos">
+      <button class="modo analog" data-modo="analog">
+        <span class="ic">✍️</span>
+        <span><h3>Analogico</h3><p>Escreva do seu jeito, texto livre — como no papel. Sem estrutura, sem IA.</p><span class="tag">manual · sem custo</span></span>
+      </button>
+      <button class="modo digital" data-modo="digital">
+        <span class="ic">🧱</span>
+        <span><h3>Digital</h3><p>Monte por partes, passo a passo. O sistema encaixa tudo numa frase pronta.</p><span class="tag">estruturado · sem custo</span></span>
+      </button>
+      <button class="modo inteligente" data-modo="inteligente">
+        <span class="ic">🤖</span>
+        <span><h3>Inteligente</h3><p>A IA te guia: entende, sugere ferramentas, faz as perguntas e revisa (loop juiz).</p><span class="tag">com IA · precisa de servidor</span></span>
+      </button>
+    </div>`;
+  document.querySelectorAll(".modo").forEach(b=> b.onclick = ()=>({analog:modoAnalogico,digital:modoDigital,inteligente:modoInteligente}[b.dataset.modo])());
 }
 
-// ---------- Telas ----------
-function telaObjetivo(){
-  setBarra(8);
+/* ================= MODO ANALOGICO ================= */
+const MODELO_BASE = "Voce e [defina o papel, ex.: especialista em X].\nSua tarefa: [o que voce quer].\nContexto: [detalhes que importam].\nFormato da resposta: [texto/tabela/lista/planilha].\nAntes de finalizar, verifique: [o que conferir].";
+function modoAnalogico(){
+  setBarra(50);
   palco.innerHTML = `
     <div class="cartao">
-      <h2>O que voce quer que seja feito?</h2>
-      <p class="ajuda">Escreva do seu jeito, curto e seco. De algo complexo (um app) a algo simples (salvar um arquivo). A IA vai entender, sugerir ferramentas e te fazer as perguntas que faltam.</p>
-      <textarea id="obj" placeholder="Ex.: analisar este edital e dizer se vale participar">${esc(state.objetivo)}</textarea>
-      <div id="erro"></div>
-      <div class="nav"><button class="btn btn-primario" id="analisar">Analisar com a IA →</button></div>
-    </div>`;
-  $("obj").focus();
-  $("analisar").onclick = async () => {
-    const v = $("obj").value.trim();
-    if(!v){ $("erro").innerHTML = '<div class="erro">Escreva o que voce quer primeiro.</div>'; return; }
-    state.objetivo = v;
-    telaCarregando("Entendendo o seu pedido e escolhendo as ferramentas…");
-    try {
-      state.plano = await api("/api/plan", { objetivo: v });
-      state.ferramentas = (state.plano.ferramentas||[]).filter(f => f.tipo !== "nenhuma").map(f => f.nome);
-      state.respostas = {}; state.idx = 0;
-      telaPlano();
-    } catch(e){ telaObjetivo(); $("erro").innerHTML = `<div class="erro">${esc(e.message)}</div>`; }
-  };
-}
-
-function telaPlano(){
-  setBarra(28);
-  const p = state.plano;
-  const fers = (p.ferramentas||[]).filter(f => f.tipo !== "nenhuma");
-  const listaFer = fers.length ? fers.map(f => {
-    const on = state.ferramentas.includes(f.nome);
-    return `<div class="ferramenta" role="checkbox" aria-checked="${on}" data-nome="${esc(f.nome)}">
-      <span class="check">${on?"✓":""}</span>
-      <span><span class="nome">${esc(f.nome)}</span> <small style="color:var(--muted)">(${esc(f.tipo)})</small><br><span class="motivo">${esc(f.motivo)}</span></span>
-    </div>`;
-  }).join("") : `<p class="ajuda">A IA nao achou necessario usar uma ferramenta especifica — vai deixar o Claude decidir.</p>`;
-  palco.innerHTML = `
-    <div class="cartao">
-      <h2>Entendi assim 👇</h2>
-      <div class="entendi">${esc(p.entendimento||"")}</div>
-      <p class="ajuda"><b>Ferramentas que sugiro usar</b> (toque para ligar/desligar):</p>
-      <div class="opcoes" id="fers">${listaFer}</div>
+      <h2>✍️ Escreva seu comando</h2>
+      <p class="ajuda">Do seu jeito, texto livre. Se quiser um esqueleto para preencher, toque em "Inserir modelo".</p>
+      <textarea id="livre" class="grande" placeholder="Escreva aqui o que voce quer pedir ao Claude…"></textarea>
       <div class="nav">
-        <button class="btn btn-voltar" id="voltar">Voltar</button>
-        <button class="btn btn-primario" id="continuar">Continuar →</button>
+        <button class="btn btn-voltar" id="voltar">← Inicio</button>
+        <button class="btn" id="modelo">Inserir modelo</button>
+        <button class="btn btn-primario" id="copiar">📋 Copiar</button>
       </div>
     </div>`;
-  document.querySelectorAll("#fers .ferramenta").forEach(el => el.onclick = () => {
-    const nome = el.dataset.nome; const i = state.ferramentas.indexOf(nome);
-    if(i>=0) state.ferramentas.splice(i,1); else state.ferramentas.push(nome);
-    telaPlano();
-  });
-  $("voltar").onclick = telaObjetivo;
-  $("continuar").onclick = () => { state.idx = 0; proximaPergunta(); };
+  $("livre").focus();
+  $("voltar").onclick = home;
+  $("modelo").onclick = ()=>{ const t=$("livre"); t.value = (t.value.trim()? t.value.trim()+"\n\n":"") + MODELO_BASE; t.focus(); };
+  $("copiar").onclick = ()=>{ const v=$("livre").value.trim(); if(v) copiar(v); };
 }
 
-function proximaPergunta(){
-  const perguntas = state.plano.perguntas || [];
-  if(state.idx >= perguntas.length){ telaCompor(); return; }
-  const q = perguntas[state.idx];
-  const total = perguntas.length;
-  setBarra(30 + Math.round((state.idx/Math.max(1,total))*45));
-  const atual = state.respostas[q.id];
-  let corpo;
-  if(q.tipo === "escolha" && Array.isArray(q.opcoes) && q.opcoes.length){
-    corpo = `<div class="opcoes" id="ops">` + q.opcoes.map(op => {
-      const on = atual === op;
-      return `<button class="opcao" role="radio" aria-checked="${on}" data-op="${esc(op)}"><span class="bolinha"></span><span>${esc(op)}</span></button>`;
-    }).join("") + `</div>`;
+/* ================= MODO DIGITAL — montador deterministico por passos ================= */
+const D_STEPS = [
+  { id:"objetivo", titulo:"O que voce quer que seja feito?", ajuda:'Curto e seco. Ex.: "criar um app de estoque" ou "salvar este texto num arquivo".', tipo:"texto", obrig:true, ph:"Ex.: analisar este edital", frag:v=>v },
+  { id:"estilo", titulo:"Com que jeito ou tom?", ajuda:"Opcional — pule se tanto faz.", tipo:"escolha", opcoes:[
+    {l:"Profissional e serio",f:", com um tom profissional e serio"},{l:"Simples e direto",f:", de um jeito simples e direto"},
+    {l:"Animado e criativo",f:", com um tom animado e criativo"},{l:"Detalhado e caprichado",f:", bem detalhado e caprichado"}] },
+  { id:"detalhes", titulo:"Detalhes importantes?", ajuda:"Palavras que nao podem faltar. Adicione uma por vez. Pode pular.", tipo:"tags", ph:"Ex.: prazo, ME/EPP" , frag:v=>", incluindo: "+v },
+  { id:"como", titulo:"Como o Claude deve fazer?", ajuda:"Na duvida, escolha 'Deixar o Claude decidir'.", tipo:"escolha", obrig:true, opcoes:[
+    {l:"Deixar o Claude decidir",f:", do jeito que voce julgar melhor"},
+    {l:"Usar uma habilidade pronta",f:", usando a habilidade pronta mais adequada"},
+    {l:"Usar um plugin",f:", usando o plugin mais adequado"},
+    {l:"Buscar nos meus apps conectados",f:", buscando nos meus apps conectados (Gmail, Drive, Notion…)"},
+    {l:"Criar uma habilidade nova",f:", criando uma habilidade nova sob medida para isso"}] },
+  { id:"formato", titulo:"Em que formato receber?", ajuda:"Opcional.", tipo:"escolha", opcoes:[
+    {l:"Texto pronto para copiar",f:". Entregue como texto simples, pronto para copiar"},
+    {l:"Lista de passos",f:". Entregue como uma lista de passos numerados"},
+    {l:"Documento (Word/PDF)",f:". Entregue em um documento (Word ou PDF)"},
+    {l:"Planilha",f:". Entregue em uma planilha organizada"}] },
+  { id:"verif", titulo:"Conferir antes de finalizar?", ajuda:"Opcional.", tipo:"escolha", opcoes:[
+    {l:"Me mostre um rascunho antes",f:" Antes de finalizar, me mostre um rascunho e espere meu OK."},
+    {l:"Confira numeros, nomes e datas",f:" Confira numeros, nomes e datas e avise se algo estiver incerto."},
+    {l:"Pode entregar direto",f:" Pode entregar direto."}] },
+];
+const dState = { i:0, val:{} };
+function modoDigital(){ dState.i=0; dState.val={}; dPasso(); }
+function dPasso(){
+  const s = D_STEPS[dState.i];
+  if(!s){ dResultado(); return; }
+  setBarra(Math.round((dState.i/D_STEPS.length)*90));
+  const atual = dState.val[s.id];
+  let corpo="";
+  if(s.tipo==="texto") corpo = `<textarea id="tx" placeholder="${esc(s.ph||"")}">${esc(atual||"")}</textarea>`;
+  else if(s.tipo==="tags"){
+    const tags = Array.isArray(atual)? atual:[];
+    corpo = `<div class="taglinha"><input type="text" id="tg" placeholder="${esc(s.ph||"")}"/><button class="btn-add" id="add">Adicionar</button></div>
+      <div class="chips" id="chips">${tags.map((t,i)=>`<span class="chip">${esc(t)}<button data-i="${i}">×</button></span>`).join("")}</div>`;
   } else {
-    corpo = `<textarea id="resp" placeholder="Escreva aqui…">${esc(atual||"")}</textarea>`;
+    corpo = `<div class="opcoes" id="ops">` + s.opcoes.map(o=>{
+      const on = atual===o.l; return `<button class="opcao" role="radio" aria-checked="${on}" data-l="${esc(o.l)}"><span class="bolinha"></span><span>${esc(o.l)}</span></button>`; }).join("") + `</div>`;
   }
-  palco.innerHTML = `
-    <div class="cartao">
-      <h2>${esc(q.pergunta)}</h2>
-      ${q.ajuda ? `<p class="ajuda">${esc(q.ajuda)}</p>` : ""}
-      ${corpo}
-      <div class="nav">
-        <button class="btn btn-voltar" id="voltar">Voltar</button>
-        <button class="btn" id="pular">Pular</button>
-        <button class="btn btn-primario" id="avancar">Proximo →</button>
-      </div>
-    </div>`;
-  if(q.tipo === "escolha"){
-    document.querySelectorAll("#ops .opcao").forEach(b => b.onclick = () => { state.respostas[q.id] = b.dataset.op; avancar(); });
-  } else if($("resp")) $("resp").focus();
-  $("avancar").onclick = () => { const r = $("resp"); if(r) state.respostas[q.id] = r.value.trim(); avancar(); };
-  $("pular").onclick = () => { delete state.respostas[q.id]; avancar(); };
-  $("voltar").onclick = () => { if(state.idx===0) telaPlano(); else { state.idx--; proximaPergunta(); } };
-}
-function avancar(){ state.idx++; proximaPergunta(); }
-
-async function telaCompor(){
-  telaCarregando("Montando o prompt e revisando com o loop juiz…");
-  setBarra(85);
-  try {
-    state.resultado = await api("/api/compose", { objetivo: state.objetivo, respostas: state.respostas, ferramentas: state.ferramentas });
-    telaResultado();
-  } catch(e){
-    palco.innerHTML = `<div class="cartao"><h2>Ops</h2><div class="erro">${esc(e.message)}</div>
-      <div class="nav"><button class="btn btn-primario" id="tentar">Tentar de novo</button></div></div>`;
-    $("tentar").onclick = telaCompor;
-  }
-}
-
-function telaResultado(){
-  setBarra(100);
-  const r = state.resultado;
-  const mel = (r.melhorias||[]).map(m => `<li>${esc(m)}</li>`).join("");
-  palco.innerHTML = `
-    <div class="cartao">
-      <h2>✅ Seu prompt esta pronto</h2>
-      <p class="ajuda">Revisado pelo loop juiz. Copie e cole no Claude.</p>
-      <div class="prompt-bloco" id="prompt">${esc(r.prompt_final||"")}</div>
-      ${mel ? `<p class="ajuda" style="margin-top:14px"><b>O loop juiz melhorou:</b></p><ul class="melhorias">${mel}</ul>` : ""}
-      <div class="nav">
-        <button class="btn btn-primario" id="copiar">📋 Copiar prompt</button>
-        <button class="btn" id="recomecar">Comecar de novo</button>
-      </div>
-    </div>`;
-  $("copiar").onclick = async () => {
-    const t = $("prompt").innerText;
-    try { await navigator.clipboard.writeText(t); }
-    catch { const ta=document.createElement("textarea"); ta.value=t; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }
-    const to=$("toast"); to.classList.add("show"); setTimeout(()=>to.classList.remove("show"),1500);
+  palco.innerHTML = `<div class="cartao"><h2>${esc(s.titulo)}</h2>${s.ajuda?`<p class="ajuda">${esc(s.ajuda)}</p>`:""}${corpo}
+    <div class="nav">
+      <button class="btn btn-voltar" id="voltar">${dState.i===0?"← Inicio":"Voltar"}</button>
+      ${s.obrig?"":'<button class="btn" id="pular">Pular</button>'}
+      <button class="btn btn-primario" id="prox">Proximo →</button>
+    </div></div>`;
+  $("voltar").onclick = ()=>{ if(dState.i===0) home(); else { dState.i--; dPasso(); } };
+  if($("pular")) $("pular").onclick = ()=>{ delete dState.val[s.id]; dState.i++; dPasso(); };
+  $("prox").onclick = ()=>{
+    if(s.tipo==="texto"){ const v=$("tx").value.trim(); if(s.obrig&&!v) return; dState.val[s.id]=v; }
+    dState.i++; dPasso();
   };
-  $("recomecar").onclick = () => { state.objetivo=""; state.plano=null; state.ferramentas=[]; state.respostas={}; state.idx=0; telaObjetivo(); };
+  if(s.tipo==="escolha") document.querySelectorAll("#ops .opcao").forEach(b=> b.onclick=()=>{ dState.val[s.id]=b.dataset.l; dState.i++; dPasso(); });
+  if(s.tipo==="tags"){
+    const addTag=()=>{ const inp=$("tg"); const v=inp.value.trim(); if(!v) return; const arr=Array.isArray(dState.val[s.id])?dState.val[s.id]:[]; arr.push(v); dState.val[s.id]=arr; dPasso(); };
+    $("add").onclick=addTag; $("tg").onkeydown=(e)=>{ if(e.key==="Enter"){ e.preventDefault(); addTag(); } };
+    document.querySelectorAll("#chips button").forEach(b=> b.onclick=()=>{ dState.val[s.id].splice(+b.dataset.i,1); dPasso(); });
+  }
+  if($("tx")) $("tx").focus();
+}
+function dMontar(){
+  const v = dState.val;
+  let obj = (v.objetivo||"").trim() || "[escreva o objetivo]";
+  obj = obj.charAt(0).toUpperCase()+obj.slice(1);
+  let frase = obj;
+  if(v.estilo){ const o=D_STEPS[1].opcoes.find(x=>x.l===v.estilo); if(o) frase+=o.f; }
+  if(Array.isArray(v.detalhes)&&v.detalhes.length) frase+= ", incluindo: "+v.detalhes.join(", ");
+  if(v.como){ const o=D_STEPS[3].opcoes.find(x=>x.l===v.como); if(o) frase+=o.f; }
+  let texto = frase;
+  if(v.formato){ const o=D_STEPS[4].opcoes.find(x=>x.l===v.formato); if(o) texto+=o.f; }
+  else texto+=".";
+  if(v.verif){ const o=D_STEPS[5].opcoes.find(x=>x.l===v.verif); if(o) texto+=o.f; }
+  return texto.replace(/\s+,/g,",").replace(/,\s*\./g,".").replace(/\s{2,}/g," ").trim();
+}
+function dResultado(){
+  setBarra(100);
+  const texto = dMontar();
+  palco.innerHTML = `<div class="cartao"><h2>🧱 Prompt montado</h2>
+    <p class="ajuda">Encaixado numa frase. Copie e cole no Claude.</p>
+    <div class="prompt-bloco">${esc(texto).replace(/\[([^\]]+)\]/g,'<span class="falta">[$1]</span>')}</div>
+    <div class="nav"><button class="btn btn-voltar" id="voltar">Voltar</button>
+      <button class="btn btn-primario" id="copiar">📋 Copiar</button>
+      <button class="btn" id="reco">Recomecar</button></div></div>`;
+  $("voltar").onclick = ()=>{ dState.i=D_STEPS.length-1; dPasso(); };
+  $("copiar").onclick = ()=> copiar(texto);
+  $("reco").onclick = modoDigital;
 }
 
-function telaCarregando(msg){
-  palco.innerHTML = `<div class="cartao carregando"><div class="spinner"></div><p>${esc(msg)}</p></div>`;
+/* ================= MODO INTELIGENTE — IA ao vivo ================= */
+const iState = { objetivo:"", plano:null, ferramentas:[], respostas:{}, idx:0, resultado:null };
+function iCarregando(msg){ palco.innerHTML = `<div class="cartao carregando"><div class="spinner"></div><p>${esc(msg)}</p></div>`; }
+function modoInteligente(){ iState.objetivo=""; iState.plano=null; iState.ferramentas=[]; iState.respostas={}; iState.idx=0; iObjetivo(); }
+function iObjetivo(){
+  setBarra(10);
+  palco.innerHTML = `<div class="cartao"><h2>🤖 O que voce quer que seja feito?</h2>
+    <p class="ajuda">Escreva curto e seco. A IA vai entender, sugerir ferramentas e te fazer as perguntas que faltam.</p>
+    <textarea id="obj" placeholder="Ex.: analisar este edital e dizer se vale participar">${esc(iState.objetivo)}</textarea>
+    <div id="erro"></div>
+    <div class="nav"><button class="btn btn-voltar" id="voltar">← Inicio</button>
+      <button class="btn btn-primario" id="analisar">Analisar com a IA →</button></div></div>`;
+  $("obj").focus(); $("voltar").onclick = home;
+  $("analisar").onclick = async ()=>{
+    const v=$("obj").value.trim(); if(!v){ $("erro").innerHTML='<div class="erro">Escreva o que voce quer primeiro.</div>'; return; }
+    iState.objetivo=v; iCarregando("Entendendo o pedido e escolhendo ferramentas…");
+    try{ iState.plano = await apiPost("/api/plan",{objetivo:v});
+      iState.ferramentas=(iState.plano.ferramentas||[]).filter(f=>f.tipo!=="nenhuma").map(f=>f.nome);
+      iState.respostas={}; iState.idx=0; iPlano();
+    }catch(e){ iObjetivo(); $("erro").innerHTML=`<div class="erro">${esc(e.message)}</div>`; }
+  };
+}
+function iPlano(){
+  setBarra(28); const p=iState.plano;
+  const fers=(p.ferramentas||[]).filter(f=>f.tipo!=="nenhuma");
+  const lista = fers.length? fers.map(f=>{ const on=iState.ferramentas.includes(f.nome);
+    return `<div class="ferramenta" role="checkbox" aria-checked="${on}" data-nome="${esc(f.nome)}"><span class="check">${on?"✓":""}</span>
+      <span><span class="nome">${esc(f.nome)}</span> <small style="color:var(--muted)">(${esc(f.tipo)})</small><br><span class="motivo">${esc(f.motivo)}</span></span></div>`;
+  }).join("") : `<p class="ajuda">A IA vai deixar o Claude decidir as ferramentas.</p>`;
+  palco.innerHTML = `<div class="cartao"><h2>Entendi assim 👇</h2>
+    <div class="entendi">${esc(p.entendimento||"")}</div>
+    <p class="ajuda"><b>Ferramentas que sugiro</b> (toque para ligar/desligar):</p>
+    <div class="opcoes" id="fers">${lista}</div>
+    <div class="nav"><button class="btn btn-voltar" id="voltar">Voltar</button>
+      <button class="btn btn-primario" id="cont">Continuar →</button></div></div>`;
+  document.querySelectorAll("#fers .ferramenta").forEach(el=> el.onclick=()=>{ const n=el.dataset.nome,i=iState.ferramentas.indexOf(n); if(i>=0)iState.ferramentas.splice(i,1); else iState.ferramentas.push(n); iPlano(); });
+  $("voltar").onclick = iObjetivo;
+  $("cont").onclick = ()=>{ iState.idx=0; iPergunta(); };
+}
+function iPergunta(){
+  const qs=iState.plano.perguntas||[];
+  if(iState.idx>=qs.length){ iCompor(); return; }
+  const q=qs[iState.idx];
+  setBarra(30+Math.round((iState.idx/Math.max(1,qs.length))*45));
+  const atual=iState.respostas[q.id];
+  let corpo;
+  if(q.tipo==="escolha" && Array.isArray(q.opcoes) && q.opcoes.length){
+    corpo=`<div class="opcoes" id="ops">`+q.opcoes.map(op=>{ const on=atual===op; return `<button class="opcao" role="radio" aria-checked="${on}" data-op="${esc(op)}"><span class="bolinha"></span><span>${esc(op)}</span></button>`; }).join("")+`</div>`;
+  } else corpo=`<textarea id="resp" placeholder="Escreva aqui…">${esc(atual||"")}</textarea>`;
+  palco.innerHTML=`<div class="cartao"><h2>${esc(q.pergunta)}</h2>${q.ajuda?`<p class="ajuda">${esc(q.ajuda)}</p>`:""}${corpo}
+    <div class="nav"><button class="btn btn-voltar" id="voltar">Voltar</button>
+      <button class="btn" id="pular">Pular</button>
+      <button class="btn btn-primario" id="av">Proximo →</button></div></div>`;
+  if(q.tipo==="escolha") document.querySelectorAll("#ops .opcao").forEach(b=> b.onclick=()=>{ iState.respostas[q.id]=b.dataset.op; iState.idx++; iPergunta(); });
+  else if($("resp")) $("resp").focus();
+  $("av").onclick=()=>{ const r=$("resp"); if(r) iState.respostas[q.id]=r.value.trim(); iState.idx++; iPergunta(); };
+  $("pular").onclick=()=>{ delete iState.respostas[q.id]; iState.idx++; iPergunta(); };
+  $("voltar").onclick=()=>{ if(iState.idx===0) iPlano(); else { iState.idx--; iPergunta(); } };
+}
+async function iCompor(){
+  iCarregando("Montando o prompt e revisando com o loop juiz…"); setBarra(85);
+  try{ iState.resultado = await apiPost("/api/compose",{objetivo:iState.objetivo,respostas:iState.respostas,ferramentas:iState.ferramentas}); iResultado(); }
+  catch(e){ palco.innerHTML=`<div class="cartao"><h2>Ops</h2><div class="erro">${esc(e.message)}</div>
+    <div class="nav"><button class="btn btn-voltar" id="voltar">← Inicio</button><button class="btn btn-primario" id="tentar">Tentar de novo</button></div></div>`;
+    $("voltar").onclick=home; $("tentar").onclick=iCompor; }
+}
+function iResultado(){
+  setBarra(100); const r=iState.resultado;
+  const mel=(r.melhorias||[]).map(m=>`<li>${esc(m)}</li>`).join("");
+  palco.innerHTML=`<div class="cartao"><h2>✅ Seu prompt esta pronto</h2>
+    <p class="ajuda">Revisado pelo loop juiz. Copie e cole no Claude.</p>
+    <div class="prompt-bloco" id="prompt">${esc(r.prompt_final||"")}</div>
+    ${mel?`<p class="ajuda" style="margin-top:14px"><b>O loop juiz melhorou:</b></p><ul class="melhorias">${mel}</ul>`:""}
+    <div class="nav"><button class="btn btn-primario" id="copiar">📋 Copiar prompt</button>
+      <button class="btn" id="reco">Comecar de novo</button></div></div>`;
+  $("copiar").onclick=()=> copiar($("prompt").innerText);
+  $("reco").onclick=modoInteligente;
 }
 
-// ---------- Inventario ----------
-$("btnInventario").onclick = async () => {
+/* ================= Inventario ================= */
+$("btnInventario").onclick = async ()=>{
   $("dlgInventario").showModal();
-  try {
-    const inv = await (await fetch("/api/inventory")).json();
-    const grupo = (titulo, arr) => `<div class="grupo">${titulo}</div>` + arr.map(x =>
-      `<div class="item"><b>${esc(x.nome)}</b>${x.status?` <small>· ${esc(x.status)}</small>`:""}<br><small>${esc(x.descricao)}</small></div>`).join("");
-    $("invConteudo").className = "";
-    $("invConteudo").innerHTML = grupo("Skills", inv.skills) + grupo("Plugins", inv.plugins) + grupo("Conectores", inv.conectores);
-  } catch { $("invConteudo").innerHTML = '<div class="erro">Nao consegui carregar o inventario.</div>'; }
+  try{ const inv=await (await fetch("/api/inventory")).json();
+    const grupo=(t,a)=>`<div class="grupo">${t}</div>`+a.map(x=>`<div class="item"><b>${esc(x.nome)}</b>${x.status?` <small>· ${esc(x.status)}</small>`:""}<br><small>${esc(x.descricao)}</small></div>`).join("");
+    $("invConteudo").className=""; $("invConteudo").innerHTML=grupo("Skills",inv.skills)+grupo("Plugins",inv.plugins)+grupo("Conectores",inv.conectores);
+  }catch{ $("invConteudo").innerHTML='<div class="erro">Nao consegui carregar o inventario.</div>'; }
 };
-$("fecharInv").onclick = () => $("dlgInventario").close();
+$("fecharInv").onclick=()=> $("dlgInventario").close();
 
-telaObjetivo();
+home();
 </script>
 </body>
 </html>

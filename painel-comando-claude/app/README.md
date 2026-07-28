@@ -1,9 +1,16 @@
-# Criador de Prompt — app com IA ao vivo (v1.1)
+# Criador de Prompt — app com 3 modos de interação (v1.2)
 
-Aplicativo hospedado por você (frontend + backend) que monta prompts do Claude com **IA
-ao vivo**: a partir do seu **objetivo**, a IA entende o pedido, **sugere ferramentas do
-seu inventário real**, faz as **perguntas que faltam** (uma por tela) e, no fim, monta o
-prompt final com um **loop juiz embutido** (a IA critica e melhora o próprio resultado).
+Aplicativo hospedado por você (frontend + backend) que monta prompts do Claude. A tela
+inicial oferece **três modos de interação** — você escolhe como quer trabalhar:
+
+| Modo | O que é | Precisa de IA/servidor? |
+|------|---------|-------------------------|
+| ✍️ **Analógico** | Escrever livre, texto puro, como no papel. Um botão "Inserir modelo" dá um esqueleto para preencher à mão. | Não — roda no navegador |
+| 🧱 **Digital** | Montar **por partes**, passo a passo (objetivo → estilo → detalhes → como executar → formato → conferir). O sistema encaixa tudo numa frase, de forma **determinística**. | Não — roda no navegador |
+| 🤖 **Inteligente** | A **IA ao vivo** entende o pedido, **sugere ferramentas do inventário real**, faz as **perguntas que faltam** (uma por tela) e monta o prompt com **loop juiz embutido**. | Sim — usa o backend + sua chave |
+
+Só o modo **Inteligente** depende da API do Claude; os modos **Analógico** e **Digital**
+funcionam mesmo sem chave configurada.
 
 > É a **Fase 2** do projeto. Diferente da v1 (que roda como página estática/artifact),
 > aqui a IA roda de verdade, então precisa de um **servidor com sua chave da API** e de
