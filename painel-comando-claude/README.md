@@ -52,9 +52,21 @@ decidiu a ordem das telas, um construtor implementou o assistente em arquivo ún
 revisores adversariais checaram UX (uma tela por vez, mobile) e bugs antes de publicar.
 O raciocínio estratégico está em [`IDEIA-SATURADA.md`](./IDEIA-SATURADA.md).
 
+## Fase 2 — App com IA ao vivo (`app/`)
+
+A **v1.1** está na pasta [`app/`](./app): um aplicativo com **frontend + backend** onde a
+IA roda de verdade — a partir do seu objetivo, ela **entende**, **sugere ferramentas do
+inventário real**, **faz as perguntas que faltam** e monta o prompt com **loop juiz
+embutido**. Precisa da sua **chave da API do Claude** e de um **deploy** (Dokploy). Veja
+[`app/README.md`](./app/README.md) para publicar.
+
+> Descoberta do "Trilho A": a página hospedada (artifact) **não** roda IA por dentro
+> (só `downloads` e `mcp`), e a política de segurança dela bloqueia servidor externo —
+> por isso a IA ao vivo virou este app hospedado por você.
+
 ## Decisões do projeto
 1. **Ferramenta interna** (uso próprio, não produto para vender).
-2. **Trilho A** (execução/agendamento nativo) a validar antes de qualquer automação.
+2. **Trilho A validado**: IA ao vivo exige app próprio (backend + chave) — feito na `app/`.
 3. **É um criador de prompt** — passo a passo, do objetivo seco à frase completa.
 
 ## Estrutura das pastas

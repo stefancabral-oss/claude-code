@@ -1,0 +1,12 @@
+services:
+  criador-de-prompt:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      # Cole sua chave da API do Claude no painel do Dokploy (ou num arquivo .env ao lado).
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      # Modelo pelo que ele faz. Troque para claude-sonnet-5 se quiser mais barato.
+      - MODEL=${MODEL:-claude-opus-5}
+      - PORT=8080
+    restart: unless-stopped
