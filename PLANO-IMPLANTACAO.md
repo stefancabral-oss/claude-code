@@ -17,13 +17,16 @@ São **38 páginas**: 19 em português na raiz e 19 em inglês sob `/en/`.
 
 ## Fase 0 — Antes de tocar no Dokploy
 
-- [ ] **Migração para Astro na `main`.** O PR
-      [#36](https://github.com/stefancabral-oss/claude-code/pull/36) precisa
-      estar mergeado. Se o Dokploy apontar para a `main` sem ele, sobe o site
-      antigo — que funciona, mas sem as rotas em inglês.
+- [ ] **Os dois PRs da migração na `main`, nesta ordem:**
+      [#36](https://github.com/stefancabral-oss/claude-code/pull/36) (o site em
+      Astro) e depois [#37](https://github.com/stefancabral-oss/claude-code/pull/37)
+      (remove o export do Claude Design). O #37 sai da branch do #36 — mergear
+      fora de ordem quebra o diff.
+      O deploy funciona com só o #36; o #37 é higiene de repositório.
 - [ ] **Revisão das traduções em inglês** (`site/src/data/*.en.json`). São 13
-      páginas de produto e solução que não tinham inglês nenhum. Uma vez no ar,
-      o Google indexa; corrigir depois custa mais.
+      páginas de produto e solução que não tinham inglês nenhum — eu redigi.
+      É texto de dispositivo médico e, uma vez no ar, o Google indexa: corrigir
+      depois custa mais. **Nenhuma pessoa revisou ainda.**
 - [ ] **Servidor com Docker + Dokploy instalado** e a rede `dokploy-network` já
       existente (o compose a declara como `external: true`; o Dokploy cria essa
       rede sozinho na instalação).
