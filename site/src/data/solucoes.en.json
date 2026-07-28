@@ -1,0 +1,170 @@
+[
+  {
+    "slug": "licitacoes",
+    "nome": "Public tenders",
+    "tagline": "A data-driven tender desk: 24/7 PNCP radar and quotes with an auditable trail — go/no-go decisions in hours, not days.",
+    "incluiT": "From tender publication to after-sales",
+    "itens": [
+      "PNCP monitoring — federal, state and municipal",
+      "Tender analysis and go/no-go within hours",
+      "Quotes with an auditable source",
+      "Bidding, delivery and after-sales"
+    ],
+    "publicoT": "For those who buy and those who supply",
+    "publico": [
+      {
+        "t": "Public healthcare institutions",
+        "d": "They publish the tender and need a qualified supplier that delivers."
+      },
+      {
+        "t": "Manufacturers and distributors",
+        "d": "They want access to the public market without building a tender desk of their own."
+      },
+      {
+        "t": "Our own portfolio",
+        "d": "The seven Setfree lines compete in tenders with verifiable prices and lead times."
+      }
+    ],
+    "ctaT": "Send us the tender — we reply with go or no-go."
+  },
+  {
+    "slug": "registro-anvisa",
+    "nome": "ANVISA registration and regulatory affairs",
+    "tagline": "We run the full process with ANVISA — at the pace the registration and certification process allows, with complete transparency.",
+    "incluiT": "The complete regulatory cycle",
+    "itens": [
+      "Technical dossier and submission",
+      "Registration, renewal and maintenance",
+      "AFE, authorizations and regularized importation",
+      "Post-market surveillance"
+    ],
+    "publicoT": "For those who need their registration in order",
+    "publico": [
+      {
+        "t": "Foreign manufacturers",
+        "d": "They need a Brazilian registration holder to place the product on the market."
+      },
+      {
+        "t": "Registration holders",
+        "d": "They have a registration expiring, a change of scope or an open issue to resolve."
+      },
+      {
+        "t": "Importers",
+        "d": "They need AFE, authorizations and importation within the rules."
+      }
+    ],
+    "ctaT": "Send us whatever dossier you already have."
+  },
+  {
+    "slug": "sourcing",
+    "nome": "Global product sourcing",
+    "tagline": "For hospitals, physicians and distributors: we find, qualify and bring in medical technologies that have no representation in Brazil yet — on demand.",
+    "incluiT": "From active search to regularized delivery",
+    "itens": [
+      "Active search and qualification of manufacturers",
+      "Regulatory and commercial feasibility analysis",
+      "Samples, demonstrations and clinical validation",
+      "Regularized importation and delivery"
+    ],
+    "publicoT": "When the product exists abroad and never reaches Brazil",
+    "publico": [
+      {
+        "t": "Hospitals and clinics",
+        "d": "They need a specific technology that no domestic supplier offers."
+      },
+      {
+        "t": "Physicians and clinical staff",
+        "d": "They saw the device at a congress or in a publication and want to use it in Brazil."
+      },
+      {
+        "t": "Distributors",
+        "d": "They want to broaden their portfolio with lines that have no representation in the country yet."
+      }
+    ],
+    "ctaT": "Tell us which technology you are looking for."
+  },
+  {
+    "slug": "entrada-mercado",
+    "nome": "Brazilian market entry strategy",
+    "tagline": "The global manufacturer's gateway: from market study to a running operation — regulatory work without shortcuts, timelines without surprises.",
+    "incluiT": "From market study to a running operation",
+    "itens": [
+      "Market study and entry route",
+      "Legal representation and registration holding",
+      "Nationwide distribution plan",
+      "Local partner management"
+    ],
+    "publicoT": "For those entering Brazil for the first time",
+    "publico": [
+      {
+        "t": "Global manufacturers",
+        "d": "No operation, no Brazilian entity and no registration in the country — they need a legal representative."
+      },
+      {
+        "t": "Brands expanding across LatAm",
+        "d": "They already operate in other countries in the region and Brazil is the next step."
+      },
+      {
+        "t": "Investors and boards",
+        "d": "They want to size the market before committing capital to the entry."
+      }
+    ],
+    "ctaT": "Let's map out your entry route."
+  },
+  {
+    "slug": "consultoria-comercial",
+    "nome": "Commercial consulting",
+    "tagline": "Positioning, pricing and channels for medical technology in the Brazilian market — strategy that turns a product into a presence.",
+    "incluiT": "From positioning to the operating room",
+    "itens": [
+      "Positioning and pricing",
+      "Channel design — direct, distributors, public tenders",
+      "Sales force and clinical staff training",
+      "Presentation to hospitals and surgeons"
+    ],
+    "publicoT": "When the product is good and the presence lags behind",
+    "publico": [
+      {
+        "t": "Manufacturers already in Brazil",
+        "d": "They have the registration and the product, but volume does not match the potential."
+      },
+      {
+        "t": "Distributors",
+        "d": "They want to structure pricing, channel and clinical narrative for the line they represent."
+      },
+      {
+        "t": "New lines",
+        "d": "A product entering the country that needs positioning before the first order."
+      }
+    ],
+    "ctaT": "Tell us where the commercial side is stuck."
+  },
+  {
+    "slug": "qualidade",
+    "nome": "Quality",
+    "tagline": "Good practices from the port to the point of care — every product traceable, within shelf life and supported.",
+    "incluiT": "From the port to the point of care",
+    "itens": [
+      "Storage and transport under good practices",
+      "Batch traceability",
+      "Shelf-life control and recall readiness",
+      "Technical support and after-sales"
+    ],
+    "publicoT": "For those accountable for the product at the front line",
+    "publico": [
+      {
+        "t": "Hospitals and clinics",
+        "d": "They need an auditable batch trail and products within shelf life, every time."
+      },
+      {
+        "t": "Partner manufacturers",
+        "d": "They want assurance that the chain in Brazil preserves the product's conditions."
+      },
+      {
+        "t": "Procurement and supply",
+        "d": "They need technical support and after-sales that respond when it matters."
+      }
+    ],
+    "ctaT": "Ask us anything about our chain."
+  }
+]

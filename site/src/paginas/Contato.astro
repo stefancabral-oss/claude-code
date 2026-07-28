@@ -1,0 +1,455 @@
+---
+import Base from "../layouts/Base.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { EMAIL, L, TELEFONE_HREF, UI, WHATSAPP, route, type Lang } from "../lib/i18n";
+import { comDominio, seo } from "../lib/seo";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const path = route("contato", lang);
+const meta = seo("/contato", lang);
+const site = Astro.site!.href.replace(/\/+$/, "");
+
+const kicker11 =
+  "font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em";
+const campo =
+  "background:#F4F3F0;border:1px solid rgba(13,13,13,.14);border-radius:4px;padding:13px 14px;font-size:14px;font-family:inherit";
+
+const breadcrumb = [
+  { name: L(lang, "Início", "Home"), url: route("home", lang) },
+  { name: UI.nav.contato[lang], url: path },
+];
+
+// Strings que o script do cliente precisa (o JS é estático, o texto não pode ser).
+const textosJs = {
+  analisando: L(lang, "Analisando…", "Analyzing…"),
+  indicar: L(lang, "Indicar a linha certa", "Point me to the right line"),
+  indisponivel: L(
+    lang,
+    "Assistente indisponível agora — fale direto com o nosso time no WhatsApp, respondemos rápido.",
+    "The assistant is unavailable right now — talk to our team directly on WhatsApp, we reply fast.",
+  ),
+  prefixoPergunta: L(lang, "Olá! Preciso de orientação: ", "Hello! I need guidance: "),
+  cotacaoCabecalho: L(lang, "Olá! Quero uma cotação.", "Hello! I'd like a quote."),
+  rotulos: {
+    nome: L(lang, "Nome", "Name"),
+    inst: L(lang, "Instituição", "Institution"),
+    email: L(lang, "E-mail", "Email"),
+    tel: L(lang, "Telefone", "Phone"),
+    perfil: L(lang, "Perfil", "Profile"),
+    itens: L(lang, "Itens / edital", "Items / tender"),
+  },
+};
+---
+
+<Base
+  lang={lang}
+  title={meta.title}
+  description={meta.description}
+  path={path}
+  ogImage={meta.og}
+  jsonLd={comDominio(meta.jsonLd, site)}
+  breadcrumb={breadcrumb}
+>
+  <div style="font-family:Sora,'Helvetica Neue',sans-serif;background:#F4F3F0;min-height:100vh">
+    <SiteNav lang={lang} path={path} />
+
+    <header style="background:#F4F3F0;border-bottom:1px solid rgba(13,13,13,.08)">
+      <div data-r="p1" style="max-width:1240px;margin:0 auto;padding:150px 32px 56px">
+        <div data-reveal style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+          <span style="width:34px;height:1px;background:#13BE9F"></span>
+          <span style={`${kicker11.replace("11px", "12px")};color:#474E58`}>{UI.nav.contato[lang]}</span>
+        </div>
+        <h1
+          data-reveal
+          style="margin:0 0 20px;font-size:clamp(38px,4.6vw,62px);line-height:1.06;letter-spacing:-.03em;font-weight:600"
+        >
+          {L(lang, "Vamos conversar", "Let's talk")}
+        </h1>
+        <p data-reveal style="margin:0;max-width:620px;font-size:16.5px;line-height:1.65;color:#474E58">
+          {
+            L(
+              lang,
+              "Cotações, licitações, dúvidas clínicas ou parcerias — canais diretos, respostas rápidas.",
+              "Quotes, tenders, clinical questions or partnerships — direct channels, fast answers.",
+            )
+          }
+        </p>
+      </div>
+    </header>
+
+    <section style="background:#F4F3F0">
+      <div
+        data-r="p2 g1"
+        style="max-width:1240px;margin:0 auto;padding:64px 32px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px"
+      >
+        <a
+          href={WHATSAPP}
+          data-reveal
+          data-tilt="1"
+          data-h="card"
+          style="background:#0D0D0D;border-radius:4px;border-top:3px solid #13BE9F;padding:30px;color:#F4F3F0;display:flex;flex-direction:column;gap:12px"
+        >
+          <span style={`${kicker11};color:#13BE9F`}>{L(lang, "CANAL MAIS RÁPIDO", "FASTEST CHANNEL")}</span>
+          <h3 style="margin:0;font-size:22px;font-weight:600">WhatsApp</h3>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:rgba(244,243,240,.6);flex:1">
+            {L(lang, "Fale direto com o nosso time comercial.", "Talk directly with our sales team.")}
+          </p>
+          <span style="color:#13BE9F;font-size:14.5px;font-weight:600"
+            >{L(lang, "Iniciar conversa →", "Start a conversation →")}</span
+          >
+        </a>
+
+        <a
+          href={`mailto:${EMAIL}`}
+          data-reveal
+          data-tilt="1"
+          style="background:#E7E6E2;border:1px solid rgba(13,13,13,.08);border-radius:4px;padding:30px;display:flex;flex-direction:column;gap:12px"
+        >
+          <span style={`${kicker11};color:#474E58`}>{L(lang, "E-MAIL", "EMAIL")}</span>
+          <h3 style="margin:0;font-size:22px;font-weight:600">{L(lang, "Escreva para nós", "Write to us")}</h3>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#474E58;flex:1">
+            {
+              L(
+                lang,
+                "Para cotações, documentos de licitação e parcerias.",
+                "For quotes, tender documents and partnerships.",
+              )
+            }
+          </p>
+          <span style="color:#13BE9F;font-size:14.5px;font-weight:600">{EMAIL}</span>
+        </a>
+
+        <div
+          data-reveal
+          data-tilt="1"
+          style="background:#E7E6E2;border:1px solid rgba(13,13,13,.08);border-radius:4px;padding:30px;display:flex;flex-direction:column;gap:12px"
+        >
+          <span style={`${kicker11};color:#474E58`}>{L(lang, "ESCRITÓRIO", "OFFICE")}</span>
+          <h3 style="margin:0;font-size:22px;font-weight:600">Cotia</h3>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#474E58;flex:1">
+            Rodovia Raposo Tavares, KM 22<br />The Square Open Mall
+          </p>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:14px">
+            <a href={TELEFONE_HREF} data-h="verde" style="color:#0D0D0D;font-weight:600">Tel: +55 (11) 4318-7341</a>
+            <span style="color:#474E58">{L(lang, "Segunda a sexta, 09h–18h", "Monday to Friday, 9am–6pm")}</span>
+            <span style="display:flex;gap:14px;margin-top:6px">
+              <a href="https://www.linkedin.com/company/setfree" data-h="verde" style="color:#474E58;font-size:13.5px"
+                >LinkedIn</a
+              >
+              <a href="https://www.instagram.com/setfreebr" data-h="verde" style="color:#474E58;font-size:13.5px"
+                >Instagram</a
+              >
+              <a
+                href="https://www.facebook.com/profile.php?id=100083381220607"
+                data-h="verde"
+                style="color:#474E58;font-size:13.5px">Facebook</a
+              >
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F4F3F0" id="assistente">
+      <div
+        data-r="p3 g2"
+        style="max-width:1240px;margin:0 auto;padding:48px 32px 64px;display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start"
+      >
+        <div
+          data-reveal
+          style="background:#0D0D0D;border-radius:4px;padding:34px;color:#F4F3F0;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden"
+        >
+          <div
+            data-sf-neon="1"
+            style="position:absolute;left:0;right:0;top:0;height:2px;background:#13BE9F;animation:sfNeon 4.5s ease-in-out infinite"
+          >
+          </div>
+          <span style={`${kicker11};color:#13BE9F`}>{L(lang, "ASSISTENTE SETFREE", "SETFREE ASSISTANT")}</span>
+          <h2
+            style="margin:0;font-size:clamp(22px,2.4vw,30px);line-height:1.15;letter-spacing:-.03em;font-weight:600;text-wrap:balance"
+          >
+            {L(lang, "Não sabe qual tecnologia precisa?", "Not sure which technology you need?")}
+          </h2>
+          <p style="margin:0;font-size:14.5px;line-height:1.65;color:rgba(244,243,240,.65)">
+            {
+              L(
+                lang,
+                "Descreva o procedimento ou a necessidade clínica — indicamos a linha certa e preparamos sua mensagem de WhatsApp.",
+                "Describe the procedure or clinical need — we point to the right line and prepare your WhatsApp message.",
+              )
+            }
+          </p>
+          <label for="sf-ai-q" class="sf-oculto"
+            >{L(lang, "Descreva o procedimento ou a necessidade clínica", "Describe the procedure or clinical need")}</label
+          >
+          <textarea
+            id="sf-ai-q"
+            rows="3"
+            placeholder={L(
+              lang,
+              "Ex.: preciso de instrumental para microcirurgia oftálmica…",
+              "E.g.: I need instruments for ophthalmic microsurgery…",
+            )}
+            style="background:rgba(244,243,240,.06);border:1px solid rgba(244,243,240,.18);border-radius:4px;padding:14px 16px;color:#F4F3F0;font-size:14.5px;line-height:1.55;resize:vertical;font-family:inherit"
+          ></textarea>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+            <button
+              id="sf-ai-btn"
+              type="button"
+              data-h="btn"
+              style="background:#13BE9F;border:none;cursor:pointer;color:#0D0D0D;border-radius:999px;padding:12px 26px;font-family:inherit;font-size:14.5px;font-weight:600"
+              >{textosJs.indicar}</button
+            >
+            <span style="font-size:12.5px;color:rgba(244,243,240,.45)">
+              {
+                L(
+                  lang,
+                  "Orientação inicial — a indicação final é confirmada pelos nossos especialistas.",
+                  "Initial guidance — final indication confirmed by our specialists.",
+                )
+              }
+            </span>
+          </div>
+          <div
+            id="sf-ai-resp"
+            hidden
+            style="background:rgba(19,190,159,.08);border:1px solid rgba(19,190,159,.3);border-radius:4px;padding:20px 22px;flex-direction:column;gap:12px"
+          >
+            <p id="sf-ai-texto" style="margin:0;font-size:14.5px;line-height:1.7;color:#F4F3F0;white-space:pre-wrap"></p>
+            <a id="sf-ai-wa" href={WHATSAPP} data-h="verde-claro" style="color:#13BE9F;font-size:14.5px;font-weight:600"
+              >{L(lang, "Enviar no WhatsApp →", "Send on WhatsApp →")}</a
+            >
+          </div>
+        </div>
+
+        <div
+          data-reveal
+          id="cotacao"
+          style="background:#E7E6E2;border:1px solid rgba(13,13,13,.08);border-radius:4px;padding:34px;display:flex;flex-direction:column;gap:14px"
+        >
+          <span style={`${kicker11};color:#474E58`}>{L(lang, "SOLICITAR COTAÇÃO", "REQUEST A QUOTE")}</span>
+          <h2
+            style="margin:0;font-size:clamp(22px,2.4vw,30px);line-height:1.15;letter-spacing:-.03em;font-weight:600;text-wrap:balance"
+          >
+            {L(lang, "Envie sua lista de itens ou edital", "Send your item list or tender")}
+          </h2>
+          <p style="margin:0;font-size:14.5px;line-height:1.6;color:#474E58">
+            {
+              L(
+                lang,
+                "Preencha os dados e respondemos no WhatsApp com especificações e preços verificados.",
+                "Fill in the details and we reply on WhatsApp with verified specifications and prices.",
+              )
+            }
+          </p>
+          <div data-r="g3" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <input id="sf-ct-nome" placeholder={textosJs.rotulos.nome} aria-label={textosJs.rotulos.nome} style={campo} />
+            <input
+              id="sf-ct-inst"
+              placeholder={L(lang, "Instituição / CNPJ", "Institution / Tax ID")}
+              aria-label={textosJs.rotulos.inst}
+              style={campo}
+            />
+            <input
+              id="sf-ct-email"
+              type="email"
+              placeholder={textosJs.rotulos.email}
+              aria-label={textosJs.rotulos.email}
+              style={campo}
+            />
+            <input
+              id="sf-ct-tel"
+              type="tel"
+              placeholder={textosJs.rotulos.tel}
+              aria-label={textosJs.rotulos.tel}
+              style={campo}
+            />
+          </div>
+          <select id="sf-ct-perfil" aria-label={textosJs.rotulos.perfil} style={`${campo};color:#0D0D0D`}>
+            <option>{L(lang, "Hospital / clínica", "Hospital / clinic")}</option>
+            <option>{L(lang, "Comprador público (licitação)", "Public buyer (tender)")}</option>
+            <option>{L(lang, "Fabricante", "Manufacturer")}</option>
+            <option>{L(lang, "Outro", "Other")}</option>
+          </select>
+          <textarea
+            id="sf-ct-itens"
+            rows="4"
+            placeholder={L(lang, "Itens, quantidades ou nº do edital", "Items, quantities or tender number")}
+            aria-label={textosJs.rotulos.itens}
+            style={`${campo};line-height:1.55;resize:vertical`}></textarea>
+          <span style="font-size:12.5px;color:#474E58">
+            {
+              L(
+                lang,
+                "* Você poderá anexar o edital em PDF diretamente na conversa do WhatsApp.",
+                "* You can attach the tender PDF directly in the WhatsApp conversation.",
+              )
+            }
+          </span>
+          <button
+            id="sf-ct-btn"
+            type="button"
+            data-mag="1"
+            data-h="btn"
+            style="background:#13BE9F;border:none;cursor:pointer;color:#0D0D0D;border-radius:999px;padding:14px 28px;font-family:inherit;font-size:15px;font-weight:600;width:max-content"
+            >{L(lang, "Enviar via WhatsApp →", "Send via WhatsApp →")}</button
+          >
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#0D0D0D;color:#F4F3F0;position:relative;overflow:hidden">
+      <div
+        data-r="p4"
+        style="position:relative;max-width:1240px;margin:0 auto;padding:80px 32px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap"
+      >
+        <div style="max-width:560px">
+          <span data-reveal style={`${kicker11.replace("11px", "12px")};color:#13BE9F`}
+            >{L(lang, "FABRICANTES GLOBAIS", "GLOBAL MANUFACTURERS")}</span
+          >
+          <h2
+            data-reveal
+            style="margin:16px 0 12px;font-size:clamp(26px,3vw,38px);line-height:1.1;letter-spacing:-.03em;font-weight:600"
+          >
+            {L(lang, "Trazendo um produto para o Brasil?", "Bringing a product to Brazil?")}
+          </h2>
+          <p data-reveal style="margin:0;font-size:15.5px;line-height:1.65;color:rgba(244,243,240,.65)">
+            {
+              L(
+                lang,
+                "Estratégia regulatória, registro ANVISA e distribuição nacional — escreva em inglês, se preferir.",
+                "Regulatory strategy, ANVISA registration and nationwide distribution — write in English if you prefer.",
+              )
+            }
+          </p>
+        </div>
+        <a
+          data-reveal
+          data-mag="1"
+          data-h="btn"
+          href={`mailto:${EMAIL}?subject=Partnership%20—%20Brazil%20market%20entry`}
+          style="background:#13BE9F;color:#0D0D0D;border-radius:999px;padding:15px 30px;font-size:15px;font-weight:600;white-space:nowrap"
+          >{L(lang, "Seja nosso parceiro →", "Become a partner →")}</a
+        >
+      </div>
+      <div
+        data-sf-neon="1"
+        style="position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,rgba(19,190,159,0),#13BE9F 15%,#13BE9F 85%,rgba(19,190,159,0));animation:sfNeon 4.5s ease-in-out infinite"
+      >
+      </div>
+    </section>
+
+    <SiteFooter lang={lang} />
+  </div>
+</Base>
+
+<script is:inline define:vars={{ textosJs, WHATSAPP }}>
+  window.__sfContato = { t: textosJs, wa: WHATSAPP };
+</script>
+
+<style is:global>
+  .sf-oculto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  #sf-ai-resp:not([hidden]) {
+    display: flex;
+  }
+  @media (max-width: 980px) {
+    [data-r~="p1"] {
+      padding: 116px 22px 44px !important;
+    }
+    [data-r~="p2"] {
+      padding: 44px 22px !important;
+    }
+    [data-r~="p3"] {
+      padding: 32px 22px 48px !important;
+    }
+    [data-r~="p4"] {
+      padding: 60px 22px !important;
+    }
+    [data-r~="g1"] {
+      grid-template-columns: 1fr !important;
+    }
+    [data-r~="g2"] {
+      grid-template-columns: 1fr !important;
+      gap: 22px !important;
+    }
+  }
+  @media (max-width: 620px) {
+    [data-r~="g3"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+<script>
+  const cfg = (window as unknown as { __sfContato: { t: Record<string, any>; wa: string } }).__sfContato;
+  const val = (id: string) => (document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | null)?.value.trim() ?? "";
+
+  // --- assistente de IA -----------------------------------------------------
+  const btn = document.getElementById("sf-ai-btn") as HTMLButtonElement | null;
+  const resp = document.getElementById("sf-ai-resp");
+  const texto = document.getElementById("sf-ai-texto");
+  const waLink = document.getElementById("sf-ai-wa") as HTMLAnchorElement | null;
+
+  if (btn && resp && texto && waLink) {
+    let ocupado = false;
+    btn.addEventListener("click", async () => {
+      const q = val("sf-ai-q");
+      if (!q || ocupado) return;
+
+      ocupado = true;
+      btn.textContent = cfg.t.analisando;
+      resp.setAttribute("hidden", "");
+
+      const wa = `${cfg.wa}?text=${encodeURIComponent(cfg.t.prefixoPergunta + q)}`;
+      try {
+        const r = await fetch("/api/assistente", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ pergunta: q }),
+        });
+        if (!r.ok) throw new Error(`http ${r.status}`);
+        const d = await r.json();
+        const t = (d.texto || "").trim();
+        if (!t) throw new Error("vazio");
+        texto.textContent = t;
+      } catch {
+        texto.textContent = cfg.t.indisponivel;
+      } finally {
+        waLink.href = wa;
+        resp.removeAttribute("hidden");
+        btn.textContent = cfg.t.indicar;
+        ocupado = false;
+      }
+    });
+  }
+
+  // --- cotação: monta a mensagem e abre o WhatsApp ---------------------------
+  document.getElementById("sf-ct-btn")?.addEventListener("click", () => {
+    const r = cfg.t.rotulos;
+    const linhas = [
+      cfg.t.cotacaoCabecalho,
+      [`${r.nome}: `, val("sf-ct-nome")],
+      [`${r.inst}: `, val("sf-ct-inst")],
+      [`${r.email}: `, val("sf-ct-email")],
+      [`${r.tel}: `, val("sf-ct-tel")],
+      [`${r.perfil}: `, val("sf-ct-perfil")],
+      [`${r.itens}: `, val("sf-ct-itens")],
+    ]
+      .map((x) => (Array.isArray(x) ? (x[1] ? x[0] + x[1] : "") : x))
+      .filter(Boolean)
+      .join("\n");
+    window.open(`${cfg.wa}?text=${encodeURIComponent(linhas)}`, "_blank", "noopener");
+  });
+</script>

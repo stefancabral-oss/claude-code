@@ -1,0 +1,126 @@
+/* Base compartilhada por todas as páginas.
+   Atenção: as regras [data-r~="..."] NÃO entram aqui — os mesmos nomes (p1, g2…)
+   significam paddings diferentes em cada página do export original. Cada página
+   traz o seu próprio bloco responsivo. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f3f0;
+  color: #0d0d0d;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Sora, "Helvetica Neue", sans-serif;
+}
+
+a {
+  color: #0d0d0d;
+  text-decoration: none;
+}
+a:hover {
+  color: #13be9f;
+}
+
+::selection {
+  background: #13be9f;
+  color: #f4f3f0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes sfSheen {
+  0% {
+    transform: translateX(-140%) skewX(-18deg);
+  }
+  60% {
+    transform: translateX(240%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(240%) skewX(-18deg);
+  }
+}
+@keyframes sfPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(19, 190, 159, 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(19, 190, 159, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(19, 190, 159, 0);
+  }
+}
+@keyframes sfFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@keyframes sfNeon {
+  0%,
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px rgba(19, 190, 159, 0.45));
+  }
+  50% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 16px rgba(19, 190, 159, 0.85));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Hover dos elementos que no export tinham o atributo style-hover — que nunca
+   funcionou, porque nenhum script do site lia esse atributo. Aqui viram CSS de
+   verdade, que era a intenção do design. */
+[data-h="verde"]:hover {
+  color: #13be9f;
+}
+[data-h="verde-claro"]:hover {
+  color: #2bd4b4;
+}
+[data-h="verde-escuro"]:hover {
+  color: #0fa88c;
+}
+[data-h="btn"]:hover {
+  background: #2bd4b4;
+  color: #0d0d0d;
+}
+[data-h="btn-escuro"]:hover {
+  background: #0fa88c;
+  color: #0d0d0d;
+}
+[data-h="borda"]:hover {
+  border-color: #13be9f;
+  color: #13be9f;
+}
+[data-h="card"]:hover {
+  color: #f4f3f0;
+}
+
+/* Reveal on scroll: estado inicial só quando o JS assume (evita conteúdo
+   invisível se o script falhar ou o robô não executar JS). */
+[data-reveal].sf-prep {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(6px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.6, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.6, 0.2, 1),
+    filter 0.7s;
+}

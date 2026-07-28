@@ -1,0 +1,219 @@
+---
+import Base from "../layouts/Base.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { L, UI, WHATSAPP, route, solucaoUrl, type Lang } from "../lib/i18n";
+import { solucoes } from "../data";
+import { comDominio, seo } from "../lib/seo";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const path = route("solucoes", lang);
+const meta = seo("/solucoes", lang);
+const site = Astro.site!.href.replace(/\/+$/, "");
+
+// A página lista as soluções na ordem do número (01…06).
+const lista = [...solucoes(lang)].sort((a, b) => a.num.localeCompare(b.num));
+
+const breadcrumb = [
+  { name: L(lang, "Início", "Home"), url: route("home", lang) },
+  { name: UI.nav.solucoes[lang], url: path },
+];
+---
+
+<Base
+  lang={lang}
+  title={meta.title}
+  description={meta.description}
+  path={path}
+  ogImage={meta.og}
+  jsonLd={comDominio(meta.jsonLd, site)}
+  breadcrumb={breadcrumb}
+>
+  <div style="font-family:Sora,'Helvetica Neue',sans-serif;background:#F4F3F0;min-height:100vh">
+    <SiteNav lang={lang} path={path} />
+
+    <header style="background:#F4F3F0;border-bottom:1px solid rgba(13,13,13,.08)">
+      <div data-r="p1" style="max-width:1240px;margin:0 auto;padding:150px 32px 64px">
+        <div data-reveal style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+          <span style="width:34px;height:1px;background:#13BE9F"></span>
+          <span
+            style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;color:#474E58"
+            >{L(lang, "SOLUÇÕES · SERVIÇOS", "SOLUTIONS · SERVICES")}</span
+          >
+        </div>
+        <h1
+          data-reveal
+          style="margin:0 0 22px;font-size:clamp(38px,4.6vw,62px);line-height:1.06;letter-spacing:-.03em;font-weight:600;max-width:860px;text-wrap:balance"
+        >
+          {L(lang, "Do sourcing global à entrega no Brasil", "From global sourcing to delivery in Brazil")}
+        </h1>
+        <p data-reveal style="margin:0;max-width:640px;font-size:16.5px;line-height:1.65;color:#474E58">
+          {
+            L(
+              lang,
+              "Consultoria, regulatório, qualidade e licitações — a estrutura completa para levar tecnologia médica de padrão internacional a quem precisa.",
+              "Consulting, regulatory, quality and public tenders — the complete structure to bring international-standard medical technology to those who need it.",
+            )
+          }
+        </p>
+      </div>
+    </header>
+
+    <section style="background:#F4F3F0">
+      <div data-r="p2" style="max-width:1240px;margin:0 auto;padding:72px 32px 96px;display:flex;flex-direction:column">
+        {
+          lista.map((s) => {
+            const href = solucaoUrl(s.slug, lang);
+            return (
+              <div
+                data-reveal
+                data-r="g1"
+                style="display:grid;grid-template-columns:120px 1fr 1fr;gap:40px;padding:44px 0;border-top:1px solid rgba(13,13,13,.1)"
+              >
+                <div style="display:flex;flex-direction:column;gap:14px">
+                  <span style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:15px;font-weight:600;letter-spacing:.16em;color:#13BE9F">
+                    {s.num}
+                  </span>
+                  <a
+                    href={href}
+                    data-h="capa"
+                    style="display:block;border-radius:3px;overflow:hidden;aspect-ratio:3/4;background:#0D0D0D"
+                  >
+                    <img
+                      src={s.img}
+                      alt=""
+                      loading="lazy"
+                      width="300"
+                      height="400"
+                      style="width:100%;height:100%;object-fit:cover;display:block;opacity:.92;transition:opacity .3s,transform .5s"
+                    />
+                  </a>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:14px">
+                  <h2 style="margin:0;font-size:clamp(22px,2.4vw,30px);line-height:1.15;letter-spacing:-.03em;font-weight:600;text-wrap:balance">
+                    <a href={href} data-h="verde" style="color:#0D0D0D">
+                      {s.nome}
+                    </a>
+                  </h2>
+                  <p style="margin:0;font-size:15px;line-height:1.7;color:#474E58;max-width:440px">{s.tagline}</p>
+                  <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:14px;font-weight:600">
+                    <a href={href} data-h="verde-escuro" style="color:#13BE9F">
+                      {L(lang, "Ver a solução →", "See the solution →")}
+                    </a>
+                    <a href={WHATSAPP} data-h="verde" style="color:#474E58">
+                      {L(lang, "Conversar sobre isso →", "Talk about this →")}
+                    </a>
+                    {s.editaisAoVivo && (
+                      <a href={route("contato", lang)} data-h="verde" style="color:#474E58">
+                        {L(lang, "Enviar edital / lista de itens →", "Send a tender / item list →")}
+                      </a>
+                    )}
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;justify-content:center">
+                  {s.itens.map((i) => (
+                    <div style="display:flex;gap:12px;padding:10px 0;border-top:1px solid rgba(13,13,13,.07);font-size:14px;line-height:1.55;color:#474E58">
+                      <span style="color:#13BE9F;flex:none">—</span>
+                      {i}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </section>
+
+    <section style="background:#0D0D0D;color:#F4F3F0;position:relative;overflow:hidden">
+      <div
+        style="position:absolute;inset:0;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22/></filter><rect width=%22160%22 height=%22160%22 filter=%22url(%23n)%22 opacity=%220.05%22/></svg>')"
+      >
+      </div>
+      <div
+        data-r="p3"
+        style="position:relative;max-width:1240px;margin:0 auto;padding:88px 32px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap"
+      >
+        <div style="max-width:560px">
+          <span
+            data-reveal
+            style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;color:#13BE9F"
+            >{L(lang, "VAMOS CONVERSAR", "LET'S TALK")}</span
+          >
+          <h2
+            data-reveal
+            style="margin:16px 0 12px;font-size:clamp(26px,3vw,38px);line-height:1.1;letter-spacing:-.03em;font-weight:600"
+          >
+            {L(lang, "Qual desses você precisa hoje?", "Which of these do you need today?")}
+          </h2>
+          <p data-reveal style="margin:0;font-size:15.5px;line-height:1.65;color:rgba(244,243,240,.65)">
+            {
+              L(
+                lang,
+                "Conte o seu caso — respondemos com escopo claro e próximos passos.",
+                "Tell us your case — we reply with a clear scope and next steps.",
+              )
+            }
+          </p>
+        </div>
+        <div data-reveal style="display:flex;gap:14px;flex-wrap:wrap">
+          <a
+            data-mag="1"
+            data-h="btn"
+            href={WHATSAPP}
+            style="background:#13BE9F;color:#0D0D0D;border-radius:999px;padding:15px 30px;font-size:15px;font-weight:600;white-space:nowrap"
+            >{UI.nav.falarWhats[lang]}</a
+          >
+          <a
+            data-mag="1"
+            data-h="borda"
+            href={route("contato", lang)}
+            style="border:1px solid rgba(244,243,240,.25);color:#F4F3F0;border-radius:999px;padding:14px 28px;font-size:15px;font-weight:500;white-space:nowrap"
+            >{L(lang, "Canais de contato", "Contact channels")}</a
+          >
+        </div>
+      </div>
+      <div
+        data-sf-neon="1"
+        style="position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,rgba(19,190,159,0),#13BE9F 15%,#13BE9F 85%,rgba(19,190,159,0));animation:sfNeon 4.5s ease-in-out infinite"
+      >
+      </div>
+    </section>
+
+    <SiteFooter lang={lang} />
+  </div>
+</Base>
+
+<style is:global>
+  [data-h="capa"]:hover img {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  @media (max-width: 980px) {
+    [data-r~="p1"] {
+      padding: 116px 22px 48px !important;
+    }
+    [data-r~="p2"] {
+      padding: 48px 22px 65px !important;
+    }
+    [data-r~="p3"] {
+      padding: 65px 22px !important;
+    }
+    [data-r~="g1"] {
+      grid-template-columns: 100px 1fr !important;
+      gap: 24px !important;
+    }
+    [data-r~="g1"] > div:last-child {
+      grid-column: 1 / -1 !important;
+    }
+  }
+  @media (max-width: 620px) {
+    [data-r~="g1"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

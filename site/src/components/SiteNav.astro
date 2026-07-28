@@ -1,0 +1,284 @@
+---
+import { UI, WHATSAPP, alternate, route, type Lang } from "../lib/i18n";
+
+interface Props {
+  lang: Lang;
+  /** Caminho canônico da página atual — usado pelo toggle PT/EN. */
+  path: string;
+  /** Nav sobre fundo escuro (logo branco, links claros). */
+  dark?: boolean;
+  /** Cor da linha da "espinha" — a cor da linha de produto. */
+  cor?: string;
+  /** Começa escondida (usado pela home, que tem o hero em tela cheia). */
+  ocultaInicio?: boolean;
+}
+
+const { lang, path, dark = false, cor = "", ocultaInicio = false } = Astro.props;
+const outro: Lang = lang === "pt" ? "en" : "pt";
+
+const links = [
+  { key: "solucoes", label: UI.nav.solucoes[lang] },
+  { key: "tecnologias", label: UI.nav.tecnologias[lang] },
+  { key: "sobre", label: UI.nav.sobre[lang] },
+  { key: "esperanca", label: UI.nav.esperanca[lang] },
+  { key: "contato", label: UI.nav.contato[lang] },
+] as const;
+
+const navBg = dark ? "rgba(255,255,255,.06)" : "rgba(255,255,255,.44)";
+const navSombra = dark
+  ? "inset 0 1px 0 rgba(255,255,255,.16), 0 14px 34px -18px rgba(0,0,0,.65)"
+  : "inset 0 1px 0 rgba(255,255,255,.8), 0 14px 34px -20px rgba(13,13,13,.22)";
+const logo = dark ? "/uploads/logo-branco.png" : "/uploads/logo-grafite.png";
+const linkCor = dark ? "rgba(244,243,240,.85)" : "#474E58";
+const segBorda = dark ? "rgba(255,255,255,.2)" : "rgba(255,255,255,.65)";
+const segFundo = dark ? "rgba(255,255,255,.07)" : "rgba(255,255,255,.5)";
+const segSombra = dark
+  ? "inset 0 1px 0 rgba(255,255,255,.14)"
+  : "inset 0 1px 0 rgba(255,255,255,.9)";
+
+const seg = (ativo: boolean, mob = false) =>
+  `padding:${mob ? "8px 15px" : "6px 13px"};border:none;cursor:pointer;font-family:inherit;font-size:${mob ? "12px" : "11px"};font-weight:600;letter-spacing:.16em;text-decoration:none;display:inline-block;` +
+  (ativo
+    ? "background:#13BE9F;color:#0D0D0D"
+    : `background:transparent;color:${mob ? "rgba(244,243,240,.6)" : dark ? "rgba(244,243,240,.6)" : "#474E58"}`);
+
+const espinha = cor ? `flex:10;background:${cor}` : "flex:0";
+const urlOutro = alternate(path, lang, outro);
+---
+
+<nav
+  id="sf-nav"
+  data-glass="1"
+  data-oculta-inicio={ocultaInicio ? "1" : null}
+  data-dark={dark ? "1" : null}
+  style={`position:fixed;top:0;left:0;right:0;z-index:90;height:74px;display:flex;flex-direction:column;backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);background:${navBg};box-shadow:${navSombra};transform:${ocultaInicio ? "translateY(-100%)" : "translateY(0)"};transition:transform .45s cubic-bezier(.2,.6,.2,1)`}
+>
+  <div
+    data-r-navpad
+    style="flex:1;width:100%;max-width:1240px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:28px"
+  >
+    <a href={route("home", lang)} style="display:flex;align-items:center;flex:none">
+      <img src={logo} alt="Setfree" width="150" height="52" style="height:52px;width:auto;display:block;margin:-13px 0" />
+    </a>
+    <div
+      data-r-navlinks
+      style="flex:1;display:flex;justify-content:center;gap:26px;font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.16em"
+    >
+      {
+        links.map((l) => (
+          <a href={route(l.key, lang)} data-h="verde" style={`color:${linkCor};padding:6px 0`}>
+            {l.label}
+          </a>
+        ))
+      }
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;flex:none;margin-left:auto">
+      <div
+        data-r-navseg
+        data-glass="1"
+        style={`display:flex;border:1px solid ${segBorda};border-radius:999px;overflow:hidden;background:${segFundo};backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);box-shadow:${segSombra};font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em`}
+      >
+        <a href={lang === "pt" ? path : urlOutro} style={seg(lang === "pt")} hreflang="pt-BR">PT</a>
+        <a href={lang === "en" ? path : urlOutro} style={seg(lang === "en")} hreflang="en">EN</a>
+      </div>
+      <a
+        data-r-navwa
+        data-h="btn-escuro"
+        href={WHATSAPP}
+        style="background:#13BE9F;color:#0D0D0D;border-radius:999px;padding:9px 18px;font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em"
+        >{UI.nav.whatsapp[lang]}</a
+      >
+      <button
+        id="sf-burger"
+        data-r-burger
+        type="button"
+        aria-label={UI.nav.abrirMenu[lang]}
+        aria-expanded="false"
+        aria-controls="sf-menu"
+        style="display:none;width:46px;height:46px;margin-right:-8px;align-items:center;justify-content:center;background:transparent;border:none;cursor:pointer;flex-direction:column;gap:5px"
+      >
+        <span data-bar="1"></span>
+        <span data-bar="2"></span>
+        <span data-bar="3"></span>
+      </button>
+    </div>
+  </div>
+  <div style="height:4px;display:flex;flex:none" aria-hidden="true">
+    <span style="flex:56;background:#474E58"></span>
+    <span style="flex:30;background:#0D0D0D"></span>
+    <span style={espinha}></span>
+    <span data-sf-neon="1" style="flex:4;background:#13BE9F"></span>
+  </div>
+</nav>
+
+<div
+  id="sf-menu"
+  data-glass="1"
+  hidden
+  style="position:fixed;inset:0;z-index:89;background:rgba(13,13,13,.82);backdrop-filter:blur(30px) saturate(140%);-webkit-backdrop-filter:blur(30px) saturate(140%);flex-direction:column;justify-content:space-between;padding:96px 24px 34px"
+>
+  <div style="display:flex;flex-direction:column;gap:4px">
+    {
+      links.map((l) => (
+        <a
+          href={route(l.key, lang)}
+          style="color:#F4F3F0;font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:30px;font-weight:600;letter-spacing:.04em;padding:14px 0;border-bottom:1px solid rgba(244,243,240,.1)"
+        >
+          {l.label}
+        </a>
+      ))
+    }
+  </div>
+  <div style="display:flex;flex-direction:column;gap:20px">
+    <a
+      href={WHATSAPP}
+      data-h="btn-escuro"
+      style="background:#13BE9F;color:#0D0D0D;border-radius:999px;padding:16px 28px;text-align:center;font-size:15px;font-weight:600"
+      >{UI.nav.falarWhats[lang]}</a
+    >
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <div
+        style="display:flex;border:1px solid rgba(244,243,240,.25);border-radius:999px;overflow:hidden;font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em"
+      >
+        <a href={lang === "pt" ? path : urlOutro} style={seg(lang === "pt", true)}>PT</a>
+        <a href={lang === "en" ? path : urlOutro} style={seg(lang === "en", true)}>EN</a>
+      </div>
+      <span
+        style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.16em;color:rgba(244,243,240,.4)"
+        >IS 40:31</span
+      >
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  @media (prefers-reduced-transparency: reduce) {
+    [data-glass] {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+  }
+  @media (max-width: 980px) {
+    [data-r-navlinks] {
+      display: none !important;
+    }
+    [data-r-navseg] {
+      display: none !important;
+    }
+    [data-r-burger] {
+      display: flex !important;
+    }
+    [data-r-navpad] {
+      padding: 0 20px !important;
+      gap: 16px !important;
+    }
+  }
+  @media (max-width: 520px) {
+    [data-r-navwa] {
+      display: none !important;
+    }
+  }
+
+  /* barras do hambúrguer */
+  #sf-burger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: #0d0d0d;
+    transition:
+      transform 0.3s cubic-bezier(0.2, 0.6, 0.2, 1),
+      opacity 0.2s;
+  }
+  #sf-nav[data-dark] #sf-burger span,
+  body.sf-menu-aberto #sf-burger span {
+    background: #f4f3f0;
+  }
+  body.sf-menu-aberto #sf-burger span[data-bar="1"] {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  body.sf-menu-aberto #sf-burger span[data-bar="2"] {
+    opacity: 0;
+  }
+  body.sf-menu-aberto #sf-burger span[data-bar="3"] {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+  body.sf-menu-aberto #sf-nav {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  body.sf-menu-aberto {
+    overflow: hidden;
+  }
+  #sf-menu:not([hidden]) {
+    display: flex;
+  }
+</style>
+
+<script>
+  // Menu mobile + auto-esconde da nav. O idioma agora é rota, não estado.
+  const nav = document.getElementById("sf-nav");
+  const menu = document.getElementById("sf-menu");
+  const burger = document.getElementById("sf-burger");
+  if (nav && menu && burger) {
+    const abrirLabel = burger.getAttribute("aria-label") || "";
+
+    const setMenu = (v: boolean) => {
+      menu.toggleAttribute("hidden", !v);
+      document.body.classList.toggle("sf-menu-aberto", v);
+      burger.setAttribute("aria-expanded", String(v));
+      if (v) nav.style.transform = "translateY(0)";
+    };
+    burger.addEventListener("click", () => setMenu(menu.hasAttribute("hidden")));
+    menu.addEventListener("click", (e) => {
+      if ((e.target as Element).closest("a")) setMenu(false);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !menu.hasAttribute("hidden")) setMenu(false);
+    });
+
+    const mq = matchMedia("(min-width:981px)");
+    mq.addEventListener("change", () => {
+      if (mq.matches && !menu.hasAttribute("hidden")) setMenu(false);
+    });
+
+    // some depois de 2,4s parada; volta ao rolar, ao levar o mouse ao topo ou
+    // ao focar algo (teclado)
+    const ocultaInicio = nav.hasAttribute("data-oculta-inicio");
+    let timer: number | undefined;
+    let sobre = false;
+    let oculta = ocultaInicio;
+
+    const arma = () => {
+      clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        if (menu.hasAttribute("hidden") && !sobre && (scrollY > 80 || ocultaInicio)) {
+          oculta = true;
+          nav.style.transform = "translateY(-100%)";
+        }
+      }, 2400);
+    };
+    const mostra = () => {
+      if (oculta) {
+        oculta = false;
+        nav.style.transform = "translateY(0)";
+      }
+      arma();
+    };
+
+    addEventListener("scroll", mostra, { passive: true });
+    addEventListener("mousemove", (e) => {
+      if (e.clientY < 90) mostra();
+    }, { passive: true });
+    addEventListener("focusin", mostra);
+    nav.addEventListener("mouseenter", () => {
+      sobre = true;
+      mostra();
+    });
+    nav.addEventListener("mouseleave", () => {
+      sobre = false;
+      arma();
+    });
+    arma();
+    void abrirLabel;
+  }
+</script>

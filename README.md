@@ -1,45 +1,67 @@
 # Setfree — Site institucional
 
-Novo site da **Setfree** (importação e distribuição de tecnologia médica de padrão internacional — dispositivos regenerativos e minimamente invasivos, Cotia-SP).
+Site da **Setfree** (importação e distribuição de tecnologia médica de padrão
+internacional — dispositivos regenerativos e minimamente invasivos, Cotia-SP).
 
-Exportado do **Claude Design** (formato `.dc.html` + runtime `support.js`, React 18 via CDN).
+Construído em **Astro**: cada página sai do build como HTML estático, em
+**português e inglês**.
 
 ## Estrutura
 
 | Caminho | Conteúdo |
 |---|---|
-| `Home.dc.html` | Página inicial |
-| `Tecnologias.dc.html`, `Solucoes.dc.html`, `Sobre.dc.html`, `Contato.dc.html`, `NossaEsperanca.dc.html` | Páginas principais |
-| `Geister/Radimed/MarrowCellution/CoreBone/Lipsus/Dentsply/ParceirosEstrategicos.dc.html` | 7 linhas de produto |
-| `Licitacoes/RegistroAnvisa/Sourcing/EntradaMercado/ConsultoriaComercial/Qualidade.dc.html` | 6 soluções |
-| `LinhaPage.dc.html`, `SolucaoPage.dc.html` | Templates reutilizáveis (produto / solução) |
-| `SiteNav.dc.html`, `SiteFooter.dc.html` | Componentes de navegação e rodapé |
-| `mapa-brasil.html` | Mapa interativo de presença nacional |
-| `support.js` | Runtime do Claude Design (renderização client-side) |
-| `uploads/` | Imagens, vídeo do hero e o Brandbook v3 |
-| `seo/` | `robots.txt`, `sitemap.xml`, `llms.txt` e guia de SEO/GEO |
+| `site/` | O site (Astro). É aqui que se trabalha. |
+| `site/src/pages/` | Rotas. `/` em português, `/en/` em inglês. |
+| `site/src/paginas/` | As 6 páginas próprias, cada uma servindo os dois idiomas. |
+| `site/src/layouts/` | `Base` (head/SEO), `LinhaPage` (produto), `SolucaoPage` (solução). |
+| `site/src/components/` | `SiteNav`, `SiteFooter`, `EditaisPncp`. |
+| `site/src/data/` | Conteúdo das 7 linhas e 6 soluções, em `.pt.json` + `.en.json`. |
+| `site/src/lib/` | `i18n.ts` (rotas e strings), `seo.ts` (título, description, JSON-LD). |
+| `uploads/` | Imagens, vídeo do hero, catálogos em PDF e o Brandbook. |
+| `api/` | Serviço de IA: `/api/assistente` e `/api/editais` (PNCP). |
+| `deploy/` + `docker-compose.yml` | nginx e Traefik para o Dokploy. |
+
+Os arquivos `.dc.html` e o `support.js` na raiz são o **export original do
+Claude Design**, mantidos para comparação durante a revisão da migração. Não
+alimentam mais o site publicado.
+
+## Rodar
+
+```bash
+cd site
+npm install
+npm run dev       # http://localhost:4321
+npm run build     # → site/dist (38 páginas + uploads)
+npm run preview
+```
+
+O domínio do build vem de `SITE_URL` (padrão: produção). Em qualquer outro
+domínio, o `robots.txt` gerado bloqueia os robôs:
+
+```bash
+SITE_URL=https://staging.exemplo.com npm run build
+```
+
+## Idiomas
+
+Cada página existe nas duas línguas, com `hreflang` recíproco:
+
+| Português | Inglês |
+|---|---|
+| `/tecnologias/geister` | `/en/technology/geister` |
+| `/solucoes/licitacoes` | `/en/solutions/licitacoes` |
+| `/sobre` | `/en/about` |
+
+O conteúdo de produto e solução vive em `site/src/data/*.pt.json` e
+`*.en.json`; o build falha se as listas saírem de sincronia. O texto das
+páginas próprias fica no ponto de uso, via `L(lang, "…", "…")`.
+
+Ao adicionar uma página: crie a rota nos dois idiomas, registre o caminho em
+`site/src/lib/i18n.ts` e o título/description em `site/src/data/seo.*.json`.
+Sitemap e llms.txt se atualizam sozinhos.
 
 ## Documentos
 
-- **`ANALISE.md`** — auditoria completa (SEO, IA, performance) e plano de mudanças.
-- **`DEPLOY-DOKPLOY.md`** — como publicar no Dokploy (build + deploy).
-
-## Build e deploy
-
-O site é pré-renderizado para HTML indexável (robôs de IA/Google passam a ler as páginas de produto) e sobe no Dokploy com um serviço de IA real.
-
-```bash
-npm install
-npm run build        # pré-render → dist/ (19 páginas com <title>, JSON-LD no <head>, URLs limpas)
-python3 -m http.server -d dist 8000
-```
-
-- `build/prerender.mjs` — pipeline de pré-render · `build/pages.mjs` — títulos e slugs.
-- `api/` — endpoint `/api/assistente` (assistente de IA).
-- `deploy/` + `docker-compose.yml` — nginx (URLs limpas + 301) e Traefik para o Dokploy.
-
-### Editar direto (Claude Design)
-
-```bash
-python3 -m http.server 8000   # abra http://localhost:8000/Home.dc.html
-```
+- **`ANALISE.md`** — auditoria de SEO, IA e performance do site anterior.
+- **`PLANO-IMPLANTACAO.md`** — runbook de deploy no Dokploy.
+- **`DEPLOY-DOKPLOY.md`** — referência dos dois serviços (`web` e `api`).

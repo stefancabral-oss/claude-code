@@ -1,0 +1,425 @@
+[
+  {
+    "slug": "geister",
+    "nome": "Micro Knifes GEISTER",
+    "cat": "MICROCIRURGIA · INSTRUMENTAIS DE PRECISÃO",
+    "tagline": "“The better way to operate.” Micro lâminas de precisão e empunhaduras ergonômicas para os procedimentos mais delicados.",
+    "pena": "/uploads/pena-sf02-aco.jpg",
+    "cor": "#5E7391",
+    "corClara": "#7C9BC0",
+    "codigo": "SF-02",
+    "corNome": "AÇO",
+    "overviewT": "Engenharia alemã, compacta por design",
+    "overview": "A Microknife é um instrumento compacto desenvolvido para os profissionais mais exigentes — uma combinação impressionante de portabilidade, versatilidade e desempenho. A empunhadura FairGrip, ergonomicamente projetada, entrega controle máximo para cortes precisos e eficazes com microferramentas.",
+    "featsKicker": "TECNOLOGIA FAIRGRIP",
+    "featsT": "Controle que reduz a fadiga",
+    "feats": [
+      {
+        "t": "Precisão aprimorada",
+        "d": "A empunhadura ergonômica FairGrip garante controle máximo, tornando o corte com microferramentas mais preciso e eficaz."
+      },
+      {
+        "t": "Conforto duradouro",
+        "d": "A aderência macia e durável oferece conforto excepcional em sessões longas, reduzindo a fadiga e aumentando a produtividade."
+      },
+      {
+        "t": "Segurança otimizada",
+        "d": "O aperto firme e seguro minimiza o risco de acidentes e lesões, para uma experiência de trabalho mais segura."
+      }
+    ],
+    "modelosKicker": "AS LÂMINAS",
+    "modelosT": "Um fio de corte extremamente afiado",
+    "modelos": [
+      {
+        "img": "/uploads/produtos/mk-angulada.png",
+        "t": "Microlâmina 15° angulada",
+        "d": "Ponta angulada para acesso controlado em campos estreitos."
+      },
+      {
+        "img": "/uploads/produtos/mk-meialua.png",
+        "t": "Microlâmina meia-lua",
+        "d": "Fio meia-lua de duplo bisel para dissecção precisa."
+      },
+      {
+        "img": "/uploads/produtos/mk-cabo.png",
+        "t": "Cabo FairGrip",
+        "d": "Cabo ergonômico de titânio/aço, compatível com todas as lâminas."
+      }
+    ],
+    "especsT": "Configurações e materiais",
+    "especs": [
+      {
+        "k": "EMPUNHADURA",
+        "v": "FairGrip titânio / aço"
+      },
+      {
+        "k": "GEOMETRIAS DE LÂMINA",
+        "v": "15° angulada · meia-lua"
+      },
+      {
+        "k": "MATERIAL",
+        "v": "Aço cirúrgico alemão"
+      },
+      {
+        "k": "APLICAÇÃO",
+        "v": "Microcirurgia — procedimentos delicados"
+      }
+    ],
+    "uso": [
+      {
+        "n": "01",
+        "d": "Selecione a geometria de lâmina (15° angulada ou meia-lua) adequada ao procedimento e monte-a no cabo FairGrip."
+      },
+      {
+        "n": "02",
+        "d": "Segure a empunhadura ergonômica para controle e estabilidade máximos durante a incisão."
+      },
+      {
+        "n": "03",
+        "d": "Realize cortes limpos e exatos protegendo as estruturas vitais adjacentes — ideal para trabalho minimamente invasivo."
+      }
+    ],
+    "aplicT": "Onde a precisão é decisiva",
+    "aplicacoes": [
+      "Cirurgia oftálmica",
+      "Microcirurgia e neurocirurgia",
+      "Cirurgia plástica e reconstrutiva",
+      "Odontologia e cirurgia oral"
+    ],
+    "catalogo": "/uploads/catalogos/geister.pdf",
+    "catalogoLabel": "Baixar catálogo (PDF)",
+    "catalogoNome": "Catálogo Micro Knifes",
+    "outras": [
+      {
+        "slug": "radimed",
+        "pena": "/uploads/pena-sf03-coral.jpg"
+      },
+      {
+        "slug": "marrow-cellution",
+        "pena": "/uploads/pena-sf06-marinho.jpg"
+      },
+      {
+        "slug": "corebone",
+        "pena": "/uploads/pena-sf01-ceu.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "radimed",
+    "nome": "Radimed",
+    "cat": "DOR CRÔNICA · RADIOFREQUÊNCIA",
+    "tagline": "Cânulas e agulhas para radiofrequência — técnica minimamente invasiva e alvo-seletiva no tratamento da dor crônica.",
+    "pena": "/uploads/pena-sf03-coral.jpg",
+    "cor": "#FA7969",
+    "corClara": "#FA7969",
+    "codigo": "SF-03",
+    "corNome": "CORAL",
+    "prod": "/uploads/produtos/radimed.png",
+    "overviewT": "Alívio alvo-seletivo, guiado por precisão",
+    "overview": "A radiofrequência é uma técnica minimamente invasiva e alvo-seletiva para o tratamento da dor crônica. As cânulas e agulhas Radimed dão ao intervencionista o acesso preciso de que o procedimento depende — do bloqueio diagnóstico à denervação.",
+    "featsKicker": "EVIDÊNCIA CLÍNICA",
+    "featsT": "Técnicas que distribuímos",
+    "feats": [
+      {
+        "t": "Radiofrequência na dor crônica",
+        "d": "Técnica minimamente invasiva e alvo-seletiva para o tratamento da dor crônica."
+      },
+      {
+        "t": "Infiltração facetária na dor lombar crônica",
+        "d": "Avaliação clínica da infiltração facetária no tratamento da síndrome facetária."
+      }
+    ],
+    "aplicT": "Onde faz diferença",
+    "aplicacoes": [
+      "Dor crônica",
+      "Coluna — síndrome facetária",
+      "Medicina intervencionista da dor"
+    ],
+    "catalogo": "/uploads/catalogos/radimed.pdf",
+    "catalogoLabel": "Baixar catálogo (PDF)",
+    "catalogoNome": "Catálogo Radimed",
+    "outras": [
+      {
+        "slug": "geister",
+        "pena": "/uploads/pena-sf02-aco.jpg"
+      },
+      {
+        "slug": "marrow-cellution",
+        "pena": "/uploads/pena-sf06-marinho.jpg"
+      },
+      {
+        "slug": "corebone",
+        "pena": "/uploads/pena-sf01-ceu.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "marrow-cellution",
+    "nome": "Marrow Cellution",
+    "cat": "TERAPIAS REGENERATIVAS · MEDULA ÓSSEA",
+    "tagline": "Sistema de aspiração de medula óssea para coleta avançada de células-tronco — tratamentos regenerativos e minimamente invasivos.",
+    "pena": "/uploads/pena-sf06-marinho.jpg",
+    "cor": "#2B3350",
+    "corClara": "#7B87CE",
+    "codigo": "SF-06",
+    "corNome": "MARINHO",
+    "prod": "/uploads/produtos/marrow.png",
+    "overviewT": "Mais células-tronco por aspirado",
+    "overview": "O Marrow Cellution é um sistema de aspiração de medula óssea projetado para maximizar a qualidade da coleta no ponto de cuidado — recuperando células da medula em múltiplas profundidades e minimizando a diluição por sangue periférico.",
+    "featsKicker": "DIFERENCIAIS",
+    "featsT": "Por que Marrow Cellution",
+    "feats": [
+      {
+        "t": "Maior concentração de células-tronco por aspirado",
+        "d": "Técnica de coleta em múltiplos níveis que minimiza a diluição por sangue periférico."
+      },
+      {
+        "t": "Respaldado por referências científicas publicadas",
+        "d": "Compilado de referências disponível para avaliação técnica e instrução de edital."
+      }
+    ],
+    "aplicT": "Onde faz diferença",
+    "aplicacoes": [
+      "Terapias regenerativas",
+      "Ortopedia e coluna",
+      "Procedimentos minimamente invasivos"
+    ],
+    "catalogo": "/uploads/catalogos/marrow-cellution.pdf",
+    "catalogoLabel": "Referências científicas (PDF)",
+    "catalogoKicker": "PDF · REFERÊNCIAS CIENTÍFICAS",
+    "catalogoNome": "Referências científicas",
+    "outras": [
+      {
+        "slug": "corebone",
+        "pena": "/uploads/pena-sf01-ceu.jpg"
+      },
+      {
+        "slug": "geister",
+        "pena": "/uploads/pena-sf02-aco.jpg"
+      },
+      {
+        "slug": "radimed",
+        "pena": "/uploads/pena-sf03-coral.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "corebone",
+    "nome": "CoreBone",
+    "cat": "REGENERAÇÃO ÓSSEA · ENXERTO BIOATIVO",
+    "tagline": "Enxerto ósseo bioativo de origem coral. A CNN Business mostrou sua fabricação, aplicabilidade e benefícios.",
+    "pena": "/uploads/pena-sf01-ceu.jpg",
+    "cor": "#35ADFD",
+    "corClara": "#35ADFD",
+    "codigo": "SF-01",
+    "corNome": "CÉU",
+    "prod": "/uploads/produtos/corebone.png",
+    "catalogo": "/uploads/catalogos/corebone.pdf",
+    "catalogoLabel": "Baixar catálogo (PDF)",
+    "catalogoNome": "Catálogo CoreBone",
+    "overviewT": "Da fazenda de corais à regeneração óssea",
+    "overview": "O CoreBone é um enxerto ósseo bioativo cultivado a partir de corais, em ambiente controlado e livre de risco de transmissão de doenças. Combina resistência mecânica e bioatividade para a regeneração óssea em odontologia e ortopedia.",
+    "featsKicker": "DIFERENCIAIS",
+    "featsT": "Por que CoreBone",
+    "feats": [
+      {
+        "t": "Enxerto bioativo, de origem coral",
+        "d": "Estrutura mineral próxima ao osso humano, com resistência mecânica e bioatividade."
+      },
+      {
+        "t": "Fabricação destacada pela CNN Business",
+        "d": "A reportagem mostrou a fazenda de corais, o processo de fabricação e os benefícios do enxerto."
+      }
+    ],
+    "aplicT": "Onde faz diferença",
+    "aplicacoes": [
+      "Regeneração óssea",
+      "Odontologia — enxertia",
+      "Ortopedia"
+    ],
+    "cnn": true,
+    "outras": [
+      {
+        "slug": "marrow-cellution",
+        "pena": "/uploads/pena-sf06-marinho.jpg"
+      },
+      {
+        "slug": "dentsply",
+        "pena": "/uploads/pena-sf05-ambar.jpg"
+      },
+      {
+        "slug": "geister",
+        "pena": "/uploads/pena-sf02-aco.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "lipsus",
+    "nome": "Lipsus",
+    "cat": "CUIDADO AO PACIENTE · PÓS-CIRÚRGICO",
+    "tagline": "Bolsa de água para umedecimento contínuo dos lábios — conforto na recuperação pós-cirúrgica.",
+    "pena": "/uploads/pena-sf04-violeta.jpg",
+    "cor": "#AA85F7",
+    "corClara": "#AA85F7",
+    "codigo": "SF-04",
+    "corNome": "VIOLETA",
+    "prod": "/uploads/produtos/lipsus.png",
+    "overviewT": "Conforto contínuo, menos carga para o staff",
+    "overview": "O Lipsus umedece continuamente os lábios do paciente em recuperação — um cuidado simples que melhora o bem-estar pós-cirúrgico e libera a equipe clínica e a família para outras atividades.",
+    "featsKicker": "DIFERENCIAIS",
+    "featsT": "Por que Lipsus",
+    "feats": [
+      {
+        "t": "Umedecimento contínuo dos lábios",
+        "d": "Alívio constante para o desconforto de lábios ressecados no pós-operatório."
+      },
+      {
+        "t": "Libera o staff clínico e a família",
+        "d": "Menos interrupções para umedecer manualmente — mais tempo para o que importa."
+      },
+      {
+        "t": "Bem-estar na recuperação",
+        "d": "Otimiza o conforto do paciente durante a recuperação pós-cirúrgica."
+      }
+    ],
+    "aplicT": "Onde faz diferença",
+    "aplicacoes": [
+      "Recuperação pós-cirúrgica",
+      "UTI e enfermarias",
+      "Cuidados paliativos"
+    ],
+    "outras": [
+      {
+        "slug": "parceiros-estrategicos",
+        "pena": "/uploads/pena-sf07-grafite.jpg"
+      },
+      {
+        "slug": "radimed",
+        "pena": "/uploads/pena-sf03-coral.jpg"
+      },
+      {
+        "slug": "geister",
+        "pena": "/uploads/pena-sf02-aco.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "dentsply",
+    "nome": "Dentsply Sirona · OSSIX",
+    "cat": "ODONTOLOGIA · REGENERAÇÃO ÓSSEA E TECIDUAL",
+    "tagline": "A linha OSSIX de regeneração guiada, da divisão Regenerative Solutions da Dentsply Sirona — referência mundial em odontologia.",
+    "pena": "/uploads/pena-sf05-ambar.jpg",
+    "cor": "#DEA905",
+    "corClara": "#DEA905",
+    "codigo": "SF-05",
+    "corNome": "ÂMBAR",
+    "prod": "/uploads/produtos/ossix.png",
+    "overviewT": "Regeneração guiada com tecnologia GLYMATRIX",
+    "overview": "OSSIX é a família de biomateriais regenerativos da Dentsply Sirona, construída sobre a tecnologia GLYMATRIX: colágeno tipo I de origem porcina reticulado com açúcar, um processo próximo da glicação natural do corpo. A linha é usada por clínicos há mais de 20 anos em centenas de milhares de procedimentos de regeneração óssea e tecidual.",
+    "featsKicker": "A FAMÍLIA OSSIX",
+    "featsT": "Três soluções, um mesmo princípio",
+    "feats": [
+      {
+        "t": "OSSIX Plus",
+        "d": "Membrana barreira de colágeno reticulado para ROG e RTG, com efeito barreira real de 4 a 6 meses — mantido mesmo em caso de exposição — e que ossifica ao longo do processo."
+      },
+      {
+        "t": "OSSIX Volumax",
+        "d": "Scaffold volumizador: posicionado sob o retalho, aumenta a espessura do tecido mole em diferentes indicações que pedem volume adicional."
+      },
+      {
+        "t": "OSSIX Bone",
+        "d": "Esponja de colágeno ossificante que aumenta a quantidade de osso vital sem deixar partículas residuais após quatro meses."
+      }
+    ],
+    "especsT": "Tecnologia e composição",
+    "especs": [
+      {
+        "k": "TECNOLOGIA",
+        "v": "GLYMATRIX — colágeno reticulado com açúcar"
+      },
+      {
+        "k": "ORIGEM DO COLÁGENO",
+        "v": "Tipo I, porcino (tendão)"
+      },
+      {
+        "k": "MEMBRANA BARREIRA",
+        "v": "OSSIX Plus — 4 a 6 meses"
+      },
+      {
+        "k": "VOLUME DE TECIDO MOLE",
+        "v": "OSSIX Volumax"
+      },
+      {
+        "k": "ENXERTO OSSIFICANTE",
+        "v": "OSSIX Bone"
+      }
+    ],
+    "aplicT": "Onde faz diferença",
+    "aplicacoes": [
+      "Regeneração óssea guiada (ROG)",
+      "Regeneração tecidual guiada (RTG)",
+      "Preservação alveolar",
+      "Implantodontia e reabilitação oral"
+    ],
+    "outras": [
+      {
+        "slug": "corebone",
+        "pena": "/uploads/pena-sf01-ceu.jpg"
+      },
+      {
+        "slug": "geister",
+        "pena": "/uploads/pena-sf02-aco.jpg"
+      },
+      {
+        "slug": "parceiros-estrategicos",
+        "pena": "/uploads/pena-sf07-grafite.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "parceiros-estrategicos",
+    "nome": "Parceiros Estratégicos",
+    "cat": "LINHA HOSPITALAR · PARCEIROS",
+    "tagline": "Produtos hospitalares para o dia a dia das instituições de saúde — fornecimento por venda direta e licitações.",
+    "pena": "/uploads/pena-sf07-grafite.jpg",
+    "cor": "#474E58",
+    "corClara": "#8B929C",
+    "codigo": "SF-07",
+    "corNome": "GRAFITE",
+    "overviewT": "A linha de parceiros estratégicos",
+    "overview": "Parceiros Estratégicos é a nossa linha hospitalar: produtos do dia a dia das instituições de saúde, com fornecimento ágil por venda direta e participação em licitações públicas — sempre com importação e distribuição regularizadas.",
+    "featsKicker": "FORNECIMENTO",
+    "featsT": "Como fornecemos",
+    "feats": [
+      {
+        "t": "Venda direta",
+        "d": "Atendimento a hospitais, clínicas e distribuidores em todo o Brasil."
+      },
+      {
+        "t": "Licitações públicas",
+        "d": "Mesa própria orientada por dados — especificações verificadas e preços auditáveis."
+      }
+    ],
+    "aplicT": "Onde faz diferença",
+    "aplicacoes": [
+      "Hospitais e clínicas",
+      "Compras públicas",
+      "Distribuidores parceiros"
+    ],
+    "outras": [
+      {
+        "slug": "lipsus",
+        "pena": "/uploads/pena-sf04-violeta.jpg"
+      },
+      {
+        "slug": "radimed",
+        "pena": "/uploads/pena-sf03-coral.jpg"
+      },
+      {
+        "slug": "corebone",
+        "pena": "/uploads/pena-sf01-ceu.jpg"
+      }
+    ]
+  }
+]

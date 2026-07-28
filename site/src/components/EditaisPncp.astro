@@ -1,0 +1,203 @@
+---
+// Radar do PNCP: busca /api/editais quando a seção entra na viewport.
+// O serviço de IA (container `api`) é quem consulta o PNCP.
+import { WHATSAPP, type Lang } from "../lib/i18n";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const T = {
+  radar: { pt: "RADAR PNCP · AO VIVO", en: "PNCP RADAR · LIVE" },
+  carregando: { pt: "carregando…", en: "loading…" },
+  titulo: { pt: "Editais abertos agora", en: "Tenders open right now" },
+  sub: {
+    pt: "Pregões eletrônicos de saúde publicados no PNCP, atualizados automaticamente. A Setfree responde com go/no-go em horas.",
+    en: "Electronic healthcare tenders published on PNCP, updated automatically. Setfree answers with go/no-go within hours.",
+  },
+  indisponivel: { pt: "indisponível", en: "unavailable" },
+  erro: {
+    pt: "Não foi possível carregar os editais agora. Fale com o time no",
+    en: "We couldn't load the tenders right now. Talk to the team on",
+  },
+  erroFim: {
+    pt: "que enviamos as oportunidades abertas.",
+    en: "and we'll send you the open opportunities.",
+  },
+  encerra: { pt: "ENCERRA", en: "CLOSES" },
+  verPncp: { pt: "Ver no PNCP →", en: "View on PNCP →" },
+  contagem: { pt: "editais · atualizado agora", en: "tenders · updated just now" },
+} as const;
+
+const ruido =
+  "url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22/></filter><rect width=%22160%22 height=%22160%22 filter=%22url(%23n)%22 opacity=%220.04%22/></svg>')";
+---
+
+<section
+  style="background:#0D0D0D;color:#F4F3F0;border-top:1px solid rgba(13,13,13,.08);position:relative;overflow:hidden"
+>
+  <div style={`position:absolute;inset:0;background-image:${ruido};pointer-events:none`}></div>
+  <div data-r="p3" style="position:relative;max-width:1240px;margin:0 auto;padding:80px 32px">
+    <div
+      style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:6px"
+    >
+      <span
+        style="display:flex;align-items:center;gap:10px;font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;color:#13BE9F"
+      >
+        <span style="width:8px;height:8px;border-radius:50%;background:#13BE9F;animation:sfPulse 2.4s ease-out infinite"
+        ></span>{T.radar[lang]}
+      </span>
+      <span
+        id="sf-editais-status"
+        style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11px;letter-spacing:.14em;color:rgba(244,243,240,.5)"
+        >{T.carregando[lang]}</span
+      >
+    </div>
+    <h2 style="margin:8px 0 8px;font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em;font-weight:600">
+      {T.titulo[lang]}
+    </h2>
+    <p style="margin:0 0 32px;font-size:14.5px;line-height:1.6;color:rgba(244,243,240,.6);max-width:640px">
+      {T.sub[lang]}
+    </p>
+    <div
+      id="sf-editais-live"
+      data-r="g2"
+      data-lang={lang}
+      data-whatsapp={WHATSAPP}
+      data-t={JSON.stringify({
+        indisponivel: T.indisponivel[lang],
+        erro: T.erro[lang],
+        erroFim: T.erroFim[lang],
+        encerra: T.encerra[lang],
+        verPncp: T.verPncp[lang],
+        contagem: T.contagem[lang],
+      })}
+      style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;min-height:80px"
+    >
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .sf-edital {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(244, 243, 240, 0.04);
+    border: 1px solid rgba(244, 243, 240, 0.12);
+    border-radius: 6px;
+    padding: 18px 20px;
+    color: #f4f3f0;
+    transition:
+      border-color 0.2s,
+      transform 0.2s;
+  }
+  .sf-edital:hover {
+    border-color: #13be9f;
+    transform: translateY(-2px);
+    color: #f4f3f0;
+  }
+</style>
+
+<script>
+  interface Edital {
+    link?: string;
+    uf?: string;
+    encerra?: string;
+    objeto?: string;
+    orgao?: string;
+    unidade?: string;
+  }
+
+  const box = document.getElementById("sf-editais-live");
+  const status = document.getElementById("sf-editais-status");
+
+  if (box) {
+    const t = JSON.parse(box.dataset.t || "{}");
+    const locale = box.dataset.lang === "en" ? "en-GB" : "pt-BR";
+    const whatsapp = box.dataset.whatsapp || "#";
+
+    const quando = (s?: string) => {
+      if (!s) return "";
+      const dt = new Date(s);
+      return Number.isNaN(dt.valueOf())
+        ? s
+        : `${dt.toLocaleDateString(locale)} ${dt.toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit" })}`;
+    };
+
+    // Monta com o DOM em vez de innerHTML: os dados vêm do PNCP, não são nossos.
+    const cartao = (e: Edital) => {
+      const a = document.createElement("a");
+      a.className = "sf-edital";
+      a.href = e.link || "#";
+      a.target = "_blank";
+      a.rel = "noopener";
+
+      const topo = document.createElement("span");
+      topo.style.cssText =
+        "display:flex;justify-content:space-between;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.14em;color:#13BE9F";
+      topo.textContent = e.uf || "BR";
+      const prazo = document.createElement("span");
+      prazo.style.color = "rgba(244,243,240,.45)";
+      prazo.textContent = `${t.encerra} ${quando(e.encerra)}`;
+      topo.appendChild(prazo);
+
+      const objeto = document.createElement("span");
+      objeto.style.cssText = "font-size:14.5px;font-weight:600;line-height:1.4";
+      objeto.textContent = e.objeto || "";
+
+      const orgao = document.createElement("span");
+      orgao.style.cssText = "font-size:12.5px;color:rgba(244,243,240,.55);line-height:1.45";
+      orgao.textContent = e.unidade ? `${e.orgao} · ${e.unidade}` : e.orgao || "";
+
+      const ver = document.createElement("span");
+      ver.style.cssText = "font-size:12.5px;font-weight:600;color:#13BE9F";
+      ver.textContent = t.verPncp;
+
+      a.append(topo, objeto, orgao, ver);
+      return a;
+    };
+
+    const carrega = async () => {
+      if (box.dataset.carregado) return;
+      box.dataset.carregado = "1";
+      try {
+        const r = await fetch("/api/editais");
+        if (!r.ok) throw new Error(`http ${r.status}`);
+        const d = await r.json();
+        if (!d.editais?.length) throw new Error("vazio");
+        box.replaceChildren(...d.editais.map(cartao));
+        if (status) status.textContent = `${d.editais.length} ${t.contagem}`;
+      } catch {
+        if (status) status.textContent = t.indisponivel;
+        const p = document.createElement("p");
+        p.style.cssText =
+          "grid-column:1/-1;margin:0;font-size:14px;line-height:1.6;color:rgba(244,243,240,.55)";
+        const link = document.createElement("a");
+        link.href = whatsapp;
+        link.style.color = "#13BE9F";
+        link.textContent = "WhatsApp";
+        p.append(`${t.erro} `, link, ` ${t.erroFim}`);
+        box.replaceChildren(p);
+      }
+    };
+
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        (es) => {
+          for (const e of es) {
+            if (e.isIntersecting) {
+              io.disconnect();
+              carrega();
+            }
+          }
+        },
+        { rootMargin: "250px" },
+      );
+      io.observe(box);
+    } else {
+      carrega();
+    }
+  }
+</script>

@@ -1,0 +1,249 @@
+[
+  {
+    "slug": "licitacoes",
+    "img": "/uploads/solucoes/licitacoes.png",
+    "num": "06",
+    "nome": "Licitações públicas",
+    "editaisAoVivo": true,
+    "tagline": "Mesa de licitações orientada por dados: radar PNCP 24/7 e cotações com trilha auditável — decisões go/no-go em horas, não dias.",
+    "incluiT": "Da publicação do edital ao pós-venda",
+    "itens": [
+      "Monitoramento PNCP — federal, estadual e municipal",
+      "Análise de edital e go/no-go em horas",
+      "Cotação com fonte auditável",
+      "Participação, entrega e pós-venda"
+    ],
+    "publicoT": "Para quem compra e para quem fornece",
+    "publico": [
+      {
+        "t": "Instituições públicas de saúde",
+        "d": "Publicam o edital e precisam de fornecedor habilitado que entregue."
+      },
+      {
+        "t": "Fabricantes e distribuidores",
+        "d": "Querem acesso ao mercado público sem montar mesa de licitações própria."
+      },
+      {
+        "t": "Nosso próprio portfólio",
+        "d": "As sete linhas Setfree disputam pregões com preço e prazo verificáveis."
+      }
+    ],
+    "ctaT": "Envia o edital — respondemos com go ou no-go.",
+    "outras": [
+      {
+        "slug": "qualidade"
+      },
+      {
+        "slug": "consultoria-comercial"
+      },
+      {
+        "slug": "registro-anvisa"
+      }
+    ]
+  },
+  {
+    "slug": "registro-anvisa",
+    "img": "/uploads/solucoes/anvisa.png",
+    "num": "04",
+    "nome": "Registro ANVISA e regulatório",
+    "tagline": "Conduzimos o processo completo junto à ANVISA — na velocidade que o processo de registro e certificação permite, com transparência total.",
+    "incluiT": "O ciclo regulatório completo",
+    "itens": [
+      "Dossiê técnico e submissão",
+      "Registro, revalidação e manutenção",
+      "AFE, autorizações e importação regularizada",
+      "Vigilância pós-mercado"
+    ],
+    "publicoT": "Para quem precisa do registro em ordem",
+    "publico": [
+      {
+        "t": "Fabricantes estrangeiros",
+        "d": "Precisam de um detentor de registro brasileiro para colocar o produto no mercado."
+      },
+      {
+        "t": "Detentores de registro",
+        "d": "Têm registro vencendo, mudança de escopo ou pendência a resolver."
+      },
+      {
+        "t": "Importadores",
+        "d": "Precisam de AFE, autorizações e importação dentro da regra."
+      }
+    ],
+    "ctaT": "Manda o que você já tem de dossiê.",
+    "outras": [
+      {
+        "slug": "entrada-mercado"
+      },
+      {
+        "slug": "qualidade"
+      },
+      {
+        "slug": "sourcing"
+      }
+    ]
+  },
+  {
+    "slug": "sourcing",
+    "img": "/uploads/solucoes/sourcing.png",
+    "num": "01",
+    "nome": "Sourcing global de produtos",
+    "tagline": "Para hospitais, médicos e distribuidores: localizamos, qualificamos e trazemos tecnologias médicas ainda sem representação no Brasil — sob demanda.",
+    "incluiT": "Da busca ativa à entrega regularizada",
+    "itens": [
+      "Busca ativa e qualificação de fabricantes",
+      "Análise de viabilidade regulatória e comercial",
+      "Amostras, demonstrações e validação clínica",
+      "Importação e entrega regularizadas"
+    ],
+    "publicoT": "Quando o produto existe lá fora e não chega aqui",
+    "publico": [
+      {
+        "t": "Hospitais e clínicas",
+        "d": "Precisam de uma tecnologia específica que nenhum fornecedor nacional oferece."
+      },
+      {
+        "t": "Médicos e corpo clínico",
+        "d": "Viram o dispositivo em congresso ou publicação e querem usá-lo no Brasil."
+      },
+      {
+        "t": "Distribuidores",
+        "d": "Buscam ampliar portfólio com linhas ainda sem representação no país."
+      }
+    ],
+    "ctaT": "Diz qual tecnologia você procura.",
+    "outras": [
+      {
+        "slug": "entrada-mercado"
+      },
+      {
+        "slug": "registro-anvisa"
+      },
+      {
+        "slug": "consultoria-comercial"
+      }
+    ]
+  },
+  {
+    "slug": "entrada-mercado",
+    "img": "/uploads/solucoes/entrada.png",
+    "num": "03",
+    "nome": "Estratégia de entrada no mercado brasileiro",
+    "tagline": "A porta de entrada do fabricante global: do estudo de mercado à operação rodando — regulatório sem atalhos, prazos sem surpresa.",
+    "incluiT": "Do estudo de mercado à operação rodando",
+    "itens": [
+      "Estudo de mercado e rota de entrada",
+      "Representação legal e detenção de registro",
+      "Plano de distribuição nacional",
+      "Gestão de parceiros locais"
+    ],
+    "publicoT": "Para quem vai entrar no Brasil pela primeira vez",
+    "publico": [
+      {
+        "t": "Fabricantes globais",
+        "d": "Sem operação, sem CNPJ e sem registro no país — precisam de um representante legal."
+      },
+      {
+        "t": "Marcas em expansão LatAm",
+        "d": "Já operam em outros países da região e o Brasil é o próximo passo."
+      },
+      {
+        "t": "Investidores e boards",
+        "d": "Querem dimensionar o mercado antes de comprometer capital na entrada."
+      }
+    ],
+    "ctaT": "Vamos desenhar sua rota de entrada.",
+    "outras": [
+      {
+        "slug": "registro-anvisa"
+      },
+      {
+        "slug": "consultoria-comercial"
+      },
+      {
+        "slug": "qualidade"
+      }
+    ]
+  },
+  {
+    "slug": "consultoria-comercial",
+    "img": "/uploads/solucoes/consultoria.png",
+    "num": "02",
+    "nome": "Consultoria comercial",
+    "tagline": "Posicionamento, preço e canais para tecnologia médica no mercado brasileiro — estratégia que transforma produto em presença.",
+    "incluiT": "Do posicionamento à sala de cirurgia",
+    "itens": [
+      "Posicionamento e precificação",
+      "Desenho de canais — direto, distribuidores, licitações",
+      "Treinamento de força de vendas e corpo clínico",
+      "Apresentação a hospitais e cirurgiões"
+    ],
+    "publicoT": "Quando o produto é bom e a presença não acompanha",
+    "publico": [
+      {
+        "t": "Fabricantes já no Brasil",
+        "d": "Têm registro e produto, mas o volume não corresponde ao potencial."
+      },
+      {
+        "t": "Distribuidores",
+        "d": "Querem estruturar preço, canal e discurso clínico da linha que representam."
+      },
+      {
+        "t": "Novas linhas",
+        "d": "Produto entrando no país e precisando de posicionamento antes do primeiro pedido."
+      }
+    ],
+    "ctaT": "Conta onde o comercial está travando.",
+    "outras": [
+      {
+        "slug": "entrada-mercado"
+      },
+      {
+        "slug": "licitacoes"
+      },
+      {
+        "slug": "sourcing"
+      }
+    ]
+  },
+  {
+    "slug": "qualidade",
+    "img": "/uploads/solucoes/qualidade.png",
+    "num": "05",
+    "nome": "Qualidade",
+    "tagline": "Boas práticas do porto ao ponto de cuidado — todo produto rastreável, dentro da validade e com suporte.",
+    "incluiT": "Do porto ao ponto de cuidado",
+    "itens": [
+      "Armazenamento e transporte conforme boas práticas",
+      "Rastreabilidade de lote",
+      "Controle de validade e prontidão para recall",
+      "Suporte técnico e pós-venda"
+    ],
+    "publicoT": "Para quem responde pelo produto na ponta",
+    "publico": [
+      {
+        "t": "Hospitais e clínicas",
+        "d": "Precisam de trilha de lote auditável e produto dentro da validade, sempre."
+      },
+      {
+        "t": "Fabricantes parceiros",
+        "d": "Querem garantia de que a cadeia no Brasil preserva as condições do produto."
+      },
+      {
+        "t": "Compras e suprimentos",
+        "d": "Precisam de suporte técnico e pós-venda que respondam quando for preciso."
+      }
+    ],
+    "ctaT": "Pergunta o que quiser sobre a nossa cadeia.",
+    "outras": [
+      {
+        "slug": "registro-anvisa"
+      },
+      {
+        "slug": "licitacoes"
+      },
+      {
+        "slug": "entrada-mercado"
+      }
+    ]
+  }
+]

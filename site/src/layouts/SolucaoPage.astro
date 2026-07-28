@@ -1,0 +1,355 @@
+---
+import Base from "./Base.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import EditaisPncp from "../components/EditaisPncp.astro";
+import type { Solucao } from "../data";
+import { UI, WHATSAPP, route, solucaoUrl, type Lang } from "../lib/i18n";
+
+interface Props {
+  lang: Lang;
+  d: Solucao;
+  /** nome e número das soluções relacionadas, no idioma certo */
+  relacionada: (slug: string) => { nome: string; num: string };
+  title: string;
+  description: string;
+  path: string;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const { lang, d, relacionada, title, description, path, jsonLd = [] } = Astro.props;
+
+const T = {
+  oQueInclui: { pt: "O QUE INCLUI", en: "WHAT IT INCLUDES" },
+  paraQuem: { pt: "PARA QUEM É", en: "WHO IT IS FOR" },
+  comoComeca: { pt: "COMO COMEÇA", en: "HOW IT STARTS" },
+  tresPassos: { pt: "Três passos do primeiro contato", en: "Three steps from first contact" },
+  solucaoSetfree: { pt: "SOLUÇÃO · SETFREE", en: "SOLUTION · SETFREE" },
+  canaisContato: { pt: "Canais de contato", en: "Contact channels" },
+  ctaD: {
+    pt: "Manda o contexto — respondemos com o que é real, no tempo que leva.",
+    en: "Send the context — we answer with what is real, in the time it takes.",
+  },
+  outras: { pt: "Outras soluções", en: "Other solutions" },
+  passos: {
+    pt: [
+      {
+        t: "Conversa de diagnóstico",
+        d: "Você conta o contexto e a restrição; dizemos com clareza se é algo que fazemos.",
+      },
+      {
+        t: "Escopo e proposta",
+        d: "Escopo escrito, responsabilidades e o que depende de terceiros — sem etapa escondida.",
+      },
+      {
+        t: "Execução com acompanhamento",
+        d: "Um ponto de contato único e status que você pode conferir — uma palavra que vale.",
+      },
+    ],
+    en: [
+      {
+        t: "Diagnostic conversation",
+        d: "You tell us the context and the constraint; we say plainly whether it is something we do.",
+      },
+      {
+        t: "Scope and proposal",
+        d: "Written scope, responsibilities and what depends on third parties — no hidden steps.",
+      },
+      {
+        t: "Execution with follow-up",
+        d: "A single point of contact and status you can check — a word that holds.",
+      },
+    ],
+  },
+} as const;
+
+const kicker =
+  "font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:12px;font-weight:500;letter-spacing:.16em;color:#13BE9F";
+const h2 =
+  "margin:18px 0 44px;font-size:clamp(26px,2.8vw,36px);line-height:1.12;letter-spacing:-.03em;font-weight:600;max-width:640px;text-wrap:balance";
+const ruido = (o: string) =>
+  `url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22/></filter><rect width=%22160%22 height=%22160%22 filter=%22url(%23n)%22 opacity=%22${o}%22/></svg>')`;
+
+const itensNumerados = d.itens.map((t, i) => ({ n: String(i + 1).padStart(2, "0"), t }));
+
+const breadcrumb = [
+  { name: lang === "pt" ? "Início" : "Home", url: route("home", lang) },
+  { name: UI.nav.solucoes[lang], url: route("solucoes", lang) },
+  { name: d.nome, url: path },
+];
+---
+
+<Base
+  lang={lang}
+  title={title}
+  description={description}
+  path={path}
+  ogImage={d.img}
+  jsonLd={jsonLd}
+  breadcrumb={breadcrumb}
+>
+  <div style="font-family:Sora,'Helvetica Neue',sans-serif;background:#F4F3F0;min-height:100vh">
+    <SiteNav lang={lang} path={path} />
+
+    <header style="position:relative;background:#0D0D0D;color:#F4F3F0;overflow:hidden">
+      <div style={`position:absolute;inset:0;background-image:${ruido("0.05")};pointer-events:none`}></div>
+      <div
+        data-r="p1 g1"
+        style="position:relative;max-width:1240px;margin:0 auto;padding:132px 32px 84px;display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:end"
+      >
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <div
+            data-reveal
+            style="display:flex;align-items:center;gap:10px;font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.16em"
+          >
+            <a href={route("solucoes", lang)} data-h="verde" style="color:rgba(244,243,240,.55)"
+              >{UI.nav.solucoes[lang]}</a
+            >
+            <span style="color:rgba(244,243,240,.35)">/</span>
+            <span style="color:#13BE9F">{d.num}</span>
+          </div>
+          <h1
+            data-reveal
+            style="margin:0;font-size:clamp(34px,4.2vw,58px);line-height:1.06;letter-spacing:-.03em;font-weight:600;text-wrap:balance"
+          >
+            {d.nome}
+          </h1>
+          <p
+            data-reveal
+            style="margin:0;max-width:560px;font-size:16.5px;line-height:1.65;color:rgba(244,243,240,.68)"
+          >
+            {d.tagline}
+          </p>
+          <div data-reveal style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:4px">
+            <a
+              href={WHATSAPP}
+              data-mag="1"
+              data-h="btn"
+              style="background:#13BE9F;color:#0D0D0D;border-radius:999px;padding:13px 26px;font-size:14.5px;font-weight:600;white-space:nowrap"
+              >{UI.linha.falarEspecialista[lang]}</a
+            >
+            <a
+              href={route("contato", lang)}
+              data-mag="1"
+              data-h="borda"
+              style="border:1px solid rgba(244,243,240,.25);color:#F4F3F0;border-radius:999px;padding:12px 24px;font-size:14.5px;font-weight:500;white-space:nowrap"
+              >{T.canaisContato[lang]}</a
+            >
+          </div>
+        </div>
+        <div
+          data-reveal
+          style="position:relative;border-radius:4px;overflow:hidden;background:#0D0D0D;aspect-ratio:3/4;max-height:420px"
+        >
+          <img
+            src={d.img}
+            alt={d.nome}
+            width="600"
+            height="800"
+            style="width:100%;height:100%;object-fit:cover;display:block;opacity:.92"
+          />
+          <span
+            style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,0) 45%,rgba(13,13,13,.85) 100%)"
+          ></span>
+          <span
+            data-glass="1"
+            style="position:absolute;left:18px;bottom:16px;display:flex;flex-direction:column;gap:2px;padding:12px 18px 13px;border-radius:6px;background:rgba(255,255,255,.1);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border:1px solid rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)"
+          >
+            <span style="font-size:44px;font-weight:600;letter-spacing:-.03em;color:#F4F3F0;line-height:1"
+              >{d.num}</span
+            >
+            <span
+              style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.16em;color:rgba(244,243,240,.6)"
+              >{T.solucaoSetfree[lang]}</span
+            >
+          </span>
+        </div>
+      </div>
+      <div
+        style="position:absolute;left:0;right:0;bottom:0;height:2px;background:#13BE9F;opacity:.85"
+        data-sf-neon="1"
+      >
+      </div>
+    </header>
+
+    <section style="background:#F4F3F0">
+      <div data-r="p3" style="max-width:1240px;margin:0 auto;padding:88px 32px">
+        <span data-reveal style={kicker}>{T.oQueInclui[lang]}</span>
+        <h2 data-reveal style={h2}>{d.incluiT}</h2>
+        <div data-r="g2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px">
+          {
+            itensNumerados.map((i) => (
+              <div
+                data-reveal
+                style="display:grid;grid-template-columns:44px 1fr;gap:14px;padding:20px 0;border-top:1px solid rgba(13,13,13,.12);align-items:baseline"
+              >
+                <span style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.16em;color:#474E58">
+                  {i.n}
+                </span>
+                <span style="font-size:16.5px;font-weight:600;letter-spacing:-.01em;line-height:1.4">{i.t}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#E7E6E2;border-top:1px solid rgba(13,13,13,.06)">
+      <div data-r="p3" style="max-width:1240px;margin:0 auto;padding:88px 32px">
+        <span data-reveal style={kicker}>{T.paraQuem[lang]}</span>
+        <h2
+          data-reveal
+          style="margin:18px 0 40px;font-size:clamp(26px,2.8vw,36px);line-height:1.12;letter-spacing:-.03em;font-weight:600;max-width:600px;text-wrap:balance"
+        >
+          {d.publicoT}
+        </h2>
+        <div data-r="g3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0">
+          {
+            d.publico.map((p) => (
+              <div data-reveal style="border-left:1px solid rgba(13,13,13,.14);padding:6px 28px 6px 22px">
+                <h3 style="margin:0 0 8px;font-size:17px;font-weight:600;letter-spacing:-.01em">{p.t}</h3>
+                <p style="margin:0;font-size:14px;line-height:1.6;color:#474E58">{p.d}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F4F3F0;border-top:1px solid rgba(13,13,13,.08)">
+      <div data-r="p3" style="max-width:1240px;margin:0 auto;padding:88px 32px">
+        <span data-reveal style={kicker}>{T.comoComeca[lang]}</span>
+        <h2
+          data-reveal
+          style="margin:18px 0 40px;font-size:clamp(26px,2.8vw,36px);line-height:1.12;letter-spacing:-.03em;font-weight:600"
+        >
+          {T.tresPassos[lang]}
+        </h2>
+        <div data-r="g3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0">
+          {
+            T.passos[lang].map((p, i) => (
+              <div data-reveal style="border-left:1px solid rgba(13,13,13,.14);padding:6px 28px 6px 22px">
+                <span style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.16em;color:#474E58">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 style="margin:12px 0 8px;font-size:17px;font-weight:600">{p.t}</h3>
+                <p style="margin:0;font-size:14px;line-height:1.6;color:#474E58">{p.d}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#0D0D0D;color:#F4F3F0;position:relative;overflow:hidden">
+      <div style={`position:absolute;inset:0;background-image:${ruido("0.04")};pointer-events:none`}></div>
+      <div
+        data-r="p2"
+        style="position:relative;max-width:1240px;margin:0 auto;padding:80px 32px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap"
+      >
+        <div style="max-width:560px">
+          <h2
+            data-reveal
+            style="margin:0;font-size:clamp(26px,2.8vw,36px);line-height:1.14;letter-spacing:-.03em;font-weight:600;text-wrap:balance"
+          >
+            {d.ctaT}
+          </h2>
+          <p data-reveal style="margin:14px 0 0;font-size:15.5px;line-height:1.65;color:rgba(244,243,240,.62)">
+            {T.ctaD[lang]}
+          </p>
+        </div>
+        <div data-reveal style="display:flex;gap:14px;flex-wrap:wrap">
+          <a
+            data-mag="1"
+            data-h="btn"
+            href={WHATSAPP}
+            style="background:#13BE9F;color:#0D0D0D;border-radius:999px;padding:15px 30px;font-size:15px;font-weight:600;white-space:nowrap"
+            >{UI.nav.falarWhats[lang]}</a
+          >
+          <a
+            data-mag="1"
+            data-h="borda"
+            href={route("contato", lang)}
+            style="border:1px solid rgba(244,243,240,.25);color:#F4F3F0;border-radius:999px;padding:14px 28px;font-size:15px;font-weight:500;white-space:nowrap"
+            >{T.canaisContato[lang]}</a
+          >
+        </div>
+      </div>
+    </section>
+
+    {d.editaisAoVivo && <EditaisPncp lang={lang} />}
+
+    <section style="background:#F4F3F0;border-top:1px solid rgba(13,13,13,.08)">
+      <div data-r="p3" style="max-width:1240px;margin:0 auto;padding:88px 32px">
+        <div
+          data-reveal
+          style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:30px"
+        >
+          <h2 style="margin:0;font-size:clamp(24px,2.6vw,32px);letter-spacing:-.03em;font-weight:600">
+            {T.outras[lang]}
+          </h2>
+          <a
+            href={route("solucoes", lang)}
+            data-h="verde-escuro"
+            style="color:#13BE9F;font-size:14.5px;font-weight:600">{UI.linha.verTodas[lang]}</a
+          >
+        </div>
+        <div data-r="g3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+          {
+            d.outras.map((o) => {
+              const r = relacionada(o.slug);
+              return (
+                <a
+                  href={solucaoUrl(o.slug, lang)}
+                  data-reveal
+                  data-tilt="1"
+                  data-h="card"
+                  style="display:flex;align-items:center;gap:16px;background:#0D0D0D;border-radius:4px;padding:20px 22px;color:#F4F3F0"
+                >
+                  <span style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.16em;color:#13BE9F;flex:none">
+                    {r.num}
+                  </span>
+                  <span style="flex:1;font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.35">
+                    {r.nome}
+                  </span>
+                  <span style="color:#13BE9F;font-weight:600;flex:none">→</span>
+                </a>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+
+    <SiteFooter lang={lang} />
+  </div>
+</Base>
+
+<style is:global>
+  /* Bloco responsivo do SolucaoPage. */
+  @media (max-width: 980px) {
+    [data-r~="p1"] {
+      padding: 104px 22px 60px !important;
+    }
+    [data-r~="p2"] {
+      padding: 60px 22px !important;
+    }
+    [data-r~="p3"] {
+      padding: 65px 22px !important;
+    }
+    [data-r~="g1"] {
+      grid-template-columns: 1fr !important;
+      gap: 30px !important;
+    }
+    [data-r~="g2"],
+    [data-r~="g3"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+  @media (max-width: 620px) {
+    [data-r~="g2"],
+    [data-r~="g3"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

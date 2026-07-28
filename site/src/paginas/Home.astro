@@ -1,0 +1,742 @@
+---
+import Base from "../layouts/Base.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { EMAIL, L, UI, WHATSAPP, linhaUrl, route, type Lang } from "../lib/i18n";
+import { linhas } from "../data";
+import { comDominio, seo } from "../lib/seo";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const path = route("home", lang);
+const meta = seo("/", lang);
+const site = Astro.site!.href.replace(/\/+$/, "");
+
+// Cartões do portfólio: categoria curta e descrição de uma linha, próprias da home.
+const cards = [
+  {
+    slug: "geister",
+    nome: "Geister",
+    cat: L(lang, "MICROCIRURGIA", "MICROSURGERY"),
+    desc: L(
+      lang,
+      "Micro lâminas de precisão para procedimentos delicados — pontas afiadas e atraumáticas.",
+      "Precision micro blades for delicate procedures — sharp, atraumatic tips.",
+    ),
+    prod: "/uploads/produtos/mk-angulada.png",
+  },
+  {
+    slug: "radimed",
+    nome: "Radimed",
+    cat: L(lang, "DOR CRÔNICA", "CHRONIC PAIN"),
+    desc: L(
+      lang,
+      "Cânulas e agulhas para radiofrequência no tratamento alvo-seletivo da dor.",
+      "Cannulas and needles for radiofrequency in target-selective pain treatment.",
+    ),
+    prod: "/uploads/produtos/radimed.png",
+  },
+  {
+    slug: "marrow-cellution",
+    nome: "Marrow Cellution",
+    cat: L(lang, "TERAPIAS REGENERATIVAS", "REGENERATIVE THERAPIES"),
+    desc: L(
+      lang,
+      "Aspiração de medula óssea para coleta avançada de células-tronco.",
+      "Bone marrow aspiration for advanced stem cell harvesting.",
+    ),
+    prod: "/uploads/produtos/marrow.png",
+  },
+  {
+    slug: "corebone",
+    nome: "CoreBone",
+    cat: L(lang, "REGENERAÇÃO ÓSSEA", "BONE REGENERATION"),
+    desc: L(
+      lang,
+      "Enxerto ósseo bioativo de origem coral, destaque na CNN Business.",
+      "Coral-derived bioactive bone graft, featured on CNN Business.",
+    ),
+    prod: "/uploads/produtos/corebone.png",
+  },
+  {
+    slug: "lipsus",
+    nome: "Lipsus",
+    cat: L(lang, "CUIDADO AO PACIENTE", "PATIENT CARE"),
+    desc: L(
+      lang,
+      "Umedecimento contínuo dos lábios — conforto na recuperação pós-cirúrgica.",
+      "Continuous lip moistening — comfort during post-surgical recovery.",
+    ),
+    prod: "/uploads/produtos/lipsus.png",
+  },
+  {
+    slug: "dentsply",
+    nome: "Dentsply Sirona",
+    cat: L(lang, "ODONTOLOGIA · OSSIX", "DENTISTRY · OSSIX"),
+    desc: L(
+      lang,
+      "Linha OSSIX de regeneração óssea e tecidual guiada, com tecnologia GLYMATRIX.",
+      "The OSSIX line of guided bone and tissue regeneration, with GLYMATRIX technology.",
+    ),
+    prod: "/uploads/produtos/ossix.png",
+  },
+  {
+    slug: "parceiros-estrategicos",
+    nome: L(lang, "Parceiros Estratégicos", "Strategic Partners"),
+    cat: L(lang, "LINHA HOSPITALAR", "HOSPITAL LINE"),
+    desc: L(
+      lang,
+      "Produtos hospitalares para o dia a dia — venda direta e licitações.",
+      "Everyday hospital products — direct sale and public tenders.",
+    ),
+    semProd: L(lang, "PARCEIROS<br>ESTRATÉGICOS", "STRATEGIC<br>PARTNERS"),
+  },
+].map((c) => {
+  const l = linhas(lang).find((x) => x.slug === c.slug)!;
+  return { ...c, img: l.pena, corClara: l.corClara, href: linhaUrl(c.slug, lang) };
+});
+
+const jornada = [
+  { n: "01", t: L(lang, "Dor", "Pain") },
+  { n: "02", t: L(lang, "Alívio", "Relief") },
+  { n: "03", t: L(lang, "Cura", "Healing") },
+  { n: "04", t: L(lang, "Liberdade", "Freedom"), destaque: true },
+];
+
+const publicos = [
+  {
+    kicker: L(lang, "ATENDIMENTO CLÍNICO", "CLINICAL CARE"),
+    t: L(lang, "Hospitais e clínicas", "Hospitals and clinics"),
+    d: L(
+      lang,
+      "Cotação de produtos, treinamento clínico e suporte técnico de um time especializado.",
+      "Product quotes, clinical training and technical support from a specialized team.",
+    ),
+    cta: L(lang, "Falar com especialista →", "Talk to a specialist →"),
+    href: WHATSAPP,
+  },
+  {
+    kicker: L(lang, "COMPRAS PÚBLICAS", "PUBLIC PROCUREMENT"),
+    t: L(lang, "Compradores públicos", "Public buyers"),
+    d: L(
+      lang,
+      "Especificações verificadas e preços auditáveis para o seu edital — com resposta ágil.",
+      "Verified specifications and auditable prices for your tender — with agile response.",
+    ),
+    cta: L(lang, "Enviar edital →", "Send a tender →"),
+    href: route("contato", lang),
+  },
+  {
+    kicker: L(lang, "PARCERIAS", "PARTNERSHIPS"),
+    t: L(lang, "Fabricantes globais", "Global manufacturers"),
+    d: L(
+      lang,
+      "Registro ANVISA e distribuição nacional do seu produto no mercado brasileiro.",
+      "ANVISA registration and nationwide distribution of your product in the Brazilian market.",
+    ),
+    cta: L(lang, "Seja nosso parceiro →", "Become a partner →"),
+    href: `mailto:${EMAIL}?subject=Partnership%20—%20Brazil%20market%20entry`,
+  },
+];
+
+const dados = [
+  {
+    t: L(lang, "Radar PNCP 24/7", "PNCP radar 24/7"),
+    d: L(
+      lang,
+      "Descoberta automatizada de editais em portais federais, estaduais e municipais.",
+      "Automated tender discovery across federal, state and municipal portals.",
+    ),
+  },
+  {
+    t: L(lang, "Dados de edital verificados", "Verified tender data"),
+    d: L(
+      lang,
+      "Camada independente de verificação: nenhum dado extraído entra em decisão sem conferência.",
+      "An independent verification layer: no extracted data enters a decision unchecked.",
+    ),
+  },
+  {
+    t: L(lang, "Cotações com fonte auditável", "Quotes with auditable sources"),
+    d: L(
+      lang,
+      "Todo preço vinculado à sua fonte — rastreabilidade em que o comprador pode confiar.",
+      "Every price linked to its source — traceability buyers can trust.",
+    ),
+  },
+];
+
+const esteira = [
+  {
+    t: L(lang, "Edital detectado — PNCP", "Tender detected — PNCP"),
+    tag: "T+0H",
+    tagVerde: false,
+    d: L(lang, "Pregão eletrônico · insumos hospitalares · SP", "Electronic auction · hospital supplies · SP"),
+  },
+  {
+    t: L(lang, "Extração + conferência independente", "Extraction + independent check"),
+    tag: L(lang, "VERIFICADO", "VERIFIED"),
+    tagVerde: true,
+    d: L(
+      lang,
+      "Itens, prazos e exigências conferidos contra o documento oficial",
+      "Items, deadlines and requirements checked against the official document",
+    ),
+  },
+  {
+    t: L(lang, "Cotação com fonte", "Quote with sources"),
+    tag: L(lang, "AUDITÁVEL", "AUDITABLE"),
+    tagVerde: true,
+    d: L(lang, "Marca, modelo e preço — cada um com link verificável", "Brand, model and price — each with a verifiable link"),
+  },
+  {
+    t: L(lang, "Decisão Go / No-Go", "Go / No-Go decision"),
+    tag: "T+4H",
+    tagVerde: false,
+    d: L(
+      lang,
+      "Disputa, entrega e pós-venda — com rastreabilidade completa",
+      "Bidding, delivery and after-sales — with full traceability",
+    ),
+  },
+];
+
+const fabricante = [
+  {
+    t: L(lang, "Estratégia regulatória e de mercado", "Regulatory and market strategy"),
+    d: L(
+      lang,
+      "Posicionamento, preço e rota de entrada construídos para o seu produto.",
+      "Positioning, pricing and entry route built for your product.",
+    ),
+  },
+  {
+    t: L(lang, "Registro ANVISA, com velocidade", "ANVISA registration, with speed"),
+    d: L(
+      lang,
+      "Agimos na velocidade do processo de registro e certificação.",
+      "We move at the speed of the registration and certification process.",
+    ),
+  },
+  {
+    t: L(lang, "Distribuição, treinamento e pós-venda", "Distribution, training and after-sales"),
+    d: L(
+      lang,
+      "Alcance nacional — hospitais privados, clínicas e compras públicas.",
+      "Nationwide reach — private hospitals, clinics and public procurement.",
+    ),
+  },
+];
+
+const compliance = [
+  {
+    t: L(lang, "Regularização ANVISA", "ANVISA regularization"),
+    d: L(
+      lang,
+      "Informamos o status na ANVISA de cada linha antes de qualquer proposta — registro ativo ou processo em andamento.",
+      "We state each line's ANVISA status before any proposal — active registration or process underway.",
+    ),
+  },
+  {
+    t: L(lang, "Importação regularizada", "Regularized import"),
+    d: L(
+      lang,
+      "Processos de importação conforme a legislação sanitária brasileira.",
+      "Import processes under Brazilian sanitary legislation.",
+    ),
+  },
+  {
+    t: L(lang, "Armazenamento e distribuição", "Storage and distribution"),
+    d: L(
+      lang,
+      "Boas práticas de armazenamento e transporte até o destino.",
+      "Good storage and transport practices to the destination.",
+    ),
+  },
+  {
+    t: L(lang, "Rastreabilidade e pós-venda", "Traceability and after-sales"),
+    d: L(lang, "Trilha auditável de lote e suporte técnico contínuo.", "Auditable batch trail and continuous technical support."),
+  },
+];
+
+const kickerVerde =
+  "font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;color:#13BE9F";
+const numCinza =
+  "font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.16em;color:#474E58";
+const ruido = (o: string) =>
+  `url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22/></filter><rect width=%22160%22 height=%22160%22 filter=%22url(%23n)%22 opacity=%22${o}%22/></svg>')`;
+---
+
+<Base
+  lang={lang}
+  title={meta.title}
+  description={meta.description}
+  path={path}
+  ogImage={meta.og}
+  jsonLd={comDominio(meta.jsonLd, site)}
+>
+  <div style="font-family:Sora,'Helvetica Neue',sans-serif;background:#F4F3F0;min-height:100vh">
+    <SiteNav lang={lang} path={path} dark ocultaInicio />
+
+    <header style="position:relative;background:#0D0D0D;color:#F4F3F0;overflow:hidden">
+      <div style={`position:absolute;inset:0;background-image:${ruido("0.05")};pointer-events:none;z-index:1`}></div>
+      <img
+        src="/uploads/pena-casa-verde.jpg"
+        alt=""
+        aria-hidden="true"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;opacity:.85"
+      />
+      <video
+        id="sf-pena-hero"
+        poster="/uploads/pena-casa-verde.jpg"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;opacity:0;transition:opacity 1.2s ease"
+      >
+        <source src="/uploads/pena-hero.mp4" type="video/mp4" />
+      </video>
+      <div
+        style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.55) 0%,rgba(13,13,13,.15) 40%,rgba(13,13,13,.62) 100%);pointer-events:none"
+      >
+      </div>
+      <div
+        data-r="p2"
+        style="position:relative;z-index:2;max-width:1240px;margin:0 auto;min-height:100svh;padding:120px 32px 72px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:30px"
+      >
+        <img data-reveal src="/uploads/logo-branco.png" alt="Setfree" width="185" height="64" style="height:64px;width:auto;display:block" />
+        <h1
+          data-reveal
+          style="margin:0;max-width:15ch;font-size:clamp(42px,5.2vw,72px);line-height:1.06;letter-spacing:-.03em;font-weight:600;text-wrap:balance;text-shadow:0 2px 30px rgba(13,13,13,.45)"
+        >
+          {L(lang, "Do alívio da dor à cura completa.", "From pain relief to complete healing.")}
+        </h1>
+        <div
+          data-reveal
+          style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:4px"
+        >
+          <a
+            href={WHATSAPP}
+            data-mag="1"
+            data-h="btn"
+            style="background:#13BE9F;color:#0D0D0D;border-radius:999px;padding:14px 28px;font-size:14.5px;font-weight:600;white-space:nowrap"
+            >{UI.nav.falarWhats[lang]}</a
+          >
+          <a
+            href={route("tecnologias", lang)}
+            data-mag="1"
+            data-glass="1"
+            data-h="borda"
+            style="background:rgba(255,255,255,.1);backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);border:1px solid rgba(255,255,255,.25);box-shadow:inset 0 1px 0 rgba(255,255,255,.3);color:#F4F3F0;border-radius:999px;padding:13px 26px;font-size:14.5px;font-weight:500;white-space:nowrap"
+            >{L(lang, "Conhecer as tecnologias", "Explore the technologies")}</a
+          >
+        </div>
+        <span
+          data-reveal
+          style="position:absolute;bottom:28px;left:0;right:0;font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:rgba(244,243,240,.55)"
+          >{L(lang, "IMPORTAÇÃO E DISTRIBUIÇÃO · TECNOLOGIA MÉDICA", "IMPORT AND DISTRIBUTION · MEDICAL TECHNOLOGY")}</span
+        >
+      </div>
+      <div
+        data-sf-neon="1"
+        style="position:absolute;left:0;right:0;bottom:0;z-index:2;height:2px;background:linear-gradient(90deg,rgba(19,190,159,0),#13BE9F 15%,#13BE9F 85%,rgba(19,190,159,0));box-shadow:0 0 14px rgba(19,190,159,.5);animation:sfNeon 4.5s ease-in-out infinite"
+      >
+      </div>
+    </header>
+
+    <section style="background:#F4F3F0;border-bottom:1px solid rgba(13,13,13,.08)">
+      <div data-r="p3" style="max-width:1240px;margin:0 auto;padding:84px 32px 78px">
+        <div
+          data-reveal
+          style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:44px"
+        >
+          <span style={kickerVerde}>{L(lang, "A TRANSFORMAÇÃO", "THE TRANSFORMATION")}</span>
+          <p style="margin:0;font-size:16px;color:#474E58">
+            {
+              L(
+                lang,
+                "Uma jornada orienta cada decisão. Ela inspira — nunca substitui — a evidência clínica.",
+                "One journey guides every decision. It inspires — it never replaces — clinical evidence.",
+              )
+            }
+          </p>
+        </div>
+        <div data-r="g2" style="display:grid;grid-template-columns:repeat(4,1fr)">
+          {
+            jornada.map((j, i) => (
+              <div
+                data-reveal
+                style={`padding:8px ${i === 3 ? "0" : "28px"} 8px 24px;border-left:1px solid rgba(13,13,13,.12)`}
+              >
+                <div
+                  style={`font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.16em;color:${j.destaque ? "#13BE9F" : "#474E58"};margin-bottom:14px`}
+                >
+                  {j.n}
+                </div>
+                <div style="font-size:30px;font-weight:600;letter-spacing:-.03em">{j.t}</div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F4F3F0">
+      <div data-r="p4" style="max-width:1240px;margin:0 auto;padding:96px 32px">
+        <div data-reveal style="max-width:640px;margin-bottom:52px">
+          <span style={kickerVerde}>{L(lang, "PARA QUEM ATENDEMOS", "WHO WE SERVE")}</span>
+          <h2
+            style="margin:18px 0 0;font-size:clamp(30px,3.4vw,44px);line-height:1.1;letter-spacing:-.03em;font-weight:600;text-wrap:balance"
+          >
+            {L(lang, "Um caminho claro para cada necessidade", "A clear path for each need")}
+          </h2>
+        </div>
+        <div data-r="g3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+          {
+            publicos.map((p) => (
+              <div
+                data-reveal
+                data-h="cartao"
+                style="background:#E7E6E2;border:1px solid rgba(13,13,13,.06);border-radius:4px;padding:34px 30px;display:flex;flex-direction:column;gap:14px;transition:transform .25s,box-shadow .25s"
+              >
+                <span style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;color:#474E58">
+                  {p.kicker}
+                </span>
+                <h3 style="margin:0;font-size:22px;font-weight:600;letter-spacing:-.01em">{p.t}</h3>
+                <p style="margin:0;font-size:14.5px;line-height:1.6;color:#474E58;flex:1">{p.d}</p>
+                <a href={p.href} data-h="verde-escuro" style="color:#13BE9F;font-size:14px;font-weight:600">
+                  {p.cta}
+                </a>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F4F3F0;border-top:1px solid rgba(13,13,13,.08)">
+      <div data-r="p4" style="max-width:1240px;margin:0 auto;padding:96px 32px">
+        <div
+          data-reveal
+          style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:54px"
+        >
+          <div style="max-width:620px">
+            <span style={kickerVerde}>{L(lang, "PORTFÓLIO", "PORTFOLIO")}</span>
+            <h2
+              style="margin:18px 0 14px;font-size:clamp(30px,3.4vw,44px);line-height:1.1;letter-spacing:-.03em;font-weight:600"
+            >
+              {L(lang, "Uma águia, muitas penas", "One eagle, many feathers")}
+            </h2>
+            <p style="margin:0;font-size:15.5px;line-height:1.65;color:#474E58">
+              {
+                L(
+                  lang,
+                  "Cada linha é uma pena da mesma asa: vendidas separadamente, voando juntas. Tecnologias de fabricantes de classe mundial, com importação regularizada e suporte no Brasil.",
+                  "Each line is a feather of the same wing: sold separately, flying together. World-class technologies with regularized import and support in Brazil.",
+                )
+              }
+            </p>
+          </div>
+          <a
+            href={route("tecnologias", lang)}
+            data-h="verde-escuro"
+            style="color:#13BE9F;font-size:14.5px;font-weight:600;white-space:nowrap"
+            >{L(lang, "Ver todas as linhas →", "See all lines →")}</a
+          >
+        </div>
+        <div data-r="g4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+          {
+            cards.map((l) => (
+              <a
+                href={l.href}
+                data-reveal
+                data-tilt="1"
+                data-h="card"
+                style="background:#0D0D0D;border-radius:4px;overflow:hidden;display:flex;flex-direction:column"
+              >
+                <span style="display:block;height:140px;overflow:hidden">
+                  <img
+                    src={l.img}
+                    alt=""
+                    loading="lazy"
+                    style="width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block"
+                  />
+                </span>
+                <span style="display:flex;align-items:center;justify-content:center;background:#E7E6E2;height:128px;padding:14px 18px;position:relative">
+                  {l.prod ? (
+                    <img
+                      src={l.prod}
+                      alt={l.nome}
+                      loading="lazy"
+                      style="max-width:100%;max-height:100%;object-fit:contain;display:block;mix-blend-mode:multiply"
+                    />
+                  ) : (
+                    <span
+                      style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.16em;line-height:1.7;text-align:center;color:#474E58"
+                      set:html={l.semProd}
+                    />
+                  )}
+                </span>
+                <span style="display:flex;flex-direction:column;gap:8px;padding:16px 20px 22px">
+                  <span
+                    style={`font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.16em;color:${l.corClara}`}
+                  >
+                    {l.cat}
+                  </span>
+                  <span style="font-size:19px;font-weight:600;letter-spacing:-.01em;color:#F4F3F0;display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+                    {l.nome}
+                    <span style="color:#13BE9F">→</span>
+                  </span>
+                  <span style="font-size:13px;color:rgba(244,243,240,.55);line-height:1.55">{l.desc}</span>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#E7E6E2;border-top:1px solid rgba(13,13,13,.06)">
+      <div
+        data-r="p4 g5"
+        style="max-width:1240px;margin:0 auto;padding:96px 32px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center"
+      >
+        <div data-reveal style="display:flex;flex-direction:column;gap:20px">
+          <span style={kickerVerde}>{UI.nav.tecnologias[lang]}</span>
+          <h2 style="margin:0;font-size:clamp(28px,3vw,40px);line-height:1.12;letter-spacing:-.03em;font-weight:600">
+            {L(lang, "Operação guiada por dados, de ponta a ponta", "A data-driven operation, end to end")}
+          </h2>
+          <p style="margin:0;font-size:15.5px;line-height:1.65;color:#474E58">
+            {
+              L(
+                lang,
+                "Monitoramos o PNCP 24/7, verificamos cada dado de edital contra a fonte e cotamos com trilha auditável — decisões go/no-go em horas, não dias.",
+                "We monitor the PNCP 24/7, verify every tender data point against its source and quote with an auditable trail — go/no-go decisions in hours, not days.",
+              )
+            }
+          </p>
+          <div style="display:flex;flex-direction:column;margin-top:8px">
+            {
+              dados.map((x) => (
+                <div style="padding:16px 0;border-top:1px solid rgba(13,13,13,.1)">
+                  <strong style="font-size:15px;font-weight:600">{x.t}</strong>
+                  <p style="margin:5px 0 0;font-size:14px;color:#474E58;line-height:1.55">{x.d}</p>
+                </div>
+              ))
+            }
+          </div>
+          <a href={route("contato", lang)} data-h="verde-escuro" style="color:#13BE9F;font-size:14.5px;font-weight:600"
+            >{L(lang, "Enviar edital / lista de itens →", "Send a tender / item list →")}</a
+          >
+        </div>
+        <div
+          data-reveal
+          style="background:#0D0D0D;border-radius:4px;border-top:3px solid #13BE9F;padding:34px;color:#F4F3F0;position:relative;overflow:hidden"
+        >
+          <div style={`position:absolute;inset:0;background-image:${ruido("0.05")}`}></div>
+          <div style="position:relative;display:flex;flex-direction:column">
+            <span
+              style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;color:#13BE9F;margin-bottom:22px"
+              >{L(lang, "ESTEIRA DE LICITAÇÕES — AO VIVO", "TENDER PIPELINE — LIVE")}</span
+            >
+            <div data-r="g6" style="display:grid;grid-template-columns:14px 1fr;column-gap:18px">
+              {
+                esteira.map((e, i) => (
+                  <>
+                    <div style="display:flex;flex-direction:column;align-items:center">
+                      <span
+                        style={`width:8px;height:8px;border-radius:50%;background:${i === 0 ? "#13BE9F" : "rgba(244,243,240,.4)"};margin-top:5px`}
+                      />
+                      {i < esteira.length - 1 && <span style="flex:1;width:1px;background:rgba(244,243,240,.15)" />}
+                    </div>
+                    <div style={i < esteira.length - 1 ? "padding-bottom:22px" : ""}>
+                      <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline">
+                        <strong style="font-size:14.5px;font-weight:600">{e.t}</strong>
+                        <span
+                          style={`font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:10.5px;letter-spacing:.16em;color:${e.tagVerde ? "#13BE9F" : "rgba(244,243,240,.5)"}`}
+                        >
+                          {e.tag}
+                        </span>
+                      </div>
+                      <p style="margin:4px 0 0;font-size:13px;color:rgba(244,243,240,.55)">{e.d}</p>
+                    </div>
+                  </>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F4F3F0">
+      <div
+        data-r="p4 g5"
+        style="max-width:1240px;margin:0 auto;padding:96px 32px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center"
+      >
+        <div data-reveal style="order:2;display:flex;flex-direction:column;gap:20px">
+          <span style={kickerVerde}>{L(lang, "PARA FABRICANTES GLOBAIS", "FOR GLOBAL MANUFACTURERS")}</span>
+          <h2 style="margin:0;font-size:clamp(28px,3vw,40px);line-height:1.12;letter-spacing:-.03em;font-weight:600">
+            {L(lang, "Seu parceiro de entrada no mercado brasileiro", "Your entry partner for the Brazilian market")}
+          </h2>
+          <div style="display:flex;flex-direction:column">
+            {
+              fabricante.map((f, i) => (
+                <div
+                  data-r="g7"
+                  style="display:grid;grid-template-columns:44px 1fr;gap:16px;padding:18px 0;border-top:1px solid rgba(13,13,13,.1)"
+                >
+                  <span style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:13px;font-weight:600;letter-spacing:.16em;color:#474E58">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <strong style="font-size:15px;font-weight:600">{f.t}</strong>
+                    <p style="margin:5px 0 0;font-size:14px;color:#474E58;line-height:1.55">{f.d}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+          <a href={`mailto:${EMAIL}`} data-h="verde-escuro" style="color:#13BE9F;font-size:14.5px;font-weight:600"
+            >{L(lang, "Seja nosso parceiro →", "Become a partner →")}</a
+          >
+        </div>
+        <div data-reveal style="order:1;position:relative">
+          <img
+            src="/uploads/mapa-1000.png"
+            alt={L(lang, "Presença nacional Setfree — rede de distribuidores", "Setfree nationwide presence — distributor network")}
+            width="1000"
+            height="1000"
+            style="width:100%;height:auto;display:block"
+          />
+          <div style="position:absolute;left:0;bottom:18px;display:flex;flex-direction:column;gap:4px">
+            <span style="font-size:34px;font-weight:600;letter-spacing:-.03em">+120</span>
+            <span style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;color:#474E58"
+              >{L(lang, "DISTRIBUIDORES PARCEIROS · REDE NACIONAL", "PARTNER DISTRIBUTORS · NATIONWIDE NETWORK")}</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F4F3F0;border-top:1px solid rgba(13,13,13,.08)">
+      <div data-r="p4" style="max-width:1240px;margin:0 auto;padding:96px 32px">
+        <div data-reveal style="max-width:640px;margin-bottom:50px">
+          <span style={kickerVerde}>{L(lang, "COMPLIANCE E REGULATÓRIO", "COMPLIANCE AND REGULATORY")}</span>
+          <h2 style="margin:18px 0 0;font-size:clamp(28px,3vw,40px);line-height:1.12;letter-spacing:-.03em;font-weight:600">
+            {L(lang, "Segurança regulatória em cada etapa", "Regulatory safety at every step")}
+          </h2>
+        </div>
+        <div data-r="g8" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0">
+          {
+            compliance.map((c, i) => (
+              <div
+                data-reveal
+                style={`border-left:1px solid rgba(13,13,13,.12);padding:4px ${i === 3 ? "0" : "26px"} 4px 22px`}
+              >
+                <span style={numCinza.replace("11.5px", "12px")}>{String(i + 1).padStart(2, "0")}</span>
+                <h3 style="margin:12px 0 8px;font-size:16.5px;font-weight:600">{c.t}</h3>
+                <p style="margin:0;font-size:13.5px;line-height:1.6;color:#474E58">{c.d}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F4F3F0;border-top:1px solid rgba(13,13,13,.08)">
+      <div data-r="p5" style="max-width:1240px;margin:0 auto;padding:96px 32px 110px;text-align:center">
+        <span data-reveal style={kickerVerde}>{L(lang, "NOSSA PROMESSA", "OUR PROMISE")}</span>
+        <p
+          data-reveal
+          style="max-width:820px;margin:30px auto 26px;font-size:clamp(26px,3vw,38px);line-height:1.3;color:#0D0D0D;text-wrap:balance"
+        >
+          {
+            L(
+              lang,
+              "“Transformamos dor em alívio, alívio em cura e cura em liberdade.”",
+              "“We transform pain into relief, relief into healing, and healing into freedom.”",
+            )
+          }
+        </p>
+        <span data-reveal style={numCinza}>YOUR BEST CHOICE.</span>
+      </div>
+    </section>
+
+    <SiteFooter lang={lang} />
+  </div>
+</Base>
+
+<style is:global>
+  /* Bloco responsivo da Home. */
+  @media (max-width: 980px) {
+    [data-r~="p1"] {
+      padding: 0 22px !important;
+    }
+    [data-r~="p2"] {
+      padding: 104px 22px 60px !important;
+    }
+    [data-r~="p3"] {
+      padding: 57px 22px 53px !important;
+    }
+    [data-r~="p4"] {
+      padding: 65px 22px !important;
+    }
+    [data-r~="p5"] {
+      padding: 65px 22px 75px !important;
+    }
+    [data-r~="p6"] {
+      padding: 53px 22px 0 !important;
+    }
+    [data-r~="g1"] {
+      grid-template-columns: 1fr !important;
+      gap: 30px !important;
+    }
+    [data-r~="g2"],
+    [data-r~="g3"],
+    [data-r~="g4"],
+    [data-r~="g8"],
+    [data-r~="g9"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    [data-r~="g5"] {
+      grid-template-columns: 1fr !important;
+      gap: 30px !important;
+    }
+  }
+  @media (max-width: 620px) {
+    [data-r~="g2"],
+    [data-r~="g3"],
+    [data-r~="g4"],
+    [data-r~="g8"] {
+      grid-template-columns: 1fr !important;
+    }
+    [data-r~="g9"] {
+      grid-template-columns: 1fr !important;
+      gap: 30px !important;
+    }
+  }
+  [data-h="cartao"]:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 34px rgba(13, 13, 13, 0.08);
+  }
+</style>
+
+<script>
+  // O vídeo do hero entra por cima do poster assim que puder tocar.
+  const v = document.getElementById("sf-pena-hero") as HTMLVideoElement | null;
+  if (v && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const mostra = () => {
+      v.style.opacity = ".85";
+      v.play().catch(() => {});
+    };
+    if (v.readyState >= 3) mostra();
+    else v.addEventListener("canplay", mostra, { once: true });
+  }
+</script>

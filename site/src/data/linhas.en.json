@@ -1,0 +1,239 @@
+[
+  {
+    "slug": "geister",
+    "nome": "Micro Knifes GEISTER",
+    "cat": "MICROSURGERY · PRECISION INSTRUMENTS",
+    "corNome": "STEEL",
+    "tagline": "“The better way to operate.” Precision micro blades and ergonomic handles for the most delicate procedures.",
+    "overviewT": "German engineering, compact by design",
+    "overview": "The Microknife is a compact instrument developed for the most demanding professionals — a remarkable combination of portability, versatility and performance. The ergonomically designed FairGrip handle delivers maximum control for precise, effective cutting with microtools.",
+    "featsKicker": "FAIRGRIP TECHNOLOGY",
+    "featsT": "Control that reduces fatigue",
+    "feats": [
+      {
+        "t": "Enhanced precision",
+        "d": "The ergonomic FairGrip handle ensures maximum control, making cutting with microtools more precise and effective."
+      },
+      {
+        "t": "Lasting comfort",
+        "d": "The soft, durable grip offers exceptional comfort in long sessions, reducing fatigue and increasing productivity."
+      },
+      {
+        "t": "Optimised safety",
+        "d": "The firm, secure grip minimises the risk of accidents and injuries, for a safer working experience."
+      }
+    ],
+    "modelosKicker": "THE BLADES",
+    "modelosT": "An extremely sharp cutting edge",
+    "modelos": [
+      {
+        "t": "15° angled micro blade",
+        "d": "Angled tip for controlled access in narrow fields."
+      },
+      {
+        "t": "Crescent micro blade",
+        "d": "Double-bevelled crescent edge for precise dissection."
+      },
+      {
+        "t": "FairGrip handle",
+        "d": "Ergonomic titanium/steel handle, compatible with every blade."
+      }
+    ],
+    "especsT": "Configurations and materials",
+    "especs": [
+      { "k": "HANDLE", "v": "FairGrip titanium / steel" },
+      { "k": "BLADE GEOMETRIES", "v": "15° angled · crescent" },
+      { "k": "MATERIAL", "v": "German surgical steel" },
+      { "k": "APPLICATION", "v": "Microsurgery — delicate procedures" }
+    ],
+    "uso": [
+      {
+        "n": "01",
+        "d": "Select the blade geometry (15° angled or crescent) suited to the procedure and mount it on the FairGrip handle."
+      },
+      {
+        "n": "02",
+        "d": "Hold the ergonomic handle for maximum control and stability during the incision."
+      },
+      {
+        "n": "03",
+        "d": "Make clean, exact cuts while protecting the adjacent vital structures — ideal for minimally invasive work."
+      }
+    ],
+    "aplicT": "Where precision is decisive",
+    "aplicacoes": [
+      "Ophthalmic surgery",
+      "Microsurgery and neurosurgery",
+      "Plastic and reconstructive surgery",
+      "Dentistry and oral surgery"
+    ],
+    "catalogoLabel": "Download catalogue (PDF)",
+    "catalogoNome": "Micro Knifes catalogue"
+  },
+  {
+    "slug": "radimed",
+    "nome": "Radimed",
+    "cat": "CHRONIC PAIN · RADIOFREQUENCY",
+    "corNome": "CORAL",
+    "tagline": "Cannulas and needles for radiofrequency — a minimally invasive, target-selective technique in the treatment of chronic pain.",
+    "overviewT": "Target-selective relief, guided by precision",
+    "overview": "Radiofrequency is a minimally invasive, target-selective technique for treating chronic pain. Radimed cannulas and needles give the interventionalist the precise access the procedure depends on — from the diagnostic block to denervation.",
+    "featsKicker": "CLINICAL EVIDENCE",
+    "featsT": "Techniques we distribute",
+    "feats": [
+      {
+        "t": "Radiofrequency in chronic pain",
+        "d": "A minimally invasive, target-selective technique for treating chronic pain."
+      },
+      {
+        "t": "Facet joint injection in chronic low back pain",
+        "d": "Clinical assessment of facet joint injection in the treatment of facet syndrome."
+      }
+    ],
+    "aplicT": "Where it makes a difference",
+    "aplicacoes": ["Chronic pain", "Spine — facet syndrome", "Interventional pain medicine"],
+    "catalogoLabel": "Download catalogue (PDF)",
+    "catalogoNome": "Radimed catalogue"
+  },
+  {
+    "slug": "marrow-cellution",
+    "nome": "Marrow Cellution",
+    "cat": "REGENERATIVE THERAPIES · BONE MARROW",
+    "corNome": "NAVY",
+    "tagline": "Bone marrow aspiration system for advanced stem cell harvesting — regenerative, minimally invasive treatments.",
+    "overviewT": "More stem cells per aspirate",
+    "overview": "Marrow Cellution is a bone marrow aspiration system designed to maximise harvest quality at the point of care — recovering marrow cells at multiple depths while minimising dilution by peripheral blood.",
+    "featsKicker": "KEY DIFFERENTIATORS",
+    "featsT": "Why Marrow Cellution",
+    "feats": [
+      {
+        "t": "Higher stem cell concentration per aspirate",
+        "d": "A multi-level harvesting technique that minimises dilution by peripheral blood."
+      },
+      {
+        "t": "Backed by published scientific references",
+        "d": "A compilation of references is available for technical evaluation and tender documentation."
+      }
+    ],
+    "aplicT": "Where it makes a difference",
+    "aplicacoes": ["Regenerative therapies", "Orthopaedics and spine", "Minimally invasive procedures"],
+    "catalogoLabel": "Scientific references (PDF)",
+    "catalogoKicker": "PDF · SCIENTIFIC REFERENCES",
+    "catalogoNome": "Scientific references"
+  },
+  {
+    "slug": "corebone",
+    "nome": "CoreBone",
+    "cat": "BONE REGENERATION · BIOACTIVE GRAFT",
+    "corNome": "SKY",
+    "tagline": "Coral-derived bioactive bone graft. CNN Business covered its manufacturing, applicability and benefits.",
+    "overviewT": "From the coral farm to bone regeneration",
+    "overview": "CoreBone is a bioactive bone graft grown from coral in a controlled environment, free from the risk of disease transmission. It combines mechanical strength and bioactivity for bone regeneration in dentistry and orthopaedics.",
+    "featsKicker": "KEY DIFFERENTIATORS",
+    "featsT": "Why CoreBone",
+    "feats": [
+      {
+        "t": "Bioactive graft, coral-derived",
+        "d": "A mineral structure close to human bone, with mechanical strength and bioactivity."
+      },
+      {
+        "t": "Manufacturing featured by CNN Business",
+        "d": "The report showed the coral farm, the manufacturing process and the benefits of the graft."
+      }
+    ],
+    "aplicT": "Where it makes a difference",
+    "aplicacoes": ["Bone regeneration", "Dentistry — grafting", "Orthopaedics"],
+    "catalogoLabel": "Download catalogue (PDF)",
+    "catalogoNome": "CoreBone catalogue"
+  },
+  {
+    "slug": "lipsus",
+    "nome": "Lipsus",
+    "cat": "PATIENT CARE · POST-SURGICAL",
+    "corNome": "VIOLET",
+    "tagline": "Water pouch for continuous lip moistening — comfort during post-surgical recovery.",
+    "overviewT": "Continuous comfort, less load on staff",
+    "overview": "Lipsus continuously moistens the lips of a recovering patient — a simple form of care that improves post-surgical well-being and frees the clinical team and the family for other activities.",
+    "featsKicker": "KEY DIFFERENTIATORS",
+    "featsT": "Why Lipsus",
+    "feats": [
+      {
+        "t": "Continuous lip moistening",
+        "d": "Constant relief for the discomfort of dry lips after surgery."
+      },
+      {
+        "t": "Frees clinical staff and family",
+        "d": "Fewer interruptions to moisten manually — more time for what matters."
+      },
+      {
+        "t": "Well-being during recovery",
+        "d": "Optimises patient comfort throughout post-surgical recovery."
+      }
+    ],
+    "aplicT": "Where it makes a difference",
+    "aplicacoes": ["Post-surgical recovery", "ICU and wards", "Palliative care"]
+  },
+  {
+    "slug": "dentsply",
+    "nome": "Dentsply Sirona · OSSIX",
+    "cat": "DENTISTRY · BONE AND TISSUE REGENERATION",
+    "corNome": "AMBER",
+    "tagline": "The OSSIX guided regeneration line, from Dentsply Sirona's Regenerative Solutions division — a global reference in dentistry.",
+    "overviewT": "Guided regeneration with GLYMATRIX technology",
+    "overview": "OSSIX is Dentsply Sirona's family of regenerative biomaterials, built on GLYMATRIX technology: porcine type I collagen cross-linked with sugar, a process close to the body's natural glycation. The line has been used by clinicians for over 20 years in hundreds of thousands of bone and tissue regeneration procedures.",
+    "featsKicker": "THE OSSIX FAMILY",
+    "featsT": "Three solutions, one principle",
+    "feats": [
+      {
+        "t": "OSSIX Plus",
+        "d": "Cross-linked collagen barrier membrane for GBR and GTR, with a real barrier effect of 4 to 6 months — maintained even in case of exposure — that ossifies over the course of the process."
+      },
+      {
+        "t": "OSSIX Volumax",
+        "d": "Volumising scaffold: placed under the flap, it increases soft tissue thickness across different indications that call for additional volume."
+      },
+      {
+        "t": "OSSIX Bone",
+        "d": "An ossifying collagen sponge that increases the amount of vital bone without leaving residual particles after four months."
+      }
+    ],
+    "especsT": "Technology and composition",
+    "especs": [
+      { "k": "TECHNOLOGY", "v": "GLYMATRIX — sugar cross-linked collagen" },
+      { "k": "COLLAGEN SOURCE", "v": "Type I, porcine (tendon)" },
+      { "k": "BARRIER MEMBRANE", "v": "OSSIX Plus — 4 to 6 months" },
+      { "k": "SOFT TISSUE VOLUME", "v": "OSSIX Volumax" },
+      { "k": "OSSIFYING GRAFT", "v": "OSSIX Bone" }
+    ],
+    "aplicT": "Where it makes a difference",
+    "aplicacoes": [
+      "Guided bone regeneration (GBR)",
+      "Guided tissue regeneration (GTR)",
+      "Socket preservation",
+      "Implant dentistry and oral rehabilitation"
+    ]
+  },
+  {
+    "slug": "parceiros-estrategicos",
+    "nome": "Strategic Partners",
+    "cat": "HOSPITAL LINE · PARTNERS",
+    "corNome": "GRAPHITE",
+    "tagline": "Hospital products for the daily routine of healthcare institutions — supplied through direct sale and public tenders.",
+    "overviewT": "The strategic partners line",
+    "overview": "Strategic Partners is our hospital line: everyday products for healthcare institutions, supplied swiftly through direct sale and participation in public tenders — always with regularized importation and distribution.",
+    "featsKicker": "SUPPLY",
+    "featsT": "How we supply",
+    "feats": [
+      {
+        "t": "Direct sale",
+        "d": "Serving hospitals, clinics and distributors across Brazil."
+      },
+      {
+        "t": "Public tenders",
+        "d": "Our own data-driven desk — verified specifications and auditable prices."
+      }
+    ],
+    "aplicT": "Where it makes a difference",
+    "aplicacoes": ["Hospitals and clinics", "Public procurement", "Partner distributors"]
+  }
+]

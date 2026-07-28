@@ -1,0 +1,28 @@
+---
+import LinhaPage from "../../layouts/LinhaPage.astro";
+import { linha, linhas } from "../../data";
+import { linhaUrl } from "../../lib/i18n";
+import { comDominio, seo } from "../../lib/seo";
+
+export function getStaticPaths() {
+  return linhas("pt").map((l) => ({ params: { slug: l.slug } }));
+}
+
+const { slug } = Astro.params;
+const d = linha(slug!, "pt");
+const path = linhaUrl(slug!, "pt");
+const meta = seo(path, "pt");
+
+const site = Astro.site!.href.replace(/\/+$/, "");
+const nomeDe = (s: string) => linha(s, "pt").nome;
+---
+
+<LinhaPage
+  lang="pt"
+  d={d}
+  nomeDe={nomeDe}
+  title={meta.title}
+  description={meta.description}
+  path={path}
+  jsonLd={comDominio(meta.jsonLd, site)}
+/>

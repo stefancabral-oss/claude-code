@@ -1,0 +1,604 @@
+{
+  "/": {
+    "file": "Home.dc.html",
+    "title": "Setfree — Importação e distribuição de tecnologia médica",
+    "description": "Uma jornada orienta cada decisão. Ela inspira — nunca substitui — a evidência clínica.",
+    "og": "/uploads/asa-institucional-7penas.jpg",
+    "jsonLd": []
+  },
+  "/solucoes": {
+    "file": "Solucoes.dc.html",
+    "title": "Soluções: regulatório, qualidade e licitações | Setfree",
+    "description": "Consultoria, regulatório, qualidade e licitações — a estrutura completa para levar tecnologia médica de padrão internacional a quem precisa.",
+    "og": "/uploads/asa-linha-azul.jpg",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Soluções",
+        "description": "Consultoria, regulatório, qualidade e licitações — a estrutura completa para levar tecnologia médica de padrão internacional a quem precisa.",
+        "url": "{{SITE}}/solucoes",
+        "provider": {
+          "@id": "{{SITE}}/#org"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Brasil"
+        }
+      }
+    ]
+  },
+  "/tecnologias": {
+    "file": "Tecnologias.dc.html",
+    "title": "Tecnologias — 7 linhas de dispositivos médicos | Setfree",
+    "description": "Sete linhas: seis de fabricantes de classe mundial e a nossa linha de parceiros estratégicos — importação e distribuição regularizadas junto à ANVISA, treinamento e cobertura nacional.",
+    "og": "/uploads/asa-institucional-7penas.jpg",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Tecnologias — Setfree",
+        "url": "{{SITE}}/tecnologias",
+        "about": {
+          "@id": "{{SITE}}/#org"
+        }
+      }
+    ]
+  },
+  "/sobre": {
+    "file": "Sobre.dc.html",
+    "title": "Sobre a Setfree — importadora de tecnologia médica",
+    "description": "Somos importadores e distribuidores de tecnologia médica e formulamos estratégias de negócio para fabricantes estrangeiros que querem comercializar seus produtos no Brasil.",
+    "og": "/uploads/asa-institucional-7penas.jpg",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "url": "{{SITE}}/sobre",
+        "about": {
+          "@id": "{{SITE}}/#org"
+        }
+      }
+    ]
+  },
+  "/nossa-esperanca": {
+    "file": "NossaEsperanca.dc.html",
+    "title": "Nossa Esperança — o manifesto da marca Setfree",
+    "description": "O nome Setfree carrega um duplo sentido: libertar o paciente da dor — e uma liberdade ainda maior. Esta página é sobre essa liberdade maior.",
+    "og": "/uploads/pena-casa-verde.jpg",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Nossa Esperança — Setfree",
+        "url": "{{SITE}}/nossa-esperanca"
+      }
+    ]
+  },
+  "/contato": {
+    "file": "Contato.dc.html",
+    "title": "Contato — cotações, licitações e parcerias | Setfree",
+    "description": "Cotações, licitações, dúvidas clínicas ou parcerias — canais diretos, respostas rápidas.",
+    "og": "/uploads/asa-institucional-7penas.jpg",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "url": "{{SITE}}/contato",
+        "about": {
+          "@id": "{{SITE}}/#org"
+        }
+      }
+    ]
+  },
+  "/tecnologias/geister": {
+    "file": "Geister.dc.html",
+    "title": "Micro Knifes Geister — microcirurgia de precisão | Setfree",
+    "description": "\"The better way to operate.\" Micro lâminas de precisão e empunhaduras ergonômicas para os procedimentos mais delicados.",
+    "og": "/uploads/pena-sf02-aco.jpg",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Micro Knifes GEISTER",
+        "description": "\"The better way to operate.\" Micro lâminas de precisão e empunhaduras ergonômicas para os procedimentos mais delicados.",
+        "url": "{{SITE}}/tecnologias/geister",
+        "category": "Dispositivo médico",
+        "brand": {
+          "@type": "Brand",
+          "name": "Geister Medizintechnik GmbH"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Geister Medizintechnik GmbH"
+        },
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "MedicalOrganization",
+            "@id": "{{SITE}}/#org",
+            "name": "Setfree"
+          }
+        },
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "Registro ANVISA",
+            "value": "81888839001"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "Registro ANVISA",
+            "value": "81888800006"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "Registro ANVISA",
+            "value": "81888800007"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "Registro ANVISA",
+            "value": "81888800008"
+          }
+        ],
+        "image": "{{SITE}}/uploads/produtos/mk-angulada.png"
+      }
+    ]
+  },
+  "/tecnologias/radimed": {
+    "file": "Radimed.dc.html",
+    "title": "Radimed — radiofrequência para dor crônica | Setfree",
+    "description": "Cânulas e agulhas para radiofrequência — técnica minimamente invasiva e alvo-seletiva no tratamento da dor crônica.",
+    "og": "/uploads/pena-sf03-coral.jpg",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Radimed",
+        "description": "Cânulas e agulhas para radiofrequência — técnica minimamente invasiva e alvo-seletiva no tratamento da dor crônica.",
+        "url": "{{SITE}}/tecnologias/radimed",
+        "category": "Dispositivo médico",
+        "brand": {
+          "@type": "Brand",
+          "name": "Radimed"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Radimed"
+        },
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "MedicalOrganization",
+            "@id": "{{SITE}}/#org",
+            "name": "Setfree"
+          }
+        },
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "Registro ANVISA",
+            "value": "81888830001"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "Registro ANVISA",
+            "value": "81888830002"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "Registro ANVISA",
+            "value": "81888830003"
+          }
+        ],
+        "image": "{{SITE}}/uploads/produtos/radimed.png"
+      }
+    ]
+  },
+  "/tecnologias/marrow-cellution": {
+    "file": "MarrowCellution.dc.html",
+    "title": "Marrow Cellution — aspiração de medula óssea | Setfree",
+    "description": "Sistema de aspiração de medula óssea para coleta avançada de células-tronco — tratamentos regenerativos e minimamente invasivos.",
+    "og": "/uploads/pena-sf06-marinho.jpg",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Marrow Cellution",
+        "description": "Sistema de aspiração de medula óssea para coleta avançada de células-tronco — tratamentos regenerativos e minimamente invasivos.",
+        "url": "{{SITE}}/tecnologias/marrow-cellution",
+        "category": "Dispositivo médico",
+        "brand": {
+          "@type": "Brand",
+          "name": "Ranfac Corp."
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Ranfac Corp."
+        },
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "MedicalOrganization",
+            "@id": "{{SITE}}/#org",
+            "name": "Setfree"
+          }
+        },
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "Registro ANVISA",
+            "value": "81888839002"
+          }
+        ],
+        "image": "{{SITE}}/uploads/produtos/marrow.png"
+      }
+    ]
+  },
+  "/tecnologias/corebone": {
+    "file": "CoreBone.dc.html",
+    "title": "CoreBone — enxerto ósseo bioativo de coral | Setfree",
+    "description": "Enxerto ósseo bioativo de origem coral. A CNN Business mostrou sua fabricação, aplicabilidade e benefícios.",
+    "og": "/uploads/pena-sf01-ceu.jpg",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "CoreBone",
+        "description": "Enxerto ósseo bioativo de origem coral. A CNN Business mostrou sua fabricação, aplicabilidade e benefícios.",
+        "url": "{{SITE}}/tecnologias/corebone",
+        "category": "Dispositivo médico",
+        "brand": {
+          "@type": "Brand",
+          "name": "CoreBone Ltd."
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "CoreBone Ltd."
+        },
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "MedicalOrganization",
+            "@id": "{{SITE}}/#org",
+            "name": "Setfree"
+          }
+        },
+        "image": "{{SITE}}/uploads/produtos/corebone.png",
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Registro ANVISA",
+            "value": "Em processo de registro na ANVISA"
+          }
+        ]
+      }
+    ]
+  },
+  "/tecnologias/lipsus": {
+    "file": "Lipsus.dc.html",
+    "title": "Lipsus — umedecimento labial pós-cirúrgico | Setfree",
+    "description": "Bolsa de água para umedecimento contínuo dos lábios — conforto na recuperação pós-cirúrgica.",
+    "og": "/uploads/pena-sf04-violeta.jpg",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Lipsus",
+        "description": "Bolsa de água para umedecimento contínuo dos lábios — conforto na recuperação pós-cirúrgica.",
+        "url": "{{SITE}}/tecnologias/lipsus",
+        "category": "Dispositivo médico",
+        "brand": {
+          "@type": "Brand",
+          "name": "Lipsus"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Lipsus"
+        },
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "MedicalOrganization",
+            "@id": "{{SITE}}/#org",
+            "name": "Setfree"
+          }
+        },
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "Registro ANVISA",
+            "value": "81888830005"
+          }
+        ],
+        "image": "{{SITE}}/uploads/produtos/lipsus.png"
+      }
+    ]
+  },
+  "/tecnologias/dentsply": {
+    "file": "Dentsply.dc.html",
+    "title": "Dentsply Sirona OSSIX — regeneração óssea guiada | Setfree",
+    "description": "A linha OSSIX de regeneração guiada, da divisão Regenerative Solutions da Dentsply Sirona — referência mundial em odontologia.",
+    "og": "/uploads/pena-sf05-ambar.jpg",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Dentsply Sirona · OSSIX",
+        "description": "A linha OSSIX de regeneração guiada, da divisão Regenerative Solutions da Dentsply Sirona — referência mundial em odontologia.",
+        "url": "{{SITE}}/tecnologias/dentsply",
+        "category": "Dispositivo médico",
+        "brand": {
+          "@type": "Brand",
+          "name": "Dentsply Sirona"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Dentsply Sirona"
+        },
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "MedicalOrganization",
+            "@id": "{{SITE}}/#org",
+            "name": "Setfree"
+          }
+        },
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "Registro ANVISA",
+            "value": "80745400045"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "Registro ANVISA",
+            "value": "80745400046"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "Registro ANVISA",
+            "value": "80745400047"
+          }
+        ],
+        "image": "{{SITE}}/uploads/produtos/ossix.png"
+      }
+    ]
+  },
+  "/tecnologias/parceiros-estrategicos": {
+    "file": "ParceirosEstrategicos.dc.html",
+    "title": "Parceiros Estratégicos — linha hospitalar | Setfree",
+    "description": "Produtos hospitalares para o dia a dia das instituições de saúde — fornecimento por venda direta e licitações.",
+    "og": "/uploads/pena-sf07-grafite.jpg",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Parceiros Estratégicos",
+        "description": "Produtos hospitalares para o dia a dia das instituições de saúde — fornecimento por venda direta e licitações.",
+        "url": "{{SITE}}/tecnologias/parceiros-estrategicos",
+        "category": "Dispositivo médico",
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "MedicalOrganization",
+            "@id": "{{SITE}}/#org",
+            "name": "Setfree"
+          }
+        }
+      }
+    ]
+  },
+  "/solucoes/licitacoes": {
+    "file": "Licitacoes.dc.html",
+    "title": "Licitações públicas de saúde (PNCP) | Setfree",
+    "description": "Mesa de licitações orientada por dados: radar PNCP 24/7 e cotações com trilha auditável — decisões go/no-go em horas, não dias.",
+    "og": "/uploads/solucoes/licitacoes.png",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Licitações públicas",
+        "description": "Mesa de licitações orientada por dados: radar PNCP 24/7 e cotações com trilha auditável — decisões go/no-go em horas, não dias.",
+        "url": "{{SITE}}/solucoes/licitacoes",
+        "provider": {
+          "@type": "MedicalOrganization",
+          "@id": "{{SITE}}/#org",
+          "name": "Setfree"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Brasil"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Como a Setfree participa de licitações públicas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A Setfree monitora o PNCP 24/7, identifica editais compatíveis com seu portfólio, verifica cada exigência contra o documento oficial e responde com especificações e preços de fonte auditável."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "A Setfree fornece para hospitais públicos via pregão eletrônico?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. A Setfree atende compras públicas sob a Lei 14.133/2021, respondendo a pregões e demais modalidades com produtos de registro ANVISA regularizado e entrega rastreável."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Como enviar um edital para cotação?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Envie o edital ou a lista de itens pelo WhatsApp ou pelo formulário da página de Contato; a Setfree retorna com especificações verificadas e preço."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "/solucoes/registro-anvisa": {
+    "file": "RegistroAnvisa.dc.html",
+    "title": "Registro ANVISA de dispositivos médicos | Setfree",
+    "description": "Conduzimos o processo completo junto à ANVISA — na velocidade que o processo de registro e certificação permite, com transparência total.",
+    "og": "/uploads/solucoes/anvisa.png",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Registro ANVISA e regulatório",
+        "description": "Conduzimos o processo completo junto à ANVISA — na velocidade que o processo de registro e certificação permite, com transparência total.",
+        "url": "{{SITE}}/solucoes/registro-anvisa",
+        "provider": {
+          "@type": "MedicalOrganization",
+          "@id": "{{SITE}}/#org",
+          "name": "Setfree"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Brasil"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "A Setfree faz o registro ANVISA de produtos importados?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. A Setfree conduz o processo regulatório completo junto à ANVISA para dispositivos médicos importados — da classificação e documentação técnica ao acompanhamento do registro e à importação regularizada."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto tempo leva o registro ANVISA de um dispositivo médico?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O prazo depende da classe de risco do produto e da fila de análise da ANVISA. A Setfree trabalha na velocidade que o processo permite e informa o status a cada etapa, com transparência."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "A Setfree pode ser a detentora do registro ANVISA no Brasil?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. Para fabricantes globais, a Setfree pode atuar como importadora e detentora do registro, cuidando de regulatório, armazenagem, distribuição nacional e pós-venda."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "/solucoes/sourcing": {
+    "file": "Sourcing.dc.html",
+    "title": "Sourcing internacional de tecnologia médica | Setfree",
+    "description": "Para hospitais, médicos e distribuidores: localizamos, qualificamos e trazemos tecnologias médicas ainda sem representação no Brasil — sob demanda.",
+    "og": "/uploads/solucoes/sourcing.png",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Sourcing global de produtos",
+        "description": "Para hospitais, médicos e distribuidores: localizamos, qualificamos e trazemos tecnologias médicas ainda sem representação no Brasil — sob demanda.",
+        "url": "{{SITE}}/solucoes/sourcing",
+        "provider": {
+          "@type": "MedicalOrganization",
+          "@id": "{{SITE}}/#org",
+          "name": "Setfree"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Brasil"
+        }
+      }
+    ]
+  },
+  "/solucoes/entrada-mercado": {
+    "file": "EntradaMercado.dc.html",
+    "title": "Entrada no mercado brasileiro de med-tech | Setfree",
+    "description": "A porta de entrada do fabricante global: do estudo de mercado à operação rodando — regulatório sem atalhos, prazos sem surpresa.",
+    "og": "/uploads/solucoes/entrada.png",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Estratégia de entrada no mercado brasileiro",
+        "description": "A porta de entrada do fabricante global: do estudo de mercado à operação rodando — regulatório sem atalhos, prazos sem surpresa.",
+        "url": "{{SITE}}/solucoes/entrada-mercado",
+        "provider": {
+          "@type": "MedicalOrganization",
+          "@id": "{{SITE}}/#org",
+          "name": "Setfree"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Brasil"
+        }
+      }
+    ]
+  },
+  "/solucoes/consultoria-comercial": {
+    "file": "ConsultoriaComercial.dc.html",
+    "title": "Consultoria comercial em dispositivos médicos | Setfree",
+    "description": "Posicionamento, preço e canais para tecnologia médica no mercado brasileiro — estratégia que transforma produto em presença.",
+    "og": "/uploads/solucoes/consultoria.png",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Consultoria comercial",
+        "description": "Posicionamento, preço e canais para tecnologia médica no mercado brasileiro — estratégia que transforma produto em presença.",
+        "url": "{{SITE}}/solucoes/consultoria-comercial",
+        "provider": {
+          "@type": "MedicalOrganization",
+          "@id": "{{SITE}}/#org",
+          "name": "Setfree"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Brasil"
+        }
+      }
+    ]
+  },
+  "/solucoes/qualidade": {
+    "file": "Qualidade.dc.html",
+    "title": "Gestão da qualidade e regulatório | Setfree",
+    "description": "Boas práticas do porto ao ponto de cuidado — todo produto rastreável, dentro da validade e com suporte.",
+    "og": "/uploads/solucoes/qualidade.png",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Qualidade",
+        "description": "Boas práticas do porto ao ponto de cuidado — todo produto rastreável, dentro da validade e com suporte.",
+        "url": "{{SITE}}/solucoes/qualidade",
+        "provider": {
+          "@type": "MedicalOrganization",
+          "@id": "{{SITE}}/#org",
+          "name": "Setfree"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Brasil"
+        }
+      }
+    ]
+  }
+}
