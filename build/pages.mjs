@@ -1,6 +1,14 @@
 // Mapa de páginas → URL limpa, <title> (≤60 chars) e og:image.
 // Fonte da verdade do build. Editar aqui ao adicionar/renomear páginas.
-export const SITE = "https://setfree.com.br";
+// Domínio de produção — é o que está escrito nos JSON-LD das páginas e nos
+// arquivos de seo/.
+export const PROD_SITE = "https://setfree.com.br";
+
+// O build aceita SITE_URL para subir em outro domínio (staging, homologação).
+// Sem isso, canonical, og:url, sitemap e JSON-LD de um staging apontariam para
+// produção — e o Google indexaria o domínio errado.
+export const SITE = (process.env.SITE_URL || PROD_SITE).replace(/\/+$/, "");
+export const IS_PROD_SITE = SITE === PROD_SITE;
 
 export const PAGES = [
   { file: "Home.dc.html",                  url: "/",                                 title: "Setfree — Importação e distribuição de tecnologia médica", og: "/uploads/asa-institucional-7penas.jpg" },

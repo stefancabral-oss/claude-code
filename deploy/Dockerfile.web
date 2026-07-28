@@ -8,6 +8,11 @@ ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 COPY . .
+# domínio do build: canonical, og:url, sitemap e JSON-LD saem com este endereço.
+# Vazio = produção (https://setfree.com.br). Qualquer outro valor marca o build
+# como não-produção e o robots.txt gerado bloqueia os robôs.
+ARG SITE_URL=""
+ENV SITE_URL=$SITE_URL
 # o Chromium já vem na imagem do Playwright; o prerender usa o default se não achar o path local
 RUN node build/prerender.mjs
 
