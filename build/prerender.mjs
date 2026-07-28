@@ -36,11 +36,14 @@ function buildStage() {
     if (["build", "dist", ".git", "node_modules", "ANALISE.md", "README.md"].includes(f)) continue;
     cpDir(path.join(ROOT, f), path.join(STAGE, f));
   }
-  // auto-hospedar React: troca as URLs unpkg do support.js por /vendor/*
+  // auto-hospedar React e Babel: troca as URLs unpkg do support.js por /vendor/*
+  // (Babel é obrigatório: o support.js compila o JSX das páginas em runtime — sem ele
+  //  o dc-root fica vazio e o pré-render sai com 0 chars.)
   const sj = path.join(STAGE, "support.js");
   let js = read(sj)
     .replaceAll("https://unpkg.com/react@18.3.1/umd/react.production.min.js", "/vendor/react.production.min.js")
-    .replaceAll("https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js", "/vendor/react-dom.production.min.js");
+    .replaceAll("https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js", "/vendor/react-dom.production.min.js")
+    .replaceAll("https://unpkg.com/@babel/standalone@7.29.0/babel.min.js", "/vendor/babel.min.js");
   write(sj, js);
   cpDir(VENDOR, path.join(STAGE, "vendor"));
 }
@@ -151,6 +154,7 @@ async function main() {
 
   const react = read(path.join(VENDOR, "react.production.min.js"));
   const reactDom = read(path.join(VENDOR, "react-dom.production.min.js"));
+  const babel = read(path.join(VENDOR, "babel.min.js"));
 
   const srv = serve(STAGE); await new Promise((r) => srv.listen(0, r));
   const port = srv.address().port;
@@ -165,6 +169,7 @@ async function main() {
       const u = route.request().url();
       if (u.includes("/vendor/react-dom")) return route.fulfill({ contentType: "application/javascript", body: reactDom });
       if (u.includes("/vendor/react")) return route.fulfill({ contentType: "application/javascript", body: react });
+      if (u.includes("/vendor/babel")) return route.fulfill({ contentType: "application/javascript", body: babel });
       if (u.includes("fonts.googleapis") || u.includes("fonts.gstatic") || u.includes("cloudfront") || u.includes("jsdelivr") || u.includes("unpkg"))
         return route.fulfill({ status: 200, body: "" });
       return route.continue();
