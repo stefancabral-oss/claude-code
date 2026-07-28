@@ -14,7 +14,7 @@ escrever tudo na mão. Você escolhe uma **Skill** (o que fazer), liga um ou mai
 
 | Fase | O que faz | Status |
 |------|-----------|--------|
-| **Fase 1 — Montador de prompt** | Você clica nos botões e o painel gera o texto do prompt para **copiar e colar** no Claude. Sem chave de API, sem custo. | 🟡 A construir |
+| **Fase 1 — Montador de prompt** | Você clica nos botões e o painel gera o texto do prompt para **copiar e colar** no Claude. Sem chave de API, sem custo. | 🟢 Pronto ([`index.html`](./index.html)) |
 | **Fase 2 — Execução real** | O painel chama a **API do Claude** sozinho e mostra a resposta ali dentro. | ⚪ Planejado |
 
 **Decisões já tomadas** (definidas com o dono do projeto):
@@ -37,6 +37,7 @@ primeiro o plano, depois a execução (como combinado).
 
 ```
 painel-comando-claude/
+├── index.html             ← O PAINEL (abra com duplo clique no navegador)
 ├── README.md              ← você está aqui
 ├── ESTRATEGIA.md          ← o plano completo, passo a passo
 ├── catalogo/
@@ -44,3 +45,14 @@ painel-comando-claude/
 └── docs/
     └── glossario.md       ← "o que é skill? o que é conector?" em português claro
 ```
+
+## Como usar (Fase 1)
+
+1. Abra o arquivo [`index.html`](./index.html) com **duplo clique** (abre no navegador). Não precisa instalar nada.
+2. **Passo 1:** clique na ação que você quer (ex.: "Cobrar fatura").
+3. **Passo 2:** os conectores sugeridos já acendem; ligue/desligue os que quiser.
+4. **Passo 3:** escreva um detalhe curto (opcional).
+5. Clique em **📋 Copiar prompt** e cole no Claude.
+
+> Funciona 100% no seu navegador, sem servidor e sem custo. Também pode ser publicado
+> como site estático (deploy) — é o mesmo arquivo.
