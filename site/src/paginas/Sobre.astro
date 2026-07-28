@@ -14,12 +14,10 @@ const path = route("sobre", lang);
 const meta = seo("/sobre", lang);
 const site = Astro.site!.href.replace(/\/+$/, "");
 
-// PENDÊNCIA DE CONTEÚDO: o export apontava para
-// https://setfree.com.br/assets/equipe/stefan.jpg, que não existe no
-// repositório nem no servidor. Enquanto o arquivo não for publicado em
-// uploads/equipe/, o bloco da liderança sai sem foto em vez de com imagem
-// quebrada. Basta preencher a constante quando o arquivo existir.
-const FOTO_LIDERANCA: string | null = null;
+// O export apontava para https://setfree.com.br/assets/equipe/stefan.jpg, que
+// não existia. A foto agora vive no repositório, recortada em retrato (440×540)
+// para as caixas desta página e da Nossa Esperança.
+const FOTO_LIDERANCA: string | null = "/uploads/equipe/stefan.jpg";
 
 const blocos = [
   {

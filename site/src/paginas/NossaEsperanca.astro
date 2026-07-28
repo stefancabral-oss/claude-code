@@ -14,9 +14,8 @@ const path = route("esperanca", lang);
 const meta = seo("/nossa-esperanca", lang);
 const site = Astro.site!.href.replace(/\/+$/, "");
 
-// Mesma pendência da página Sobre: a foto apontava para /assets/equipe/stefan.jpg,
-// que não existe. Preencher quando o arquivo for publicado em uploads/equipe/.
-const FOTO_LIDERANCA: string | null = null;
+// Mesma foto usada na página Sobre.
+const FOTO_LIDERANCA: string | null = "/uploads/equipe/stefan.jpg";
 
 const kicker =
   "font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;color:#13BE9F";
