@@ -1,8 +1,8 @@
 node_modules
 dist
-build/.staging
+.astro
 .git
 .env
 *.log
-uploads/Brandbook*.pdf
+uploads/Brandbook*
 uploads/Captura*

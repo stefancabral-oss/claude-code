@@ -1,74 +1,70 @@
-# Deploy no Dokploy
+# Deploy no Dokploy — referência dos serviços
 
-Este repositório já vem pronto para o Dokploy (Docker + Traefik). Sobem **dois serviços** no mesmo domínio:
+Para o passo a passo do deploy, use o **`PLANO-IMPLANTACAO.md`**. Este arquivo
+descreve o que sobe e por quê.
 
-| Serviço | O que é | Rota |
-|---|---|---|
-| `web` | Site estático **pré-renderizado** (nginx) — SEO/IA leem o conteúdo | `setfree.com.br` |
-| `api` | **Assistente de IA** (Node + API da Claude) — chave fica no servidor | `setfree.com.br/api/*` |
+Sobem **dois serviços** no mesmo domínio:
 
-O build faz o **pré-render** (item nº 1 da análise): renderiza as 19 páginas com Chromium e grava HTML já com o conteúdo, `<title>`, `lang`, og:image e as URLs limpas. Robôs de IA (GPTBot, ClaudeBot) e o Google passam a enxergar as páginas de produto — que antes chegavam vazias.
+| Serviço | O que é | Rota | Porta |
+|---|---|---|---|
+| `web` | site estático (Astro → nginx) | `setfree.com.br` | 80 |
+| `api` | assistente de IA + editais do PNCP (Node) | `setfree.com.br/api/*` | 8787 |
 
----
+## `web`
 
-## Passo a passo
+`deploy/Dockerfile.web`, dois estágios:
 
-1. **Suba este repositório** para o Git que o Dokploy acessa (GitHub/GitLab próprio).
+1. **build** — `node:22-alpine`, `npm ci` e `astro build`. Gera as 38 páginas
+   (19 em português, 19 em inglês) e copia `uploads/` para o `dist/`.
+2. **runtime** — `nginx:1.27-alpine` com apenas o `dist/` e o `deploy/nginx.conf`.
+   Sem Node, sem `node_modules`: a imagem final tem ~67 MB.
 
-2. No Dokploy: **Create → Compose**, aponte para o repositório e o `docker-compose.yml` (na raiz).
+O `nginx.conf` cuida das URLs limpas (`try_files` serve o `index.html` direto,
+sem 301), do cache dos assets, dos headers de segurança e do 301 das URLs
+antigas `*.dc.html` para as limpas.
 
-3. Em **Environment**, defina:
-   ```
-   DOMAIN=setfree.com.br
-   ANTHROPIC_API_KEY=sk-ant-...        # sua chave da API da Claude (console.anthropic.com)
-   ANTHROPIC_MODEL=claude-sonnet-5      # opcional
-   ```
-   > A chave fica só no servidor, nunca no HTML. Guarde como **secret** no Dokploy.
+### `SITE_URL`
 
-4. Aponte o **domínio** para o servidor (registro A) e deixe o Traefik do Dokploy emitir o **HTTPS** (Let's Encrypt) — os labels já estão no compose.
+O compose passa `SITE_URL=https://${DOMAIN}` como build arg. É desse valor que
+saem `canonical`, `hreflang`, `og:url`, `sitemap.xml`, `llms.txt` e o JSON-LD.
 
-5. **Deploy.** O primeiro build baixa a imagem do Playwright (~1x, alguns minutos) e roda o pré-render.
+Quando `SITE_URL` **não** é `https://setfree.com.br`, o build se marca como
+não-produção e o `robots.txt` gerado bloqueia todos os robôs — proteção para que
+um ambiente de teste não vire conteúdo duplicado do site real.
 
----
+## `api`
 
-## Testar depois do deploy
+`api/Dockerfile`, `node:22-alpine` sem dependências (usa `http` e `fetch`
+nativos). Duas rotas além do `/api/health`:
 
-```bash
-# 1) o robô sem JS agora vê conteúdo? (procure texto do produto no HTML cru)
-curl -s https://setfree.com.br/tecnologias/geister | grep -o "Micro Knifes GEISTER" | head -1
+- `POST /api/assistente` — repassa a pergunta para a API da Claude com um
+  system prompt que fixa o portfólio e os números de registro ANVISA, e proíbe
+  falar de preço. A chave fica só no servidor.
+- `GET /api/editais` — consulta o PNCP e devolve os pregões de saúde abertos.
 
-# 2) título único presente?
-curl -s https://setfree.com.br/tecnologias/corebone | grep -i "<title>"
+O router da `api` tem `priority=100` no Traefik para capturar `/api/*` antes do
+site.
 
-# 3) URL antiga redireciona (301) para a limpa?
-curl -sI https://setfree.com.br/CoreBone.dc.html | grep -i location
+## Variáveis
 
-# 4) o assistente de IA responde?
-curl -s https://setfree.com.br/api/health
-curl -s -X POST https://setfree.com.br/api/assistente \
-  -H 'content-type: application/json' \
-  -d '{"pergunta":"preciso de instrumental para microcirurgia oftálmica"}'
+```
+DOMAIN=setfree.com.br            # obrigatória — manda no roteamento e no build
+ANTHROPIC_API_KEY=sk-ant-...     # obrigatória — guarde como secret
+ANTHROPIC_MODEL=claude-sonnet-5  # opcional
 ```
 
----
-
-## Rodar / rebuildar localmente
+## Rodar local
 
 ```bash
-npm install
-npm run build        # gera dist/ (pré-render das 19 páginas)
-npx serve dist       # ou: python3 -m http.server -d dist 8000
+cd site && npm install && npm run dev     # http://localhost:4321
 ```
 
-## Ao editar o site no Claude Design
+Para exercitar a imagem de verdade (nginx, redirects, cache):
 
-Reexporte, substitua os arquivos `.dc.html`/`uploads/` e rode `npm run build` de novo (ou só re-deploy no Dokploy — o build refaz o pré-render). O `build/pages.mjs` é onde ficam os títulos e slugs; ao **adicionar uma página nova**, inclua-a lá.
+```bash
+podman build -f deploy/Dockerfile.web -t setfree-web .
+podman run --rm -p 8080:80 setfree-web
+```
 
----
-
-## O que ainda depende de você (P1 — ver `ANALISE.md`)
-
-- Publicar os PDFs de catálogo em `uploads/` (hoje os botões apontam para `assets/catalogos/*` que não existe) e corrigir o `logo` do JSON-LD.
-- Preencher no JSON-LD dos produtos o **registro ANVISA** (`identifier`), CNPJ e `sameAs` (LinkedIn/Instagram).
-- Confirmar o e-mail correto (`@setfree.com.br` × `@setfree.med.br`).
-- Cadastrar o `sitemap.xml` no Google Search Console e no Bing Webmaster.
+O assistente e os editais só respondem com o serviço `api` no ar — sem ele, o
+site degrada com elegância (mensagem apontando para o WhatsApp).

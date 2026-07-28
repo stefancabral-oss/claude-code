@@ -21,10 +21,6 @@ Construído em **Astro**: cada página sai do build como HTML estático, em
 | `api/` | Serviço de IA: `/api/assistente` e `/api/editais` (PNCP). |
 | `deploy/` + `docker-compose.yml` | nginx e Traefik para o Dokploy. |
 
-Os arquivos `.dc.html` e o `support.js` na raiz são o **export original do
-Claude Design**, mantidos para comparação durante a revisão da migração. Não
-alimentam mais o site publicado.
-
 ## Rodar
 
 ```bash
@@ -62,6 +58,12 @@ Sitemap e llms.txt se atualizam sozinhos.
 
 ## Documentos
 
-- **`ANALISE.md`** — auditoria de SEO, IA e performance do site anterior.
 - **`PLANO-IMPLANTACAO.md`** — runbook de deploy no Dokploy.
 - **`DEPLOY-DOKPLOY.md`** — referência dos dois serviços (`web` e `api`).
+- **`GUIA-SEO-IA.md`** — o que falta de dados da empresa para SEO/GEO.
+- **`ANALISE.md`** — auditoria do site anterior (registro histórico; a
+  arquitetura que ele descreve não existe mais).
+
+O export original do Claude Design (`*.dc.html`, `support.js`, `build/`) foi
+removido do repositório depois que a migração foi validada. Está no histórico do
+git, no commit anterior à limpeza.

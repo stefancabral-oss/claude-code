@@ -1,4 +1,0 @@
-# Os bundles em build/vendor/ são servidos com SRI (hash sha384 fixado no support.js).
-# Qualquer conversão de fim de linha muda os bytes, quebra o integrity e o navegador
-# bloqueia o script — o pré-render sai vazio. Nunca normalizar estes arquivos.
-build/vendor/** -text
