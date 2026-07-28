@@ -1,0 +1,31 @@
+---
+import SolucaoPage from "../../layouts/SolucaoPage.astro";
+import { solucao, solucoes } from "../../data";
+import { solucaoUrl } from "../../lib/i18n";
+import { comDominio, seo } from "../../lib/seo";
+
+export function getStaticPaths() {
+  return solucoes("pt").map((s) => ({ params: { slug: s.slug } }));
+}
+
+const { slug } = Astro.params;
+const d = solucao(slug!, "pt");
+const path = solucaoUrl(slug!, "pt");
+const meta = seo(path, "pt");
+
+const site = Astro.site!.href.replace(/\/+$/, "");
+const relacionada = (s: string) => {
+  const x = solucao(s, "pt");
+  return { nome: x.nome, num: x.num };
+};
+---
+
+<SolucaoPage
+  lang="pt"
+  d={d}
+  relacionada={relacionada}
+  title={meta.title}
+  description={meta.description}
+  path={path}
+  jsonLd={comDominio(meta.jsonLd, site)}
+/>

@@ -1,0 +1,235 @@
+---
+import "../styles/global.css";
+import { HTML_LANG, LANGS, alternate, type Lang } from "../lib/i18n";
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** Caminho canônico desta página, sem domínio. Ex.: "/tecnologias/geister" */
+  path: string;
+  ogImage?: string;
+  /** Schemas específicos da página (Product, Service, FAQPage…) */
+  jsonLd?: Record<string, unknown>[];
+  /** Trilha para o BreadcrumbList — a home entra sozinha. */
+  breadcrumb?: { name: string; url: string }[];
+}
+
+const {
+  lang,
+  title,
+  description,
+  path,
+  ogImage = "/uploads/asa-institucional-7penas.jpg",
+  jsonLd = [],
+  breadcrumb = [],
+} = Astro.props;
+
+const SITE = Astro.site!.href.replace(/\/+$/, "");
+const abs = (p: string) => `${SITE}${p.startsWith("/") ? p : `/${p}`}`;
+const canonical = abs(path);
+
+// A organização e o site ficam em todas as páginas: assim o "seller": {"@id": …#org}
+// dos produtos resolve na própria página, em vez de depender da home.
+const orgGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MedicalOrganization",
+      "@id": `${SITE}/#org`,
+      name: "Setfree",
+      legalName: "Setfree Importação e Distribuição de Produtos Médicos",
+      url: SITE,
+      logo: abs("/uploads/logo-preto.png"),
+      taxID: "20.035.120/0001-31",
+      email: "contato@setfree.com.br",
+      sameAs: [
+        "https://www.linkedin.com/company/setfree",
+        "https://www.instagram.com/setfreebr",
+        "https://www.facebook.com/profile.php?id=100083381220607",
+      ],
+      description:
+        "Importadora e distribuidora brasileira de tecnologia médica de padrão internacional — dispositivos regenerativos e minimamente invasivos. Registro ANVISA, participação em licitações públicas (PNCP) e distribuição nacional.",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Rodovia Raposo Tavares, KM 22 — The Square Open Mall",
+        addressLocality: "Cotia",
+        addressRegion: "SP",
+        addressCountry: "BR",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        telephone: "+55-11-91368-5038",
+        availableLanguage: ["Portuguese", "English"],
+      },
+      knowsAbout: [
+        "dispositivos médicos",
+        "medicina regenerativa",
+        "enxerto ósseo",
+        "aspirado de medula óssea",
+        "instrumentais cirúrgicos",
+        "registro ANVISA",
+        "licitações públicas de saúde",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE}/#site`,
+      url: SITE,
+      name: "Setfree",
+      publisher: { "@id": `${SITE}/#org` },
+      inLanguage: ["pt-BR", "en"],
+    },
+  ],
+};
+
+const breadcrumbLd =
+  breadcrumb.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumb.map((b, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: b.name,
+          item: abs(b.url),
+        })),
+      }
+    : null;
+---
+
+<!doctype html>
+<html lang={HTML_LANG[lang]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    {
+      LANGS.map((l) => (
+        <link rel="alternate" hreflang={HTML_LANG[l]} href={abs(alternate(path, lang, l))} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={abs(alternate(path, lang, "pt"))} />
+
+    <meta property="og:site_name" content="Setfree" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={abs(ogImage)} />
+    <meta property="og:image:alt" content="Setfree — tecnologia médica" />
+    <meta property="og:locale" content={lang === "pt" ? "pt_BR" : "en_US"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={abs(ogImage)} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Space+Grotesk:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify(orgGraph)} />
+    {breadcrumbLd && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />}
+    {jsonLd.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      // Efeitos do site: reveal ao rolar, tilt nos cartões e botão magnético.
+      // Porte 1:1 do que rodava dentro do SiteFooter no export do Claude Design.
+      const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (!reduz) {
+        const feito = new WeakSet<Element>();
+        const io = new IntersectionObserver(
+          (ens) => {
+            for (const en of ens) {
+              if (!en.isIntersecting && en.boundingClientRect.top >= 0) continue;
+              const el = en.target as HTMLElement;
+              const irmaos = el.parentElement
+                ? Array.from(el.parentElement.children).filter((x) => x.hasAttribute("data-reveal"))
+                : [];
+              el.style.transitionDelay = `${Math.max(0, irmaos.indexOf(el)) * 90}ms`;
+              el.style.opacity = "1";
+              el.style.transform = "none";
+              el.style.filter = "none";
+              io.unobserve(el);
+            }
+          },
+          { threshold: 0.12, rootMargin: "9999px 0px -8% 0px" },
+        );
+
+        const prep = (el: Element) => {
+          if (document.hidden || feito.has(el)) return;
+          feito.add(el);
+          el.classList.add("sf-prep");
+          io.observe(el);
+        };
+        const varre = (raiz: ParentNode) => raiz.querySelectorAll("[data-reveal]").forEach(prep);
+        varre(document.body);
+
+        // conteúdo injetado depois (widget de editais)
+        new MutationObserver((ms) => {
+          for (const m of ms) {
+            for (const n of m.addedNodes) if (n.nodeType === 1) varre(n as Element);
+          }
+        }).observe(document.body, { childList: true, subtree: true });
+
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) return;
+          document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
+            if (feito.has(el)) return;
+            if (el.getBoundingClientRect().top < innerHeight * 1.2) {
+              el.style.opacity = "1";
+              el.style.transform = "none";
+              el.style.filter = "none";
+              feito.add(el);
+            } else prep(el);
+          });
+        });
+
+        document.addEventListener("mousemove", (e) => {
+          const alvo = e.target as Element;
+          if (!alvo.closest) return;
+
+          const card = alvo.closest<HTMLElement>("[data-tilt]");
+          if (card) {
+            const r = card.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width - 0.5;
+            const py = (e.clientY - r.top) / r.height - 0.5;
+            card.style.transition = "transform .12s";
+            card.style.transform = `perspective(900px) translateY(-4px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 6).toFixed(2)}deg)`;
+            if (!card.dataset.fx) {
+              card.dataset.fx = "1";
+              card.addEventListener("mouseleave", () => {
+                card.style.transition = "transform .45s";
+                card.style.transform = "";
+              });
+            }
+          }
+
+          const mag = alvo.closest<HTMLElement>("[data-mag]");
+          if (mag) {
+            const r = mag.getBoundingClientRect();
+            mag.style.transition = "transform .2s";
+            mag.style.transform = `translate(${((e.clientX - r.left - r.width / 2) * 0.12).toFixed(1)}px,${((e.clientY - r.top - r.height / 2) * 0.18).toFixed(1)}px)`;
+            if (!mag.dataset.fx) {
+              mag.dataset.fx = "1";
+              mag.addEventListener("mouseleave", () => {
+                mag.style.transform = "";
+              });
+            }
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
