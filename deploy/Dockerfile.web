@@ -5,8 +5,8 @@ FROM mcr.microsoft.com/playwright:v1.56.1-jammy AS build
 WORKDIR /app
 # o Chromium já está na imagem (/ms-playwright); não baixar de novo no npm install
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
-COPY package.json ./
-RUN npm install --no-audit --no-fund
+COPY package.json package-lock.json ./
+RUN npm ci --no-audit --no-fund
 COPY . .
 # o Chromium já vem na imagem do Playwright; o prerender usa o default se não achar o path local
 RUN node build/prerender.mjs

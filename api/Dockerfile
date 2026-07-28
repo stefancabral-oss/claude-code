@@ -1,7 +1,7 @@
 # Serviço de IA (assistente Setfree). Sem dependências → imagem mínima.
 FROM node:22-alpine
 WORKDIR /app
-COPY server.mjs ./
+COPY server.mjs editais.mjs ./
 ENV PORT=8787
 EXPOSE 8787
 USER node
