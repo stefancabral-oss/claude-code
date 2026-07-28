@@ -46,13 +46,12 @@ npm start                    # abre em http://localhost:8080
 ```
 
 ## Publicar no Dokploy (deploy)
-1. Aponte o Dokploy para este repositório, pasta `painel-comando-claude/app` (usa o
-   `Dockerfile` / `docker-compose.yml`).
-2. Em **Environment**, defina:
-   - `ANTHROPIC_API_KEY` = sua chave (obrigatório)
-   - `MODEL` = `claude-opus-5` (ou `claude-sonnet-5` para gastar menos) — opcional
-3. Deploy. A porta interna é **8080**.
-4. `GET /health` responde `{ ok: true, temKey: true }` quando a chave está configurada.
+Passo a passo completo, com o caminho exato de cliques, em **[`DEPLOY.md`](./DEPLOY.md)**.
+
+Resumo: crie uma **Application** no Dokploy apontando para o repositório, **Build Type
+Dockerfile**, **Build Path `app`**, porta **8080**, e as variáveis `ANTHROPIC_API_KEY`
+(obrigatória) e `MODEL` (opcional, padrão `claude-opus-5`). `GET /health` responde
+`{ ok: true, temKey: true }` quando a chave está configurada.
 
 ## Coisas importantes
 - **Custo:** cada montagem faz 2 chamadas à API (planejar + compor). O modelo padrão é
