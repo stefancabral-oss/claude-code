@@ -98,6 +98,9 @@
   .topo{ text-align:center; margin-bottom:14px; }
   .topo h1{ font-size:20px; margin:0 0 2px; letter-spacing:-.01em; }
   .topo p{ margin:0; font-size:13px; color:var(--muted); }
+  .selo-versao{ display:inline-block; margin-top:6px; font-size:11px; font-weight:700;
+    letter-spacing:.04em; color:var(--accent); border:1px solid var(--accent);
+    border-radius:99px; padding:2px 9px; }
 
   .progresso{ margin-bottom:18px; }
   .progresso-label{
@@ -270,6 +273,7 @@
   <header class="topo">
     <h1>Criador de Prompt</h1>
     <p>Monte seu pedido para o Claude, um passo de cada vez</p>
+    <span class="selo-versao">v1</span>
   </header>
 
   <div class="progresso" aria-hidden="false">
@@ -288,15 +292,15 @@
     {
       id:"objetivo",
       titulo:"O que você quer que seja feito?",
-      ajuda:"Escreva do seu jeito, curto e seco — só o pedido, sem enfeitar. As próximas telas completam o resto da frase. Exemplo: \"faça uma música de funk\".",
+      ajuda:"Escreva do seu jeito, curto e seco — só o pedido, sem enfeitar. Pode ser qualquer coisa: de \"criar um app de controle de estoque\" a \"salvar este texto num arquivo\". As próximas telas completam o resto da frase.",
       tipo:"texto",
       obrigatorio:true,
-      placeholder:"Ex.: faça uma música de funk"
+      placeholder:"Ex.: criar um app de controle de estoque"
     },
     {
       id:"estilo",
       titulo:"Com que jeito ou tom?",
-      ajuda:"É o \"clima\" do resultado. Para \"faça uma música de funk\", combina algo animado e criativo. Se não fizer diferença, é só pular.",
+      ajuda:"É o \"clima\" do resultado. Um app pede algo detalhado e caprichado; um post nas redes, algo animado e criativo. Se não fizer diferença, é só pular.",
       tipo:"escolha",
       obrigatorio:false,
       opcoes:[
@@ -310,10 +314,10 @@
     {
       id:"detalhes",
       titulo:"Quer acrescentar detalhes importantes?",
-      ajuda:"Palavras soltas que não podem faltar. Para a música de funk: \"batida animada\", \"anos 2000\", \"falar da minha loja\". Digite um e toque em adicionar. Pode pular.",
+      ajuda:"Palavras soltas que não podem faltar. Ex.: num app — \"tela de login\", \"relatório em PDF\"; num texto — \"tom formal\", \"até 200 palavras\". Digite uma e toque em adicionar. Pode pular.",
       tipo:"tags",
       obrigatorio:false,
-      placeholder:"Ex.: batida animada"
+      placeholder:"Ex.: tela de login"
     },
     {
       id:"como_executar",
@@ -332,7 +336,7 @@
     {
       id:"formato",
       titulo:"Em que formato você quer receber?",
-      ajuda:"Pense em como vai usar. A letra da música vem bem como texto simples; um orçamento fica melhor em planilha. Se tanto faz, pule.",
+      ajuda:"Pense em como vai usar. Um app ou script vem bem como texto/código pronto para copiar; um orçamento, em planilha; um relatório, em documento. Se tanto faz, pule.",
       tipo:"escolha",
       obrigatorio:false,
       opcoes:[
@@ -346,7 +350,7 @@
     {
       id:"verificacao",
       titulo:"Quer conferir antes de finalizar?",
-      ajuda:"Coisas criativas, como a música de funk, podem ir direto. Coisas com números, clientes ou dinheiro é bom revisar antes. Pode pular.",
+      ajuda:"Coisas simples podem ir direto. Coisas com números, clientes, dinheiro ou código que vai rodar, é bom revisar antes. Pode pular.",
       tipo:"escolha",
       obrigatorio:false,
       opcoes:[

@@ -27,7 +27,7 @@ podem ser **pulados**.
 
 | # | Tela | O que é |
 |--:|------|---------|
-| 1 | **O que você quer que seja feito?** | Texto livre, objetivo seco (obrigatório). Ex.: *"faça uma música de funk"* |
+| 1 | **O que você quer que seja feito?** | Texto livre, objetivo seco (obrigatório). Serve pra qualquer coisa — de *"criar um app de controle de estoque"* a *"salvar este texto num arquivo"* |
 | 2 | **Com que jeito ou tom?** | Estilo/vibe (profissional, direto, animado, engraçado, detalhado) |
 | 3 | **Detalhes importantes** | Palavras-chave que não podem faltar (tags) |
 | 4 | **Como o Claude deve fazer isso?** | Deixar o Claude decidir · usar skill pronta · usar plugin · buscar nos apps conectados · criar skill nova |
@@ -36,12 +36,12 @@ podem ser **pulados**.
 
 **Exemplo do prompt montado (tudo preenchido):**
 
-> *"Faça uma música de funk, com um tom animado e criativo, incluindo: batida animada,
-> anos 2000, sobre a minha loja, do jeito que você julgar melhor. Entregue o resultado
-> como texto simples, pronto para eu copiar e usar. Antes de finalizar, me mostre um
-> rascunho e espere a minha aprovação."*
+> *"Criar um app de controle de estoque, bem detalhado e caprichado, incluindo: tela de
+> login, relatório em PDF, construindo uma habilidade nova sob medida para essa tarefa.
+> Entregue o resultado como texto/código pronto para eu copiar e usar. Antes de
+> finalizar, me mostre um rascunho e espere a minha aprovação."*
 
-**Exemplo mínimo (só o objetivo, resto pulado):** *"Faça uma música de funk."*
+**Exemplo mínimo (só o objetivo, resto pulado):** *"Salvar este texto num arquivo."*
 
 ---
 
