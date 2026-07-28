@@ -74,19 +74,19 @@ ANTHROPIC_MODEL=claude-sonnet-5
 
 ## Fase 3 — Deploy
 
-- [ ] **Deploy.** O primeiro build baixa a imagem do Playwright e roda o
-      pré-render das 19 páginas com Chromium — conte **5 a 15 minutos**. Os
-      seguintes são bem mais rápidos (cache de camadas).
-- [ ] **Acompanhe o log do build do `web` e procure a última linha do
-      pré-render.** Ela é o portão de qualidade:
+- [ ] **Deploy.** O build é `node:22-alpine` + Astro — cerca de **1 a 2
+      minutos**. (Até a migração para Astro, este passo baixava a imagem do
+      Playwright, ~2 GB, e rodava o pré-render com Chromium.)
+- [ ] **Acompanhe o log do build do `web`.** O portão de qualidade é a contagem
+      de páginas:
 
 ```
-✔ 19 páginas · 19 com conteúdo · 0 avisos → dist/
+38 page(s) built in 1.59s
+• uploads → dist/uploads (39 arquivos, …)
 ```
 
-  Se vier `0 com conteúdo · 19 avisos`, **não promova**: o site sobe sem o HTML
-  que Google e robôs de IA leem. Foi exatamente o bug corrigido em `09a7e1b`
-  (o Babel do unpkg era stubado no pré-render e nada renderizava).
+  São **38 páginas**: 19 em português e 19 em inglês. Número menor significa
+  rota faltando — não promova.
 
 - [ ] Log do `api`: deve aparecer
       `assistente Setfree ouvindo em :8787 (modelo claude-sonnet-5)`.
@@ -126,6 +126,13 @@ curl -sI https://setfree.com.br/llms.txt    | head -1
 # 6b. HTTP redireciona para HTTPS, e www redireciona para o domínio raiz
 curl -sI http://setfree.com.br      | grep -i "^HTTP\|^location"
 curl -sI https://www.setfree.com.br | grep -i "^HTTP\|^location"
+
+# 7) versão em inglês no ar, com hreflang recíproco
+curl -s  https://setfree.com.br/en/technology/geister | grep -o "<title>[^<]*"
+curl -s  https://setfree.com.br/tecnologias/geister   | grep -o 'hreflang="en" href="[^"]*"'
+
+# 8) navegação interna NÃO pode redirecionar (tem que ser 200, não 301)
+curl -sI https://setfree.com.br/tecnologias | head -1
 
 # 7. o React e o Babel carregam do próprio domínio (sem unpkg)
 curl -sI https://setfree.com.br/vendor/react.production.min.js | head -1

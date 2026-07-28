@@ -6,7 +6,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const SRC = path.resolve(HERE, "..", "..", "uploads");
+// No repositório, uploads/ fica na raiz. No Docker o contexto é outro, então o
+// caminho pode vir por env em vez de depender da posição relativa.
+const SRC = process.env.UPLOADS_DIR
+  ? path.resolve(process.env.UPLOADS_DIR)
+  : path.resolve(HERE, "..", "..", "uploads");
 const DEST = path.resolve(HERE, "..", "dist", "uploads");
 
 if (!fs.existsSync(SRC)) {

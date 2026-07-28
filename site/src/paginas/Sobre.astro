@@ -1,0 +1,318 @@
+---
+import Base from "../layouts/Base.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { L, UI, WHATSAPP, route, type Lang } from "../lib/i18n";
+import { comDominio, seo } from "../lib/seo";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const path = route("sobre", lang);
+const meta = seo("/sobre", lang);
+const site = Astro.site!.href.replace(/\/+$/, "");
+
+// PENDÊNCIA DE CONTEÚDO: o export apontava para
+// https://setfree.com.br/assets/equipe/stefan.jpg, que não existe no
+// repositório nem no servidor. Enquanto o arquivo não for publicado em
+// uploads/equipe/, o bloco da liderança sai sem foto em vez de com imagem
+// quebrada. Basta preencher a constante quando o arquivo existir.
+const FOTO_LIDERANCA: string | null = null;
+
+const blocos = [
+  {
+    t: L(lang, "O que fazemos", "What we do"),
+    itens: [
+      L(lang, "Importamos soluções para o alívio das dores", "We import solutions for pain relief"),
+      L(lang, "Oferecemos produtos avançados de tecnologia médica", "We offer advanced medical technology products"),
+      L(
+        lang,
+        "Foco em produtos regenerativos e minimamente invasivos",
+        "Focus on regenerative and minimally invasive products",
+      ),
+    ],
+  },
+  {
+    t: L(lang, "Como trabalhamos", "How we work"),
+    itens: [
+      L(lang, "Oferecemos treinamento e capacitação", "We provide training and enablement"),
+      L(
+        lang,
+        "Provemos informações e oferecemos assistência ao paciente",
+        "We provide information and patient assistance",
+      ),
+      L(
+        lang,
+        "Agimos na velocidade do registro ANVISA e da certificação",
+        "We move at the speed of ANVISA registration and certification",
+      ),
+    ],
+  },
+  {
+    t: L(lang, "Nosso compromisso", "Our commitment"),
+    itens: [
+      L(lang, "O mesmo nível de tratamento oferecido fora do Brasil", "The same level of care offered outside Brazil"),
+      L(
+        lang,
+        "Produtos de tecnologia médica que entregam o que foi prometido",
+        "Medical technology that delivers what was promised",
+      ),
+      L(
+        lang,
+        "Uma empresa que se importa em fazer o seu negócio crescer",
+        "A company that cares about growing your business",
+      ),
+    ],
+  },
+];
+
+const kickerVerde =
+  "font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;color:#13BE9F";
+const itemEstilo =
+  "display:flex;gap:10px;padding:9px 0;border-top:1px solid rgba(13,13,13,.08);font-size:14px;line-height:1.55;color:#474E58";
+const ruido =
+  "url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22/></filter><rect width=%22160%22 height=%22160%22 filter=%22url(%23n)%22 opacity=%220.05%22/></svg>')";
+const neon =
+  "height:2px;background:linear-gradient(90deg,rgba(19,190,159,0),#13BE9F 15%,#13BE9F 85%,rgba(19,190,159,0));animation:sfNeon 4.5s ease-in-out infinite";
+
+const breadcrumb = [
+  { name: L(lang, "Início", "Home"), url: route("home", lang) },
+  { name: UI.nav.sobre[lang], url: path },
+];
+---
+
+<Base
+  lang={lang}
+  title={meta.title}
+  description={meta.description}
+  path={path}
+  ogImage={meta.og}
+  jsonLd={comDominio(meta.jsonLd, site)}
+  breadcrumb={breadcrumb}
+>
+  <div style="font-family:Sora,'Helvetica Neue',sans-serif;background:#F4F3F0;min-height:100vh">
+    <SiteNav lang={lang} path={path} />
+
+    <header style="background:#F4F3F0;border-bottom:1px solid rgba(13,13,13,.08)">
+      <div data-r="p1" style="max-width:1240px;margin:0 auto;padding:150px 32px 64px">
+        <div data-reveal style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+          <span style="width:34px;height:1px;background:#13BE9F"></span>
+          <span
+            style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;color:#474E58"
+            >{L(lang, "SOBRE A SETFREE", "ABOUT SETFREE")}</span
+          >
+        </div>
+        <h1
+          data-reveal
+          style="margin:0 0 22px;font-size:clamp(38px,4.6vw,62px);line-height:1.06;letter-spacing:-.03em;font-weight:600;max-width:900px;text-wrap:balance"
+        >
+          {
+            L(
+              lang,
+              "Libertamos o acesso à saúde de classe mundial no Brasil",
+              "We set free the access to world-class healthcare in Brazil",
+            )
+          }
+        </h1>
+        <p data-reveal style="margin:0;max-width:660px;font-size:16.5px;line-height:1.65;color:#474E58">
+          {
+            L(
+              lang,
+              "Somos importadores e distribuidores de tecnologia médica e formulamos estratégias de negócio para fabricantes estrangeiros que querem comercializar seus produtos no Brasil.",
+              "We are importers and distributors of medical technology, and we design business strategies for foreign manufacturers entering the Brazilian market.",
+            )
+          }
+        </p>
+      </div>
+    </header>
+
+    <section style="background:#0D0D0D;color:#F4F3F0;position:relative;overflow:hidden">
+      <div style={`position:absolute;inset:0;background-image:${ruido}`}></div>
+      <div
+        data-r="p2 g1"
+        style="position:relative;max-width:1240px;margin:0 auto;padding:96px 32px;display:grid;grid-template-columns:1fr auto;gap:56px;align-items:center"
+      >
+        <div>
+          <span data-reveal style={kickerVerde}>{L(lang, "NOSSA VISÃO", "OUR VISION")}</span>
+          <p
+            data-reveal
+            style="max-width:760px;margin:26px 0 0;font-size:clamp(24px,2.8vw,36px);line-height:1.35;text-wrap:balance"
+          >
+            {
+              L(
+                lang,
+                "“Ser a maior importadora e distribuidora de soluções em tecnologia para a saúde do Brasil — impactando vidas.”",
+                "“To be Brazil's largest importer and distributor of healthcare technology solutions — impacting lives.”",
+              )
+            }
+          </p>
+        </div>
+        <img
+          data-reveal
+          src="/uploads/asa-institucional-7penas.jpg"
+          alt={L(lang, "A asa Setfree — as sete penas de linha juntas", "The Setfree wing — the seven line feathers together")}
+          width="260"
+          height="260"
+          style="width:260px;height:auto;display:block;-webkit-mask-image:radial-gradient(70% 70% at 50% 48%,#000 45%,transparent 96%);mask-image:radial-gradient(70% 70% at 50% 48%,#000 45%,transparent 96%);animation:sfFloat 9s ease-in-out infinite"
+        />
+      </div>
+      <div data-sf-neon="1" style={`position:absolute;left:0;right:0;bottom:0;${neon}`}></div>
+    </section>
+
+    <section style="background:#F4F3F0">
+      <div data-r="p2" style="max-width:1240px;margin:0 auto;padding:96px 32px">
+        <div data-reveal style="max-width:640px;margin-bottom:52px">
+          <span style={kickerVerde}>{L(lang, "A EMPRESA E AS PESSOAS", "THE COMPANY AND THE PEOPLE")}</span>
+          <h2 style="margin:18px 0 0;font-size:clamp(30px,3.4vw,44px);line-height:1.1;letter-spacing:-.03em;font-weight:600">
+            {L(lang, "Conheça a empresa e as pessoas", "Meet the company")}
+          </h2>
+        </div>
+        <div data-r="g2" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+          {
+            blocos.map((b, i) => (
+              <div
+                data-reveal
+                data-tilt="1"
+                data-r="p3"
+                style="background:#E7E6E2;border:1px solid rgba(13,13,13,.06);border-radius:4px;padding:32px 28px;display:flex;flex-direction:column;gap:14px"
+              >
+                <span style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:12px;font-weight:600;letter-spacing:.16em;color:#13BE9F">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 style="margin:0;font-size:21px;font-weight:600">{b.t}</h3>
+                <div style="display:flex;flex-direction:column">
+                  {b.itens.map((x) => (
+                    <span style={itemEstilo}>{x}</span>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F4F3F0;border-top:1px solid rgba(13,13,13,.08)">
+      <div
+        data-r="p4 g3"
+        style="max-width:1240px;margin:0 auto;padding:88px 32px;display:grid;grid-template-columns:auto 1fr;gap:52px;align-items:center"
+      >
+        <div data-reveal style="width:220px;height:270px;border-radius:4px;overflow:hidden;background:#0D0D0D">
+          {
+            FOTO_LIDERANCA && (
+              <img
+                src={FOTO_LIDERANCA}
+                alt="Stefan Cabral"
+                loading="lazy"
+                width="220"
+                height="270"
+                style="width:100%;height:100%;object-fit:cover;display:block"
+              />
+            )
+          }
+        </div>
+        <div>
+          <span data-reveal style={kickerVerde}>{L(lang, "LIDERANÇA", "LEADERSHIP")}</span>
+          <p
+            data-reveal
+            style="max-width:640px;margin:22px 0 18px;font-size:clamp(20px,2.2vw,27px);line-height:1.45;color:#0D0D0D;font-style:italic"
+          >
+            {
+              L(
+                lang,
+                "“Trabalhamos para que o paciente brasileiro receba o mesmo nível de tratamento oferecido em qualquer lugar do mundo — com uma palavra que vale.”",
+                "“We work so that the Brazilian patient receives the same level of treatment offered anywhere in the world — with a word that holds.”",
+              )
+            }
+          </p>
+          <div data-reveal style="display:flex;flex-direction:column;gap:2px">
+            <strong style="font-size:16px;font-weight:600">Stefan Cabral</strong>
+            <span
+              style="font-family:'Space Grotesk','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;color:#474E58"
+              >{L(lang, "FUNDADOR & CEO, SETFREE", "FOUNDER & CEO, SETFREE")}</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#0D0D0D;color:#F4F3F0;position:relative;overflow:hidden">
+      <div
+        data-r="p4"
+        style="position:relative;max-width:1240px;margin:0 auto;padding:88px 32px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap"
+      >
+        <div style="max-width:560px">
+          <h2
+            data-reveal
+            style="margin:0 0 12px;font-size:clamp(26px,3vw,38px);line-height:1.1;letter-spacing:-.03em;font-weight:600"
+          >
+            {L(lang, "Vamos levar a saúde mais longe, juntos", "Let's take healthcare further, together")}
+          </h2>
+          <p data-reveal style="margin:0;font-size:15.5px;line-height:1.65;color:rgba(244,243,240,.65)">
+            {
+              L(
+                lang,
+                "Hospitais, clínicas e fabricantes globais — fale com o nosso time.",
+                "Hospitals, clinics and global manufacturers — talk to our team.",
+              )
+            }
+          </p>
+        </div>
+        <div data-reveal style="display:flex;gap:14px;flex-wrap:wrap">
+          <a
+            data-mag="1"
+            data-h="btn"
+            href={WHATSAPP}
+            style="background:#13BE9F;color:#0D0D0D;border-radius:999px;padding:15px 30px;font-size:15px;font-weight:600;white-space:nowrap"
+            >{UI.nav.falarWhats[lang]}</a
+          >
+          <a
+            data-mag="1"
+            data-h="borda"
+            href={route("contato", lang)}
+            style="border:1px solid rgba(244,243,240,.25);color:#F4F3F0;border-radius:999px;padding:14px 28px;font-size:15px;font-weight:500;white-space:nowrap"
+            >{L(lang, "Canais de contato", "Contact channels")}</a
+          >
+        </div>
+      </div>
+      <div data-sf-neon="1" style={`position:absolute;left:0;right:0;top:0;${neon}`}></div>
+    </section>
+
+    <SiteFooter lang={lang} />
+  </div>
+</Base>
+
+<style is:global>
+  @media (max-width: 980px) {
+    [data-r~="p1"] {
+      padding: 116px 22px 48px !important;
+    }
+    [data-r~="p2"] {
+      padding: 65px 22px !important;
+    }
+    [data-r~="p3"] {
+      padding: 26px 22px !important;
+    }
+    [data-r~="p4"] {
+      padding: 65px 22px !important;
+    }
+    [data-r~="g1"] {
+      grid-template-columns: 1fr !important;
+      gap: 34px !important;
+    }
+    [data-r~="g2"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    [data-r~="g3"] {
+      grid-template-columns: 1fr !important;
+      gap: 30px !important;
+    }
+  }
+  @media (max-width: 620px) {
+    [data-r~="g2"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
