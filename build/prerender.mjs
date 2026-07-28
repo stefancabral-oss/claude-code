@@ -16,13 +16,17 @@ import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { PAGES, COMPONENTS, FILE_TO_URL, SITE } from "./pages.mjs";
+import { PAGES, COMPONENTS, FILE_TO_URL, SITE, PROD_SITE, IS_PROD_SITE } from "./pages.mjs";
 
 const ROOT = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const STAGE = path.join(ROOT, "build", ".staging");
 const DIST = path.join(ROOT, "dist");
 const VENDOR = path.join(ROOT, "build", "vendor");
 const CHROME = "/opt/pw-browsers/chromium/chrome-linux/chrome";
+
+// Em produção é no-op. Fora dela, troca o domínio fixo (JSON-LD das páginas,
+// sitemap, llms.txt) pelo SITE_URL do ambiente.
+const retarget = (s) => (IS_PROD_SITE ? s : s.replaceAll(PROD_SITE, SITE));
 
 const rm = (p) => fs.rmSync(p, { recursive: true, force: true });
 const cpDir = (a, b) => fs.existsSync(a) && fs.cpSync(a, b, { recursive: true });
@@ -125,7 +129,7 @@ function assemble(rawFile, cfg, rendered) {
   const noscript = `<noscript>\n<div id="sf-prerender">${rewriteLinks(rendered)}</div>\n</noscript>`;
   raw = raw.replace(/<body([^>]*)>/i, `<body$1>\n${noscript}`);
 
-  return rewriteLinks(raw);
+  return retarget(rewriteLinks(raw));
 }
 
 // --- copia assets estáticos para dist --------------------------------------------
@@ -134,12 +138,19 @@ function copyAssets() {
   cpDir(path.join(STAGE, "uploads"), path.join(DIST, "uploads"));
   cpDir(path.join(STAGE, "vendor"), path.join(DIST, "vendor"));
   fs.copyFileSync(path.join(STAGE, "support.js"), path.join(DIST, "support.js"));
-  // componentes (dc-import) precisam existir no mesmo host
-  for (const c of COMPONENTS) fs.copyFileSync(path.join(STAGE, c), path.join(DIST, c));
+  // componentes (dc-import) precisam existir no mesmo host — e passam pelo mesmo
+  // rewrite de links das páginas: o menu e o rodapé aparecem em todas elas, e sem
+  // isso cada clique cairia num .dc.html (404 sem o nginx; 301 desnecessário com ele).
+  for (const c of COMPONENTS) write(path.join(DIST, c), rewriteLinks(read(path.join(STAGE, c))));
   // arquivos SEO vão para a RAIZ do domínio
   for (const f of ["robots.txt", "sitemap.xml", "llms.txt"]) {
     const src = path.join(STAGE, "seo", f);
-    if (fs.existsSync(src)) fs.copyFileSync(src, path.join(DIST, f));
+    if (fs.existsSync(src)) write(path.join(DIST, f), retarget(read(src)));
+  }
+  // fora de produção, nenhum robô indexa: staging com conteúdo igual ao do site
+  // real vira conteúdo duplicado e pode canibalizar o domínio de verdade.
+  if (!IS_PROD_SITE) {
+    write(path.join(DIST, "robots.txt"), `# build de ${SITE} (nao-producao)\nUser-agent: *\nDisallow: /\n`);
   }
   // remove o Brandbook e screenshots do que é publicado
   const up = path.join(DIST, "uploads");
@@ -149,6 +160,7 @@ function copyAssets() {
 }
 
 async function main() {
+  console.log(`• domínio do build: ${SITE}${IS_PROD_SITE ? "" : "  (nao-producao → robots.txt bloqueia tudo)"}`);
   console.log("• staging + auto-host React"); buildStage();
   console.log("• copiando assets → dist"); copyAssets();
 
