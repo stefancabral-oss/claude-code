@@ -17,16 +17,20 @@ São **38 páginas**: 19 em português na raiz e 19 em inglês sob `/en/`.
 
 ## Fase 0 — Antes de tocar no Dokploy
 
-- [ ] **Os dois PRs da migração na `main`, nesta ordem:**
-      [#36](https://github.com/stefancabral-oss/claude-code/pull/36) (o site em
-      Astro) e depois [#37](https://github.com/stefancabral-oss/claude-code/pull/37)
-      (remove o export do Claude Design). O #37 sai da branch do #36 — mergear
-      fora de ordem quebra o diff.
-      O deploy funciona com só o #36; o #37 é higiene de repositório.
+- [x] **Site em Astro na `main`** — PR
+      [#36](https://github.com/stefancabral-oss/claude-code/pull/36), mergeado.
+      **O deploy pode acontecer com a `main` como está hoje.**
 - [ ] **Revisão das traduções em inglês** (`site/src/data/*.en.json`). São 13
       páginas de produto e solução que não tinham inglês nenhum — eu redigi.
       É texto de dispositivo médico e, uma vez no ar, o Google indexa: corrigir
-      depois custa mais. **Nenhuma pessoa revisou ainda.**
+      depois custa mais. **Nenhuma pessoa revisou ainda.** É o único item desta
+      fase que eu não conseguiria destravar sozinho.
+- [ ] **Limpeza do export do Claude Design** — opcional para o deploy. O PR
+      [#37](https://github.com/stefancabral-oss/claude-code/pull/37) foi mergeado
+      na branch `astro-migration` **depois** que o #36 já tinha ido para a `main`,
+      então a remoção ficou parada lá e nunca chegou à `main`. Não afeta o site:
+      o `deploy/Dockerfile.web` só copia `site/` e `uploads/`, então os arquivos
+      antigos nem entram na imagem. É higiene de repositório.
 - [ ] **Servidor com Docker + Dokploy instalado** e a rede `dokploy-network` já
       existente (o compose a declara como `external: true`; o Dokploy cria essa
       rede sozinho na instalação).
