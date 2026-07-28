@@ -5,6 +5,7 @@
 // Rotas:  POST /api/assistente { pergunta }  → { texto }
 //         GET  /api/health                    → { ok: true }
 import http from "node:http";
+import { editaisHandler } from "./editais.mjs";
 
 const PORT = process.env.PORT || 8787;
 const API_KEY = process.env.ANTHROPIC_API_KEY;
@@ -45,6 +46,11 @@ const server = http.createServer(async (req, res) => {
   const origin = req.headers.origin;
   if (req.method === "OPTIONS") return send(res, 204, {}, origin);
   if (req.method === "GET" && req.url === "/api/health") return send(res, 200, { ok: true, model: MODEL }, origin);
+
+  if (req.method === "GET" && req.url === "/api/editais") {
+    try { return send(res, 200, await editaisHandler(), origin); }
+    catch { return send(res, 502, { erro: "falha ao consultar o PNCP", editais: [] }, origin); }
+  }
 
   if (req.method === "POST" && req.url === "/api/assistente") {
     if (!API_KEY) return send(res, 500, { erro: "ANTHROPIC_API_KEY não configurada" }, origin);

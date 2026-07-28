@@ -109,6 +109,8 @@ function assemble(rawFile, cfg, rendered) {
     `<link rel="alternate" hreflang="pt-BR" href="${canonical}">`,
     breadcrumbLd(cfg),
     `<base href="/">`,
+    // personalização por origem: visitante de fora do BR abre em inglês (o SiteNav lê sf-lang)
+    `<script>try{var L=(navigator.language||"").toLowerCase();if(!localStorage.getItem("sf-lang")&&L&&L.slice(0,2)!=="pt"){localStorage.setItem("sf-lang","en")}}catch(e){}</script>`,
   ].join("\n");
 
   // <html lang="pt-BR">
@@ -157,6 +159,7 @@ async function main() {
   let ok = 0, warn = 0;
   for (const cfg of PAGES) {
     const pg = await browser.newPage();
+    await pg.addInitScript(() => { window.__PRERENDER__ = true; }); // widgets dinâmicos ficam no estado inicial
     // dentro do sandbox unpkg é bloqueado → servimos React local; stubs para o resto
     await pg.route("**/*", (route) => {
       const u = route.request().url();
