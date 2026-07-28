@@ -1,0 +1,130 @@
+{
+  "versao": "0.1.0",
+  "gerado_em": "2026-07-28",
+  "observacao": "Este arquivo alimenta os botoes do painel. 'acoes' e 'conectores' sao os botoes com prompt embutido (ponto de partida curado). 'plugins_instalados' e 'referencia_small_business' sao o inventario completo detectado na conta, para expandir os botoes conforme o uso. Placeholder {contexto} = o que o usuario digita no passo 3.",
+
+  "acoes": [
+    {
+      "id": "analisar-edital",
+      "familia": "skill",
+      "rotulo": "Analisar edital de licitacao",
+      "descricao": "Le um edital, decide go/no-go de forma objetiva e registra no acervo (Setfree).",
+      "icone": "📜",
+      "origem_plugin": "licitacao-setfree",
+      "trecho_prompt": "Analise o edital de licitacao {contexto} para a Setfree: pontue go/no-go de forma objetiva e registre a decisao no acervo.",
+      "conectores_sugeridos": ["google-drive"]
+    },
+    {
+      "id": "triagem-emails",
+      "familia": "skill",
+      "rotulo": "Triagem de e-mails do dia",
+      "descricao": "Varre a caixa, separa o que exige decisao sua e resume em ate 30 linhas.",
+      "icone": "📧",
+      "origem_plugin": "projeto",
+      "trecho_prompt": "Faca a triagem dos meus e-mails de hoje {contexto}: priorize riscos, separe o que exige minha decisao e entregue um resumo executivo curto.",
+      "conectores_sugeridos": ["microsoft-365", "gmail"]
+    },
+    {
+      "id": "cobrar-fatura",
+      "familia": "skill",
+      "rotulo": "Cobrar fatura atrasada",
+      "descricao": "Escreve uma cobranca cordial e firme com base no historico do cliente.",
+      "icone": "💰",
+      "origem_plugin": "small-business",
+      "trecho_prompt": "Escreva uma cobranca cordial e firme para o cliente {contexto}, considerando o historico de pagamentos.",
+      "conectores_sugeridos": ["gmail", "google-drive"]
+    },
+    {
+      "id": "fluxo-caixa",
+      "familia": "skill",
+      "rotulo": "Previsao de fluxo de caixa",
+      "descricao": "Gera uma previsao de 30/60/90 dias com indicadores de confianca.",
+      "icone": "📊",
+      "origem_plugin": "small-business",
+      "trecho_prompt": "Gere uma previsao de fluxo de caixa de 30/60/90 dias {contexto}, com nivel de confianca e alertas de risco.",
+      "conectores_sugeridos": ["google-drive", "microsoft-365"]
+    },
+    {
+      "id": "resumo-reuniao",
+      "familia": "skill",
+      "rotulo": "Resumir reuniao",
+      "descricao": "Transforma a transcricao da reuniao em resumo com decisoes e proximos passos.",
+      "icone": "🎤",
+      "origem_plugin": "granola",
+      "trecho_prompt": "Resuma a reuniao {contexto} em topicos: decisoes tomadas, responsaveis e proximos passos.",
+      "conectores_sugeridos": ["granola", "google-calendar"]
+    },
+    {
+      "id": "brief-segunda",
+      "familia": "workflow",
+      "rotulo": "Resumo de segunda-feira",
+      "descricao": "Comeca a semana com caixa, vendas, pipeline e prioridades.",
+      "icone": "☀️",
+      "origem_plugin": "small-business",
+      "trecho_prompt": "Monte meu resumo de segunda-feira {contexto}: caixa, vendas, pipeline e as 3 prioridades da semana.",
+      "conectores_sugeridos": ["microsoft-365", "google-drive"]
+    },
+    {
+      "id": "criar-post",
+      "familia": "skill",
+      "rotulo": "Criar post / arte no Canva",
+      "descricao": "Gera calendario de posts, legendas e a arte no Canva.",
+      "icone": "🎨",
+      "origem_plugin": "small-business",
+      "trecho_prompt": "Crie um post {contexto}: sugira legenda, formato e gere a arte no Canva.",
+      "conectores_sugeridos": ["canva"]
+    },
+    {
+      "id": "revisar-contrato",
+      "familia": "skill",
+      "rotulo": "Revisar contrato",
+      "descricao": "Analise em linguagem simples com marcacao de riscos.",
+      "icone": "📄",
+      "origem_plugin": "small-business",
+      "trecho_prompt": "Revise o contrato {contexto} em linguagem simples e aponte clausulas de risco.",
+      "conectores_sugeridos": ["google-drive", "microsoft-365"]
+    }
+  ],
+
+  "conectores": [
+    { "id": "gmail", "rotulo": "Gmail", "icone": "✉️", "descricao": "Ler e organizar e-mails do Gmail.", "status": "requer-login" },
+    { "id": "microsoft-365", "rotulo": "Microsoft 365 (Outlook/Teams)", "icone": "📨", "descricao": "Outlook, Teams e SharePoint.", "status": "requer-login" },
+    { "id": "google-drive", "rotulo": "Google Drive", "icone": "🗂️", "descricao": "Ler arquivos e planilhas do Drive.", "status": "requer-login" },
+    { "id": "google-calendar", "rotulo": "Google Agenda", "icone": "📅", "descricao": "Eventos e disponibilidade.", "status": "requer-login" },
+    { "id": "notion", "rotulo": "Notion", "icone": "🗒️", "descricao": "Paginas e bancos de dados do Notion.", "status": "requer-login" },
+    { "id": "canva", "rotulo": "Canva", "icone": "🎨", "descricao": "Criar e editar designs.", "status": "conectado" },
+    { "id": "figma", "rotulo": "Figma", "icone": "🖌️", "descricao": "Ler e criar designs no Figma.", "status": "conectado" },
+    { "id": "granola", "rotulo": "Granola", "icone": "🎤", "descricao": "Transcricoes de reuniao.", "status": "requer-login" },
+    { "id": "github", "rotulo": "GitHub", "icone": "🐙", "descricao": "Repositorios, PRs e issues.", "status": "conectado" },
+    { "id": "semrush", "rotulo": "Semrush", "icone": "🔎", "descricao": "SEO e inteligencia competitiva.", "status": "conectado" },
+    { "id": "adobe", "rotulo": "Adobe (Express/Firefly)", "icone": "🌟", "descricao": "Design e edicao de imagem.", "status": "conectado" }
+  ],
+
+  "plugins_instalados": [
+    "small-business", "licitacao-setfree", "finance", "marketing", "sales", "legal",
+    "operations", "human-resources", "product-management", "productivity", "design",
+    "engineering", "data", "customer-support", "enterprise-search", "brand-voice",
+    "canva", "figma", "adobe-for-creativity", "dropbox", "wix", "miro", "zoom-plugin",
+    "slack-by-salesforce", "postiz", "apollo", "zoominfo", "common-room", "honeycomb",
+    "langfuse", "prisma", "cockroachdb", "qdrant-skills", "datarobot-agent-skills",
+    "atlan", "daloopa", "bigdata-com", "brightdata-plugin", "nimble", "cloudinary",
+    "fastly-agent-toolkit", "searchfit-seo", "b12-claude-plugin", "carta-investors",
+    "ai-firstify", "bio-research", "product-tracking-skills", "pdf-viewer",
+    "cowork-plugin-management"
+  ],
+
+  "referencia_small_business": {
+    "skills": [
+      "cash-flow-snapshot", "invoice-chase", "margin-analyzer", "month-end-prep",
+      "tax-season-organizer", "lead-triage", "content-strategy", "canva-creator",
+      "customer-pulse", "ticket-deflector", "crm-maintenance", "contract-review",
+      "job-post-builder", "business-pulse", "smb-onboard"
+    ],
+    "workflows": [
+      "plan-payroll", "month-heads-up", "close-month", "price-check", "tax-prep",
+      "call-list", "run-campaign", "sales-brief", "customer-pulse-check",
+      "handle-complaint", "crm-cleanup", "review-contract", "monday-brief",
+      "friday-brief", "quarterly-review"
+    ]
+  }
+}

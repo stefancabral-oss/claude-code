@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Criador de Prompt</title>
+</head>
+<body>
+<style>
+  :root{
+    --bg:#f4f2ee;
+    --surface:#ffffff;
+    --surface-2:#eceae4;
+    --text:#1f1e1b;
+    --muted:#6b6861;
+    --border:#d8d4cc;
+    --accent:#b4552d;
+    --accent-strong:#9a4523;
+    --accent-text:#ffffff;
+    --ring:#b4552d;
+    --ok:#2e7d4f;
+    --chip-bg:#f0e4dc;
+    --chip-text:#7a3c1f;
+    --prompt-bg:#fbfaf7;
+    --shadow:0 1px 3px rgba(30,25,20,.08),0 4px 14px rgba(30,25,20,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#191817;
+      --surface:#232120;
+      --surface-2:#2c2a28;
+      --text:#f0edea;
+      --muted:#a5a09a;
+      --border:#3b3835;
+      --accent:#e07a4f;
+      --accent-strong:#c76540;
+      --accent-text:#1c130e;
+      --ring:#e07a4f;
+      --ok:#6fbf8f;
+      --chip-bg:#3a2c24;
+      --chip-text:#f0b697;
+      --prompt-bg:#1e1d1c;
+      --shadow:0 1px 3px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#191817;
+    --surface:#232120;
+    --surface-2:#2c2a28;
+    --text:#f0edea;
+    --muted:#a5a09a;
+    --border:#3b3835;
+    --accent:#e07a4f;
+    --accent-strong:#c76540;
+    --accent-text:#1c130e;
+    --ring:#e07a4f;
+    --ok:#6fbf8f;
+    --chip-bg:#3a2c24;
+    --chip-text:#f0b697;
+    --prompt-bg:#1e1d1c;
+    --shadow:0 1px 3px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f2ee;
+    --surface:#ffffff;
+    --surface-2:#eceae4;
+    --text:#1f1e1b;
+    --muted:#6b6861;
+    --border:#d8d4cc;
+    --accent:#b4552d;
+    --accent-strong:#9a4523;
+    --accent-text:#ffffff;
+    --ring:#b4552d;
+    --ok:#2e7d4f;
+    --chip-bg:#f0e4dc;
+    --chip-text:#7a3c1f;
+    --prompt-bg:#fbfaf7;
+    --shadow:0 1px 3px rgba(30,25,20,.08),0 4px 14px rgba(30,25,20,.06);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:520px;
+    margin:0 auto;
+    padding:20px 16px 40px;
+    display:flex;
+    flex-direction:column;
+    min-height:100dvh;
+  }
+  .topo{ text-align:center; margin-bottom:14px; }
+  .topo h1{ font-size:20px; margin:0 0 2px; letter-spacing:-.01em; }
+  .topo p{ margin:0; font-size:13px; color:var(--muted); }
+  .selo-versao{ display:inline-block; margin-top:6px; font-size:11px; font-weight:700;
+    letter-spacing:.04em; color:var(--accent); border:1px solid var(--accent);
+    border-radius:99px; padding:2px 9px; }
+
+  .progresso{ margin-bottom:18px; }
+  .progresso-label{
+    font-size:13px; font-weight:600; color:var(--muted);
+    margin-bottom:6px; text-align:center;
+  }
+  .barra{
+    height:8px; border-radius:99px; background:var(--surface-2);
+    overflow:hidden; border:1px solid var(--border);
+  }
+  .barra-fill{
+    height:100%; width:0%;
+    background:var(--accent);
+    border-radius:99px;
+    transition:width .3s ease;
+  }
+
+  .cartao{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px 18px;
+    box-shadow:var(--shadow);
+  }
+  .cartao h2{ font-size:19px; margin:0 0 8px; letter-spacing:-.01em; }
+  .ajuda{ font-size:14px; color:var(--muted); margin:0 0 18px; }
+
+  textarea, input[type="text"]{
+    width:100%;
+    font-size:16px; /* evita zoom no iOS */
+    font-family:inherit;
+    color:var(--text);
+    background:var(--prompt-bg);
+    border:1.5px solid var(--border);
+    border-radius:12px;
+    padding:14px;
+    min-height:44px;
+    outline:none;
+  }
+  textarea{ min-height:110px; resize:vertical; }
+  textarea:focus, input[type="text"]:focus{
+    border-color:var(--ring);
+    box-shadow:0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent);
+  }
+
+  .opcoes{ display:flex; flex-direction:column; gap:10px; }
+  .opcao{
+    display:flex; align-items:center; gap:12px;
+    width:100%;
+    min-height:56px;
+    padding:14px;
+    font-size:16px;
+    font-family:inherit;
+    text-align:left;
+    color:var(--text);
+    background:var(--prompt-bg);
+    border:1.5px solid var(--border);
+    border-radius:12px;
+    cursor:pointer;
+  }
+  .opcao .bolinha{
+    flex:0 0 auto;
+    width:22px; height:22px;
+    border-radius:50%;
+    border:2px solid var(--border);
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  .opcao .bolinha::after{
+    content:""; width:10px; height:10px; border-radius:50%;
+    background:transparent;
+  }
+  .opcao[aria-checked="true"]{
+    border-color:var(--accent);
+    background:color-mix(in srgb, var(--accent) 10%, var(--surface));
+    font-weight:600;
+  }
+  .opcao[aria-checked="true"] .bolinha{ border-color:var(--accent); }
+  .opcao[aria-checked="true"] .bolinha::after{ background:var(--accent); }
+  .opcao:focus-visible{ outline:3px solid var(--ring); outline-offset:2px; }
+
+  .tag-linha{ display:flex; gap:8px; }
+  .tag-linha input{ flex:1; }
+  .btn-add{
+    flex:0 0 auto;
+    min-height:44px; min-width:44px;
+    padding:0 16px;
+    font-size:16px; font-weight:600;
+    font-family:inherit;
+    border-radius:12px;
+    border:1.5px solid var(--accent);
+    background:var(--accent);
+    color:var(--accent-text);
+    cursor:pointer;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .chip{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--chip-bg); color:var(--chip-text);
+    font-size:15px; font-weight:600;
+    border-radius:99px;
+    padding:8px 8px 8px 14px;
+  }
+  .chip button{
+    border:none; background:transparent; color:inherit;
+    font-size:18px; line-height:1;
+    width:28px; height:28px; border-radius:50%;
+    cursor:pointer; padding:0;
+  }
+  .chip button:focus-visible{ outline:2px solid var(--ring); outline-offset:1px; }
+
+  .nav{
+    display:flex; gap:10px; margin-top:20px;
+  }
+  .btn{
+    flex:1;
+    min-height:50px;
+    font-size:16px; font-weight:700;
+    font-family:inherit;
+    border-radius:12px;
+    cursor:pointer;
+    border:1.5px solid var(--border);
+    background:var(--surface);
+    color:var(--text);
+    padding:12px 16px;
+  }
+  .btn-primario{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:var(--accent-text);
+  }
+  .btn-primario:disabled{
+    opacity:.45; cursor:not-allowed;
+  }
+  .btn-pular{ flex:0 0 auto; color:var(--muted); background:transparent; border-color:transparent; text-decoration:underline; font-weight:600; }
+  .btn:focus-visible, .btn-add:focus-visible{ outline:3px solid var(--ring); outline-offset:2px; }
+  .btn:active:not(:disabled), .btn-add:active, .opcao:active{ transform:scale(.98); }
+
+  .prompt-bloco{
+    background:var(--prompt-bg);
+    border:1.5px solid var(--border);
+    border-radius:12px;
+    padding:16px;
+    font-size:17px;
+    line-height:1.6;
+    word-break:break-word;
+    margin-bottom:16px;
+  }
+  .resumo{ margin:18px 0 0; padding:0; list-style:none; }
+  .resumo li{
+    display:flex; justify-content:space-between; gap:12px;
+    padding:9px 0;
+    border-top:1px solid var(--border);
+    font-size:14px;
+  }
+  .resumo li span:first-child{ color:var(--muted); flex:0 0 auto; }
+  .resumo li span:last-child{ text-align:right; font-weight:600; }
+  .resumo .pulado{ font-weight:400; color:var(--muted); font-style:italic; }
+  .titulo-final{ display:flex; align-items:center; gap:8px; }
+  .selo-ok{ color:var(--ok); font-size:22px; }
+  .aviso-copiado{ font-size:13px; color:var(--ok); font-weight:700; text-align:center; margin-top:8px; min-height:18px; }
+  .aviso-copiado.erro{ color:var(--accent-strong); }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{ transition:none !important; animation:none !important; }
+    .btn:active, .btn-add:active, .opcao:active{ transform:none; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="topo">
+    <h1>Criador de Prompt</h1>
+    <p>Monte seu pedido para o Claude, um passo de cada vez</p>
+    <span class="selo-versao">v1</span>
+  </header>
+
+  <div class="progresso" aria-hidden="false">
+    <div class="progresso-label" id="progresso-label">Passo 1 de 6</div>
+    <div class="barra"><div class="barra-fill" id="barra-fill"></div></div>
+  </div>
+
+  <main id="tela" aria-live="polite"></main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var STEPS = [
+    {
+      id:"objetivo",
+      titulo:"O que você quer que seja feito?",
+      ajuda:"Escreva do seu jeito, curto e seco — só o pedido, sem enfeitar. Pode ser qualquer coisa: de \"criar um app de controle de estoque\" a \"salvar este texto num arquivo\". As próximas telas completam o resto da frase.",
+      tipo:"texto",
+      obrigatorio:true,
+      placeholder:"Ex.: criar um app de controle de estoque"
+    },
+    {
+      id:"estilo",
+      titulo:"Com que jeito ou tom?",
+      ajuda:"É o \"clima\" do resultado. Um app pede algo detalhado e caprichado; um post nas redes, algo animado e criativo. Se não fizer diferença, é só pular.",
+      tipo:"escolha",
+      obrigatorio:false,
+      opcoes:[
+        {label:"Profissional e sério", valor:"profissional", fragmento:", com um tom profissional e sério"},
+        {label:"Simples e direto ao ponto", valor:"direto", fragmento:", de um jeito simples e direto ao ponto"},
+        {label:"Animado e criativo", valor:"criativo", fragmento:", com um tom animado e criativo"},
+        {label:"Engraçado e leve", valor:"engracado", fragmento:", com humor, de um jeito leve"},
+        {label:"Detalhado e caprichado", valor:"detalhado", fragmento:", bem detalhado e caprichado"}
+      ]
+    },
+    {
+      id:"detalhes",
+      titulo:"Quer acrescentar detalhes importantes?",
+      ajuda:"Palavras soltas que não podem faltar. Ex.: num app — \"tela de login\", \"relatório em PDF\"; num texto — \"tom formal\", \"até 200 palavras\". Digite uma e toque em adicionar. Pode pular.",
+      tipo:"tags",
+      obrigatorio:false,
+      placeholder:"Ex.: tela de login"
+    },
+    {
+      id:"como_executar",
+      titulo:"Como o Claude deve fazer isso?",
+      ajuda:"É o caminho que o Claude vai usar. Na dúvida, escolha \"Deixar o Claude decidir\" — resolve quase tudo. Ex.: para \"responder e-mails de clientes\" faz sentido usar seus apps conectados (Gmail); para \"cobrar faturas atrasadas\", uma habilidade pronta.",
+      tipo:"escolha",
+      obrigatorio:true,
+      opcoes:[
+        {label:"Deixar o Claude decidir (recomendado)", valor:"claude_decide", fragmento:". Para isso, faça do jeito que você julgar melhor"},
+        {label:"Usar uma habilidade pronta", valor:"skill_pronta", fragmento:". Para isso, use a habilidade pronta mais adequada (por exemplo: analisar-edital, triagem-emails, cobrar-fatura ou resumir-reuniao)"},
+        {label:"Usar um dos nossos plugins", valor:"plugin", fragmento:". Para isso, use o plugin mais adequado (por exemplo: small-business, licitacao-setfree, finance, marketing, canva ou figma)"},
+        {label:"Buscar nos meus apps conectados", valor:"conector", fragmento:". Para isso, busque o que for preciso nos meus apps conectados (Gmail, Google Drive, Notion, Canva ou Microsoft 365)"},
+        {label:"Criar uma habilidade nova só para isso", valor:"construir_skill", fragmento:". Para isso, construa uma habilidade nova sob medida para essa tarefa, que eu possa reutilizar depois"}
+      ]
+    },
+    {
+      id:"formato",
+      titulo:"Em que formato você quer receber?",
+      ajuda:"Pense em como vai usar. Um app ou script vem bem como texto/código pronto para copiar; um orçamento, em planilha; um relatório, em documento. Se tanto faz, pule.",
+      tipo:"escolha",
+      obrigatorio:false,
+      opcoes:[
+        {label:"Texto pronto para copiar", valor:"texto", fragmento:". Entregue o resultado como texto simples, pronto para eu copiar e usar"},
+        {label:"Lista de passos numerados", valor:"lista", fragmento:". Entregue o resultado como uma lista de passos simples e numerados"},
+        {label:"Documento (Word ou PDF)", valor:"documento", fragmento:". Entregue o resultado em um documento (Word ou PDF)"},
+        {label:"Planilha", valor:"planilha", fragmento:". Entregue o resultado em uma planilha organizada"},
+        {label:"Mensagem pronta para enviar", valor:"mensagem", fragmento:". Entregue o resultado como uma mensagem pronta para eu copiar e enviar"}
+      ]
+    },
+    {
+      id:"verificacao",
+      titulo:"Quer conferir antes de finalizar?",
+      ajuda:"Coisas simples podem ir direto. Coisas com números, clientes, dinheiro ou código que vai rodar, é bom revisar antes. Pode pular.",
+      tipo:"escolha",
+      obrigatorio:false,
+      opcoes:[
+        {label:"Me mostre um rascunho e espere meu OK", valor:"rascunho", fragmento:" Antes de finalizar, me mostre um rascunho e espere a minha aprovação."},
+        {label:"Confira números, nomes e datas", valor:"conferir", fragmento:" Confira os números, nomes e datas usados e me avise claramente se algo estiver incerto."},
+        {label:"Pode entregar direto", valor:"direto", fragmento:" Pode entregar direto, sem conferência extra."}
+      ]
+    }
+  ];
+
+  var TOTAL = STEPS.length;
+
+  var state = {
+    idx: 0,
+    finished: false,
+    origemFinal: false, // true quando o usuário abriu um passo a partir do resumo final
+    valores: {
+      objetivo: "",
+      estilo: null,       // objeto opcao ou null
+      detalhes: [],       // lista de tags
+      como_executar: null,
+      formato: null,
+      verificacao: null
+    }
+  };
+
+  var tela = document.getElementById("tela");
+  var barraFill = document.getElementById("barra-fill");
+  var progLabel = document.getElementById("progresso-label");
+
+  /* ---------- utilitários ---------- */
+
+  function escapeHtml(s){
+    return String(s)
+      .replace(/&/g,"&amp;")
+      .replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;")
+      .replace(/'/g,"&#39;");
+  }
+
+  function limparFrase(s){
+    s = s.replace(/\s+/g," ");
+    s = s.replace(/,\s*(,\s*)+/g, ", ");   // vírgulas seguidas
+    s = s.replace(/\s*,\s*\./g, ".");      // vírgula antes de ponto
+    s = s.replace(/\.\s*\./g, ". ").replace(/\.\s*\./g, ". "); // pontos duplicados
+    s = s.replace(/\s+\./g, ".");
+    // espaço após ponto — mas NUNCA dentro de números ("R$ 1.500", "2.0", "R$ 2.350,00")
+    s = s.replace(/\.(?=[^\s\d])/g, ". ");
+    s = s.replace(/\s+/g," ").trim();
+    s = s.replace(/[,;\s]+$/,"");          // nunca terminar em vírgula
+    if (s && !/[.!?]$/.test(s)) s += ".";
+    return s;
+  }
+
+  function montarPrompt(){
+    var v = state.valores;
+    var obj = (v.objetivo || "").trim();
+    // remove pontuação final do objetivo
+    obj = obj.replace(/[\s.!?…,;]+$/,"");
+    if (!obj) return "";
+    // primeira letra maiúscula
+    obj = obj.charAt(0).toLocaleUpperCase("pt-BR") + obj.slice(1);
+
+    var frase = obj;
+    if (v.estilo) frase += v.estilo.fragmento;
+    if (v.detalhes && v.detalhes.length){
+      frase += ", incluindo: " + v.detalhes.join(", ");
+    }
+    // "como executar" inicia frase nova (". Para isso, ...") para não
+    // virar mais um item da lista de detalhes
+    if (v.como_executar) frase += v.como_executar.fragmento;
+
+    if (v.formato){
+      frase += v.formato.fragmento + ".";
+    } else {
+      frase += ".";
+    }
+    if (v.verificacao){
+      frase += v.verificacao.fragmento;
+    }
+    return limparFrase(frase);
+  }
+
+  /* ---------- progresso ---------- */
+
+  function atualizarProgresso(){
+    if (state.finished){
+      progLabel.textContent = "Pronto! Seu prompt está montado";
+      barraFill.style.width = "100%";
+    } else if (state.origemFinal){
+      progLabel.textContent = "Ajustando: " + (TITULOS_CURTOS[STEPS[state.idx].id] || ("Passo " + (state.idx + 1)));
+      barraFill.style.width = "100%";
+    } else {
+      progLabel.textContent = "Passo " + (state.idx + 1) + " de " + TOTAL;
+      barraFill.style.width = Math.round(((state.idx + 1) / (TOTAL + 1)) * 100) + "%";
+    }
+  }
+
+  /* ---------- navegação ---------- */
+
+  function irPara(i, vindoDoResumo){
+    state.idx = i;
+    state.finished = false;
+    state.origemFinal = !!vindoDoResumo;
+    render();
+  }
+  function voltarAoResultado(){
+    state.origemFinal = false;
+    state.finished = true;
+    render();
+  }
+  function proximo(){
+    if (state.origemFinal){
+      // veio do resumo final: salvar e voltar direto ao prompt,
+      // sem re-percorrer os passos seguintes
+      voltarAoResultado();
+    } else if (state.idx < TOTAL - 1){
+      state.idx++;
+      render();
+    } else {
+      state.finished = true;
+      render();
+    }
+  }
+  function voltar(){
+    if (state.finished){
+      state.finished = false;
+      state.origemFinal = false;
+      state.idx = TOTAL - 1;
+      render();
+    } else if (state.idx > 0){
+      state.idx--;
+      render();
+    }
+  }
+  function pular(step){
+    if (step.tipo === "escolha") state.valores[step.id] = null;
+    if (step.tipo === "tags") state.valores[step.id] = [];
+    proximo();
+  }
+  function recomecar(){
+    state.idx = 0;
+    state.finished = false;
+    state.origemFinal = false;
+    state.valores = { objetivo:"", estilo:null, detalhes:[], como_executar:null, formato:null, verificacao:null };
+    render();
+  }
+
+  /* ---------- montagem das telas ---------- */
+
+  function botoesNav(step, podeAvancar){
+    var nav = document.createElement("div");
+    nav.className = "nav";
+
+    if (state.origemFinal){
+      // veio do resumo final: caminho curto de retorno ao resultado
+      var bVoltarResultado = document.createElement("button");
+      bVoltarResultado.type = "button";
+      bVoltarResultado.className = "btn";
+      bVoltarResultado.textContent = "Voltar ao resultado";
+      bVoltarResultado.addEventListener("click", voltarAoResultado);
+      nav.appendChild(bVoltarResultado);
+    } else if (state.idx > 0){
+      var bVoltar = document.createElement("button");
+      bVoltar.type = "button";
+      bVoltar.className = "btn";
+      bVoltar.textContent = "Voltar";
+      bVoltar.addEventListener("click", voltar);
+      nav.appendChild(bVoltar);
+    }
+
+    if (!step.obrigatorio && !state.origemFinal){
+      var bPular = document.createElement("button");
+      bPular.type = "button";
+      bPular.className = "btn btn-pular";
+      bPular.textContent = "Pular";
+      bPular.addEventListener("click", function(){ pular(step); });
+      nav.appendChild(bPular);
+    }
+
+    var bProx = document.createElement("button");
+    bProx.type = "button";
+    bProx.className = "btn btn-primario";
+    bProx.id = "btn-proximo";
+    if (state.origemFinal){
+      bProx.textContent = "Salvar e voltar ao prompt";
+    } else {
+      bProx.textContent = (state.idx === TOTAL - 1) ? "Ver meu prompt" : "Próximo";
+    }
+    bProx.disabled = !podeAvancar;
+    bProx.addEventListener("click", function(){
+      if (!bProx.disabled) proximo();
+    });
+    nav.appendChild(bProx);
+    return nav;
+  }
+
+  function podeAvancarNo(step){
+    var v = state.valores[step.id];
+    if (step.tipo === "texto") return !!(v && v.trim());
+    if (step.tipo === "escolha") return step.obrigatorio ? !!v : !!v;
+    if (step.tipo === "tags") return true; // avança com o que tiver (ou nada)
+    return true;
+  }
+
+  function renderStep(step){
+    var card = document.createElement("section");
+    card.className = "cartao";
+    card.setAttribute("aria-labelledby", "titulo-passo");
+
+    var h = document.createElement("h2");
+    h.id = "titulo-passo";
+    h.textContent = step.titulo;
+    card.appendChild(h);
+
+    var p = document.createElement("p");
+    p.className = "ajuda";
+    p.textContent = step.ajuda;
+    card.appendChild(p);
+
+    if (step.tipo === "texto"){
+      var ta = document.createElement("textarea");
+      ta.placeholder = step.placeholder || "";
+      ta.value = state.valores[step.id] || "";
+      ta.setAttribute("aria-label", step.titulo);
+      ta.addEventListener("input", function(){
+        state.valores[step.id] = ta.value;
+        var b = document.getElementById("btn-proximo");
+        if (b) b.disabled = !ta.value.trim();
+      });
+      ta.addEventListener("keydown", function(ev){
+        if (ev.key === "Enter" && !ev.shiftKey){
+          ev.preventDefault();
+          if (ta.value.trim()) proximo();
+        }
+      });
+      card.appendChild(ta);
+    }
+
+    if (step.tipo === "escolha"){
+      var grupo = document.createElement("div");
+      grupo.className = "opcoes";
+      grupo.setAttribute("role","radiogroup");
+      grupo.setAttribute("aria-labelledby","titulo-passo");
+      step.opcoes.forEach(function(op){
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "opcao";
+        b.setAttribute("role","radio");
+        var sel = state.valores[step.id] && state.valores[step.id].valor === op.valor;
+        b.setAttribute("aria-checked", sel ? "true" : "false");
+        b.innerHTML = '<span class="bolinha" aria-hidden="true"></span><span>' + escapeHtml(op.label) + "</span>";
+        b.addEventListener("click", function(){
+          state.valores[step.id] = op;
+          grupo.querySelectorAll(".opcao").forEach(function(o){ o.setAttribute("aria-checked","false"); });
+          b.setAttribute("aria-checked","true");
+          var bp = document.getElementById("btn-proximo");
+          if (bp) bp.disabled = false;
+        });
+        grupo.appendChild(b);
+      });
+      card.appendChild(grupo);
+    }
+
+    if (step.tipo === "tags"){
+      var linha = document.createElement("div");
+      linha.className = "tag-linha";
+      var inp = document.createElement("input");
+      inp.type = "text";
+      inp.placeholder = step.placeholder || "";
+      inp.setAttribute("aria-label","Detalhe para adicionar");
+      inp.autocomplete = "off";
+      var add = document.createElement("button");
+      add.type = "button";
+      add.className = "btn-add";
+      add.textContent = "Adicionar";
+      linha.appendChild(inp);
+      linha.appendChild(add);
+      card.appendChild(linha);
+
+      var chips = document.createElement("div");
+      chips.className = "chips";
+      chips.setAttribute("aria-label","Detalhes adicionados");
+      card.appendChild(chips);
+
+      function desenhaChips(){
+        chips.innerHTML = "";
+        state.valores.detalhes.forEach(function(tag, i){
+          var c = document.createElement("span");
+          c.className = "chip";
+          var txt = document.createElement("span");
+          txt.textContent = tag;
+          var x = document.createElement("button");
+          x.type = "button";
+          x.textContent = "×";
+          x.setAttribute("aria-label", "Remover " + tag);
+          x.addEventListener("click", function(){
+            state.valores.detalhes.splice(i,1);
+            desenhaChips();
+          });
+          c.appendChild(txt);
+          c.appendChild(x);
+          chips.appendChild(c);
+        });
+      }
+      function adicionaTag(){
+        var t = inp.value.trim().replace(/[,;]+$/,"").trim();
+        if (!t) return;
+        // aceita vários separados por vírgula
+        t.split(",").map(function(s){ return s.trim(); }).filter(Boolean).forEach(function(s){
+          if (state.valores.detalhes.indexOf(s) === -1) state.valores.detalhes.push(s);
+        });
+        inp.value = "";
+        desenhaChips();
+        inp.focus();
+      }
+      add.addEventListener("click", adicionaTag);
+      inp.addEventListener("keydown", function(ev){
+        if (ev.key === "Enter"){ ev.preventDefault(); adicionaTag(); }
+      });
+      desenhaChips();
+    }
+
+    card.appendChild(botoesNav(step, podeAvancarNo(step)));
+
+    tela.innerHTML = "";
+    tela.appendChild(card);
+
+    var foco = card.querySelector("textarea, input, .opcao");
+    if (foco) foco.focus({ preventScroll: true });
+  }
+
+  function nomeEscolha(step){
+    var v = state.valores[step.id];
+    if (step.tipo === "texto") return v && v.trim() ? v.trim() : null;
+    if (step.tipo === "tags") return (v && v.length) ? v.join(", ") : null;
+    if (step.tipo === "escolha") return v ? v.label : null;
+    return null;
+  }
+
+  var TITULOS_CURTOS = {
+    objetivo:"Objetivo",
+    estilo:"Tom",
+    detalhes:"Detalhes",
+    como_executar:"Como executar",
+    formato:"Formato",
+    verificacao:"Conferência"
+  };
+
+  function renderFinal(){
+    var prompt = montarPrompt();
+
+    var card = document.createElement("section");
+    card.className = "cartao";
+    card.setAttribute("aria-labelledby","titulo-final");
+
+    var h = document.createElement("h2");
+    h.id = "titulo-final";
+    h.className = "titulo-final";
+    h.innerHTML = '<span class="selo-ok" aria-hidden="true">✓</span><span>Seu prompt está pronto!</span>';
+    card.appendChild(h);
+
+    var p = document.createElement("p");
+    p.className = "ajuda";
+    p.textContent = "Toque em \"Copiar prompt\" e cole na conversa com o Claude. Para mudar algo, toque no item do resumo abaixo — você volta direto para cá.";
+    card.appendChild(p);
+
+    var bloco = document.createElement("div");
+    bloco.className = "prompt-bloco";
+    bloco.id = "prompt-final";
+    bloco.textContent = prompt; // textContent já protege contra HTML do usuário
+    card.appendChild(bloco);
+
+    var nav = document.createElement("div");
+    nav.className = "nav";
+
+    var bCopiar = document.createElement("button");
+    bCopiar.type = "button";
+    bCopiar.className = "btn btn-primario";
+    bCopiar.textContent = "Copiar prompt";
+    nav.appendChild(bCopiar);
+    card.appendChild(nav);
+
+    var aviso = document.createElement("div");
+    aviso.className = "aviso-copiado";
+    aviso.setAttribute("role","status");
+    card.appendChild(aviso);
+
+    function fallbackCopy(){
+      var ta = document.createElement("textarea");
+      ta.value = prompt;
+      ta.setAttribute("readonly","");
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch(e){ ok = false; }
+      document.body.removeChild(ta);
+      return ok;
+    }
+    function copiadoOk(){
+      aviso.classList.remove("erro");
+      bCopiar.textContent = "Copiado!";
+      aviso.textContent = "Prompt copiado. É só colar na conversa com o Claude.";
+      setTimeout(function(){
+        bCopiar.textContent = "Copiar prompt";
+        aviso.textContent = "";
+      }, 2500);
+    }
+    function copiadoFalhou(){
+      // nunca falhar em silêncio: dar feedback e uma alternativa manual
+      aviso.classList.add("erro");
+      aviso.textContent = "Não consegui copiar automático. Toque e segure no texto acima para copiar.";
+      try {
+        var sel = window.getSelection();
+        if (sel && sel.selectAllChildren){
+          sel.removeAllRanges();
+          sel.selectAllChildren(bloco);
+        }
+      } catch(e){ /* seleção é só uma ajuda extra */ }
+    }
+    bCopiar.addEventListener("click", function(){
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(prompt).then(copiadoOk, function(){
+          if (fallbackCopy()) copiadoOk();
+          else copiadoFalhou();
+        });
+      } else {
+        if (fallbackCopy()) copiadoOk();
+        else copiadoFalhou();
+      }
+    });
+
+    // resumo das escolhas
+    var resumoTitulo = document.createElement("p");
+    resumoTitulo.className = "ajuda";
+    resumoTitulo.style.margin = "20px 0 0";
+    resumoTitulo.innerHTML = "<strong>Resumo do que você escolheu:</strong>";
+    card.appendChild(resumoTitulo);
+
+    var ul = document.createElement("ul");
+    ul.className = "resumo";
+    STEPS.forEach(function(step, i){
+      var li = document.createElement("li");
+      var chave = document.createElement("span");
+      chave.textContent = TITULOS_CURTOS[step.id] || step.titulo;
+      var val = document.createElement("span");
+      var nome = nomeEscolha(step);
+      if (nome){
+        val.textContent = nome;
+      } else {
+        val.textContent = "Pulado";
+        val.className = "pulado";
+      }
+      li.appendChild(chave);
+      li.appendChild(val);
+      li.style.cursor = "pointer";
+      li.setAttribute("title","Toque para ajustar este passo");
+      li.addEventListener("click", function(){ irPara(i, true); });
+      ul.appendChild(li);
+    });
+    card.appendChild(ul);
+
+    var nav2 = document.createElement("div");
+    nav2.className = "nav";
+    var bVoltar = document.createElement("button");
+    bVoltar.type = "button";
+    bVoltar.className = "btn";
+    bVoltar.textContent = "Voltar";
+    bVoltar.addEventListener("click", voltar);
+    var bReset = document.createElement("button");
+    bReset.type = "button";
+    bReset.className = "btn";
+    bReset.textContent = "Começar de novo";
+    bReset.addEventListener("click", recomecar);
+    nav2.appendChild(bVoltar);
+    nav2.appendChild(bReset);
+    card.appendChild(nav2);
+
+    tela.innerHTML = "";
+    tela.appendChild(card);
+    bCopiar.focus({ preventScroll: true });
+  }
+
+  function render(){
+    atualizarProgresso();
+    if (state.finished){
+      renderFinal();
+    } else {
+      renderStep(STEPS[state.idx]);
+    }
+    window.scrollTo({ top: 0 });
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

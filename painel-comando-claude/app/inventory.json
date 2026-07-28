@@ -1,0 +1,27 @@
+{
+  "observacao": "Inventario real do que voce pode usar. A IA so sugere itens desta lista. Edite este arquivo para refletir o que estiver instalado/conectado.",
+  "skills": [
+    { "nome": "analisar-edital", "descricao": "Le um edital, decide go/no-go objetivo e registra no acervo (Setfree)." },
+    { "nome": "triagem-emails", "descricao": "Varre a caixa, prioriza riscos e resume o que exige decisao." },
+    { "nome": "cobrar-fatura", "descricao": "Escreve cobranca cordial com base no historico do cliente." },
+    { "nome": "resumir-reuniao", "descricao": "Transforma a reuniao em decisoes e proximos passos." },
+    { "nome": "cotacao", "descricao": "Monta cotacao de itens medico-hospitalares." },
+    { "nome": "cockpit-licitacoes", "descricao": "Painel de acompanhamento de licitacoes." }
+  ],
+  "plugins": [
+    { "nome": "small-business", "descricao": "15 skills de gestao: caixa, cobranca, folha, marketing, contratos." },
+    { "nome": "licitacao-setfree", "descricao": "Pipeline de licitacoes da Setfree (editais, cotacao, cockpit)." },
+    { "nome": "finance", "descricao": "Analise e relatorios financeiros." },
+    { "nome": "marketing", "descricao": "Campanhas, conteudo e social." },
+    { "nome": "canva", "descricao": "Criacao de designs e artes." },
+    { "nome": "figma", "descricao": "Design de UI e prototipos." }
+  ],
+  "conectores": [
+    { "nome": "Gmail", "descricao": "Ler e organizar e-mails.", "status": "requer-login" },
+    { "nome": "Microsoft 365", "descricao": "Outlook, Teams, SharePoint.", "status": "requer-login" },
+    { "nome": "Google Drive", "descricao": "Ler arquivos e planilhas.", "status": "requer-login" },
+    { "nome": "Google Agenda", "descricao": "Eventos e disponibilidade.", "status": "requer-login" },
+    { "nome": "Notion", "descricao": "Paginas e bancos de dados.", "status": "requer-login" },
+    { "nome": "Canva", "descricao": "Criar e editar designs.", "status": "conectado" }
+  ]
+}
