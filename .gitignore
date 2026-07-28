@@ -1,6 +1,6 @@
 node_modules/
 dist/
-build/.staging/
+.astro/
 .env
 *.log
 .DS_Store
