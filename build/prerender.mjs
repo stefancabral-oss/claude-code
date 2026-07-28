@@ -68,6 +68,25 @@ function rewriteLinks(html) {
   return html;
 }
 
+// --- BreadcrumbList (schema.org) a partir da URL limpa ---------------------------
+function crumbName(url) {
+  const p = PAGES.find((x) => x.url === url);
+  return p ? p.title.split(/ — | \| |: /)[0].trim() : url;
+}
+function breadcrumbLd(cfg) {
+  if (cfg.url === "/") return "";
+  const segs = cfg.url.split("/").filter(Boolean);
+  const items = [{ name: "Início", url: "/" }];
+  let acc = "";
+  for (const s of segs) { acc += "/" + s; items.push({ name: crumbName(acc), url: acc }); }
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({ "@type": "ListItem", position: i + 1, name: it.name, item: SITE + it.url })),
+  };
+  return `<script type="application/ld+json">${JSON.stringify(ld)}</script>`;
+}
+
 // --- montagem do HTML final de uma página ----------------------------------------
 function assemble(rawFile, cfg, rendered) {
   let raw = read(rawFile);
@@ -88,6 +107,7 @@ function assemble(rawFile, cfg, rendered) {
     `<meta name="twitter:title" content="${cfg.title}">`,
     `<meta name="twitter:image" content="${ogImg}">`,
     `<link rel="alternate" hreflang="pt-BR" href="${canonical}">`,
+    breadcrumbLd(cfg),
     `<base href="/">`,
   ].join("\n");
 
