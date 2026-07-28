@@ -1,69 +1,70 @@
-# Criador de Prompt — por blocos 🧱
+# Criador de Prompt 🧱
 
-Uma ferramenta **interna** para montar prompts do Claude **bloco por bloco**, em vez
-de escrever. Você clica em blocos — de **estrutura** (papel, contexto, objetivo,
-formato…) e de **lógica/raciocínio** (SE, SENÃO, E, OU, NÃO, PARA CADA, QUANDO, passo
-a passo, verifique) — que aparecem de forma **simples de ler**, e o sistema compila um
-**prompt robusto e organizado**, mais rigoroso do que texto escrito à mão.
+Uma ferramenta **interna** que monta um prompt do Claude **como quem escreve uma
+frase** — **uma tela por vez**, sem jogar tudo junto. Você começa escrevendo o
+**objetivo seco** ("faça uma música de funk") e as telas seguintes completam o resto
+da frase: estilo, detalhes, **como executar**, formato e verificação. No fim, sai um
+**prompt robusto e coerente** para copiar.
 
-> **A ideia (definida pelo dono):** não é um lançador de tarefas prontas nem pré-seta
-> nada. É um **criador de prompt** — a capacidade de **construir linha por linha**,
-> usando os blocos de raciocínio lógico como peças, com uma entrega final mais robusta
-> que a escrita livre.
+> **Direção do dono:** não é formulário nem lista de opções soltas. É um **assistente
+> passo a passo** que constrói o prompt na ordem certa de uma frase.
 
 ---
 
-## Como usar
+## 🔗 Abra no celular (link interativo)
 
-1. Abra [`index.html`](./index.html) com **duplo clique** (abre no navegador — não
-   instala nada).
-2. **Clique nos blocos** à esquerda para adicioná-los à sua construção.
-3. **Preencha** os campos de cada bloco (ex.: `SE [o prazo for menor que 10 dias]
-   ENTÃO [marque como RISCO ALTO]`).
-4. **Reordene** (↑ ↓) ou **remova** (✕) blocos à vontade.
-5. O **prompt gerado** aparece embaixo em tempo real → **📋 Copiar** e cole no Claude.
+**https://claude.ai/code/artifact/cc343b12-ff26-4e7d-ac75-7f6352fed1f7**
 
-Dica: clique em **✨ Carregar exemplo** para ver um prompt completo montado com blocos.
+(É privado — só você vê. No computador também dá para abrir o `index.html` deste
+repositório com duplo clique.)
 
 ---
 
-## Os blocos
+## O passo a passo (a "gramática da frase")
 
-| Estrutura | Lógica e raciocínio | Dados |
-|---|---|---|
-| 🎭 Papel · 📋 Contexto · 🎯 Objetivo · 📐 Formato de saída · 🧪 Exemplo · 🚫 Restrição · 🗣️ Tom | ⚖️ SE… ENTÃO · ↔️ SENÃO · ➕ E · 🔀 OU · ⛔ NÃO · 🔁 PARA CADA · 🎚️ QUANDO · 🪜 Passo a passo · ✅ Verifique | 🔌 Fonte de dados |
+Uma pergunta por tela, com **Voltar / Próximo** e barra de progresso. Passos opcionais
+podem ser **pulados**.
 
-**O compilador organiza sozinho:** não importa a ordem em que você clica — o sistema
-monta o prompt na estrutura certa (papel → contexto → objetivo → **regras de raciocínio
-numeradas** → exemplos → formato → restrições → verificação). É isso que torna a
-entrega "mais robusta que a escrita".
+| # | Tela | O que é |
+|--:|------|---------|
+| 1 | **O que você quer que seja feito?** | Texto livre, objetivo seco (obrigatório). Ex.: *"faça uma música de funk"* |
+| 2 | **Com que jeito ou tom?** | Estilo/vibe (profissional, direto, animado, engraçado, detalhado) |
+| 3 | **Detalhes importantes** | Palavras-chave que não podem faltar (tags) |
+| 4 | **Como o Claude deve fazer isso?** | Deixar o Claude decidir · usar skill pronta · usar plugin · buscar nos apps conectados · criar skill nova |
+| 5 | **Em que formato receber?** | Texto, lista, documento, planilha, mensagem pronta |
+| 6 | **Quer conferir antes?** | Rascunho p/ aprovação · conferir números/nomes/datas · entregar direto |
+
+**Exemplo do prompt montado (tudo preenchido):**
+
+> *"Faça uma música de funk, com um tom animado e criativo, incluindo: batida animada,
+> anos 2000, sobre a minha loja, do jeito que você julgar melhor. Entregue o resultado
+> como texto simples, pronto para eu copiar e usar. Antes de finalizar, me mostre um
+> rascunho e espere a minha aprovação."*
+
+**Exemplo mínimo (só o objetivo, resto pulado):** *"Faça uma música de funk."*
 
 ---
 
-## Decisões do projeto (definidas com o dono)
+## Como foi construído
 
-1. **Ferramenta interna** (não é produto para vender — n=1, uso próprio).
-2. **Validar o "Trilho A"** da plataforma (agendamento/execução nativos) antes de
-   qualquer fase de execução automática — OK, no radar.
-3. **É um criador de prompt por blocos** — pré-setar tarefas foi descartado; o valor é
-   a capacidade de **construir o prompt linha por linha** com blocos de lógica legíveis.
+Refeito com **Fable 5 + ultracode** (orquestração multiagente): um painel de design
+decidiu a ordem das telas, um construtor implementou o assistente em arquivo único, e
+revisores adversariais checaram UX (uma tela por vez, mobile) e bugs antes de publicar.
+O raciocínio estratégico está em [`IDEIA-SATURADA.md`](./IDEIA-SATURADA.md).
 
----
+## Decisões do projeto
+1. **Ferramenta interna** (uso próprio, não produto para vender).
+2. **Trilho A** (execução/agendamento nativo) a validar antes de qualquer automação.
+3. **É um criador de prompt** — passo a passo, do objetivo seco à frase completa.
 
 ## Estrutura das pastas
-
 ```
 painel-comando-claude/
-├── index.html             ← O CRIADOR DE PROMPT (abra com duplo clique)
+├── index.html             ← O CRIADOR DE PROMPT (assistente tela-a-tela)
 ├── README.md              ← você está aqui
-├── IDEIA-SATURADA.md      ← o raciocínio estratégico (loop de saturação, 10 ciclos)
-├── ESTRATEGIA.md          ← o plano inicial por fases
-├── catalogo/
-│   └── catalogo-inicial.json   ← inventário de plugins/skills/conectores instalados
-├── docs/
-│   └── glossario.md       ← termos em português claro
-└── extras/
-    └── montador-por-acao.html  ← versão anterior (lançador por ação), preservada
+├── IDEIA-SATURADA.md      ← raciocínio estratégico (loop de saturação, 10 ciclos)
+├── ESTRATEGIA.md          ← plano inicial por fases
+├── catalogo/              ← inventário de plugins/skills/conectores
+├── docs/glossario.md      ← termos em português claro
+└── extras/                ← versões anteriores preservadas (montador e blocos)
 ```
-
-> A versão anterior (montador por ação) está preservada em `extras/` — nada se perdeu.
