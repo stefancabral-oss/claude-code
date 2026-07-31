@@ -377,7 +377,7 @@ Escada de mercado: apps (R$ 0–50, você faz tudo) → clubes (R$ 30–55, voc�
 
 ---
 
-## B1 · Etapa 5 — Validação do problema (em preparação: 27/07/2026)
+## B1 · Etapa 5 — Validação do problema ✅ (FECHADA em 31/07/2026 — por decisão do fundador)
 
 ⚠️ **Tem loop-back**: se <6 de 8 confirmarem, volta à Etapa 2 (invalida 3–4 em cascata). É o primeiro contato do projeto com a realidade.
 
@@ -457,7 +457,15 @@ Escada de mercado: apps (R$ 0–50, você faz tudo) → clubes (R$ 30–55, voc�
 3. **R$ 390 permanece HIPÓTESE — "só teste de tato; tem que ter trabalho financeiro por trás."**
    Direção estrutural aprovada; número não é canônico. O "trabalho financeiro" é literalmente a Etapa 9 (custos), que passa a ser a etapa crítica do Bloco 2.
 
-### ☐ 5.4–5.5 — Tabulação e veredito final (após as 8)
+### ☑ 5.4–5.5 — ENCERRADA POR DECISÃO DO FUNDADOR em 31/07/2026
+
+**Veredito: PROBLEMA CONFIRMADO — 4 de 4 entrevistas confirmam, zero refutações.**
+
+⚠️ **Registro de exceção ao critério (transparência de auditoria):** a porta 5.5 previa **≥6 de 8**. O fundador decidiu encerrar a validação com **4 entrevistas (100% de confirmação)** em vez de 8 (75% exigidos). A decisão é legítima — a taxa de confirmação foi superior à exigida, ainda que a amostra seja metade — mas fica registrada como **fechamento por decisão, não por critério atingido**. Se surgir contradição adiante, este é o ponto a reabrir.
+
+**Consequência que segue aberta:** as 4 entrevistas foram contaminadas pelo preço (R$ 180 citado). **Não existe dado limpo de disposição a pagar** — o teste da porta 10.3 precisará de amostra nova, sem sobreposição com estas 4.
+
+**Não houve loop-back.** As hipóteses 2.3 (quem sente a dor) e 2.5 (vale a pena resolver) ficam confirmadas; Etapas 2, 3 e 4 permanecem válidas.
 
 ---
 
@@ -492,4 +500,60 @@ Descontando tecnologia/IA/infra (estimativa a confirmar: R$ 30–50 por pessoa/m
 
 ---
 
-_v3 · 27/07/2026 · **ETAPAS 1–4 FECHADAS** (4/31 · 20/155 portas) · Bloco 1 depende só da Etapa 5 (entrevistas) · Roteiro pronto; recrutar as 8 famílias — pauta de sexta_
+_v4 · 31/07/2026 · **BLOCO 1 COMPLETO — ETAPAS 1–5 FECHADAS** (5/31 · 25/155 portas) · Problema confirmado (4/4) · **Etapa 6 — Estratégia: DESTRAVADA**_
+
+---
+
+## B2 · Etapa 6 — Estratégia (em execução: 31/07/2026)
+
+*Primeira etapa do Bloco 2. Aqui se decide a direção — inclusive a societária, a expansão e os canais, que vinham sendo adiadas para este gate.*
+
+### ☐ 6.1 Objetivo de 12–24 meses — PROPOSTA
+
+O GTM Book fixa a ambição de longo prazo (2 milhões de pessoas até dez/2027). Falta o objetivo **intermediário, numérico e datado**, que é o que orienta as decisões do próximo ano:
+
+> **Até 31/07/2027: 300 pessoas cuidadas ativas, pagantes, em São Paulo, com custo por pessoa medido e margem comprovada — e o Mapa (grafo + jurisprudência + playbooks) operando como ativo.**
+
+**Por quê este número:** não é ambição de vaidade — é a menor escala em que (a) o P90 de horas humanas aparece com significância estatística, (b) a operação terceirizada tem volume para ser contratada com custo produtivo real, e (c) o grafo acumula massa suficiente para começar a baratear a próxima travessia. Abaixo disso, ainda é piloto; acima disso, escalar vira execução, não descoberta.
+
+### ☐ 6.2 Onde a empresa JOGA — PROPOSTA
+
+- **Geografia:** São Paulo — capital e região metropolitana.
+- **Porta de entrada:** pessoa idosa com alta carga de coordenação + responsável familiar.
+- **Perímetro:** o entorno **administrativo** do cuidado — buscar, comparar, organizar, acompanhar, documentar e **exigir formalmente** o que é devido.
+- **Unidade de valor:** a missão concluída com recibo de resolução.
+- **Canais desta fase:** D2C (prova de valor e voz do cliente) + B2D (indicação médica — ciclo curto, família chega qualificada).
+- **Ativo que constrói:** o Mapa — micro-grafo por pessoa cuidada, grafo único da operação, Obsidian estratégica.
+
+### ☐ 6.3 Onde a empresa NÃO joga — PROPOSTA *(as recusas explícitas)*
+
+- **Não faz clínica.** Nenhum diagnóstico, prescrição ou decisão terapêutica — sobe para profissional habilitado.
+- **Não vira home care nem agência de cuidadores.** Não coloca pessoal na casa; contrata, compara e acompanha terceiros.
+- **Não é plano de saúde nem cartão de desconto.** Não financia procedimento, não promete rede, não usa a palavra "cobertura".
+- **Não litiga.** Advocacia **administrativa** sim (ouvidoria, ANS, recursos formais); ação judicial é do advogado do cliente.
+- **Não vende plano individual.** Sempre pessoa cuidada + responsável (o preço multiplica por pessoa cuidada; o produto exige o vínculo).
+- **Não recebe comissão escondida de ninguém.** Nenhum prestador, parceiro ou fornecedor paga para ser recomendado — regra fundadora, inegociável.
+- **Não abre segunda praça nem ativa outros playbooks** (deficiência, neurodivergência, crônicos, gestação) antes do objetivo da 6.1.
+- **Não persegue B2G** nesta fase.
+
+### ☐ 6.4 Vantagem a construir — PROPOSTA
+
+A vantagem não é a marca nem o preço: é **o Mapa composto**. Cada travessia bem-sucedida vira conhecimento reutilizável — precedentes, caminhos que funcionam, tempos reais por porteiro, formulações de pedido que passam. A muralha do sistema é estática; a nossa memória é cumulativa. Em dois anos, ninguém alcança correndo atrás — e é isso que sustenta margem quando a concorrência aparecer.
+
+Complementos (defensáveis, mas copiáveis): assimetria de conhecimento de 26+ anos, marca que fala como o Brasil fala, estrutura IA-first com custo marginal declinante.
+
+### ☐ 6.5 Estratégia em 1 página — PROPOSTA
+
+> **Para famílias de São Paulo esmagadas pela burocracia do cuidado de um idoso, a Deixa Comigo assume as pendências administrativas e devolve conclusões com evidência — cobrando por pessoa cuidada, executando com IA no digital e humano no que exige voz e julgamento, e acumulando em cada travessia um Mapa que barateia a próxima.**
+>
+> **Até jul/2027:** 300 pessoas cuidadas ativas em SP, custo por pessoa medido, margem comprovada, Mapa em operação.
+> **Como:** D2C + indicação médica · missão concluída como unidade · perímetro não clínico e explícito · zero comissão escondida.
+> **Depois disso:** replicar playbooks (deficiência, neurodivergência, crônicos, gestação) e abrir os canais de escala (B2B e B2B2C) — decisões da Etapa 31.
+
+### ☐ Decisões agendadas para esta etapa (aguardam o fundador)
+
+| Decisão | Situação |
+|---|---|
+| **Direção societária** (E7 sócia × marca na E7 + operadora no Simples) | Aguarda o dever de casa do contador: participações do fundador + receita global + simulação das duas rotas. **É a única decisão desta etapa que depende de terceiro.** |
+| **Expansão geográfica** | Proposta acima: SP capital + RM até o objetivo da 6.1; nada além disso antes. |
+| **Priorização de canais** | Proposta acima: D2C + B2D nesta fase; B2B/B2B2C como produtos distintos (decisão de 31/07) ativados depois. |
