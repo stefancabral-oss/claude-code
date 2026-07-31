@@ -446,12 +446,49 @@ Escada de mercado: apps (R$ 0–50, você faz tudo) → clubes (R$ 30–55, voc�
 | **Unidade de PRODUTO** (inalterada) | Pessoa cuidada + responsável: continua não existindo plano individual; alguém precisa receber a entrega, decidir e consentir |
 | **Unidade de PREÇO** (nova) | A pessoa cuidada — é ela que multiplica a conta |
 
-**Três desdobramentos a resolver antes de virar pétreo:**
-1. **Multi-idoso:** família com pai E mãe pagaria 2×. São as famílias de maior carga (melhores clientes). Proposta: **2ª pessoa cuidada com desconto** (ex.: 50%) — o custo marginal é menor (mesmo núcleo, mesmo contexto, memória compartilhada), então o desconto é economicamente honesto, não promoção. → Etapa 27.
-2. **B2B desalinhado:** "por empregado elegível" cobra por funcionário, mas o custo corre por idoso — e um funcionário pode ter dois pais. O corredor de utilização precisa ser refeito. → Etapa 11.
-3. **R$ 390 é HIPÓTESE:** as 4 entrevistas ancoraram em R$ 180; ninguém testou R$ 390 com amostra limpa. A **direção estrutural** (preço por pessoa cuidada) está aprovada pelo fundador; o **número** só vira Preço Canônico após a Etapa 9 (custo real) e a Etapa 10 (teste limpo).
+**Três desdobramentos — RESOLVIDOS pelo fundador em 31/07:**
+
+1. **Multi-idoso → desconto na 2ª pessoa cuidada, APROVADO.**
+   Razão do fundador (mais precisa que a formulação original): **"o contato não dobra — em uma ligação se resolve duas coisas."** O custo marginal do segundo idoso do mesmo núcleo é substancialmente menor porque a operação compartilha ligação, contexto, memória e relacionamento com os mesmos porteiros. O desconto é **espelho do custo real**, não concessão comercial. Percentual exato → Etapa 27, calibrado pelo consumo medido no piloto.
+
+2. **B2B/D2C → produtos distintos com nomes distintos, APROVADO.**
+   Decisão do fundador: **são serviços diferentes** e devem ser tratados (e nomeados) como produtos diferentes — não como o mesmo produto com duas tabelas. Isso resolve o desalinhamento da unidade de cobrança: cada linha carrega a sua própria lógica (D2C por pessoa cuidada; B2B por elegibilidade com corredor). Nomes e escopo de cada linha → Etapa 27; arquitetura das linhas → Etapa 11.
+
+3. **R$ 390 permanece HIPÓTESE — "só teste de tato; tem que ter trabalho financeiro por trás."**
+   Direção estrutural aprovada; número não é canônico. O "trabalho financeiro" é literalmente a Etapa 9 (custos), que passa a ser a etapa crítica do Bloco 2.
 
 ### ☐ 5.4–5.5 — Tabulação e veredito final (após as 8)
+
+---
+
+## 💰 Preparação da Etapa 9 — a fronteira do custo (31/07)
+
+*(Trabalho financeiro pedido pelo fundador. NÃO fecha a Etapa 9 — o motor exige as Etapas 5–8 antes. Serve para orientar a hipótese de preço com aritmética, não com intuição.)*
+
+**Premissa de partida:** R$ 390/mês por pessoa cuidada, margem-alvo ≥ 30% (porta 9.4) → sobram **R$ 273/mês** para cobrir todo o custo de servir uma pessoa.
+
+**Fronteira: quantas horas humanas cabem em R$ 273** *(valores de custo/hora são PLACEHOLDER — precisam do número real do fornecedor da operação, porta 15.1)*
+
+| Custo/hora carregado da operação | Horas humanas/mês que cabem |
+|---|---|
+| R$ 30 | 9,1 h |
+| R$ 40 | 6,8 h |
+| R$ 50 | 5,5 h |
+| R$ 60 | 4,6 h |
+| R$ 80 | 3,4 h |
+
+Descontando tecnologia/IA/infra (estimativa a confirmar: R$ 30–50 por pessoa/mês), a folga cai para ~R$ 225–243 — algo entre **4,5 e 8 horas humanas/mês** na faixa realista.
+
+**Referência do memo de validação:** ~150 min (2,5 h) de trabalho humano por família/mês. Se o consumo real ficar nessa ordem, **a conta fecha com folga** a R$ 390 — margem estimada acima de 50%.
+
+**⚠️ O risco não está na média — está na cauda.** Uma pessoa que consuma 8 h/mês já come toda a receita. Como as entrevistas indicaram que *"todos vão usar"*, a pergunta que decide o negócio não é "quanto consome em média", e sim:
+
+> **Qual é o P90 de horas humanas por pessoa cuidada por mês?**
+
+**Consequências:**
+- Confirma o papel dos **limites de beta como instrumento de medição** (não como franquia comercial): eles existem para revelar o P90 antes de ele virar prejuízo.
+- A porta **15.1** (custo produtivo do fornecedor da operação) vira insumo direto da 9.3 — sem esse número, a fronteira acima continua sendo hipótese.
+- O piloto (Etapa 24) precisa **cronometrar minutos humanos por missão** desde o primeiro cliente. Sem esse instrumento, a Etapa 9 nunca sai do estimado.
 
 ---
 
