@@ -408,7 +408,18 @@ Escada de mercado: apps (R$ 0–50, você faz tudo) → clubes (R$ 30–55, voc�
 
 *A própria família (sua mãe, tios) serve como **piloto do roteiro** — não conta nas 8 (viés).* 
 
-### ☐ 5.3–5.5 — Aguardam as entrevistas (agenda na reunião de sexta 15h)
+### ◐ 5.3 Entrevistas realizadas — PLACAR: 4 de 8 · **4 CONFIRMAM** (relato do fundador, 31/07)
+
+| # | Status | Detalhe registrado |
+|---|---|---|
+| 1–2 | ✅ CONFIRMA | conduzidas pelo fundador |
+| 3–4 | ✅ CONFIRMA | conduzidas por terceiros com a ficha |
+
+**Situação do critério (5.5):** precisa de ≥6 de 8. Com 4/4 confirmando, **bastam 2 das 4 restantes** para o critério ser atingido. Nenhuma refutação até aqui.
+
+⚠️ **Pendência de lastro:** o conteúdo detalhado (episódios, frases literais, números de pendências/horas) segue nas fichas dos aparelhos — precisa ser colado na sessão para virar dado auditável e alimentar as Etapas 8, 9, 10 e 12. Sem isso, o placar existe mas o aprendizado não está capturado.
+
+### ☐ 5.4–5.5 — Tabulação e veredito final (após as 8)
 
 ---
 
