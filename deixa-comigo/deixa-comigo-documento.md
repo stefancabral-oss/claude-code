@@ -434,6 +434,23 @@ Escada de mercado: apps (R$ 0–50, você faz tudo) → clubes (R$ 30–55, voc�
 - Etapa 10: o Preço Canônico v1 deve ser testado **acima** de R$ 180, com amostra não contaminada.
 - Etapa 19/20 (MVP): "todos vão usar" reforça a necessidade dos limites de beta como instrumento de medição do custo da cauda.
 
+#### 🔄 Achado nº 2 — a unidade de cobrança muda: preço por pessoa cuidada (PROPOSTA do fundador, 31/07)
+
+**Decisão proposta:** deixar de precificar por núcleo familiar e passar a cobrar **por pessoa cuidada** — referência inicial **R$ 390/mês por idoso**.
+
+**Por quê (razão econômica):** **o custo segue a pessoa cuidada, não a família.** Quem gera missões é quem recebe cuidado. Precificar por família enquanto o custo corre por indivíduo desalinha receita e consumo — o erro clássico que inviabiliza assinatura de serviço humano. A nova régua alinha as duas curvas.
+
+**Não revoga o pétreo do núcleo — separa dois conceitos que estavam colados:**
+| Conceito | Definição |
+|---|---|
+| **Unidade de PRODUTO** (inalterada) | Pessoa cuidada + responsável: continua não existindo plano individual; alguém precisa receber a entrega, decidir e consentir |
+| **Unidade de PREÇO** (nova) | A pessoa cuidada — é ela que multiplica a conta |
+
+**Três desdobramentos a resolver antes de virar pétreo:**
+1. **Multi-idoso:** família com pai E mãe pagaria 2×. São as famílias de maior carga (melhores clientes). Proposta: **2ª pessoa cuidada com desconto** (ex.: 50%) — o custo marginal é menor (mesmo núcleo, mesmo contexto, memória compartilhada), então o desconto é economicamente honesto, não promoção. → Etapa 27.
+2. **B2B desalinhado:** "por empregado elegível" cobra por funcionário, mas o custo corre por idoso — e um funcionário pode ter dois pais. O corredor de utilização precisa ser refeito. → Etapa 11.
+3. **R$ 390 é HIPÓTESE:** as 4 entrevistas ancoraram em R$ 180; ninguém testou R$ 390 com amostra limpa. A **direção estrutural** (preço por pessoa cuidada) está aprovada pelo fundador; o **número** só vira Preço Canônico após a Etapa 9 (custo real) e a Etapa 10 (teste limpo).
+
 ### ☐ 5.4–5.5 — Tabulação e veredito final (após as 8)
 
 ---
