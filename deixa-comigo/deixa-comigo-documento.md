@@ -419,6 +419,21 @@ Escada de mercado: apps (R$ 0–50, você faz tudo) → clubes (R$ 30–55, voc�
 
 ⚠️ **Pendência de lastro:** o conteúdo detalhado (episódios, frases literais, números de pendências/horas) segue nas fichas dos aparelhos — precisa ser colado na sessão para virar dado auditável e alimentar as Etapas 8, 9, 10 e 12. Sem isso, o placar existe mas o aprendizado não está capturado.
 
+#### 🔍 Achado nº 1 — o sinal de preço (relato do fundador, 31/07)
+
+**O que aconteceu:** o preço de **R$ 180/mês** foi mencionado nas conversas. Reação: pareceu **barato demais — "até mentira"** —, justamente porque ficou evidente que **todos teriam necessidade real de uso**. Leitura do fundador: "é um produtasso".
+
+**Leitura A — oportunidade (positiva):** se R$ 180 soa implausível de tão barato, existe **espaço para preço acima** do ancorado. A hipótese de R$ 490 do memo não foi derrubada; foi reforçada por baixo.
+
+**Leitura B — risco de margem (crítica):** "todos vão usar" = **utilização próxima de universal e intensa**. Assinatura com utilização alta e preço baixo é prejuízo, não escala — é exatamente o risco que o memo de validação já apontava ("R$ 390 não sustenta o escopo sem limite de trabalho humano"). O sinal **aumenta** a importância de medir minutos humanos por missão antes de fixar preço.
+
+**Contaminação metodológica registrada:** o roteiro (5.1) proíbe citar preço nas entrevistas de problema. Como o preço foi mencionado, estas 4 pessoas ficam **ancoradas em R$ 180** — não servem como amostra limpa para o teste de disposição a pagar da Etapa 10, e convertê-las depois a um preço maior será mais difícil. As 4 restantes devem seguir sem preço.
+
+**Consequências no motor:**
+- Etapa 9 (custos): a porta 9.3 (custo de atender 1 cliente) sobe de importância — vira a decisão que trava ou libera qualquer preço.
+- Etapa 10: o Preço Canônico v1 deve ser testado **acima** de R$ 180, com amostra não contaminada.
+- Etapa 19/20 (MVP): "todos vão usar" reforça a necessidade dos limites de beta como instrumento de medição do custo da cauda.
+
 ### ☐ 5.4–5.5 — Tabulação e veredito final (após as 8)
 
 ---
