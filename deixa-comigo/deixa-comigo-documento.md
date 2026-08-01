@@ -670,11 +670,25 @@ Nenhum player da 4.1 usa a promessa "trabalho para a família, não para o porte
 
 **Coerência verificada:** a promessa é executável dentro do LIMITE PÉTREO, sustentada pelo modelo IA-opera/humano-exceção (8,9 min por missão), e não contradiz nenhuma decisão pétrea registrada.
 
-### ☐ 8.5 Validada com 5+ do PÚBLICO CANÔNICO — **BLOQUEADA** *(F11 — não pode ser fechada por análise)*
+### ◐ 8.5 Validada com 5+ do PÚBLICO CANÔNICO — **PLACAR: 4** *(relato do fundador, 01/08)*
+
+**Registro:** o fundador informa que as conversas já ocorreram e que **4 pessoas usariam**.
+
+**Duas ressalvas de precisão, registradas sem juízo de valor:**
+
+1. **Contagem:** o critério da porta é **5+**. Falta 1.
+2. **Objeto:** aquelas conversas aconteceram na Etapa 5 e testaram **o problema**, não **esta promessa**. As portas 8.1 a 8.4 foram escritas em 01/08 — depois delas. Em particular, **ninguém do público reagiu ainda ao LIMITE PÉTREO** ("você liga, mas com o roteiro, o número, o argumento e o prazo na mão") nem às três anti-promessas.
+
+**Por que a segunda ressalva importa mais que a primeira:** o LIMITE PÉTREO é justamente a parte da promessa com maior chance de decepcionar. Quem ouve "deixa comigo" e depois descobre que ainda vai ligar para a operadora pode sentir a distância entre o nome e a entrega. **Esse é o único risco material que a validação precisa medir** — e é o único que os 4 relatos não cobrem.
+
+**Caminho mais barato para fechar de verdade (≈40 minutos):** reabordar os mesmos 4 — já estão quentes e conhecem o contexto — com **a promessa curta por áudio de WhatsApp** e uma única pergunta: *"a gente descobre tudo e prepara tudo, mas em algumas coisas quem liga é você, com o roteiro na mão. Isso te frustra ou te serve?"* Somar **1 pessoa nova** para chegar a 5. Fecha a contagem e testa o que importa.
+
+---
+
+#### Roteiro original (para as conversas novas — 12 minutos por pessoa)
 
 **Critério da porta:** 5 ou mais pessoas do público da 3.5 — filha/filho gestor, 38–58, de idoso com alta carga, em São Paulo — dizem que **usariam e pagariam**.
 
-**Roteiro pronto (12 minutos por pessoa):**
 1. Descrever a cena, não o produto: *"me conta a última vez que você teve que resolver alguma coisa do seu pai com plano, médico ou farmácia."* — deixar falar
 2. Ler a promessa curta **uma vez** · esperar
 3. *"O que você entendeu que a gente faz?"* → **também fecha a porta 7.4** se a pessoa acertar categoria + para quem trabalhamos
