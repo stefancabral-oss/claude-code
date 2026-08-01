@@ -730,3 +730,21 @@ O uso de **áudio com a voz do atendente gerado por IA** toca o ativo central da
 2. **Áudio com voz humana falando com terceiros** (clínica, operadora) envolve identificação perante terceiros — território jurídico da Etapa 18.
 
 **Registro analítico:** a eficiência dos números acima **não depende do disfarce** — depende do humano sair da execução. As margens de 88% são alcançáveis com transparência total. IA declarada é sustentável; IA disfarçada é risco existencial numa empresa cujo produto é confiança.
+
+### ✅ Transparência resolvida — mecanismo definido pelo fundador (31/07)
+
+**Decisão:** a assistente **se apresenta com nome** no primeiro contato e oferece **palavra de escape** — a família diz o nome dela e é **transferida automaticamente** para uma pessoa da equipe, a qualquer momento, sem fricção.
+
+**Texto de abertura — duas versões (escolha do fundador):**
+
+*A — implícita:*
+> "Oi, eu sou a [Nome], sua assessora aqui na Deixa Comigo. Estou disponível 24h para o que você precisar. Se em algum momento você quiser falar direto com uma pessoa da equipe, é só dizer '[Nome]' que eu transfiro na hora."
+
+*B — explícita (recomendada):*
+> "Oi, eu sou a [Nome], sua assessora aqui na Deixa Comigo. Trabalho com apoio de inteligência artificial para te responder na hora, a qualquer hora — e tem uma equipe de gente por trás de tudo que eu faço. Se em algum momento você quiser falar direto com uma pessoa, é só dizer '[Nome]' que eu transfiro na hora."
+
+**Recomendação registrada (B):** custo idêntico, e converte risco em argumento de venda — *"te respondo às 3 da manhã porque sou IA; e tem gente de verdade quando você precisa"*. Na versão A, descoberta tardia gera sensação de engano mesmo sem má-fé; numa empresa cujo produto é confiança, essa diferença é material.
+
+**🎯 Achado adicional — a palavra de escape é métrica de qualidade:** a **% de conversas escaladas a pedido do cliente** mede continuamente, sem pesquisa, se a IA está boa. ~5% = excelente · ~40% = IA não está pronta. Entra como métrica secundária da Etapa 20 (a primária segue sendo minutos humanos por missão) e como gatilho operacional de revisão de playbook.
+
+**Consequência de custo:** a taxa de escalada por pedido é insumo direto do % de missões com toque humano — a premissa de 30% do modelo deve ser calibrada por ela no piloto.
