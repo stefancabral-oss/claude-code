@@ -587,6 +587,111 @@ Nenhum player da 4.1 usa a promessa "trabalho para a família, não para o porte
 
 ---
 
+---
+
+## B2 · Etapa 8 — Proposta de valor (em execução: 01/08/2026)
+
+> **Insumos:** problema da 2.1 · manifestações da 2.4 · público canônico da 3.5 · gambiarra da 4.3 · escada de preço da 4.4 · diferencial da 7.2 · posicionamento da 7.3 · **LIMITE PÉTREO do escopo** (não ligamos para a seguradora no lugar do cliente) · modelo IA opera / humano trata exceção.
+
+### ☐ 8.1 Ganho principal — PROPOSTA
+
+> **"Você para de descobrir o que fazer. Passa a receber conclusão — e, quando a sua voz for necessária, ela já chega com roteiro, número, argumento e prazo."**
+
+**Por que este é o ganho e não "economia de tempo":** o que quebra a filha gestora não é executar — é **descobrir**. Descobrir qual documento, qual canal, qual palavra, qual prazo, qual argumento, e descobrir tudo isso enquanto trabalha. A execução restante é curta e suportável. **A Deixa Comigo transfere a parte insuportável e devolve a parte possível já preparada.**
+
+**Ganho traduzido em três moedas:**
+
+| Moeda | O que volta |
+|---|---|
+| **Tempo** | 5–15 h/semana hoje consumidas pela gambiarra (2.5) |
+| **Certeza** | Nenhuma pendência esquecida; cada missão termina com prova |
+| **Presença** | Deixa de ser secretária, tesoureira e para-raios — volta a ser filha |
+
+**A moeda que decide a compra é a terceira.** Tempo e certeza justificam o preço; presença é o motivo real.
+
+### ☐ 8.2 Dor resolvida — PROPOSTA *(amarrada à Etapa 2)*
+
+> **A dor resolvida é a da navegação imposta: a família não sabe operar a burocracia do cuidado, e essa ignorância — que ninguém se encarregou de corrigir — cobra primeiro tempo e presença, depois saúde, no limite a vida. A Deixa Comigo elimina a exigência de que a família aprenda a operar o sistema para conseguir o cuidado a que já tem direito.**
+
+**Cobertura honesta das 7 manifestações da 2.4:**
+
+| # | Manifestação | Status | Como |
+|---|---|---|---|
+| 1 | A cirurgia negada | ✅ **Resolvida** | Formulação do pedido + contestação de negativa (advocacia administrativa, 7.2) |
+| 2 | A receita de todo mês | ✅ **Resolvida** | Ciclo antecipado: agenda, lembrete, receita, farmácia — em loop |
+| 3 | A manhã na operadora | ◐ **Parcial** | **LIMITE PÉTREO:** o titular fala. Mas com roteiro, número, argumento e prazo — 10 minutos no lugar de 3 horas |
+| 4 | O pós-alta sem supervisão | ✅ **Resolvida** | Esquema de cuidado montado no momento da alta — o padrão exato do caso da avó |
+| 5 | O cuidador que falta | ◐ **Parcial** | Rede e plano B pré-montados. **Não somos agência de cuidadores** |
+| 6 | Os documentos dispersos | ✅ **Resolvida** | O Mapa — e cada travessia seguinte fica mais rápida que a anterior |
+| 7 | O grupo da família | ✅ **Resolvida** | Um interlocutor, um registro. Acaba o "quem vai fazer?" |
+
+**5 resolvidas, 2 parciais, 0 fora.** As duas parciais são parciais **por escolha declarada**, não por incapacidade — e é essa honestidade que a Etapa 13 vai transformar em três faixas de escopo.
+
+### ☐ 8.3 Melhor que a alternativa — PROPOSTA *(comparação com a gambiarra da 4.3)*
+
+**A alternativa real não é um concorrente. É a filha + WhatsApp + planilha + telefone + Google + o grupo da família.**
+
+| | **A gambiarra** | **Deixa Comigo** |
+|---|---|---|
+| Custo aparente | R$ 0 | R$ 390/mês *(hipótese)* |
+| Custo real | 5–15 h/semana + erros + presença | O preço, e mais nada |
+| Quem descobre o que fazer | **Ela**, no Google, à noite | **Nós**, antes de ela perguntar |
+| Memória entre episódios | Nenhuma — recomeça a cada médico novo | O Mapa — acumula e acelera |
+| Diante de uma negativa | Aceita, ou briga sem saber como | Contesta pelo canal certo, no prazo, com registro |
+| Noite, fim de semana, viagem | Para tudo | Continua |
+| Quando ela adoece ou viaja | **A operação inteira cai** | Segue |
+| O que sobra para ela | Culpa e exaustão | Estar junto |
+
+**A comparação econômica explícita:** 5–15 h/semana são **22 a 65 horas por mês**. Para uma profissional de 38–58 anos com renda média-alta, a hora custa de R$ 80 a R$ 150 — ou seja, a gambiarra consome de **R$ 1.700 a R$ 9.700 por mês** em custo de oportunidade, contra os R$ 390 da hipótese. **A alternativa "gratuita" custa de 4 a 25 vezes mais.**
+
+> ⚠️ **Ressalva de honestidade:** ninguém fatura essas horas. É custo de oportunidade real, mas não é caixa — e por isso **não é o argumento que fecha a venda**. Ele serve para justificar o preço depois que a pessoa já quer comprar. O que faz querer é a terceira moeda da 8.1: a presença de volta.
+
+**Contra os outros degraus da escada (4.4):** apps (R$ 0–50) devolvem o trabalho · clubes (R$ 30–55) dão acesso, não execução · home care (R$ 4–15 mil) faz o clínico, não o administrativo · advogado (R$ 3–10 mil) só entra quando já virou guerra. **O degrau entre R$ 55 e R$ 4.000 continua vazio.**
+
+### ☐ 8.4 Promessa escrita — PROPOSTA
+
+> ### A promessa
+>
+> **A Deixa Comigo assume a gestão da burocracia do cuidado do seu pai ou da sua mãe.**
+>
+> **A gente descobre o que precisa ser feito, faz o que pode ser feito no seu lugar, e prepara o que só você pode fazer — com roteiro, número, argumento e prazo na mão.**
+>
+> **Toda missão termina em conclusão com evidência, no seu WhatsApp.**
+>
+> **E não recebemos de plano, hospital ou fornecedor nenhum. Trabalhamos para a sua família.**
+
+**Versão curta (uso falado, materiais, anúncio):**
+> **"A burocracia do cuidado é nossa. O tempo com ele é seu."**
+
+**O que a promessa deliberadamente NÃO diz** *(as três anti-promessas — insumo direto da Etapa 13)*:
+1. **Não fazemos o clínico.** Não somos médicos, enfermagem nem home care.
+2. **Não nos passamos por você.** Onde a lei ou a operadora exigem o titular, quem fala é você — preparado.
+3. **Não prometemos ganhar toda negativa.** Prometemos que ela será contestada pelo canal certo, no prazo certo, com o argumento certo e registro de tudo.
+
+**Coerência verificada:** a promessa é executável dentro do LIMITE PÉTREO, sustentada pelo modelo IA-opera/humano-exceção (8,9 min por missão), e não contradiz nenhuma decisão pétrea registrada.
+
+### ☐ 8.5 Validada com 5+ do PÚBLICO CANÔNICO — **BLOQUEADA** *(F11 — não pode ser fechada por análise)*
+
+**Critério da porta:** 5 ou mais pessoas do público da 3.5 — filha/filho gestor, 38–58, de idoso com alta carga, em São Paulo — dizem que **usariam e pagariam**.
+
+**Roteiro pronto (12 minutos por pessoa):**
+1. Descrever a cena, não o produto: *"me conta a última vez que você teve que resolver alguma coisa do seu pai com plano, médico ou farmácia."* — deixar falar
+2. Ler a promessa curta **uma vez** · esperar
+3. *"O que você entendeu que a gente faz?"* → **também fecha a porta 7.4** se a pessoa acertar categoria + para quem trabalhamos
+4. *"O que disso aí você acha que não funcionaria pra sua situação?"* — a objeção é o dado
+5. *"Se isso existisse hoje, você usaria? Por quanto?"* — **deixar a pessoa dar o número antes de dizer o nosso**
+6. Só então: *"custa R$ 390 por mês, por pessoa cuidada."* — registrar a reação, não argumentar
+
+**Passa se:** ≥5 dizem que usariam **e** o número espontâneo delas for ≥ R$ 200. **Reprova se:** a maioria pedir o que está nas anti-promessas — sinal de que a promessa está prometendo demais.
+
+> ⚠️ **Registro honesto:** a Etapa 5 foi fechada por decisão do fundador com 4 de 8 entrevistas. Se a 8.5 também for fechada por decisão, a proposta de valor chega à **Etapa 11 (modelo de negócio) sem nunca ter sido ouvida por um estranho** — e a Etapa 11 já depende de validar PEPM com RH real. **Duas portas não validadas em sequência se acumulam.** A decisão é do fundador; o custo fica registrado.
+
+**💡 Economia possível:** as mesmas 5 conversas fecham **três portas de uma vez** — 7.4 (clareza com 3 terceiros), 8.5 (proposta de valor) e parte de 10.3 (teste de preço). Uma rodada de cinco conversas de 12 minutos destrava a Etapa 7 inteira, a 8 e antecipa a 10.
+
+### ☐ Decisão do fundador para fechar a Etapa 8
+1. Aprovar 8.1 a 8.4 como escritas, ou corrigir;
+2. Escolher para a 8.5: **(a)** rodar as 5 conversas · **(b)** fechar por decisão, com o custo registrado.
+
 ## ⚖️ Etapa 6 — Direção societária: dados do fundador e análise (31/07/2026)
 
 **Dados informados pelo fundador:** contador **Cony Services** · participações: **100% da Setfree**, **50% da E7** · faturamento: Setfree **R$ 350k/mês (~R$ 4,2 mi/ano)**; E7 sem faturamento próprio (recebe lucro); demais empresas ainda pré-operacionais.
