@@ -678,3 +678,31 @@ Base: 132h produtivas/mês = **7.920 minutos** por atendente.
 **Dimensionamento para o objetivo da Etapa 6 (300 pessoas):** 3,6 atendentes (típico) · 6,0 (alto) · 10,9 (P90).
 
 **Consequência para a Etapa 20 (validação do MVP):** a métrica principal do piloto deve ser **minutos humanos por missão** — é ela que decide preço, capacidade, contratação e escala. Tudo o mais é secundário.
+
+### 🔧 Correção de escopo do fundador (31/07): canal e limite do contato
+
+**1. WhatsApp-first — o canal real do Brasil.** Hierarquia corrigida: **WhatsApp oficial** (operadoras, clínicas e prestadores mantêm) → portal/app → e-mail formal → NIP/ANS e ouvidoria → telefone (último recurso). A formulação anterior (portal/e-mail primeiro) foi descartada como importada.
+
+**2. LIMITE PÉTREO: não ligamos para a seguradora no lugar do cliente.** Palavras do fundador: *"o trabalho nosso não é ligar pelo cliente na seguradora — isso é trabalho dela. A gente pode intermediar o que dá pra intermediar."*
+Consequências: (a) elimina o risco jurídico de representação/procuração que estava sinalizado para a Etapa 18; (b) evita qualquer zona cinzenta de se passar pelo titular; (c) reduz drasticamente o custo humano.
+
+**Impacto econômico medido:**
+
+| | Escopo anterior | **Escopo corrigido** |
+|---|---|---|
+| Minutos médios/missão | 31,8 | **21,2** |
+| Margem P50 | 61,7% | **73,7%** |
+| Margem P90 (cauda) | **−15,0%** ⚠️ | **+21,1%** ✓ |
+| Capacidade/atendente | 83 pessoas | **125** |
+| Atendentes p/ 300 pessoas | 3,6 | **2,4** |
+
+**A correção resolve sozinha o problema da cauda** — o cliente de uso intenso deixa de dar prejuízo, sem apertar limite nem subir preço.
+
+### Tensão registrada: o que "Deixa Comigo" promete, então?
+
+Se o cliente ainda faz o contato de titular, a promessa precisa ser precisa. Formulação proposta:
+> **Assumimos a inteligência e a operação; não a personalidade jurídica.** "Você liga — mas com o roteiro na mão, o número certo, o argumento que funciona, o prazo que eles têm que cumprir e o documento pronto. Se não resolverem, nós entramos no canal formal."
+
+A transferência de peso continua real: a família deixa de **descobrir o que fazer** (a parte insuportável) e passa a **executar** um roteiro curto.
+
+**→ Etapa 13 deve definir três faixas de escopo:** (1) o que fazemos POR você · (2) o que fazemos COM você (roteiro, preparação, acompanhamento) · (3) o que é seu por natureza (contato que exige o titular).
