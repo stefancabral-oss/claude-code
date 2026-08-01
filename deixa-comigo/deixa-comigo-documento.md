@@ -811,3 +811,40 @@ São eles que decidem se a empresa fatura R$ 70 mi ou R$ 175 mi/mês. **Margem o
 4. **Arquitetura de consentimento** — **não se obtém retroativamente**. Sem uso longitudinal previsto em contrato, o Mapa — a vantagem competitiva — nasce com prazo de validade.
 
 **→ Consequência para o motor:** esta análise é insumo direto da **Etapa 16** (estrutura de dados, memória e tecnologia) — cujas portas **16.1 a 16.5 passam a ter as 4 decisões irreversíveis como critério de "pronto"** — e da **Etapa 22** (construir e testar), que deve nascer já com a **instrumentação de minutos humanos por missão**, sem a qual a Etapa 9 nunca sai do estimado e o preço nunca sai da intuição.
+
+---
+
+## 🏛️ Estrutura organizacional, governança e lucros (01/08/2026)
+
+**Documento completo:** [`organizacao/cadeiras-governanca-e-lucros.md`](organizacao/cadeiras-governanca-e-lucros.md)
+
+**Correção da conta anterior:** a margem de 91% registrada em 31/07 contou a **linha de frente** e esqueceu **a empresa**. Carregando as cadeiras internas, o conselho e a auditoria:
+
+| Estágio | Vidas | Gente total | Custo de gente | Resultado |
+|---|---|---|---|---|
+| MVP | 300 | 4 | 50,0% da receita | 11,9% |
+| Robustez | 10 mil | 26 | 45,7% | 19,8% |
+| Consolidação | 100 mil | 117 | 25,6% | 47,2% |
+| Nacional | 500 mil | 389 | 16,9% | 63,2% |
+| Escala | 2 mi | 1.278 | 13,3% | 73,0% |
+
+**As três camadas de gente:** linha de frente **terceirizada** (elástica, R$ 6 mil/mês) · núcleo da empresa em **CLT** (é o ativo) · governança por **contrato de conselheiro**. Regra: *terceiriza-se volume, contrata-se julgamento.*
+
+### ⚠️ O VALE DA MORTE — 7.400 vidas
+
+A estrutura robusta de 10 mil vidas (22 internos, R$ 951 mil/mês) **empata em ~7.400 vidas**. Montada a 4.000 vidas, queima **R$ 434 mil/mês**. Com PEPM a R$ 25, o equilíbrio sobe para 9.400 vidas e a margem cai a **4,3%**.
+
+**→ Nenhuma cadeira do Estágio 2 se contrata por calendário — só por gatilho de volume ou de risco** (tabela de gatilhos no documento).
+
+**Teste de estresse:** a empresa sobrevive a um colapso de 68% no PEPM (margem 50,6% em escala) e sobrevive à IA rendendo um terço do esperado (linha de frente vai de 2,3% a 7,7% da receita). **A fragilidade está toda concentrada na travessia dos 10 mil vidas.**
+
+### Distribuição de lucros — três coisas distintas
+- **Pró-labore** — obrigatório para quem administra, o meio mais caro (20% patronal + IRRF). Manter no mínimo defensável.
+- **Dividendos** — historicamente isentos (Lei 9.249/95). ⚠️ **PENDÊNCIA:** confirmar com a Cony Services a retenção sobre dividendos vigente a partir de 2026 — **se confirmada, muda a aritmética da decisão societária da Etapa 6**.
+- **PLR** (Lei 10.101/2000) — sem INSS/FGTS, tabela de IR exclusiva, não integra salário: **~28% mais barato** que bônus. É por aqui que se divide lucro com o time. Proposta: 8–12% do resultado.
+
+**Política de reserva:** 0% de distribuição até atravessar o vale · 20% aos 10 mil · 35% aos 100 mil · 40–50% acima.
+
+**Regime tributário — a regra dos 32%:** enquanto a margem real superar 32%, o Presumido tributa menos do que a empresa ganha. ⚠️ **PENDÊNCIA:** efeito da reforma tributária (CBS/IBS) sobre serviços — **6ª pergunta para a Cony Services**.
+
+**→ Consequência para o motor:** **Etapa 15** adota as três camadas e a tabela de gatilhos como critério de contratação; **Etapa 18** decide veículo societário, acordo de PLR, seguro D&O e política de dividendos; **Etapa 9** incorpora as 7.400 vidas como ponto de equilíbrio de referência; **Etapa 30** só declara operação contínua com a camada 2 mínima montada.
