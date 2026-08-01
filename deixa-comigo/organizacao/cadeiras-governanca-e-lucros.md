@@ -207,16 +207,41 @@ Historicamente **isenta de IR na pessoa física** (Lei 9.249/95, art. 10) — fo
 
 Exige acordo negociado com comissão de empregados **com representante do sindicato**, regras e metas definidas **antes** do período, e no máximo **duas parcelas por ano**. Feito certo, entrega ao time o mesmo valor líquido com **~28% menos custo** para a empresa.
 
-**Proposta de política de PLR:** pool de **8% a 12% do resultado antes de tributos**, distribuído por meta coletiva (SLA de missão + retenção de contrato) e limitado a 1,5–2 salários por pessoa/ano.
+**Proposta de política de PLR:** pool de **8% a 12% do resultado antes de tributos**, distribuído por meta coletiva (SLA de missão + retenção de contrato) e limitado a 1,5–2 salários por pessoa/ano. **A fórmula fica ativa desde o primeiro acordo, inclusive na travessia** — ela paga zero sozinha quando não há resultado, e isso evita negociar acordo com comissão de empregados e sindicato logo depois do primeiro ano bom, que é o pior momento possível.
 
-### Política de reserva por estágio (PROPOSTA)
+### Política de reserva por estágio (PROPOSTA — revisada em 01/08)
 
 | Estágio | Distribuição aos sócios | PLR ao time | Retenção |
 |---|---|---|---|
-| MVP e até 7.400 vidas | **0%** — atravessar o vale exige caixa | 0% | 100% |
+| MVP e travessia do vale | **0%** | fórmula ativa (paga zero sem resultado) | 100% |
 | 10 mil | até 20% do lucro líquido | 8% do resultado | ~72% |
 | 100 mil | até 35%, com aprovação do conselho | 10% | ~55% |
 | 500 mil+ | 40–50%, política formal de dividendos | 12% | ~40% |
+
+### ⚠️ O gatilho de liberação NÃO é o break-even
+
+**Break-even não é um momento — é um serrilhado.** Simulando a rampa de 0 a 10 mil vidas com contratação por gatilhos, o resultado cruza o zero, **um gatilho dispara, e ele volta a ficar negativo**. Numa rampa de 24 meses o primeiro mês positivo é o 9º, e a empresa mergulha de novo três vezes depois disso. Distribuir no primeiro mês positivo é distribuir capital de giro.
+
+**Regra proposta — libera distribuição só quando as duas forem verdadeiras ao mesmo tempo:**
+1. **3 meses consecutivos** de resultado positivo **já com a estrutura do gatilho seguinte contratada** — não vale ser positivo por ainda não ter contratado;
+2. **Caixa livre ≥ 6 meses de custo fixo.**
+
+### Capital necessário para atravessar o vale
+
+| Rampa até 10 mil vidas | Pior mês | **Capital acumulado no fundo do vale** |
+|---|---|---|
+| 18 meses | –R$ 126 mil | **–R$ 286 mil** |
+| 24 meses | –R$ 108 mil | **–R$ 410 mil** |
+| 36 meses | –R$ 126 mil | **–R$ 637 mil** |
+
+**Contratando por gatilhos, o vale é raso: R$ 300 a 640 mil de capital acumulado** — financiável sem investidor. É a tabela de gatilhos que transforma um vale de R$ 434 mil/mês num vale de ~R$ 120 mil/mês.
+
+**Achado contraintuitivo:** a rampa lenta custa **mais que o dobro** de capital que a rápida — a estrutura corre no relógio independentemente da receita, e cada mês a mais abaixo do equilíbrio é dinheiro. **Aqui, cautela é mais cara que velocidade.**
+
+### Duas coisas que NÃO entram na retenção
+
+- **Pró-labore é custo, não distribuição.** Continua sempre. Administrador sem pró-labore é questionável fiscalmente, e financiar a empresa com o próprio salário apenas esconde a queima real.
+- **Remuneração da Setfree por royalty ou taxa de gestão também é custo** — e portanto **fura a regra de retenção**. Efeito colateral não mapeado da decisão da Etapa 6: *"Setfree sócia"* respeita a retenção; *"Setfree dona da marca cobrando royalty"* **drena caixa exatamente durante a travessia**. Pesar isso quando a resposta da Cony Services chegar.
 
 ---
 

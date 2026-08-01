@@ -843,7 +843,13 @@ A estrutura robusta de 10 mil vidas (22 internos, R$ 951 mil/mês) **empata em ~
 - **Dividendos** — historicamente isentos (Lei 9.249/95). ⚠️ **PENDÊNCIA:** confirmar com a Cony Services a retenção sobre dividendos vigente a partir de 2026 — **se confirmada, muda a aritmética da decisão societária da Etapa 6**.
 - **PLR** (Lei 10.101/2000) — sem INSS/FGTS, tabela de IR exclusiva, não integra salário: **~28% mais barato** que bônus. É por aqui que se divide lucro com o time. Proposta: 8–12% do resultado.
 
-**Política de reserva:** 0% de distribuição até atravessar o vale · 20% aos 10 mil · 35% aos 100 mil · 40–50% acima.
+**Política de reserva (revisada em 01/08):** 0% até atravessar o vale · 20% aos 10 mil · 35% aos 100 mil · 40–50% acima.
+
+⚠️ **O gatilho de liberação não é o break-even.** Break-even é um **serrilhado**: o resultado cruza o zero, um gatilho de contratação dispara e ele volta a ficar negativo — numa rampa de 24 meses isso acontece três vezes. **Regra proposta:** distribui só com (1) 3 meses consecutivos positivos **já com a estrutura do gatilho seguinte contratada** e (2) caixa livre ≥ 6 meses de custo fixo.
+
+**Capital para atravessar o vale, contratando por gatilhos:** R$ 286 mil (rampa de 18 meses) a R$ 637 mil (36 meses) — **raso, financiável sem investidor**. Achado contraintuitivo: **a rampa lenta custa mais que o dobro da rápida** — aqui, cautela é mais cara que velocidade.
+
+**Não entram na retenção:** pró-labore (é custo, continua sempre) e **remuneração da Setfree por royalty ou taxa de gestão** — que *fura* a regra e drena caixa justamente na travessia. Efeito colateral não mapeado da decisão da Etapa 6: *"Setfree sócia"* respeita a retenção, *"Setfree dona da marca com royalty"* não.
 
 **Regime tributário — a regra dos 32%:** enquanto a margem real superar 32%, o Presumido tributa menos do que a empresa ganha. ⚠️ **PENDÊNCIA:** efeito da reforma tributária (CBS/IBS) sobre serviços — **6ª pergunta para a Cony Services**.
 
