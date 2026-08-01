@@ -748,3 +748,41 @@ O uso de **áudio com a voz do atendente gerado por IA** toca o ativo central da
 **🎯 Achado adicional — a palavra de escape é métrica de qualidade:** a **% de conversas escaladas a pedido do cliente** mede continuamente, sem pesquisa, se a IA está boa. ~5% = excelente · ~40% = IA não está pronta. Entra como métrica secundária da Etapa 20 (a primária segue sendo minutos humanos por missão) e como gatilho operacional de revisão de playbook.
 
 **Consequência de custo:** a taxa de escalada por pedido é insumo direto do % de missões com toque humano — a premissa de 30% do modelo deve ser calibrada por ela no piloto.
+
+## 📐 Dimensionamento da escala: o caminho aos 2 milhões (31/07)
+
+**Ambiguidade resolvida:** "2 milhões de pessoas" não pode significar 2 milhões de pessoas cuidadas pagantes — a R$ 390 isso seria **R$ 8,9 bi/ano** e ~6.700 atendentes, escala de uma das maiores empresas de saúde do país. O caminho realista é **vidas alcançadas via B2B/B2B2C**, onde só uma fração ativa.
+
+**Cenário de referência** (60 mil pessoas cuidadas D2C + 1,94 mi de vidas cobertas B2B a 15% de ativação):
+
+| Natureza | Pessoas | Custo/mês | % receita |
+|---|---|---|---|
+| **Atendentes terceirizados** | ~693 | R$ 5,5 mi (a R$ 60/h) | 3,1% |
+| **Núcleo próprio (folha)** | ~77 | R$ 2,2 mi | 1,3% |
+| **Administrativo e estrutura** | — | R$ 7,6 mi | 4,3% |
+
+**Total: ~770 pessoas, apenas 77 na folha (10%).**
+
+**Núcleo próprio — o que não se terceiriza:** produto e tecnologia (22, é o ativo) · comercial B2B e parcerias (25) · qualidade e auditoria (10, ~1 para cada 70 terceirizados) · jurídico e compliance (5, risco existencial) · financeiro/adm/RH (10) · liderança (5).
+
+**Por que terceirizar a operação:** a BPO absorve salário, encargos, 13º, férias, FGTS, rescisão, turnover, posto de trabalho e telefonia; paga-se **por hora produtiva** (faixa de mercado R$ 45–75 para atendimento qualificado) e a operação **encolhe junto com a receita**. Sem passivo trabalhista, sem estrutura de RH para centenas de pessoas.
+
+### ⚠️ RISCO Nº 1 DA ESCALA — a margem de 91% é aviso, não promessa
+
+A sensibilidade revela onde o resultado é decidido:
+
+| Variável | Efeito no resultado |
+|---|---|
+| Minutos humanos por missão (8,9 → 20) | Dobra o time; margem cai poucos pontos |
+| **PEPM B2B (R$ 79 → R$ 25)** | **Receita cai de R$ 175 mi para R$ 71 mi/mês** |
+| Ativação (15% → 30%) | Dobra o time; margem cai moderadamente |
+
+**Conclusão registrada:** com a IA operando, o trabalho humano custa ~3% da receita — barato demais para ser o gargalo. **O risco migrou de "conseguimos atender?" para "conseguimos vender por esse preço?"**
+
+**Toda a tese dos 2 milhões repousa em dois números não validados:**
+1. **PEPM de R$ 79** — hipótese do memo, nunca testada com um RH real;
+2. **Ativação de 15%** — estimativa sem base própria.
+
+São eles que decidem se a empresa fatura R$ 70 mi ou R$ 175 mi/mês. **Margem operacional de 90% não é resultado plausível de negócio de serviço — é sintoma de premissa a testar.**
+
+**→ Consequência para o motor:** validar PEPM e ativação com 2–3 RHs reais vira **pré-requisito da Etapa 11** (modelo de negócio) e da priorização de canais da Etapa 6. Antes disso, qualquer projeção de escala é literatura.
