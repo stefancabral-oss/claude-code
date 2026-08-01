@@ -622,3 +622,37 @@ A LC 123/2006 (art. 3º, §4º) soma a **receita bruta global** das empresas em 
 3. Simulação comparativa de carga tributária **nas duas opções**, considerando serviço (ISS) e folha da operação: Simples (anexo aplicável) × Lucro Presumido.
 4. Na Opção 2, qual o **desenho fiscal correto da licença de marca/royalties** entre E7 e operadora — e ele é vantajoso ou neutro?
 5. A E7 receber lucro sem faturamento próprio cria alguma restrição adicional relevante para a estrutura?
+
+---
+
+## 💰 Etapa 9 — Primeiro dado real de custo (31/07/2026)
+
+**Dado do fundador:** um bom SDR de atendimento passivo custa **R$ 6.000/mês**.
+
+**Conversão para custo/hora produtiva** (176h contratuais × 75% de produtividade = 132h):
+
+| Regime | Custo mensal carregado | Custo/hora produtiva |
+|---|---|---|
+| PJ / cooperado (+5% admin) | R$ 6.300 | **R$ 47,73** |
+| CLT com encargos (×1,75) | R$ 10.500 | **R$ 79,55** |
+
+**Impacto no modelo** (preço R$ 390/pessoa, líquido do mix de desconto = R$ 370,50):
+
+| | PJ | CLT |
+|---|---|---|
+| Custo por missão | R$ 29,16 | R$ 44,35 |
+| Margem P50 (típico) | R$ 274 · **74,0%** ✓ | R$ 228 · **61,7%** ✓ |
+| Margem P90 (cauda) | R$ 81 · **+21,9%** ✓ | **−R$ 56 · −15,0%** ⚠️ |
+| Break-even | 73 pessoas | 88 pessoas |
+
+### Os três achados
+
+1. **O cliente típico é muito lucrativo nos dois regimes.** A R$ 390, a conta fecha com folga sobre a margem-alvo de 30%.
+2. **A cauda inverte o sinal no CLT.** Sob CLT, a pessoa que consome no P90 dá **prejuízo de R$ 56/mês**. Como as entrevistas indicaram utilização universal, isso não é hipótese remota.
+3. **Reclassificação dos limites de beta:** sob PJ são termômetro; **sob CLT são proteção de margem obrigatória** — sem eles, quanto mais o cliente ama o serviço, mais a empresa perde.
+
+### Ressalva registrada
+SDR de atendimento passivo **não é o perfil da operação**. Navegar convênio, entender negativa e formular pedido exige mais senioridade — provavelmente acima de R$ 6.000. **O cenário CLT pode ser o otimista, não o pessimista.** A porta 15.1 (fornecedor real) segue como insumo obrigatório.
+
+### Decisão que isto antecipa (Etapa 15)
+**Regime de contratação da operação (PJ/terceirizada × CLT)** deixa de ser escolha administrativa e vira **decisão de margem**. Entra na pauta da Etapa 15 com este quadro como base.
