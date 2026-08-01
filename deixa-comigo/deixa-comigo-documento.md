@@ -656,3 +656,25 @@ SDR de atendimento passivo **não é o perfil da operação**. Navegar convênio
 
 ### Decisão que isto antecipa (Etapa 15)
 **Regime de contratação da operação (PJ/terceirizada × CLT)** deixa de ser escolha administrativa e vira **decisão de margem**. Entra na pauta da Etapa 15 com este quadro como base.
+
+### Capacidade: quantas pessoas 1 atendente + IA atende (31/07)
+
+Base: 132h produtivas/mês = **7.920 minutos** por atendente.
+
+| Minutos humanos/missão | 3 missões/mês (típico) | 5/mês (alto) | 9/mês (P90) |
+|---|---|---|---|
+| 45 (IA fraca) | 59 | 35 | 20 |
+| **32 (base atual)** | **83** | **50** | **28** |
+| 20 (IA madura) | 132 | 79 | 44 |
+| 10 (IA muito madura) | 264 | 158 | 88 |
+
+**Leitura econômica por atendente** (receita líquida R$ 370,50/pessoa; custo do atendente R$ 10.500 CLT):
+- Típico: 83 pessoas → **R$ 30.730** gerados · proporção 3:1 · saudável
+- Uso alto: 50 pessoas → R$ 18.438 · 1,8:1
+- P90: 28 pessoas → **R$ 10.243 — abaixo do custo do próprio atendente**
+
+**🎯 META DE ENGENHARIA DERIVADA:** a **19 minutos humanos por missão**, até o cliente P90 atinge a margem-alvo de 30%. Esse é o alvo objetivo da automação — não "usar IA", mas **fazer a missão média custar ~20 minutos de humano**. É o que separa um negócio que escala de um que engasga no cliente mais fiel.
+
+**Dimensionamento para o objetivo da Etapa 6 (300 pessoas):** 3,6 atendentes (típico) · 6,0 (alto) · 10,9 (P90).
+
+**Consequência para a Etapa 20 (validação do MVP):** a métrica principal do piloto deve ser **minutos humanos por missão** — é ela que decide preço, capacidade, contratação e escala. Tudo o mais é secundário.
