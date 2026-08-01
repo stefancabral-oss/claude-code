@@ -706,3 +706,27 @@ Se o cliente ainda faz o contato de titular, a promessa precisa ser precisa. For
 A transferência de peso continua real: a família deixa de **descobrir o que fazer** (a parte insuportável) e passa a **executar** um roteiro curto.
 
 **→ Etapa 13 deve definir três faixas de escopo:** (1) o que fazemos POR você · (2) o que fazemos COM você (roteiro, preparação, acompanhamento) · (3) o que é seu por natureza (contato que exige o titular).
+
+### 🤖 Modelo operacional definido pelo fundador (31/07): IA opera, humano trata exceção
+
+**Desenho:** a IA opera o WhatsApp de ponta a ponta — texto **e áudio**, com a voz do atendente, inclusive pequenas ligações. **O contato humano de front-end fica reservado para urgência, emoção e exceção.** O humano deixa de ser executor e vira tratador de exceção.
+
+**Impacto econômico modelado:**
+
+| Modelo | Min/missão | Margem P50 | Margem P90 | Capacidade/atendente |
+|---|---|---|---|---|
+| Humano executa | 21,2 | 74% | 21% | 125 |
+| **IA opera; humano em 30%** | **8,9** | **88%** | **63%** | **297** |
+| IA opera; humano em 20% | 6,6 | 90% | 70% | 400 |
+| IA madura; humano em 10% | 4,3 | 93% | 78% | 614 |
+
+**Leitura estratégica:** com humano em 30% das missões, **1 atendente cobre as 300 pessoas do objetivo da Etapa 6**, e a cauda passa de prejuízo a 63% de margem. O negócio deixa de ser "serviço com apoio de IA" e vira **software com atendimento humano de exceção** — outra categoria de margem, escala e avaliação.
+
+### ⚠️ DECISÃO PENDENTE — transparência da voz (dono: Stefan · gates: Etapas 13 e 18)
+
+O uso de **áudio com a voz do atendente gerado por IA** toca o ativo central da marca: a confiança. Duas perguntas exigem decisão expressa:
+
+1. **A família sabe que fala com IA?** A marca é pétrea em ser "auditável" e mostrar "gente com nome". Descoberta tardia do disfarce é dano de fé, não de produto. Divulgação prévia ("a assistente é apoiada por IA; nas horas que importam, é a pessoa") preserva a eficiência e a confiança.
+2. **Áudio com voz humana falando com terceiros** (clínica, operadora) envolve identificação perante terceiros — território jurídico da Etapa 18.
+
+**Registro analítico:** a eficiência dos números acima **não depende do disfarce** — depende do humano sair da execução. As margens de 88% são alcançáveis com transparência total. IA declarada é sustentável; IA disfarçada é risco existencial numa empresa cujo produto é confiança.
