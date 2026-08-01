@@ -584,3 +584,41 @@ Critério (F12): 3 pessoas de fora do projeto **repetem a frase com as próprias
 
 ### ☑ 7.5 Diferenciação verificada
 Nenhum player da 4.1 usa a promessa "trabalho para a família, não para o porteiro" — a posição está livre. Os concierges existentes não podem ocupá-la sem conflito com quem os paga: é uma posição **estruturalmente defensável**, não apenas desocupada.
+
+---
+
+## ⚖️ Etapa 6 — Direção societária: dados do fundador e análise (31/07/2026)
+
+**Dados informados pelo fundador:** contador **Cony Services** · participações: **100% da Setfree**, **50% da E7** · faturamento: Setfree **R$ 350k/mês (~R$ 4,2 mi/ano)**; E7 sem faturamento próprio (recebe lucro); demais empresas ainda pré-operacionais.
+
+### A aritmética da vedação do Simples
+
+A LC 123/2006 (art. 3º, §4º) soma a **receita bruta global** das empresas em que o sócio participa com mais de 10% (quando não beneficiadas pelo Simples). Teto: **R$ 4,8 mi/ano**.
+
+| Item | Valor |
+|---|---|
+| Receita global atual (Setfree) | R$ 4.200.000/ano |
+| Teto global do Simples | R$ 4.800.000/ano |
+| **Folga disponível para a Deixa Comigo** | **R$ 600.000/ano (R$ 50k/mês)** |
+| Equivalente a R$ 390/pessoa cuidada | **~128 pessoas cuidadas** |
+
+**Conflito direto com o objetivo da Etapa 6:** a meta aprovada é **300 pessoas cuidadas ativas até jul/2027** = R$ 1,4 mi/ano → receita global de **R$ 5,6 mi** → **excede o teto em ~R$ 800 mil**.
+
+**Conclusão da análise:** a Rota B (marca na E7 + operadora no Simples) **quebra por volta do cliente nº 128** — menos da metade do caminho até o objetivo. E o risco não depende só da empresa nova: a Setfree sozinha já ocupa **87,5% do teto**; um crescimento de ~15% dela derruba o Simples independentemente da Deixa Comigo.
+
+### A escolha, reduzida a duas
+
+| | Ganho | Custo |
+|---|---|---|
+| **Opção 1 — Simples com prazo** | ~12 meses de carga leve durante o piloto (justamente quando a receita é menor e o benefício, também) | Reestruturação no meio do voo: regime, contrato social e contratos de clientes já assinados |
+| **Opção 2 — nascer na estrutura definitiva** (E7 sócia, Lucro Presumido) | Sem reestruturação futura; camada Nakashima planejada de uma vez | Carga maior nos primeiros meses |
+
+**Recomendação registrada (não é parecer):** economizar imposto sobre receita que ainda não existe, ao custo de reorganizar a empresa quando ela finalmente existir, tende a ser mau negócio. A conta fina é do contador.
+
+### Perguntas objetivas para a Cony Services *(destravam a decisão)*
+
+1. Confirmam que a Setfree, no regime atual, **não é beneficiada** pelo Simples e portanto entra no cômputo da receita bruta global? (participação de 100% > 10%)
+2. Com receita global projetada de R$ 4,2 mi + a nova empresa, **em que ponto exato** a Deixa Comigo perderia o Simples — e a exclusão vale a partir de quando (mês seguinte, ano seguinte)?
+3. Simulação comparativa de carga tributária **nas duas opções**, considerando serviço (ISS) e folha da operação: Simples (anexo aplicável) × Lucro Presumido.
+4. Na Opção 2, qual o **desenho fiscal correto da licença de marca/royalties** entre E7 e operadora — e ele é vantajoso ou neutro?
+5. A E7 receber lucro sem faturamento próprio cria alguma restrição adicional relevante para a estrutura?
