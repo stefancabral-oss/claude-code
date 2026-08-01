@@ -786,3 +786,28 @@ A sensibilidade revela onde o resultado é decidido:
 São eles que decidem se a empresa fatura R$ 70 mi ou R$ 175 mi/mês. **Margem operacional de 90% não é resultado plausível de negócio de serviço — é sintoma de premissa a testar.**
 
 **→ Consequência para o motor:** validar PEPM e ativação com 2–3 RHs reais vira **pré-requisito da Etapa 11** (modelo de negócio) e da priorização de canais da Etapa 6. Antes disso, qualquer projeção de escala é literatura.
+
+---
+
+## 🏗️ Arquitetura e infraestrutura — dimensionamento em três estágios (31/07/2026)
+
+**Documento completo:** [`tecnologia/arquitetura-e-infraestrutura.md`](tecnologia/arquitetura-e-infraestrutura.md)
+
+| Estágio | Vidas | Infra/mês | Por vida | % da receita |
+|---|---|---|---|---|
+| Piloto | 10–50 | ~R$ 1,7 mil | R$ 33 | ~10% |
+| MVP comercial | 300 | ~R$ 11 mil | R$ 36 | ~9% |
+| Escala | 2 milhões | ~R$ 859 mil | R$ 0,43 | **0,5%** |
+
+**O achado que organiza a decisão:** a infraestrutura **desaparece percentualmente** com a escala. Ela nunca será o problema econômico da Deixa Comigo — será o problema **arquitetural**. O que importa não é o que custa (pouco, e cada vez menos), é o que **compromete**.
+
+**Inferência própria:** o ponto de virada é **~R$ 300 mil/mês de gasto em API**. Abaixo disso, cluster próprio não se paga — o custo de MLOps come a economia. Acima, o modelo híbrido (volume no cluster próprio, raciocínio difícil em modelo frontier) economiza **~R$ 578 mil/mês**. Construir isso no MVP seria erro caro.
+
+### ⚠️ As 4 decisões IRREVERSÍVEIS — certas desde o piloto
+
+1. **Modelo de dados do grafo** — desenhar como se fossem 2 milhões desde os primeiros 50; migrar micro-grafos com anos de histórico é cirurgia de coração aberto.
+2. **Residência e segregação dos dados** — dado de saúde é sensível na LGPD; onde ele nasce define o que é possível depois. Definir **antes do primeiro cliente**.
+3. **Trilha de auditoria** — **não se retrofita**. É o que sustenta tecnicamente a promessa "auditável" da marca.
+4. **Arquitetura de consentimento** — **não se obtém retroativamente**. Sem uso longitudinal previsto em contrato, o Mapa — a vantagem competitiva — nasce com prazo de validade.
+
+**→ Consequência para o motor:** esta análise é insumo direto da **Etapa 16** (estrutura de dados, memória e tecnologia) — cujas portas **16.1 a 16.5 passam a ter as 4 decisões irreversíveis como critério de "pronto"** — e da **Etapa 22** (construir e testar), que deve nascer já com a **instrumentação de minutos humanos por missão**, sem a qual a Etapa 9 nunca sai do estimado e o preço nunca sai da intuição.
