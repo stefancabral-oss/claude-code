@@ -500,11 +500,11 @@ Descontando tecnologia/IA/infra (estimativa a confirmar: R$ 30–50 por pessoa/m
 
 ---
 
-_v4 · 31/07/2026 · **BLOCO 1 COMPLETO — ETAPAS 1–5 FECHADAS** (5/31 · 25/155 portas) · Problema confirmado (4/4) · **Etapa 6 — Estratégia: DESTRAVADA**_
+_v4 · 31/07/2026 · **ETAPAS 1–6 FECHADAS** (6/31 · 30/155 portas) · Bloco 1 completo · Estratégia aprovada · **Etapa 7 — Posicionamento: EM EXECUÇÃO**_
 
 ---
 
-## B2 · Etapa 6 — Estratégia (em execução: 31/07/2026)
+## B2 · Etapa 6 — Estratégia ✅ (FECHADA em 31/07/2026)
 
 *Primeira etapa do Bloco 2. Aqui se decide a direção — inclusive a societária, a expansão e os canais, que vinham sendo adiadas para este gate.*
 
@@ -557,3 +557,30 @@ Complementos (defensáveis, mas copiáveis): assimetria de conhecimento de 26+ a
 | **Direção societária** (E7 sócia × marca na E7 + operadora no Simples) | Aguarda o dever de casa do contador: participações do fundador + receita global + simulação das duas rotas. **É a única decisão desta etapa que depende de terceiro.** |
 | **Expansão geográfica** | Proposta acima: SP capital + RM até o objetivo da 6.1; nada além disso antes. |
 | **Priorização de canais** | Proposta acima: D2C + B2D nesta fase; B2B/B2B2C como produtos distintos (decisão de 31/07) ativados depois. |
+
+---
+
+## B2 · Etapa 7 — Posicionamento (em execução: 31/07/2026)
+
+### ☑ 7.1 Categoria — PÉTREO (GTM Book)
+**Gestão executiva do cuidado.** Prateleira própria: não é plano de saúde, clínica, home care, telemedicina, agência de cuidadores nem software familiar. **Por quê:** categoria própria elimina comparação de preço com produtos que prometem menos e entregam outra coisa.
+
+### ☐ 7.2 Diferencial — PROPOSTA
+
+**O único navegador do cuidado que trabalha para a família — e não para nenhum porteiro.**
+
+Verificado contra os concorrentes da 4.1: concierge de operadora pertence à operadora; concierge de benefícios responde ao RH; home care executa o clínico; app devolve o trabalho. Nenhum deles pode, por conflito estrutural, **cobrar prazo do convênio ou contestar uma negativa**. A Deixa Comigo pode — e é isso que a define.
+
+Sustentado por três provas: (a) zero comissão escondida, declarada e auditável; (b) advocacia administrativa dentro do escopo; (c) o Mapa, que faz a próxima travessia ser mais rápida que a anterior.
+
+### ☐ 7.3 Frase de posicionamento — PROPOSTA
+
+> **Para a filha ou o filho que virou gestor da vida de um pai idoso em São Paulo, a Deixa Comigo é a gestão executiva do cuidado que assume a burocracia e devolve conclusões com evidência — sem responder a plano, hospital ou fornecedor nenhum.**
+
+*Versão curta, para uso falado:* **"Somos o assessor que trabalha para a sua família — não para o convênio."**
+
+### ☐ 7.4 Clareza testada com 3 terceiros — AGUARDA O FUNDADOR
+Critério (F12): 3 pessoas de fora do projeto **repetem a frase com as próprias palavras, sem ajuda**. Roteiro: ler a frase curta uma vez → esperar 30 s → pedir "me explica o que a gente faz". Passa se a pessoa acertar categoria + para quem trabalhamos.
+
+### ☑ 7.5 Diferenciação verificada
+Nenhum player da 4.1 usa a promessa "trabalho para a família, não para o porteiro" — a posição está livre. Os concierges existentes não podem ocupá-la sem conflito com quem os paga: é uma posição **estruturalmente defensável**, não apenas desocupada.
