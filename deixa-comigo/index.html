@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deixa Comigo — Motor de Progressão v2 (auditado)</title>
+<style>
+  /* Paleta pétrea Deixa Comigo (GTM Book v1.0, 26/07/2026):
+     Azul Gestão #132E4A · Azul Claro Confiança #3F7EA6 · Terracota Afeto #C9603F
+     Magenta Direto #D6246E · Tinta #0F1720 · Papel #FBF8F4 (só respiro/superfícies)
+     REGRA DO MANUAL: fundo sempre BRANCO. */
+  :root {
+    --indigo: #132E4A; --indigo-dark: #0C1F33; --amber: #C9603F;
+    --bg: #FFFFFF; --card: #FFFFFF; --text: #0F1720; --muted: #5C6672;
+    --ok: #3F7EA6; --lock: #C4C8D8; --danger: #D6246E; --border: #E8E2D9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
+  header { background: var(--bg); color: var(--indigo); padding: 18px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; border-bottom: 2px solid var(--indigo); }
+  header img { width: 84px; height: 84px; object-fit: contain; mix-blend-mode: multiply; }
+  header h1 { font-size: 1.25rem; color: var(--indigo); }
+  header .sub { font-size: .82rem; color: var(--muted); }
+  header .promessa { font-size: .78rem; color: var(--amber); font-style: italic; margin-top: 2px; }
+  .toolbar { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+  .toolbar button { background: transparent; border: 1px solid var(--indigo); color: var(--indigo); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: .8rem; }
+  .toolbar button:hover { background: var(--indigo); color: #fff; }
+  .progress-wrap { padding: 14px 24px; background: var(--card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 5; }
+  .progress-bar { height: 12px; background: var(--border); border-radius: 6px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--indigo), var(--amber)); width: 0; transition: width .4s; }
+  .progress-label { font-size: .8rem; color: var(--muted); margin-top: 6px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+  main { display: grid; grid-template-columns: 1fr 320px; gap: 20px; padding: 20px 24px; max-width: 1200px; margin: 0 auto; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  .bloco-title { margin: 18px 0 10px; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .etapa { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+  .etapa.locked { opacity: .55; }
+  .etapa.current { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(242,163,60,.25); }
+  .etapa.done { border-color: var(--ok); }
+  .etapa-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px; cursor: pointer; }
+  .etapa-num { min-width: 34px; height: 34px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .85rem; }
+  .etapa.done .etapa-num { background: var(--ok); color: #fff; }
+  .etapa.current .etapa-num { background: var(--amber); color: #fff; }
+  .etapa-head h3 { font-size: .98rem; flex: 1; }
+  .etapa-head .mini { font-size: .75rem; color: var(--muted); }
+  .marco { font-size: .72rem; background: var(--amber); color: #fff; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+  .etapa-body { display: none; padding: 0 14px 14px; }
+  .etapa.open .etapa-body { display: block; }
+  .resumo { font-size: .82rem; color: var(--muted); margin-bottom: 10px; }
+  .porta { display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; border-radius: 8px; }
+  .porta:hover { background: var(--bg); }
+  .porta input { margin-top: 3px; width: 17px; height: 17px; accent-color: var(--indigo); cursor: pointer; }
+  .porta .plabel { font-size: .88rem; font-weight: 600; }
+  .porta .pcrit { font-size: .77rem; color: var(--muted); }
+  .porta.done .plabel { color: var(--ok); text-decoration: line-through; text-decoration-thickness: 1px; }
+  .porta > div { flex: 1; min-width: 0; }
+  .porta-doc { width: 100%; margin-top: 6px; border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font-size: .82rem; font-family: inherit; background: #FBF8F4; color: var(--text); min-height: 50px; resize: vertical; line-height: 1.45; }
+  .porta-doc:focus { outline: 2px solid var(--ok); background: #FFFFFF; }
+  .porta-doc:disabled { opacity: .5; }
+  .doc-count { color: var(--amber); }
+  .loopback-btn { margin-top: 10px; background: #fff; border: 1px solid var(--danger); color: var(--danger); border-radius: 8px; padding: 8px 12px; font-size: .8rem; cursor: pointer; }
+  .loopback-btn:hover { background: var(--danger); color: #fff; }
+  .tentativas { font-size: .75rem; color: var(--danger); margin-top: 6px; }
+  aside .panel { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+  aside h4 { font-size: .85rem; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+  aside h4 .tag { font-size: .68rem; background: var(--indigo); color: #fff; border-radius: 999px; padding: 2px 8px; }
+  .preco-view { font-size: 1.3rem; font-weight: 800; color: var(--indigo); }
+  .preco-meta, .rv-item .meta { font-size: .72rem; color: var(--muted); }
+  .panel input, .panel select, .panel textarea { width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 7px 9px; font-size: .8rem; margin-top: 6px; font-family: inherit; }
+  .panel .btn { margin-top: 8px; width: 100%; background: var(--indigo); color: #fff; border: none; border-radius: 8px; padding: 8px; font-size: .8rem; cursor: pointer; }
+  .panel .btn:hover { background: var(--indigo-dark); }
+  .rv-item { border-top: 1px solid var(--border); padding: 8px 0; font-size: .82rem; }
+  .rv-item.resolvida { opacity: .55; text-decoration: line-through; }
+  .rv-item .tipo { font-size: .68rem; border-radius: 999px; padding: 1px 7px; margin-right: 5px; color: #fff; }
+  .tipo.pergunta { background: var(--amber); } .tipo.decisao { background: var(--ok); } .tipo.sistema { background: var(--muted); }
+  .rv-item button { float: right; background: none; border: none; cursor: pointer; font-size: .75rem; color: var(--muted); }
+  .banner { margin: 12px 24px 0; padding: 12px 16px; border-radius: 10px; font-size: .85rem; display: none; }
+  .banner.show { display: block; }
+  .banner.alerta { background: #FDECEC; border: 1px solid var(--danger); color: var(--danger); }
+  dialog { border: none; border-radius: 14px; padding: 22px; max-width: 460px; width: 92%; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
+  dialog::backdrop { background: rgba(20,22,40,.5); }
+  dialog h3 { margin-bottom: 6px; font-size: 1rem; }
+  dialog p { font-size: .82rem; color: var(--muted); margin-bottom: 10px; }
+  dialog .row { display: flex; gap: 8px; margin-top: 12px; }
+  dialog .row button { flex: 1; padding: 9px; border-radius: 8px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-size: .82rem; }
+  dialog .row button.primary { background: var(--indigo); color: #fff; border-color: var(--indigo); }
+  footer { text-align: center; font-size: .72rem; color: var(--muted); padding: 20px; }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="assets/logo-branco.png" alt="Deixa Comigo — Assessor Executivo da Saúde" onerror="this.outerHTML='<div style=&quot;font-size:2rem&quot;>💙</div>'">
+  <div>
+    <h1>Deixa Comigo — Motor de Progressão</h1>
+    <div class="sub">Assessor Executivo da Saúde · Gestão executiva do cuidado · 31 etapas × 5 portas (v2 auditada)</div>
+    <div class="promessa">"Você trata de amar. Do resto, Deixa Comigo."</div>
+  </div>
+  <div class="toolbar">
+    <button onclick="exportarDoc()">📄 Documento (.md)</button>
+    <button onclick="exportar()">⬇ Exportar progresso</button>
+    <button onclick="document.getElementById('importFile').click()">⬆ Importar</button>
+    <input type="file" id="importFile" accept=".json" style="display:none" onchange="importar(event)">
+    <button onclick="resetar()">↺ Zerar</button>
+  </div>
+</header>
+
+<div class="banner alerta" id="bannerPivo">
+  ⛔ <strong>3 retornos sem sucesso na mesma etapa.</strong> O motor recomenda parar e repensar o negócio (pivotar o problema/público ou encerrar com aprendizado). Continuar tentando o mesmo caminho é a definição de teimosia, não de persistência.
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="pfill"></div></div>
+  <div class="progress-label">
+    <span id="plabel">0/155 portas · 0/31 etapas</span>
+    <span id="pcurrent">Etapa atual: 1</span>
+  </div>
+</div>
+
+<main>
+  <section id="etapas"></section>
+  <aside>
+    <div class="panel">
+      <h4>💰 Preço Canônico <span class="tag">F10</span></h4>
+      <div class="preco-view" id="precoView">— não definido —</div>
+      <div class="preco-meta" id="precoMeta">Definido na etapa 10 · revisado nas etapas 26 e 27</div>
+      <input type="text" id="precoValor" placeholder="Ex.: R$ 490/mês">
+      <button class="btn" onclick="salvarPreco()">Registrar nova versão</button>
+    </div>
+    <div class="panel">
+      <h4>📓 Registro Vivo <span class="tag">F3</span></h4>
+      <select id="rvTipo"><option value="pergunta">Pergunta em aberto</option><option value="decisao">Decisão tomada</option></select>
+      <input type="text" id="rvTexto" placeholder="Escreva aqui…">
+      <input type="text" id="rvDono" placeholder="Dono (se pergunta)">
+      <button class="btn" onclick="addRV()">Adicionar</button>
+      <div id="rvLista"></div>
+    </div>
+  </aside>
+</main>
+
+<dialog id="hookDialog">
+  <h3>📓 Hook do Registro Vivo (F3)</h3>
+  <p id="hookMsg">Você fechou uma etapa. Surgiu alguma pergunta nova ou decisão tomada? (as perguntas nascem AQUI, ao longo do caminho — não na largada)</p>
+  <input type="text" id="hookPergunta" placeholder="Nova pergunta em aberto (opcional)">
+  <input type="text" id="hookDecisao" placeholder="Nova decisão tomada (opcional)">
+  <div class="row">
+    <button onclick="fecharHook(false)">Nada novo</button>
+    <button class="primary" onclick="fecharHook(true)">Registrar e continuar</button>
+  </div>
+</dialog>
+
+<dialog id="loopDialog">
+  <h3>↩️ Loop-back (F1/F2)</h3>
+  <p id="loopMsg"></p>
+  <p><strong>Efeito em cascata (F2):</strong> todas as portas entre a etapa-alvo e a atual serão reabertas. O contador de tentativas desta volta será incrementado (máx. 3).</p>
+  <div class="row">
+    <button onclick="document.getElementById('loopDialog').close()">Cancelar</button>
+    <button class="primary" onclick="confirmarLoopback()" style="background:var(--danger);border-color:var(--danger)">Confirmar retorno</button>
+  </div>
+</dialog>
+
+<footer>Deixa Comigo · Assessor Executivo da Saúde · Motor v2 pós-auditoria · Identidade visual oficial (GTM Book Pétreo v1.0) · Estado salvo localmente; use “Exportar” para commitar o <code>progress.json</code> no GitHub.</footer>
+
+<script src="roadmap.js"></script>
+<script>
+// ================= MOTOR (contrato uniforme — F13) =================
+// Toda avaliação de etapa retorna {status:'ok'|'blocked'|'loopback'|'locked'}
+const KEY = "deixa-comigo-v2";
+let S = carregar();
+
+function estadoInicial() {
+  return {
+    portas: Object.fromEntries(ROADMAP.etapas.map(e => [e.num, [false,false,false,false,false]])),
+    docs: {},                       // conteúdo escrito por porta ("2.1" → texto)
+    tentativas: {},                 // F1: contador por etapa-alvo
+    registroVivo: [],               // F3: documento vivo
+    preco: { historico: [] },       // F10: fonte única de preço
+    hookFechadas: []                // etapas cujo hook já rodou
+  };
+}
+function carregar() {
+  try { const raw = localStorage.getItem(KEY); if (raw) return Object.assign(estadoInicial(), JSON.parse(raw)); } catch(e) {}
+  return estadoInicial();
+}
+function salvar() { localStorage.setItem(KEY, JSON.stringify(S)); }
+
+function etapaFechada(num) { return S.portas[num].every(Boolean); }
+function statusEtapa(num) {                       // F13: contrato uniforme
+  for (const e of ROADMAP.etapas) {
+    if (e.num === num) break;
+    if (!etapaFechada(e.num)) return { status: "locked", bloqueadaPor: e.num };
+  }
+  return etapaFechada(num) ? { status: "ok" } : { status: "blocked" };
+}
+function etapaAtual() {
+  for (const e of ROADMAP.etapas) if (!etapaFechada(e.num)) return e.num;
+  return 31; // etapa 31 é ciclo permanente
+}
+
+// ================= LOOP-BACK real (F1) + cascata (F2) =================
+let loopPendente = null;
+function pedirLoopback(num) {
+  const e = ROADMAP.etapas.find(x => x.num === num);
+  loopPendente = { de: num, alvo: e.loopback.alvo, msg: e.loopback.msg };
+  document.getElementById("loopMsg").textContent = e.loopback.msg;
+  document.getElementById("loopDialog").showModal();
+}
+function confirmarLoopback() {
+  const { de, alvo, msg } = loopPendente;
+  S.tentativas[alvo] = (S.tentativas[alvo] || 0) + 1;
+  for (const e of ROADMAP.etapas)                 // F2: invalidação em cascata
+    if (e.num >= alvo && e.num <= de) {
+      S.portas[e.num] = [false,false,false,false,false];
+      S.hookFechadas = S.hookFechadas.filter(n => n !== e.num);
+    }
+  S.registroVivo.unshift({ tipo: "sistema", texto: `↩️ Loop-back ${de}→${alvo} (tentativa ${S.tentativas[alvo]}/3): ${msg}`, data: hoje(), resolvida: false });
+  document.getElementById("bannerPivo").classList.toggle("show", S.tentativas[alvo] > 3);
+  salvar(); render();
+  document.getElementById("loopDialog").close();
+}
+
+// ================= HOOK do Registro Vivo (F3) =================
+let hookEtapa = null;
+function talvezAbrirHook(num) {
+  if (etapaFechada(num) && !S.hookFechadas.includes(num)) {
+    hookEtapa = num;
+    document.getElementById("hookMsg").textContent =
+      `Você fechou a etapa ${num} (${ROADMAP.etapas.find(e=>e.num===num).titulo}). Que perguntas novas surgiram? Que decisões foram tomadas?`;
+    document.getElementById("hookDialog").showModal();
+  }
+}
+function fecharHook(registrar) {
+  if (registrar) {
+    const p = document.getElementById("hookPergunta").value.trim();
+    const d = document.getElementById("hookDecisao").value.trim();
+    if (p) S.registroVivo.unshift({ tipo: "pergunta", texto: p, dono: "", data: hoje(), resolvida: false, origem: "etapa " + hookEtapa });
+    if (d) S.registroVivo.unshift({ tipo: "decisao", texto: d, data: hoje(), resolvida: false, origem: "etapa " + hookEtapa });
+  }
+  S.hookFechadas.push(hookEtapa);
+  document.getElementById("hookPergunta").value = ""; document.getElementById("hookDecisao").value = "";
+  salvar(); render();
+  document.getElementById("hookDialog").close();
+}
+
+// ================= Preço Canônico (F10) =================
+const ETAPAS_PRECO = [10, 26, 27];
+function salvarPreco() {
+  const v = document.getElementById("precoValor").value.trim();
+  if (!v) return;
+  const atual = etapaAtual();
+  if (!ETAPAS_PRECO.includes(atual) && S.preco.historico.length > 0) {
+    if (!confirm(`Atenção (F10): o preço canônico só deveria mudar nas etapas 10, 26 ou 27. Você está na etapa ${atual}. Registrar mesmo assim?`)) return;
+  }
+  S.preco.historico.unshift({ valor: v, etapa: atual, data: hoje(), versao: S.preco.historico.length + 1 });
+  document.getElementById("precoValor").value = "";
+  salvar(); render();
+}
+
+// ================= Registro Vivo manual =================
+function addRV() {
+  const t = document.getElementById("rvTexto").value.trim();
+  if (!t) return;
+  S.registroVivo.unshift({ tipo: document.getElementById("rvTipo").value, texto: t, dono: document.getElementById("rvDono").value.trim(), data: hoje(), resolvida: false });
+  document.getElementById("rvTexto").value = ""; document.getElementById("rvDono").value = "";
+  salvar(); render();
+}
+function toggleRV(i) { S.registroVivo[i].resolvida = !S.registroVivo[i].resolvida; salvar(); render(); }
+
+// ================= Interações =================
+function togglePorta(num, idx) {
+  const st = statusEtapa(num);
+  if (st.status === "locked") { alert(`🔒 Travado: feche antes a etapa ${st.bloqueadaPor} (regra de ouro: não se pula etapa).`); render(); return; }
+  const key = num + "." + (idx + 1);
+  if (!S.portas[num][idx] && !(S.docs[key] || "").trim()) {
+    if (!confirm("Esta porta ainda não tem documento escrito. Marcar como pronta mesmo assim?\n\n(O controle de verdade é o que está escrito, não o check.)")) { render(); return; }
+  }
+  S.portas[num][idx] = !S.portas[num][idx];
+  salvar(); render();
+  talvezAbrirHook(num);
+}
+let docTimer = null;
+function salvarDoc(key, el) {
+  S.docs[key] = el.value;
+  clearTimeout(docTimer);
+  docTimer = setTimeout(salvar, 500);   // debounce: salva meio segundo após parar de digitar
+}
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function baixarArquivo(filename, data) {
+  const blob = new Blob([data], { type: "text/plain;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = filename; a.click();
+}
+function exportar() {
+  baixarArquivo("progress.json",
+    JSON.stringify({ exportadoEm: new Date().toISOString(), roadmapVersao: ROADMAP.versao, estado: S }, null, 2));
+}
+function exportarDoc() {
+  let md = "# Deixa Comigo — Documento Vivo\n\n";
+  md += "_Assessor Executivo da Saúde · Gerado pelo Motor de Progressão em " + hoje() + "_\n\n";
+  const p0 = S.preco.historico[0];
+  md += "**Preço Canônico:** " + (p0 ? p0.valor + " (v" + p0.versao + ", etapa " + p0.etapa + ", " + p0.data + ")" : "não definido") + "\n\n";
+  for (const bloco of ROADMAP.blocos) {
+    md += "## " + bloco.id + " — " + bloco.nome + "\n\n";
+    for (const num of bloco.etapas) {
+      const e = ROADMAP.etapas.find(x => x.num === num);
+      md += "### Etapa " + num + " — " + e.titulo + (etapaFechada(num) ? " ✅" : "") + (e.marco ? "  \n**" + e.marco + "**" : "") + "\n\n";
+      e.portas.forEach((p, i) => {
+        const key = num + "." + (i + 1);
+        md += "- [" + (S.portas[num][i] ? "x" : " ") + "] **" + key + " " + p.label + "**\n";
+        const doc = (S.docs[key] || "").trim();
+        if (doc) md += "\n" + doc.split("\n").map(l => "  > " + l).join("\n") + "\n";
+        md += "\n";
+      });
+    }
+  }
+  if (S.registroVivo.length) {
+    md += "## Registro Vivo\n\n";
+    for (const r of S.registroVivo)
+      md += "- " + (r.resolvida ? "~~" : "") + "[" + r.tipo + "] " + r.texto + (r.resolvida ? "~~" : "") +
+            (r.dono ? " — dono: " + r.dono : "") + (r.origem ? " (" + r.origem + ")" : "") + " · " + r.data + "\n";
+    md += "\n";
+  }
+  if (S.preco.historico.length > 1) {
+    md += "## Histórico do Preço Canônico\n\n";
+    for (const p of S.preco.historico) md += "- v" + p.versao + ": " + p.valor + " (etapa " + p.etapa + ", " + p.data + ")\n";
+  }
+  baixarArquivo("deixa-comigo-documento.md", md);
+}
+function importar(ev) {
+  const f = ev.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => { try { S = Object.assign(estadoInicial(), JSON.parse(r.result).estado); salvar(); render(); } catch(e) { alert("Arquivo inválido."); } };
+  r.readAsText(f);
+}
+function resetar() { if (confirm("Zerar TODO o progresso?")) { S = estadoInicial(); salvar(); render(); } }
+function hoje() { return new Date().toLocaleDateString("pt-BR"); }
+
+// ================= Render =================
+function render() {
+  const cont = document.getElementById("etapas");
+  const atual = etapaAtual();
+  const abertas = new Set([...cont.querySelectorAll(".etapa.open")].map(el => +el.dataset.num));
+  cont.innerHTML = "";
+  for (const bloco of ROADMAP.blocos) {
+    const h = document.createElement("div");
+    h.className = "bloco-title"; h.textContent = bloco.id + " — " + bloco.nome;
+    cont.appendChild(h);
+    for (const num of bloco.etapas) {
+      const e = ROADMAP.etapas.find(x => x.num === num);
+      const st = statusEtapa(num);
+      const div = document.createElement("div");
+      div.dataset.num = num;
+      div.className = "etapa" + (st.status === "ok" ? " done" : "") + (st.status === "locked" ? " locked" : "") + (num === atual ? " current open" : "") + (abertas.has(num) ? " open" : "");
+      const feitas = S.portas[num].filter(Boolean).length;
+      const escritas = e.portas.filter((p, i) => (S.docs[num + "." + (i+1)] || "").trim()).length;
+      const tent = S.tentativas[num] ? `<div class="tentativas">↩️ Esta etapa já foi reaberta ${S.tentativas[num]}× (máx. 3)</div>` : "";
+      div.innerHTML = `
+        <div class="etapa-head" onclick="this.parentElement.classList.toggle('open')">
+          <div class="etapa-num">${st.status === "ok" ? "✓" : num}</div>
+          <h3>${e.titulo}</h3>
+          ${e.marco ? `<span class="marco">${e.marco}</span>` : ""}
+          <span class="mini">${escritas ? `<span class="doc-count">✍ ${escritas}/5</span> · ` : ""}${feitas}/5${st.status === "locked" ? " 🔒" : ""}</span>
+        </div>
+        <div class="etapa-body">
+          <div class="resumo">${e.resumo}</div>
+          ${e.portas.map((p, i) => `
+            <div class="porta ${S.portas[num][i] ? "done" : ""}">
+              <input type="checkbox" ${S.portas[num][i] ? "checked" : ""} ${st.status === "locked" ? "disabled" : ""} onchange="togglePorta(${num},${i})">
+              <div><div class="plabel">${num}.${i+1} ${p.label}</div><div class="pcrit">✔ Pronto quando: ${p.criterio}</div>
+              <textarea class="porta-doc" ${st.status === "locked" ? "disabled" : ""} placeholder="✍ Escreva aqui o documento desta porta…" oninput="salvarDoc('${num}.${i+1}', this)">${esc(S.docs[num + "." + (i+1)] || "")}</textarea>
+              </div>
+            </div>`).join("")}
+          ${e.loopback ? `<button class="loopback-btn" ${st.status === "locked" ? "disabled" : ""} onclick="pedirLoopback(${num})">↩️ FALHOU → voltar à etapa ${e.loopback.alvo}</button>` : ""}
+          ${tent}
+        </div>`;
+      cont.appendChild(div);
+    }
+  }
+  const totalFeitas = Object.values(S.portas).flat().filter(Boolean).length;
+  const etapasFechadas = ROADMAP.etapas.filter(e => etapaFechada(e.num)).length;
+  document.getElementById("pfill").style.width = (totalFeitas / 155 * 100) + "%";
+  document.getElementById("plabel").textContent = `${totalFeitas}/155 portas · ${etapasFechadas}/31 etapas`;
+  document.getElementById("pcurrent").textContent = etapasFechadas === 31 ? "🏁 Empresa operando e melhorando ♻️" : `Etapa atual: ${atual} — ${ROADMAP.etapas.find(e=>e.num===atual).titulo}`;
+  const p = S.preco.historico[0];
+  document.getElementById("precoView").textContent = p ? p.valor : "— não definido —";
+  document.getElementById("precoMeta").textContent = p ? `v${p.versao} · registrado na etapa ${p.etapa} em ${p.data}` : "Definido na etapa 10 · revisado nas etapas 26 e 27";
+  document.getElementById("rvLista").innerHTML = S.registroVivo.map((r, i) => `
+    <div class="rv-item ${r.resolvida ? "resolvida" : ""}">
+      <button onclick="toggleRV(${i})">${r.resolvida ? "reabrir" : "resolver"}</button>
+      <span class="tipo ${r.tipo}">${r.tipo}</span>${r.texto}
+      <div class="meta">${r.dono ? "dono: " + r.dono + " · " : ""}${r.origem ? r.origem + " · " : ""}${r.data}</div>
+    </div>`).join("") || "<div class='rv-item' style='border:none;color:var(--muted)'>Vazio — as perguntas nascem ao longo das etapas (F3).</div>";
+}
+render();
+</script>
+</body>
+</html>
