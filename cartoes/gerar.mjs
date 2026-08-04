@@ -141,7 +141,9 @@ fs.mkdirSync(OUT, { recursive: true });
 const browser = await chromium.launch();
 
 for (const p of time) {
-  const destinoQr = `https://wa.me/${p.whatsapp}?text=${encodeURIComponent(`Olá, ${p.primeiroNome}! Recebi seu cartão da Setfree.`)}`;
+  // O QR passa pelo domínio (redirect controlado em api/cartoes.json): cada scan
+  // é registrado, e o destino pode mudar sem regerar nenhum cartão.
+  const destinoQr = `https://setfree.com.br/c/${p.slug}`;
   const qr = await qrSvg(destinoQr);
 
   for (const fmt of FORMATOS) {

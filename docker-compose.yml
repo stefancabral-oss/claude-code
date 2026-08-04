@@ -57,7 +57,8 @@ services:
     labels:
       - traefik.enable=true
       # /api tem prioridade maior que o site, para capturar as chamadas do assistente
-      - traefik.http.routers.setfree-api.rule=Host(`${DOMAIN}`) && PathPrefix(`/api`)
+      # /api (assistente, editais, scans) e /c/ (QR dos cartões de visita)
+      - traefik.http.routers.setfree-api.rule=Host(`${DOMAIN}`) && (PathPrefix(`/api`) || PathPrefix(`/c/`))
       - traefik.http.routers.setfree-api.priority=100
       - traefik.http.routers.setfree-api.entrypoints=websecure
       - traefik.http.routers.setfree-api.tls.certresolver=letsencrypt

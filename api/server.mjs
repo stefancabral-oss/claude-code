@@ -5,7 +5,15 @@
 // Rotas:  POST /api/assistente { pergunta }  → { texto }
 //         GET  /api/health                    → { ok: true }
 import http from "node:http";
+import fs from "node:fs";
 import { editaisHandler } from "./editais.mjs";
+
+// --- cartões de visita: QR → /c/<slug> → redirect controlado -----------------
+// Destinos em cartoes.json (o "painel"). Cada scan vira uma linha no stdout
+// (histórico permanente nos logs do Dokploy) + contador em memória (/api/scans).
+const CARTOES = JSON.parse(fs.readFileSync(new URL("./cartoes.json", import.meta.url), "utf8"));
+const scans = {}; // { slug: { total, ultimo } } — desde o último deploy
+const BOOT = new Date().toISOString();
 
 const PORT = process.env.PORT || 8787;
 const API_KEY = process.env.ANTHROPIC_API_KEY;
@@ -46,6 +54,32 @@ const server = http.createServer(async (req, res) => {
   const origin = req.headers.origin;
   if (req.method === "OPTIONS") return send(res, 204, {}, origin);
   if (req.method === "GET" && req.url === "/api/health") return send(res, 200, { ok: true, model: MODEL }, origin);
+
+  // QR do cartão de visita: redireciona e registra o scan
+  const mCartao = req.method === "GET" && req.url?.match(/^\/c\/([a-z0-9-]+)\/?(\?.*)?$/);
+  if (mCartao) {
+    const slug = mCartao[1];
+    const card = CARTOES.cartoes[slug];
+    const ativo = !!card?.ativo;
+    const destino = ativo ? card.destino : CARTOES.fallback;
+    const s = (scans[slug] ||= { total: 0, ultimo: null });
+    s.total++;
+    s.ultimo = new Date().toISOString();
+    console.log(`[scan] slug=${slug} ativo=${ativo} total=${s.total} ua="${(req.headers["user-agent"] || "").slice(0, 80)}"`);
+    res.writeHead(302, { location: destino, "cache-control": "no-store" });
+    return res.end();
+  }
+
+  // contagem de scans por vendedor (desde o último deploy; histórico completo no log)
+  if (req.method === "GET" && req.url === "/api/scans") {
+    const corpo = Object.fromEntries(
+      Object.keys(CARTOES.cartoes).map((slug) => [
+        slug,
+        { ativo: !!CARTOES.cartoes[slug].ativo, ...(scans[slug] || { total: 0, ultimo: null }) },
+      ]),
+    );
+    return send(res, 200, { desde: BOOT, scans: corpo }, origin);
+  }
 
   if (req.method === "GET" && req.url === "/api/editais") {
     try { return send(res, 200, await editaisHandler(), origin); }
