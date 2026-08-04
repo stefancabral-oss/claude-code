@@ -1,0 +1,16 @@
+{
+  "name": "setfree-cartoes",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Gera os cartões de visita do time comercial (PNG) a partir de site/src/data/time.json",
+  "scripts": {
+    "gerar": "node gerar.mjs"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.1"
+  }
+}
