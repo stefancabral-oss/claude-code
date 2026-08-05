@@ -1,0 +1,10 @@
+{
+  "_doc": "Painel de controle dos cartões de visita. O QR dos cartões aponta para setfree.com.br/c/<slug>; este arquivo decide o destino. Vendedor saiu? ativo:false — o cartão que circula continua funcionando, mas cai no fallback. Editar aqui + redeploy do serviço api (segundos).",
+  "fallback": "https://wa.me/5511913685038?text=Ol%C3%A1!%20Recebi%20um%20cart%C3%A3o%20da%20Setfree%20e%20quero%20conversar.",
+  "cartoes": {
+    "stefan": {
+      "ativo": true,
+      "destino": "https://wa.me/5511913685038?text=Ol%C3%A1%2C%20Stefan!%20Recebi%20seu%20cart%C3%A3o%20da%20Setfree."
+    }
+  }
+}
